@@ -36,8 +36,6 @@ const int RECOLECTAR_RECURSOS = 8;
 const int LLUVIA_RECURSOS = 9;
 const int GUARDA_SALIR = 10;
 
-const string VERSION_PGM = "2.0";
-
 const int MIN_GENERAR_PIEDRA = 1;
 const int MAX_GENERAR_PIEDRA = 2;
 
