@@ -4,7 +4,8 @@
 int main() {
     Juego juego;
 
-    juego.mostrar();
+    if(juego.se_abrieron_archivos())
+        juego.mostrar();
 
     return 0;
 }
