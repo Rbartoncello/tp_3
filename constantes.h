@@ -46,8 +46,10 @@ const int MIN_GENERAR_METAL = 2;
 const int MAX_GENERAR_METAL = 4;
 
 const char CAMINO = 'C';
-const char TERRENO = 'T';
+const char BETUN = 'B';
 const char LAGO = 'L';
+const char MUELLE = 'M';
+const char TERRENO = 'T';
 
 const string PIEDRA = "piedra";
 const string MADERA = "madera";
