@@ -52,6 +52,8 @@ const char LAGO = 'L';
 const string PIEDRA = "piedra";
 const string MADERA = "madera";
 const string METAL = "metal";
+const string BOMBA = "bombas";
+const string ANDYCOINS = "andycoins";
 
 const string CONSTRUYENDO = "Construyendo";
 const string DEMOLIENDO= "Demoliendo";

@@ -19,19 +19,22 @@ Material::Material(){
 string Material::agregar_emoji(string nombre_material){
     string emoji;
 
-    if (nombre_material == PIEDRA){
+    if (nombre_material == PIEDRA)
         emoji = EMOJI_PIEDRA;
-    } else if (nombre_material == MADERA){
+    else if (nombre_material == MADERA)
         emoji = EMOJI_MADERA;
-    } else if (nombre_material == METAL){
+    else if (nombre_material == METAL)
         emoji = EMOJI_METAL;
-    } 
+    else if (nombre_material == BOMBA)
+        emoji = EMOJI_BOMBA;
+    else if (nombre_material == ANDYCOINS)
+        emoji = EMOJI_ANDYCOINS;
 
     return emoji;
 }
 
 void Material::mostrar(){
-    cout << devolver_nombre_material() << " " << devolver_cantidad_material_jugador_1() << " " << devolver_cantidad_material_jugador_2() <<  endl;
+    cout << devolver_nombre_material() << "( " << devolver_emoji() << " ) " << devolver_cantidad_material_jugador_1() << " " << devolver_cantidad_material_jugador_2() <<  endl;
 }
 
 string Material::devolver_nombre_material(){
