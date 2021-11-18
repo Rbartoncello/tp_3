@@ -46,7 +46,6 @@ void Materiales::agregar_material(Material* material){
 }
 
 void Materiales::mostrar() {
-    for (int i = 0; i < this->total_materiales; i++){
+    for (int i = 0; i < this->total_materiales; i++)
         this->materiales[i]->mostrar();
-    }
 }
