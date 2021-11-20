@@ -3,10 +3,8 @@
 #include "materiales.h"
 #include "constantes.h"
 
-Materiales::Materiales() : Archivo(PATH_MATERIALES) {
+Materiales::Materiales() {
     this->total_materiales = 0;
-    if (devolver_existe_archivo())
-        leer_archivo();
 }
 
 Materiales::~Materiales(){
@@ -16,16 +14,22 @@ Materiales::~Materiales(){
     delete [] this->materiales;
 }
 
-void Materiales::leer_archivo() {
+int Materiales::leer_archivo() {
     ifstream archivo(PATH_MATERIALES);
     string nombre, cantidad_jugador_1, cantidad_jugador_2;
 
-    while ( archivo >> nombre ){
-        archivo >> cantidad_jugador_1;
-        archivo >> cantidad_jugador_2;
-        agregar_material(new Material(nombre, stoi(cantidad_jugador_1), stoi(cantidad_jugador_2)));
+    if (!archivo.is_open()){
+        cout << "No se pudo abrir el archivo: " << PATH_MATERIALES << endl;
+        return ERROR;
+    } else {
+        while ( archivo >> nombre ){
+            archivo >> cantidad_jugador_1;
+            archivo >> cantidad_jugador_2;
+            agregar_material(new Material(nombre, stoi(cantidad_jugador_1), stoi(cantidad_jugador_2)));
+        }
+        archivo.close();
     }
-    archivo.close();
+    return 0;
 }
 
 void Materiales::agregar_material(Material* material){

@@ -1,12 +1,11 @@
 #ifndef MATERIALES_H
 #define MATERIALES_H
-#include "archivo.h"
 #include "material.h"
 #include <string>
 
 using namespace std;
 
-class Materiales : public Archivo{
+class Materiales{
     private:
         Material** materiales;
         int total_materiales;
@@ -29,7 +28,7 @@ class Materiales : public Archivo{
          * Pre: -
          * Post: Guarda cada linea en un objeto Material
          */
-        void leer_archivo();
+        int leer_archivo();
 
         /*
          * Pre: Recibe un objeto Material.

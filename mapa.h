@@ -1,9 +1,10 @@
 #ifndef MAPA_H
 #define MAPA_H
-#include "archivo.h"
+#include <fstream>
 #include "casillero.h"
 
-class Mapa : public Archivo{
+using namespace std;
+class Mapa{
     private:
         int cantidad_filas;
         int cantidad_columnas;
@@ -35,7 +36,7 @@ class Mapa : public Archivo{
          * Pre: -
          * Post: Guarda todos los datos del archivo en un objeto Mapa
          */
-        void leer_archivo();
+        int leer_archivo();
 
         /*
          * Pre: -

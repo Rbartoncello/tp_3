@@ -7,16 +7,10 @@
 #include "muelle.h"
 #include "terreno.h"
 
-using namespace std;
-
-Mapa::Mapa() : Archivo(PATH_MAPA){
-    if (devolver_existe_archivo()){
-        this->cantidad_filas = 0;
-        this->cantidad_columnas = 0;
-        this->casilleros = nullptr;
-
-        leer_archivo();
-    }
+Mapa::Mapa(){
+    this->cantidad_filas = 0;
+    this->cantidad_columnas = 0;
+    this->casilleros = nullptr;
 }
 
 Mapa::~Mapa(){
@@ -68,20 +62,28 @@ void Mapa::agregar_casillero(ifstream &archivo){
     }
 }
 
-void Mapa::leer_archivo() {
+int Mapa::leer_archivo() {
     ifstream archivo(PATH_MAPA);
-    string fila, columna;
-    if(archivo >> fila){
-        archivo >> columna;
+    
+    if (!(archivo.is_open())){
+        cout << "No se puedo abrir el archivo: " << PATH_MAPA << endl;
+        return ERROR;
+    } else {
+        string fila, columna;
 
-        this->cantidad_filas = stoi(fila);
-        this->cantidad_columnas = stoi(columna);
+        if(archivo >> fila){
+            archivo >> columna;
 
-        crear_matriz_casilleros();
+            this->cantidad_filas = stoi(fila);
+            this->cantidad_columnas = stoi(columna);
 
-        agregar_casillero(archivo);
+            crear_matriz_casilleros();
+
+            agregar_casillero(archivo);
+        }
+        archivo.close();
     }
-    archivo.close();
+    return 0;
 }
 
 void Mapa::mostrar(){

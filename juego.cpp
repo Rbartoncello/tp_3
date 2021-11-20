@@ -11,8 +11,15 @@ Juego::~Juego(){
     delete this->mapa;
 }
 
-bool Juego::se_abrieron_archivos() {
-    return (this->materiales->devolver_existe_archivo() && this->mapa->devolver_existe_archivo());
+int Juego::cargar() {
+    int ejecucion = 0;
+
+    if( this->materiales->leer_archivo() == ERROR )
+        ejecucion = ERROR;
+    else if ( this->mapa->leer_archivo() == ERROR )
+        ejecucion = ERROR;
+
+    return ejecucion;
 }
 
 void Juego::mostrar() {

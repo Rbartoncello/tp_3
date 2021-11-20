@@ -28,7 +28,7 @@ class Juego{
          * Pre: -.
          * Post: Devolvera TRUE si todos los archivos fueron abiertos correctamente.
          */
-        bool se_abrieron_archivos();
+        int cargar();
 
         
         void mostrar();
