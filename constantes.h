@@ -12,10 +12,10 @@ const string EDIFICIO_OBELISCO = "obelisco";
 const string EDIFICIO_PLANTA_ELECTRICA = "planta electrica";
 const string PLANTA = "planta";
 
-const string PATH_EDIFICIO = "edificios.txt";
-const string PATH_UBICACIONES = "ubicaciones.txt";
-const string PATH_MAPA = "mapa.txt";
-const string PATH_MATERIALES = "materiales.txt";
+const string PATH_EDIFICIO = "archivos/edificios.txt";
+const string PATH_UBICACIONES = "archivos/ubicaciones.txt";
+const string PATH_MAPA = "archivos/mapa.txt";
+const string PATH_MATERIALES = "archivos/materiales.txt";
 
 const int MIN_OPCION = 1;
 const int MAX_OPCION = 10;
@@ -54,6 +54,8 @@ const char TERRENO = 'T';
 const string PIEDRA = "piedra";
 const string MADERA = "madera";
 const string METAL = "metal";
+const string BOMBA = "bombas";
+const string ANDYCOINS = "andycoins";
 
 const string CONSTRUYENDO = "Construyendo";
 const string DEMOLIENDO= "Demoliendo";

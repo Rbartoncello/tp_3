@@ -1,11 +1,28 @@
 #include "juego.h"
+#include "constantes.h"
 
-Juego::Juego(/* args */) 
-{
-    
+Juego::Juego(){
+    this->materiales = new Materiales();
+    this->mapa = new Mapa();
 }
 
-Juego::~Juego() 
-{
-    
+Juego::~Juego(){
+    delete this->materiales;
+    delete this->mapa;
+}
+
+int Juego::cargar() {
+    int ejecucion = 0;
+
+    if( this->materiales->leer_archivo() == ERROR )
+        ejecucion = ERROR;
+    else if ( this->mapa->leer_archivo() == ERROR )
+        ejecucion = ERROR;
+
+    return ejecucion;
+}
+
+void Juego::mostrar() {
+    this->materiales->mostrar();
+    this->mapa->mostrar();
 }
