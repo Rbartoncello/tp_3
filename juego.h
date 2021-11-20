@@ -8,6 +8,7 @@
 class Juego{
     private:
         Materiales* materiales;
+        Mapa* mapa;
     public:
         /*
          * Constructor sin parametros:

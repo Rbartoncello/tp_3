@@ -1,21 +1,16 @@
-20 20
-L L L T C T T T C T L L L L L L L T C T
-T L L T C T T T C T T L L L L L L T C T
-T L L T C T T T C T T L L L L L L T C T
-T T T T C C C C C T T T T L L L T T C C
-C C C C C T T T C C C C T L L L L T C T
-T C T T C T L T C T T C T L L L L T C T
-T C T T C T L T C T T C T L L T L T C T
-T C T T C T T T C T T C T L L T T T C T
-C C C C C C C C C C C C T L L T C C C C
-T C T T C T T T C T T C T T T T C T C T
-T C T T C T T T C T T C C C C C C T C T
-T C C C C T T T C T T C T T C T T T C T
-T C T T C T T T C T T C T T C T T T C T
-C C T T C C C C C C C C T T C C C C C C
-T C C C C T T T C T T C C C C T T T C T
-T C T T C T L T C T T C T T C T L T C T
-T C T T C T L T C T T C T T C T L T C T
-T C C C C T T T C T T C C C C T T T C T
-C C T T C C C C C C C C T T C C C C C C
-T C T T C T T T C T T C T T C T T T C T
+15 15
+C C C C C C L L L C C C C C C
+C B B B B C M M M C B B B B C
+C B T T B C C C C C B T T B C
+C B T T B C C C C C B T T B C
+C B B B B C M M M C B B B B C
+C C C C C C L L L C C C C C C
+L M C C M L L L L L M C C M L
+L M C C M L L L L L M C C M L
+L M C C M L L L L L M C C M L
+C C C C C C L L L C C C C C C
+C B B B B C M M M C B B B B C
+C B T T B C C C C C B T T B C
+C B T T B C C C C C B T T B C
+C B B B B C M M M C B B B B C
+C C C C C C L L L C C C C C C
