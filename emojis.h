@@ -22,6 +22,8 @@ const string EMOJI_MAPA = "\U0001f5fa";
 const string EMOJI_BRUJULA = "\U0001f9ed";
 const string EMOJI_INVENTARIO = "\U0001f9f0";
 const string EMOJI_GUARDA_SALIR = "\U0001f4be";
+const string EMOJI_START = "\U0001f3c1";
+const string EMOJI_MOVERSE = "\U0001f3c3";
 
 const string EMOJI_LLUVIA = "\U0001f327";
 const string EMOJI_LLUVIA_CON_TRUENOS = "\u26C8";
@@ -49,5 +51,8 @@ const string EMOJI_SIETE = "7\u20E3 ";
 const string EMOJI_OCHO = "8\u20E3 ";
 const string EMOJI_NUEVE = "9\u20E3 ";
 const string EMOJI_DIEZ = "1\u20E30\u20E3";
+const string EMOJI_ONCE = "1\u20E31\u20E3";
+const string EMOJI_DOCE = "1\u20E32\u20E3";
+const string EMOJI_TRECE = "1\u20E33\u20E3";
 
 #endif

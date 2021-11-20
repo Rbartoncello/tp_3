@@ -1,5 +1,6 @@
 #include "juego.h"
 #include "constantes.h"
+#include "interface.h"
 
 Juego::Juego(){
     this->materiales = new Materiales();
@@ -23,6 +24,10 @@ int Juego::cargar() {
 }
 
 void Juego::mostrar() {
+    imprimir_mensaje_bienvenida();
+    imprimir_menu_principal();
+    imprimir_menu_juego();
+    imprimir_objetos_mapa();
     this->materiales->mostrar();
     this->mapa->mostrar();
 }

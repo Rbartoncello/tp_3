@@ -47,10 +47,10 @@ void Mapa::agregar_casillero(ifstream &archivo){
                     case CAMINO:
                         this->casilleros[i][j] = new Camino(tipo_terreno, j, i);
                         break;
-                    case 'B':
+                    case BETUN:
                         this->casilleros[i][j] = new Betun(tipo_terreno, j, i);
                         break;
-                    case 'M':
+                    case MUELLE:
                         this->casilleros[i][j] = new Muelle(tipo_terreno, j, i);
                         break;
                     case TERRENO:
