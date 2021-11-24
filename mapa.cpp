@@ -133,6 +133,18 @@ void Mapa::construirEdificio(int coordX, int coordY, string nuevo_edificio)
     cout << "Por aqui paso: " + nuevo_edificio << endl;
 }
 
+int Mapa::cantidad_edificio_construido(string nombre){
+    int cantidad = 0;
+    for (int i = 0; i < this->cantidad_filas; i++){
+        for (int j = 0; j < this->cantidad_columnas; j++){
+            if ( this->casilleros[i][j]->devolver_tipo_terreno() == TERRENO && this->casilleros[i][j]->esta_ocupado() && this->casilleros[i][j]->devolver_nombre_edificio()==nombre){
+                cantidad ++;
+            }
+        }
+    }
+    return cantidad;
+}
+
 bool Mapa::validar_tipo_construible(int coord1, int coord2){
 
     return ((devolver_tipo_terreno(coord1, coord2) == TERRENO));

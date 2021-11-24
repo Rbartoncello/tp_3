@@ -17,6 +17,5 @@ Casillero::Casillero(){
 }  
 
 char Casillero::devolver_tipo_terreno(){
-
-    return (tipo_terreno);
+    return tipo_terreno;
 }

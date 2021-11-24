@@ -40,6 +40,12 @@ class Casillero_construible : public Casillero{
         virtual void mostrar() = 0;
 
         virtual ~Casillero_construible() = 0; 
+
+        /*
+         * Pre: -
+         * Post: Metodo virtual vacio para los hijos
+        */
+        virtual string devolver_nombre_edificio(){return nullptr;};
 };
 
 #endif

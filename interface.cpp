@@ -1,5 +1,6 @@
 #include <iostream>
 #include <unistd.h>
+#include <iomanip>
 #include "interface.h"
 #include "colors.h"
 #include "constantes.h"
@@ -41,12 +42,13 @@ void imprimir_mensaje_bienvenida(){
     cout  << "\t\tque dos programadores se unan y desarrollen su programa en conjunto.\t" << endl << endl;
     cout << "\t\t\t\t\t    " << BGND_GRAY_243 <<  "╔═══════════════════════════════════╗"<< END_COLOR << endl;
     cout << "\t\t\t\t\t    " << BGND_GRAY_243 <<  "║  Presione [ENTER] para continuar  ║"<< END_COLOR << endl;
-    cout << "\t\t\t\t\t    " BGND_GRAY_243 <<  "╚═══════════════════════════════════╝"<< END_COLOR << endl;
+    cout << "\t\t\t\t\t    " << BGND_GRAY_243 <<  "╚═══════════════════════════════════╝"<< END_COLOR << endl;
     cin.get();
     system("clear");
 }
 
 void imprimir_menu_nueva_partida(){
+    system("clear");
     cout << TXT_LIGHT_AQUA_43 << TXT_BOLD;
     cout << "\t\t\t\t\t╔════╦═══════════════════════════════════════╗" << endl;
     cout << "\t\t\t\t\t║ " << EMOJI_UNO << " ║" << END_COLOR << TXT_BOLD <<" Modificar edificio por nombre " << EMOJI_EDIFICIO_CONSTRUCION << TXT_LIGHT_AQUA_43 << "       ║" << endl;
@@ -63,6 +65,7 @@ void imprimir_menu_nueva_partida(){
 }
 
 void imprimir_menu_juego(){
+    system("clear");
     cout << TXT_LIGHT_AQUA_43 << TXT_BOLD;;
     cout << "\t\t\t\t\t╔════╦═══════════════════════════════════════╗" << endl;
     cout << "\t\t\t\t\t║ " << EMOJI_UNO << " ║" << END_COLOR << TXT_BOLD <<" Construir edificio por nombre " << EMOJI_EDIFICIO_CONSTRUCION << TXT_LIGHT_AQUA_43 << "       ║" << endl;
@@ -118,7 +121,7 @@ void imprimir_mensaje_error() {
 
 void imprimir_mensaje_esperar(int tiempo) {
     cout << endl;
-    cout << "»»Por favor espere que volverá al menu principal en ";
+    cout << "\t»»Por favor espere que volverá al menu principal en ";
     cout << TXT_BOLD;
     cout << tiempo;
     cout << END_COLOR;
@@ -143,7 +146,7 @@ void imprimir_procesamiento_accion(string action_realizada, string nombre_edific
 
 void imprimir_mensaje_guardado(){
     system("clear");
-    cout << "Cargando... " << EMOJI_LOANDING << endl;
+    cout << "\tCargando... " << EMOJI_LOANDING << endl;
 
     sleep(2);
     system("clear");
@@ -177,11 +180,11 @@ int pedir_opcion(){
 
 void imprimir_mensaje_error_ingreso() {
     imprimir_mensaje_error();
-    cout << "La opción elegida no es una opcion válida, por favor ingrese otra opción: ";
+    cout << "\tLa opción elegida no es una opcion válida, por favor ingrese otra opción: ";
 }
 
 void imprimir_mensaje_enter_continuar(){
-    cout << "Presione [ENTER] para continuar"<< endl;
+    cout << endl << "\t\tPresione [ENTER] para continuar"<< endl;
     cin.ignore();
     cin.get();
     system("clear");
@@ -189,36 +192,62 @@ void imprimir_mensaje_enter_continuar(){
 
 void imprimir_mensaje_ingresar_edificio(){
     system("clear");
-    cout << "Ingrese el nombre del edificio que desee modificar: ";
+    cout << "\tIngrese el nombre del edificio que desee modificar: ";
 }
 
 void imprimir_mensaje_error_ingresar_edificio() {
     system("clear");
     imprimir_mensaje_error();
-    cout << "El nombre de edificio ingresado " << TXT_BOLD << TXT_UNDERLINE <<  "no" << END_COLOR << " exite, por favor ingrese un nombre de edificio que exista: ";
+    cout << "\tEl nombre de edificio ingresado " << TXT_BOLD << TXT_UNDERLINE <<  "no" << END_COLOR << " exite, por favor ingrese un nombre de edificio que exista: ";
 }
 
 void imprimir_mensaje_receta_edificio(string edificio, string material, int cantidad) {
     system("clear");
-    cout << "El edificio " << edificio << " necesita " << cantidad << " de " << material << "  desea modificarlo" << endl;
+    cout << "\tEl edificio " << edificio << " necesita " << cantidad << " de " << material << "  desea modificarlo" << endl;
 }
 
 void imprimir_mensaje_afirmativo_negativo() {
     cout << endl << "\t ";
     cout << TXT_BOLD << TXT_GREEN_118 <<  AFIRMATIVO << ") SI " << END_COLOR << endl;
-    cout << endl << "\t ";
+    cout << "\t ";
     cout << TXT_BOLD << TXT_LIGHT_RED_9 <<  NEGATIVO << ") NO " << END_COLOR << endl;
 }
 
 void imprimir_mensaje_receta_modificar() {
     system("clear");
-    cout << endl << "Ingrese la cantidad entre [ " << MIN_RECETA_MODIFICAR << ", " << MAX_RECETA_MODIFICAR << " ] que decee modificar: ";
+    cout << "\tIngrese la cantidad entre [ " << MIN_RECETA_MODIFICAR << ", " << MAX_RECETA_MODIFICAR << " ] que decee modificar: ";
 }
 
 void imprimir_mensaje_error_ingresar_edificio_obelisco() {
     system("clear");
     imprimir_mensaje_error();
-    cout <<  TXT_BOLD << TXT_UNDERLINE <<  "No" << END_COLOR << "se puede modificar el " << EDIFICIO_OBELISCO << endl;
+    cout <<  TXT_BOLD << TXT_UNDERLINE <<  "No" << END_COLOR << " se puede modificar el " << EDIFICIO_OBELISCO << endl;
 
     imprimir_mensaje_esperar(2);
+}
+
+void encabezado_edificios_construidos(){
+    system("clear");
+
+    cout << TXT_BOLD;
+    cout << "\t╔══════════════════════╦═════════════════════════════════════════╦═════════════╦═════════════╦═════════════════╗" << endl;
+    cout << "\t║                      ║ Materiales necesarios para construirlos ║             ║             ║                 ║" << endl;
+    cout << "\t║  Nombre de edificio  ╠═════════════╦═════════════╦═════════════╣ Construidos ║ Disponibles ║ Brinda material ║" << endl;
+    cout << "\t║                      ║ Piedra ("<< EMOJI_PIEDRA << " ) ║ Madera ("<< EMOJI_MADERA << " ) ║  Metal ("<< EMOJI_METAL << ")  ║             ║             ║                 ║" << endl;
+    cout << "\t╠══════════════════════╬═════════════╬═════════════╬═════════════╬═════════════╬═════════════╬═════════════════╣" << endl;
+    cout << END_COLOR;
+}
+
+void imprimir_lista_edificios_construidos(Edificio* edificio, Mapa* mapa) {
+    string brinda = EMOJI_MAL;
+        /*if ( brinda_material(edificio->devolver_nombre_edificio()) )
+            brinda = EMOJI_HECHO;*/
+    cout << "\t║" << setfill(' ') << setw(16) << edificio->devolver_nombre_edificio() << "( " << /* edificio->devolver_emoji()  <<*/ "   )" << setfill(' ') << setw(3);
+    cout << "│" << setfill(' ') << setw(8) << edificio->devolver_receta()->devoler_piedra() << setfill(' ') << setw(8);
+    cout << "│" << setfill(' ') << setw(8) << edificio->devolver_receta()->devoler_madera() << setfill(' ') << setw(8);
+    cout << "│" << setfill(' ') << setw(8) << edificio->devolver_receta()->devoler_metal() << setfill(' ') << setw(8);
+    cout << "│" << setfill(' ') << setw(7) << mapa->cantidad_edificio_construido(edificio->devolver_nombre_edificio()) << setfill(' ') << setw(9);
+    cout << "│" << setfill(' ') << setw(7) << edificio->devolver_maxima_cantidad_permitidos()- mapa->cantidad_edificio_construido(edificio->devolver_nombre_edificio()) << setfill(' ') << setw(9);
+    cout << "│" << setfill(' ') << setw(10) << brinda << setw(11) << "║" << endl;
+    cout << "\t╠──────────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────────╣" << endl;
 }

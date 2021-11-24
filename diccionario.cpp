@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "diccionario.h"
 #include "obelisco.h"
 #include "mina.h"
@@ -8,6 +9,9 @@
 #include "constantes.h"
 #include "fabrica.h"
 #include "aserradero.h"
+#include "interface.h"
+
+using namespace std;
 
 Diccionario::Diccionario() {
     this->rama = NULL;
@@ -41,16 +45,32 @@ Nodo* Diccionario::buscar(Nodo* nodo, string edificio) {
     
 }
 
-void Diccionario::imprimir_in_orden() {
-    imprimir_in_order(this->rama);
+void Diccionario::listar_en_orden(Mapa* mapa) {
+    encabezado_edificios_construidos();
+    listar_en_orden(this->rama, mapa);
 }
 
-void Diccionario::imprimir_in_order(Nodo * nodo) {
+void Diccionario::listar_en_orden(Nodo * nodo, Mapa* mapa) {
     if (nodo != NULL){
-        imprimir_in_order(nodo->devolver_izquierda());
-        std::cout<< nodo->devolver_edificio()->devolver_nombre_edificio() << " " ;
-        imprimir_in_order(nodo->devolver_derecha());
+        listar_en_orden(nodo->devolver_izquierda(), mapa);
+        imprimir_lista_edificios_construidos(nodo->devolver_edificio(), mapa);
+        listar_en_orden(nodo->devolver_derecha(), mapa);
     }
+}
+
+void Diccionario::guardar_pre_orden(Nodo * nodo, ofstream &documento) {
+    if (nodo != NULL){
+        documento << nodo->devolver_edificio()->devolver_nombre_edificio() << " " << nodo->devolver_edificio()->devolver_receta()->devoler_piedra() << " " << nodo->devolver_edificio()->devolver_receta()->devoler_madera() << " " << nodo->devolver_edificio()->devolver_receta()->devoler_metal() << " " << nodo->devolver_edificio()->devolver_maxima_cantidad_permitidos() << endl;
+        
+        guardar_pre_orden(nodo->devolver_izquierda(), documento);
+        guardar_pre_orden(nodo->devolver_derecha(), documento);
+    }
+}
+
+void Diccionario::guardar_pre_orden() {
+    ofstream documento(PATH_EDIFICIO);
+    guardar_pre_orden(this->rama, documento);
+    documento.close();
 }
 
 Nodo* Diccionario::devolver_rama() {

@@ -1,6 +1,8 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 #include <string>
+#include "mapa.h"
+#include "edificio.h"
 
 using namespace std;
 /*  
@@ -110,5 +112,17 @@ void imprimir_mensaje_afirmativo_negativo();
  * Post: Imprime por pantalla que el usuario ingrese la cantidad de receta a modificar.
  */
 void imprimir_mensaje_receta_modificar();
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla que el encabezado de listar edificios.
+ */
+void encabezado_edificios_construidos();
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla listar edificios.
+ */
+void imprimir_lista_edificios_construidos(Edificio* edificio, Mapa* mapa);
 
 #endif

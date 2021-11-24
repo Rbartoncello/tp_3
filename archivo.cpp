@@ -36,8 +36,6 @@ int Archivo::leer_archivos_edificios(Diccionario* &diccionario)  {
         archivo.close();
     }
 
-    diccionario->imprimir_in_orden();
-
     string nombre_edificio = "fabrica";
     cout << endl << "Piedra: " << diccionario->buscar(nombre_edificio)->devoler_piedra() << " Madera: " << diccionario->buscar(nombre_edificio)->devoler_madera() << " Metal: " << diccionario->buscar(nombre_edificio)->devoler_metal() << endl;
 

@@ -1,5 +1,6 @@
 #ifndef TERRENO_H
 #define TERRENO_H
+#include <string>
 #include "casillero_construible.h"
 #include "edificacion.h"
 #include "casillero.h"
@@ -12,7 +13,7 @@
 #include "fabrica.h"
 #include "aserradero.h"
 
-
+using namespace std;
 
 class Terreno : public Casillero_construible{
     private:
@@ -44,6 +45,12 @@ class Terreno : public Casillero_construible{
         int devolver_costo();
 
         void mostrar();
+
+        /*
+         * Pre: Tiene que haber un edificio en el casillero
+         * Post: Devuelve el nombre del edificio
+        */
+        string devolver_nombre_edificio();
 
         virtual ~Terreno();
 };

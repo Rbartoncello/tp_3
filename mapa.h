@@ -48,7 +48,12 @@ class Mapa{
         char devolver_tipo_terreno(int coord1, int coord2);
 
         void construirEdificio(int coordX, int coordY, string nuevo_edificio);
-        
+
+        /*
+         * Pre: recibe un nombre.
+         * Post: devuelve la cantidad de ese nombre en el mapa.
+        */
+        int cantidad_edificio_construido(string nombre);
     private:
         /*
          * Pre: El archivo tiene que estar abierto y de formato correcto.

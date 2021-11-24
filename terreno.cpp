@@ -73,3 +73,7 @@ void Terreno::mostrar(){
     if (!this->esta_ocupado())
         cout << BGND_DARK_GREEN_28 << "  " << END_COLOR;
 }
+
+string Terreno::devolver_nombre_edificio(){
+    return this->puntero_edificio->devolverNombre();
+}

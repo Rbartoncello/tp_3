@@ -55,6 +55,18 @@ class Casillero{
          * Post: Me muestra por pantalla.
          */
         virtual void mostrar() = 0;
+
+        /*
+         * Pre: -
+         * Post: Metodo virtual vacio para las clases hijas
+        */
+        virtual bool esta_ocupado() = 0;
+
+        /*
+         * Pre: -
+         * Post: Metodo virtual vacio para la clase casillero_construible
+        */
+        virtual string devolver_nombre_edificio(){return nullptr;};
 };
 
 

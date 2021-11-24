@@ -45,7 +45,7 @@ void Juego::nueva_partida(){
         opcion_elegida = pedir_opcion();
         validar_opcion_ingresada(opcion_elegida);
     }
-
+    this->diccionario->guardar_pre_orden();
     imprimir_mensaje_guardado();
 }
 
@@ -69,7 +69,9 @@ void Juego::procesar_opcion_nueva_partida(int opcion){
             modificar_edificio(this->diccionario);
             break;
         case LISTAR_TODOS_EDIFICIOS:
-            cout<<"Listar todos los edificios"<<endl;
+            this->diccionario->listar_en_orden(this->mapa);
+
+            imprimir_mensaje_enter_continuar();
             break;
         case MOSTAR_MAPA:
             this->mapa->mostrar();

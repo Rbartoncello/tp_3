@@ -39,6 +39,12 @@ class Casillero_transitable : public Casillero{
          * Post: Me muestra por pantalla.
          */
         virtual void mostrar() = 0;
+
+        /*
+         * Pre: -
+         * Post: Metodo vacio para la clase casillero_construible
+        */
+        string devolver_nombre_edificio(){return nullptr;};
     
 };
 

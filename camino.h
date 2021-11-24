@@ -1,7 +1,3 @@
-//
-// Created by rbartoncello on 11/19/21.
-//
-
 #ifndef CAMINO_H
 #define CAMINO_H
 #include "casillero_transitable.h"

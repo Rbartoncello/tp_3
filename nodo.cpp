@@ -45,18 +45,6 @@ void Nodo::modificar_derecha(Nodo* derecha, Nodo* padre) {
     this->padre = padre;
 }
 
-bool Nodo::es_hoja() {
-    return ( ( devolver_izquierda() == NULL ) && ( devolver_derecha() == NULL ) );
-}
-
-bool Nodo::es_izquierda_solamente() {
-    return ( ( devolver_izquierda() == NULL ) && ( devolver_derecha() != NULL ) );
-}
-
-bool Nodo::es_derecha_solamente() {
-    return ( ( devolver_izquierda() != NULL ) && ( devolver_derecha() == NULL ) );
-}
-
 Nodo::~Nodo(){
     delete this->edificio;
 }
