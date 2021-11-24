@@ -133,6 +133,13 @@ void Mapa::construirEdificio(int coordX, int coordY, string nuevo_edificio)
     cout << "Por aqui paso: " + nuevo_edificio << endl;
 }
 
+void Mapa::agregar_jugador(int coordX, int coordY)
+{
+    casilleros[coordX][coordY]->modificar_terreno()
+
+}
+
+
 int Mapa::cantidad_edificio_construido(string nombre){
     int cantidad = 0;
     for (int i = 0; i < this->cantidad_filas; i++){

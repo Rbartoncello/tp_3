@@ -44,6 +44,8 @@ class Mapa{
          */
         void mostrar();
 
+        void agregar_jugador(int coordX, int coordY);
+
 
         char devolver_tipo_terreno(int coord1, int coord2);
 

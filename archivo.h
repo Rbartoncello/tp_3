@@ -52,7 +52,7 @@ class Archivo {
 
         void agregar_edificio(ifstream &documento,string nombre_edificio,Mapa* &mapa);
 
-        void agregar_posicion_jugador(string coordX, string coordY,Mapa* &mapa);
+        void agregar_posicion_jugador(int coordX, int coordY,Mapa* &mapa);
         
         void leer_edificios_jugador1(ifstream &documento, string jugador,Mapa* &mapa);
 

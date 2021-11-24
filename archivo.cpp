@@ -109,9 +109,9 @@ void Archivo::leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa)
         {
             documento >> coordX;
             documento >> coordY;
-            //agregar_posicion_jugador(coordX,coordY,mapa);
             int cleanCoordX = arreglarCoordenadaX(coordX);
             int cleanCoordY = arreglarCoordenadaY(coordY);
+            agregar_posicion_jugador(cleanCoordX,cleanCoordY,mapa);
             cout << "El jugador 1 estaria en (" << cleanCoordX << ", " << cleanCoordY << ")" << endl;
             leyendoMateriales = false;
         }
@@ -148,9 +148,9 @@ void Archivo::leer_edificios_jugador1(ifstream &documento, string jugador, Mapa*
         {
             documento >> coordX;
             documento >> coordY;
-            //agregar_posicion_jugador(coordX,coordY,mapa);
             int cleanCoordX = arreglarCoordenadaX(coordX);
             int cleanCoordY = arreglarCoordenadaY(coordY);
+            agregar_posicion_jugador(cleanCoordX,cleanCoordY,mapa);
             cout << "El jugador 2 estaria en (" << cleanCoordX << ", " << cleanCoordY << ")" << endl;
             leyendo_edificios_P1 = false;
         }
@@ -203,5 +203,13 @@ int Archivo::arreglarCoordenadaY(string coordY)
     return (stoi(coordY));
 }
 
+void Archivo::agregar_posicion_jugador(string coordX, string coordY, Mapa *&mapa) {
+
+    mapa->agregar_jugador(coordX,coordY);
+
+}
+
+
 Archivo::~Archivo(){
 }
+
