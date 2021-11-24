@@ -2,8 +2,8 @@
 // Created by rbartoncello on 11/19/21.
 //
 
-#ifndef TP_3_MUELLE_H
-#define TP_3_MUELLE_H
+#ifndef MUELLE_H
+#define MUELLE_H
 #include "casillero_transitable.h"
 
 class Muelle : public  Casillero_transitable{
@@ -13,6 +13,13 @@ class Muelle : public  Casillero_transitable{
         Muelle();
 
         Muelle(char tipo_terreno, int pos_x, int pos_y);
+
+        /*
+        * 
+        * Pre:Recibe lo que va agregar
+        * Post:crea el material.
+        */
+        void modificar_terreno(string elemento,int accion);
 
         void modicar_costo(int costo);
 
@@ -24,4 +31,4 @@ class Muelle : public  Casillero_transitable{
 };
 
 
-#endif //TP_3_MUELLE_H
+#endif //MUELLE_H

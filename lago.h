@@ -2,8 +2,8 @@
 // Created by rbartoncello on 11/19/21.
 //
 
-#ifndef TP_3_LAGO_H
-#define TP_3_LAGO_H
+#ifndef LAGO_H
+#define LAGO_H
 #include "casillero_inaccesible.h"
 
 class Lago : public Casillero_inaccesible {
@@ -24,4 +24,4 @@ class Lago : public Casillero_inaccesible {
 };
 
 
-#endif //TP_3_LAGO_H
+#endif //LAGO_H

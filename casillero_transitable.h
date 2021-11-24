@@ -5,6 +5,7 @@
 class Casillero_transitable : public Casillero{
     private:
         bool ocupado;
+
     public:
         /*
          * Constructor:
@@ -21,6 +22,13 @@ class Casillero_transitable : public Casillero{
         Casillero_transitable();
 
         /*
+         * 
+         * Pre:Recibe lo que va agregar
+         * Post:crea el material.
+         */
+        virtual void modificar_terreno(string elemento,int accion)=0;
+
+        /*
          * Pre: -
          * Post: De devuleve TRUE si esta ocupado y FALSE en caso contrario.
          */
@@ -31,6 +39,12 @@ class Casillero_transitable : public Casillero{
          * Post: Me muestra por pantalla.
          */
         virtual void mostrar() = 0;
+
+        /*
+         * Pre: -
+         * Post: Metodo vacio para la clase casillero_construible
+        */
+        string devolver_nombre_edificio(){return nullptr;};
     
 };
 

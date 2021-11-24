@@ -21,6 +21,13 @@ class Casillero_inaccesible : public Casillero {
         Casillero_inaccesible();
 
         /*
+         * 
+         * Pre:
+         * Post:Esta declarado al tenerlo el padre
+         */
+        void modificar_terreno(string elemento,int accion);
+
+        /*
          * Pre: -
          * Post: De devuleve TRUE si esta ocupado y FALSE en caso contrario.
          */
@@ -31,6 +38,12 @@ class Casillero_inaccesible : public Casillero {
          * Post: Me muestra por pantalla.
          */
         virtual void mostrar() = 0;
+
+        /*
+         * Pre: -
+         * Post: Metodo vacio para la clase casillero_construible
+        */
+        string devolver_nombre_edificio(){return nullptr;};
 };
 
 #endif

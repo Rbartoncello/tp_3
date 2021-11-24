@@ -1,9 +1,5 @@
-//
-// Created by rbartoncello on 11/19/21.
-//
-
-#ifndef TP_3_BETUN_H
-#define TP_3_BETUN_H
+#ifndef BETUN_H
+#define BETUN_H
 #include "casillero_transitable.h"
 
 class Betun : public Casillero_transitable{
@@ -13,6 +9,13 @@ class Betun : public Casillero_transitable{
         Betun();
 
         Betun(char tipo_terreno, int pos_x, int pos_y);
+
+        /*
+        * 
+        * Pre:Recibe lo que va agregar
+        * Post:crea el material.
+        */
+        void modificar_terreno(string elemento,int accion);
 
         void modicar_costo(int costo);
 
@@ -28,4 +31,4 @@ class Betun : public Casillero_transitable{
 };
 
 
-#endif //TP_3_BETUN_H
+#endif //BETUN_H

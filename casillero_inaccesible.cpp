@@ -10,6 +10,9 @@ Casillero_inaccesible::Casillero_inaccesible(): Casillero(){
 
 }
 
+void Casillero_inaccesible::modificar_terreno(string elemento,int accion){}
+
+
 bool Casillero_inaccesible::esta_ocupado(){
     return this->ocupado;
 }

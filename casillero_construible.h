@@ -21,6 +21,13 @@ class Casillero_construible : public Casillero{
         Casillero_construible();
 
         /*
+         * 
+         * Pre:Recibe lo que va agregar
+         * Post:Llama al hijo respectivo.
+         */
+        virtual void modificar_terreno(string elemento,int accion) = 0;
+
+        /*
          * Pre: -
          * Post: De devuleve TRUE si esta ocupado y FALSE en caso contrario.
          */
@@ -31,6 +38,14 @@ class Casillero_construible : public Casillero{
          * Post: Me muestra por pantalla.
          */
         virtual void mostrar() = 0;
+
+        virtual ~Casillero_construible() = 0; 
+
+        /*
+         * Pre: -
+         * Post: Metodo virtual vacio para los hijos
+        */
+        virtual string devolver_nombre_edificio(){return nullptr;};
 };
 
 #endif

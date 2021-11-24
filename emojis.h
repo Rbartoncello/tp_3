@@ -32,9 +32,10 @@ const string EMOJI_PIEDRA = "\U0001faa8";
 const string EMOJI_MADERA = "\U0001fab5";
 const string EMOJI_METAL = "\u2699";
 const string EMOJI_BOMBA = "\U0001f4a3";
-const string EMOJI_ANDYCOINS = "\U0001fa99";
+const string EMOJI_ANDYCOINS = "\U0001f4b0";
 
 const string EMOJI_MINA ="\u26CF ";
+const string EMOJI_MINA_ORO = "\U0001fa99 ";
 const string EMOJI_ASERRADERO ="\U0001fa93";
 const string EMOJI_FABRICA ="\U0001f3ed";
 const string EMOJI_ESCUELA ="\U0001f3eb";

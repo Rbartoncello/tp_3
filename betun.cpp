@@ -11,6 +11,10 @@ Betun::Betun(char tipo_terreno, int pos_x, int pos_y) : Casillero_transitable(ti
     this->costo = 0;
 }
 
+void Betun::modificar_terreno(string elemento,int accion){
+    //crear material y asignarlo a Materiales
+}
+
 void Betun::modicar_costo(int costo) {
     this->costo = costo;
 }

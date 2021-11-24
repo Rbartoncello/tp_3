@@ -28,13 +28,13 @@ class Materiales{
          * Pre: -
          * Post: Guarda cada linea en un objeto Material
          */
-        int leer_archivo();
+        //int leer_archivo();
 
         /*
          * Pre: Recibe un objeto Material.
          * Post: Ingresa el objeto en un vector dinámico.
          */
-        void agregar_material(Material* material);
+        //void agregar_material(Material* material);
 
         /*
          * Pre: -

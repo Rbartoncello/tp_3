@@ -20,7 +20,7 @@ Mapa::~Mapa(){
         }
         delete [] this->casilleros[i];
     }
-    delete [] this->casilleros;
+    delete[] this->casilleros;
     this->casilleros = nullptr;
 }
 
@@ -36,7 +36,6 @@ void Mapa::crear_matriz_casilleros(){
 
 void Mapa::agregar_casillero(ifstream &archivo){
     char tipo_terreno;
-
     for (int i = 0; i < this->cantidad_filas; i++){
         for (int j = 0; j < this->cantidad_columnas; j++){
             if(archivo >> tipo_terreno){
@@ -55,6 +54,8 @@ void Mapa::agregar_casillero(ifstream &archivo){
                         break;
                     case TERRENO:
                         this->casilleros[i][j] = new Terreno(tipo_terreno, j, i);
+                        break;
+                    default:
                         break;
                 }
             }
@@ -87,34 +88,76 @@ int Mapa::leer_archivo() {
 }
 
 void Mapa::mostrar(){
+    system("clear");
 
     for (int i = 0; i <= this->cantidad_columnas + 1; i++){
         if (i == 0)
             cout << "\t";
-        cout << BGND_ORANGE_214 << "  " << END_COLOR;
+        cout << BGND_BROWN_137 << "  " << END_COLOR;
     }
     cout << endl;
 
     for (int i = 0; i < this->cantidad_filas; i++){
-        cout << "\t" << BGND_ORANGE_214 << "  " << END_COLOR;
+        cout << "\t" << BGND_BROWN_137 << "  " << END_COLOR;
         for (int j = 0; j < this->cantidad_columnas; j++){
             this->casilleros[i][j]->mostrar();
         }
         if ( i < 10 )
-            cout << BGND_ORANGE_214 << TXT_UNDERLINE << TXT_LIGHT_BLUE_33 << TXT_BOLD << i << " " << END_COLOR;
+            cout << BGND_BROWN_137 << TXT_UNDERLINE << TXT_LIGHT_BLUE_33 << TXT_BOLD << i << " " << END_COLOR;
         else
-            cout << BGND_ORANGE_214 << TXT_UNDERLINE << TXT_LIGHT_BLUE_33 << TXT_BOLD << i << END_COLOR;
+            cout << BGND_BROWN_137 << TXT_UNDERLINE << TXT_LIGHT_BLUE_33 << TXT_BOLD << i << END_COLOR;
         cout << endl;
     }
 
     for (int i = 0; i <= this->cantidad_columnas; i++){
         if (i == 0)
-            cout << "\t" << BGND_ORANGE_214 << "  " << END_COLOR;
+            cout << "\t" << BGND_BROWN_137 << "  " << END_COLOR;
         if ( ( i < this->cantidad_columnas ) && ( i < 10 ) )
-            cout << BGND_ORANGE_214 << i << " " << END_COLOR;
+            cout << BGND_BROWN_137 << i << " " << END_COLOR;
         else if ( ( i < this->cantidad_columnas ))
-            cout << BGND_ORANGE_214 << i << END_COLOR;
+            cout << BGND_BROWN_137 << i << END_COLOR;
         else if ( i == this->cantidad_columnas )
-            cout << BGND_ORANGE_214 << "  " << END_COLOR;
+            cout << BGND_BROWN_137 << "  " << END_COLOR;
     }
+
+    cout << endl;
+}
+
+void Mapa::construirEdificio(int coordX, int coordY, string nuevo_edificio)
+{
+    if (validar_tipo_construible(coordX, coordY))
+    {
+        casilleros[coordX][coordY]->modificar_terreno(nuevo_edificio, CONSTRUYENDO);
+    }
+
+    cout << "Por aqui paso: " + nuevo_edificio << endl;
+}
+
+void Mapa::agregar_jugador(int coordX, int coordY)
+{
+    //casilleros[coordX][coordY]->modificar_terreno();
+
+}
+
+
+int Mapa::cantidad_edificio_construido(string nombre){
+    int cantidad = 0;
+    for (int i = 0; i < this->cantidad_filas; i++){
+        for (int j = 0; j < this->cantidad_columnas; j++){
+            if ( this->casilleros[i][j]->devolver_tipo_terreno() == TERRENO && this->casilleros[i][j]->esta_ocupado() && this->casilleros[i][j]->devolver_nombre_edificio()==nombre){
+                cantidad ++;
+            }
+        }
+    }
+    return cantidad;
+}
+
+bool Mapa::validar_tipo_construible(int coord1, int coord2){
+
+    return ((devolver_tipo_terreno(coord1, coord2) == TERRENO));
+}
+
+char Mapa::devolver_tipo_terreno(int coord1, int coord2)
+{
+    return casilleros[coord1][coord2]->devolver_tipo_terreno();
 }
