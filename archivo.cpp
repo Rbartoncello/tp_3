@@ -1,4 +1,10 @@
 #include "archivo.h"
+#include "escuela.h"
+#include "planta.h"
+#include "aserradero.h"
+#include "mina.h"
+#include "fabrica.h"
+#include "obelisco.h"
 
 Archivo::Archivo(){
 }
@@ -21,7 +27,9 @@ int Archivo::leer_archivos_edificios(Diccionario* &diccionario)  {
             archivo >> metal;
             archivo >> max_cant_permitidos;
 
-            diccionario->insertar(new Edificio (nombre,  stoi(piedra), stoi(madera), stoi(metal), stoi(max_cant_permitidos)));
+            Edificacion* nuevo_edificio = elegir_edificios(nombre,  stoi(piedra), stoi(madera), stoi(metal), stoi(max_cant_permitidos));
+
+            diccionario->insertar(nuevo_edificio);
         }
         archivo.close();
     }
@@ -33,6 +41,35 @@ int Archivo::leer_archivos_edificios(Diccionario* &diccionario)  {
     return 1;
 }
 
+Edificacion* elegir_edificios(string nombre,  int piedra,  int madera,  int metal, int max_permitidos)
+{   Edificacion* nuevo_Edificio;
+    if(nombre == "escuela")
+    {
+        nuevo_Edificio = new Escuela(nombre,  piedra,  madera,  metal,  max_permitidos);
+    }
+    else if(nombre == "fabrica")
+    {
+        nuevo_Edificio = new Fabrica(nombre,  piedra,  madera,  metal,  max_permitidos);
+    }
+    else if(nombre == "mina")
+    {
+        nuevo_Edificio = new Mina(nombre,  piedra,  madera,  metal,  max_permitidos);
+    }
+    else if(nombre == "aserradero")
+    {
+        nuevo_Edificio = new Aserradero(nombre,  piedra,  madera,  metal,  max_permitidos);
+    }
+    else if(nombre == "planta electrica")
+    {
+        nuevo_Edificio = new Planta(nombre,  piedra,  madera,  metal,  max_permitidos);
+    }
+    else if(nombre == "obelisco")
+    {
+        nuevo_Edificio = new Obelisco(nombre,  piedra,  madera,  metal,  max_permitidos);
+    }
+
+    return nuevo_Edificio;
+}
 
 int Archivo::leer_archivos_materiales(Inventario *&inventario_jugador_1, Inventario *&inventario_jugador_2)
 {
@@ -61,7 +98,7 @@ int Archivo::leer_archivos_materiales(Inventario *&inventario_jugador_1, Inventa
     return 0;
 }
 
-int Archivo::leer_archivo_ubicaciones(Mapa* &mapa)
+int Archivo::leer_archivo_ubicaciones(Mapa* &mapa, Diccionario* dict)
 {
     string jugador_2 = "2";
 
@@ -75,9 +112,9 @@ int Archivo::leer_archivo_ubicaciones(Mapa* &mapa)
 
     leer_ubicaciones_materiales(documento,mapa);
 
-    leer_edificios_jugador1(documento, jugador_2,mapa);
+    leer_edificios_jugador1(documento, jugador_2,mapa, dict);
 
-    leer_edificios_jugador2(documento,mapa);
+    leer_edificios_jugador2(documento,mapa, dict);
 
     documento.close();
 
@@ -118,18 +155,18 @@ void Archivo::leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa)
     }
 }
 
-void Archivo::leer_edificios_jugador2(ifstream &documento,Mapa* &mapa){
+void Archivo::leer_edificios_jugador2(ifstream &documento,Mapa* &mapa, Diccionario* dict){
 
     string nombre_edificio;
 
     while (documento >> nombre_edificio)
     {
-        agregar_edificio(documento, nombre_edificio,mapa);
+        agregar_edificio(documento, nombre_edificio,mapa, dict);
     }
 }
 
 
-void Archivo::leer_edificios_jugador1(ifstream &documento, string jugador, Mapa* &mapa)
+void Archivo::leer_edificios_jugador1(ifstream &documento, string jugador, Mapa* &mapa, Diccionario* dict)
 {
 
     bool leyendo_edificios_P1 = true;
@@ -142,7 +179,7 @@ void Archivo::leer_edificios_jugador1(ifstream &documento, string jugador, Mapa*
         documento >> nombre_edificio;
         if (nombre_edificio != "2")
         {
-            agregar_edificio(documento,nombre_edificio,mapa);
+            agregar_edificio(documento,nombre_edificio,mapa, dict);
         }
         else
         {
@@ -157,7 +194,7 @@ void Archivo::leer_edificios_jugador1(ifstream &documento, string jugador, Mapa*
     }
 }
 
-void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa* &mapa)
+void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa* &mapa, Diccionario* dict)
 {
     string segundoNombre, coordX, coordY;
     int cleanCoordX, cleanCoordY;
@@ -184,7 +221,7 @@ void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa*
     cleanCoordX = arreglarCoordenadaX(coordX);
     cleanCoordY = arreglarCoordenadaY(coordY);
 
-    mapa->construirEdificio(cleanCoordX,cleanCoordY,nombre_edificio);
+    mapa->construirEdificio(cleanCoordX,cleanCoordY,nombre_edificio, dict);
 }
 
 int Archivo::arreglarCoordenadaX(string coordX)

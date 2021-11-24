@@ -20,13 +20,15 @@ class Diccionario {
          * Pre: -.
          * Post: Me va a insertar el edificio en el Diccionario
          */
-        void insertar(Edificio* edificio);
+        void insertar(Edificacion* edificio);
 
         /*
          * Pre: edificio tiene que estar si o si dentro del diccionario.
          * Post: Me va a la receta del edificio
          */
         Receta* buscar(string edificio);
+
+        int buscar_max(string edificio);
 
         /*
          * Pre: -
@@ -69,7 +71,7 @@ class Diccionario {
          * Pre: -.
          * Post: Me va a insertar el edificio en el Diccionario
          */
-        Nodo* insertar(Nodo* nodo, Edificio* edificio);
+        Nodo* insertar(Nodo* nodo, Edificacion* edificio);
 
         /*
          * Pre: -
@@ -88,6 +90,8 @@ class Diccionario {
          * Post: Me va a la receta del edificio
          */
         Nodo* buscar(Nodo* nodo, string edificio);
+
+        Nodo* buscar_max(Nodo* nodo, string edificio);
 
         /*
          * Pre: -

@@ -25,7 +25,7 @@ class Casillero_inaccesible : public Casillero {
          * Pre:
          * Post:Esta declarado al tenerlo el padre
          */
-        void modificar_terreno(string elemento,int accion);
+        void modificar_terreno(string elemento,int accion, Diccionario* dict);
 
         /*
          * Pre: -

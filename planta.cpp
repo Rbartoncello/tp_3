@@ -1,8 +1,11 @@
 #include "planta.h"
 #include "emojis.h"
 
-Planta::Planta(string nombre) : Edificacion (nombre){
+Planta::Planta(string nombre, int cant_piedra, int cant_madera, int cant_metal, int max) : Edificacion (nombre){
     this->emoji = EMOJI_PLANTA_ENERGIA;
+    this->piedra = new Piedra(cant_piedra);
+    this->madera = new Madera(cant_madera);
+    this->metal = new Metal(cant_metal);
 }
 
 void Planta::imprimirLetra()

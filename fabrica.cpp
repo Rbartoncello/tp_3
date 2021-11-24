@@ -1,8 +1,11 @@
 #include "fabrica.h"
 #include "emojis.h"
 
-Fabrica::Fabrica(string nombre) : Edificacion (nombre){
+Fabrica::Fabrica(string nombre, int cant_piedra, int cant_madera, int cant_metal, int max) : Edificacion (nombre){
     this->emoji = EMOJI_FABRICA;
+    this->piedra = new Piedra(cant_piedra);
+    this->madera = new Madera(cant_madera);
+    this->metal = new Metal(cant_metal);
 }
 
 

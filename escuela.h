@@ -8,9 +8,13 @@ private:
     const int CANTIDADMATERIAL = 0;
     const string MATERIAL = "no brinda";
     string emoji;
+    Piedra* piedra;
+    Madera* madera;
+    Metal* metal;
 public:
 
-    Escuela(string nombre);
+    Escuela(string nombre, int cant_piedra, int cant_madera, int cant_metal, int max);
+
 
     //PRE:
     //POST:Va a sumar a la lista de materiales lo que el edificio que este custruido otorgue.

@@ -8,9 +8,14 @@ private:
     const int CANTIDADMATERIAL = 0;
     const string MATERIAL = "no brinda"; //Porque const?
     string emoji;
+    Piedra* piedra;
+    Madera* madera;
+    Metal* metal;
 public:
 
-    Aserradero(string nombre);
+    Aserradero();
+
+    Aserradero(string nombre, int cant_piedra, int cant_madera, int cant_metal, int max);
 
     //PRE:
     //POST:Imprime la letra "A"

@@ -1,6 +1,7 @@
 #ifndef CASILLERO_CONSTRUIBLE_H
 #define CASILLERO_CONSTRUIBLE_H
 #include "casillero.h"
+#include "diccionario.h"
 
 class Casillero_construible : public Casillero{
     private:
@@ -25,7 +26,7 @@ class Casillero_construible : public Casillero{
          * Pre:Recibe lo que va agregar
          * Post:Llama al hijo respectivo.
          */
-        virtual void modificar_terreno(string elemento,int accion) = 0;
+        virtual void modificar_terreno(string elemento,int accion, Diccionario* dict) = 0;
 
         /*
          * Pre: -

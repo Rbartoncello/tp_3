@@ -1,8 +1,11 @@
 #include "mina.h"
 #include "emojis.h"
 
-Mina::Mina(string nombre) : Edificacion (nombre){
+Mina::Mina(string nombre, int cant_piedra, int cant_madera, int cant_metal, int max) : Edificacion (nombre){
     this->emoji = EMOJI_MINA;
+    this->piedra = new Piedra(cant_piedra);
+    this->madera = new Madera(cant_madera);
+    this->metal = new Metal(cant_metal);
 }
 
 

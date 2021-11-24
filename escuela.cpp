@@ -1,8 +1,11 @@
 #include "escuela.h"
 #include "emojis.h"
 
-Escuela::Escuela(string nombre) : Edificacion (nombre){
+Escuela::Escuela(string nombre, int cant_piedra, int cant_madera, int cant_metal, int max) : Edificacion (nombre){
     this->emoji = EMOJI_ESCUELA;
+    this->piedra = new Piedra(cant_piedra);
+    this->madera = new Madera(cant_madera);
+    this->metal = new Metal(cant_metal);
 }
 
 void Escuela::imprimirLetra()

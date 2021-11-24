@@ -19,6 +19,8 @@ class Archivo {
         //Post:devuelve el estado del la variable existeciaArchivo, tiene almacenada si el archivo se leyo correctamente.
         bool getArchivoValido();
 
+        Edificacion* elegir_edificios(string nombre,  int piedra,  int madera,  int metal, int max_permitidos);
+
         //Pre:
         //Post:
         int leer_archivos_materiales(Inventario* &inventario_jugador_1,Inventario* &inventario_jugador_2);
@@ -50,13 +52,13 @@ class Archivo {
 
         void leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa);
 
-        void agregar_edificio(ifstream &documento,string nombre_edificio,Mapa* &mapa);
+        void agregar_edificio(ifstream &documento,string nombre_edificio,Mapa* &mapa,Diccionario* dict);
 
         void agregar_posicion_jugador(int coordX, int coordY,Mapa* &mapa);
         
-        void leer_edificios_jugador1(ifstream &documento, string jugador,Mapa* &mapa);
+        void leer_edificios_jugador1(ifstream &documento, string jugador,Mapa* &mapa,Diccionario* dict);
 
-        void leer_edificios_jugador2(ifstream &documento,Mapa* &mapa);
+        void leer_edificios_jugador2(ifstream &documento,Mapa* &mapa,Diccionario* dict);
 
         int arreglarCoordenadaX(string coordX);
 

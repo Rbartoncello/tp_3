@@ -4,11 +4,13 @@
 #define DICCIONARIO_NODO_H
 
 #include "edificio.h"
+#include "edificacion.h"
 
 
 class Nodo {
     private:
-        Edificio* edificio;
+        //Edificio* edificio;
+        Edificacion* edificio;
         Nodo* izquierda;
         Nodo* derecha;
         Nodo* padre;
@@ -18,13 +20,13 @@ class Nodo {
          * Pre: -.
          * Post: Me va a crear el objeto Nodo con edificio = edificio, izquierda = NULL, derecha = NULL y padre = NULL
          */
-        Nodo(Edificio* edificio);
+        Nodo(Edificacion* edificio);
 
         /*
          * Pre: -.
          * Post: Me va a devolver edificio
          */
-        Edificio* devolver_edificio();
+        Edificacion* devolver_edificio();
 
         /*
          * Pre: -.
@@ -48,7 +50,7 @@ class Nodo {
          * Pre: -.
          * Post: Me va a modificar el edificio por edificio
          */
-        void modificar_edificio(Edificio* edificio);
+        void modificar_edificio(Edificacion* edificio);
         
         /*
          * Pre: -.

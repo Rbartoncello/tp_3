@@ -3,6 +3,7 @@
 #include <string>
 #include "mapa.h"
 #include "edificio.h"
+#include "edificacion.h"
 
 using namespace std;
 /*  
@@ -123,6 +124,6 @@ void encabezado_edificios_construidos();
  * Pre: -
  * Post: Imprime por pantalla listar edificios.
  */
-void imprimir_lista_edificios_construidos(Edificio* edificio, Mapa* mapa);
+void imprimir_lista_edificios_construidos(Edificacion* edificio, Mapa* mapa);
 
 #endif

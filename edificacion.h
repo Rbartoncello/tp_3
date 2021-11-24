@@ -2,6 +2,7 @@
 #define EDIFICACION_H
 #include <iostream>
 #include "colors.h"
+#include "receta.h"
 
 #include <string>
 
@@ -12,12 +13,15 @@ class Edificacion
 private:
 
     string nombre;
+    int maxima_cantidad_permitidos;
 
 public:
+
+    Edificacion(string nombre_edificio);
     
     //PRE:necesita el nombre del Edificacion
     //POST: guarda el nombre del edficio en nombre
-    Edificacion (string tipoEdificacion);
+    Edificacion(string nombre_edificio, int piedra, int madera, int metal, int   maxima_cantidad_permitidos);
 
     //PRE:
     //POST: devuelve el nombre del edifico
@@ -30,6 +34,23 @@ public:
     //PRE:
     //POST:Va a sumar a la lista de materiales lo que el Edificacion que este custruido otorgue.
     virtual int cantidadMaterial() = 0;
+    /*
+    * Pre: -
+    * Post: Me devuelve el piedra.
+    */
+    Receta* devolver_receta();
+
+    /*
+ * Pre: -
+ * Post: Me devuelve el maxima_cantidad_permitidos.
+ */
+    int devolver_maxima_cantidad_permitidos();
+
+    /*
+    * Pre: -
+    * Post: Me devuelve el nombre_edificio.
+    */
+    string devolver_nombre_edificio();
 
     //PRE:
     //POST:Va a sumar a la lista de materiales lo que el Edificacion que este custruido otorgue.

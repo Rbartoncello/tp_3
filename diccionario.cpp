@@ -17,11 +17,11 @@ Diccionario::Diccionario() {
     this->rama = NULL;
 }
 
-void Diccionario::insertar(Edificio* edificio) {
+void Diccionario::insertar(Edificacion* edificio) {
     this->rama = insertar(this->rama, edificio);
 }
 
-Nodo* Diccionario::insertar(Nodo* nodo, Edificio* edificio) {
+Nodo* Diccionario::insertar(Nodo* nodo, Edificacion* edificio) {
     if (nodo == NULL)
         nodo = new Nodo(edificio);
     else if (edificio->devolver_nombre_edificio() > nodo->devolver_edificio()->devolver_nombre_edificio())
@@ -34,6 +34,9 @@ Nodo* Diccionario::insertar(Nodo* nodo, Edificio* edificio) {
 Receta* Diccionario::buscar(string edificio) {
     return buscar(this->rama, edificio)->devolver_edificio()->devolver_receta();
 }
+int Diccionario::buscar_max(string edificio) {
+    return buscar_max(this->rama, edificio)->devolver_edificio()->devolver_maxima_cantidad_permitidos();
+}
 
 Nodo* Diccionario::buscar(Nodo* nodo, string edificio) {
     if (nodo->devolver_edificio()->devolver_nombre_edificio() == edificio)
@@ -43,6 +46,15 @@ Nodo* Diccionario::buscar(Nodo* nodo, string edificio) {
     else 
         return buscar(nodo->devolver_izquierda(), edificio);
     
+}
+Nodo* Diccionario::buscar_max(Nodo* nodo, string edificio) {
+    if (nodo->devolver_edificio()->devolver_nombre_edificio() == edificio)
+        return nodo;
+    else if (edificio > nodo->devolver_edificio()->devolver_nombre_edificio())
+        return buscar_max(nodo->devolver_derecha(), edificio);
+    else
+        return buscar_max(nodo->devolver_izquierda(), edificio);
+
 }
 
 void Diccionario::listar_en_orden(Mapa* mapa) {

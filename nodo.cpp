@@ -1,13 +1,13 @@
 #include "nodo.h"
 
-Nodo::Nodo(Edificio* edificio){
+Nodo::Nodo(Edificacion* edificio){
     this->edificio = edificio;
     this->izquierda = NULL;
     this->derecha = NULL;
     this->padre = NULL;
 }
 
-Edificio* Nodo::devolver_edificio() {
+Edificacion* Nodo::devolver_edificio() {
     return this->edificio;
 }
 
