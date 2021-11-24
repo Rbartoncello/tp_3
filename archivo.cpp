@@ -1,12 +1,12 @@
 #include "archivo.h"
 #include "obelisco.h"
 #include "mina.h"
-#include "mina_oro.h"
 #include "escuela.h"
 #include "planta.h"
 #include "constantes.h"
 #include "fabrica.h"
 #include "aserradero.h"
+#include "mina_oro.h"
 
 Archivo::Archivo(){
 }
@@ -25,6 +25,10 @@ int Archivo::leer_archivos_edificios(Diccionario* &diccionario)  {
                 nombre += " " + nombre_aux;
             }
             archivo >> piedra;
+            if (piedra == "oro"){
+                nombre += " " + piedra;
+                archivo >> piedra;
+            }
             archivo >> madera;
             archivo >> metal;
             archivo >> max_cant_permitidos;
@@ -51,6 +55,8 @@ Edificacion* Archivo::buscar_edificacion(string nombre, int piedra, int madera, 
         edificio = new Fabrica(piedra, madera, metal, max_cant_permitidos);
     else if (nombre == EDIFICIO_MINA)
         edificio = new Mina(piedra, madera, metal, max_cant_permitidos);
+    else if (nombre == EDIFICIO_MINA_ORO)
+        edificio = new Mina_oro(piedra, madera, metal, max_cant_permitidos);
     else if (nombre == EDIFICIO_OBELISCO)
         edificio = new Obelisco(piedra, madera, metal, max_cant_permitidos);
     else if (nombre == EDIFICIO_PLANTA_ELECTRICA)

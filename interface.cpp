@@ -240,8 +240,8 @@ void encabezado_edificios_construidos(){
 
 void imprimir_lista_edificios_construidos(Edificacion* edificio, Mapa* mapa) {
     string brinda = EMOJI_MAL;
-        /*if ( brinda_material(edificio->devolver_nombre_edificio()) )
-            brinda = EMOJI_HECHO;*/
+    if (edificio->brinda_material())
+        brinda = EMOJI_HECHO;
     cout << "\t║" << setfill(' ') << setw(16) << edificio->devolver_nombre_edificio() << "( " <<  edificio->devolver_emoji()  << " )" << setfill(' ') << setw(3);
     cout << "│" << setfill(' ') << setw(8) << edificio->devolver_receta()->devoler_piedra() << setfill(' ') << setw(8);
     cout << "│" << setfill(' ') << setw(8) << edificio->devolver_receta()->devoler_madera() << setfill(' ') << setw(8);

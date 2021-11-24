@@ -16,7 +16,6 @@ Juego::~Juego(){
     delete this->inventario_p1;
     delete this->inventario_p2;
     delete this->diccionario;
-
 }
 
 int Juego::cargar() {
@@ -70,7 +69,6 @@ void Juego::procesar_opcion_nueva_partida(int opcion){
             break;
         case LISTAR_TODOS_EDIFICIOS:
             this->diccionario->listar_en_orden(this->mapa);
-
             imprimir_mensaje_enter_continuar();
             break;
         case MOSTAR_MAPA:
@@ -88,27 +86,6 @@ void Juego::procesar_opcion_nueva_partida(int opcion){
 void Juego::mostrar() {
     imprimir_menu_juego();
     imprimir_objetos_mapa();
-}
-
-//Pongo esto temporalmente ak pq no puedo usarlo sino
-string Juego::buscar_tipo_emoji(string nombre_edificio){
-    string emoji;
-
-    if (nombre_edificio == EDIFICIO_MINA){
-        emoji = EMOJI_MINA;
-    } else if (nombre_edificio == EDIFICIO_ASERRADERO){
-        emoji = EMOJI_ASERRADERO;
-    } else if (nombre_edificio == EDIFICIO_FABRICA){
-        emoji = EMOJI_FABRICA;
-    } else if (nombre_edificio == EDIFICIO_ESCUELA){
-        emoji = EMOJI_ESCUELA;
-    } else if (nombre_edificio == EDIFICIO_OBELISCO){
-        emoji = EMOJI_OBELISCO;
-    } else if (nombre_edificio == EDIFICIO_PLANTA_ELECTRICA){
-        emoji = EMOJI_PLANTA_ENERGIA;
-    }
-
-    return emoji;
 }
 
 void Juego::modificar_receta(Diccionario* diccionario, string nombre_edificio, string material){
@@ -144,7 +121,8 @@ bool Juego::cantidad_valida(int ingreso){
 void Juego::modificar_edificio(Diccionario* diccionario){
     string nombre_edificio;
     imprimir_mensaje_ingresar_edificio();
-    cin >> nombre_edificio;
+    cin.ignore();
+    getline(cin, nombre_edificio);
 
     while ( !diccionario->existe(nombre_edificio) ){
         imprimir_mensaje_error_ingresar_edificio();

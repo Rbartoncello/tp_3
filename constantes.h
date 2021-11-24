@@ -69,6 +69,7 @@ const string MADERA = "madera";
 const string METAL = "metal";
 const string BOMBA = "bomba";
 const string ANDYCOINS = "andycoins";
+const string ENERGIA = "energia";
 
 const int CONSTRUYENDO = 1;
 const int DEMOLIENDO= 0;
@@ -76,6 +77,14 @@ const int DEMOLIENDO= 0;
 const int AUMENTAR_CANTIDAD_PIEDRA = 15;
 const int AUMENTAR_CANTIDAD_MADERA = 25;
 const int AUMENTAR_CANTIDAD_METAL = 40;
+
+const int BRINDA_MINA = 15;
+const int BRINDA_ASERRADERO = 25;
+const int BRINDA_FABRICA = 40;
+const int BRINDA_ESCUELA = 25;
+const int BRINDA_PLANTA_ELECTRICA = 15;
+const int BRINDA_MINA_ORO = 50;
+
 
 const int MIN_RECETA_MODIFICAR = 0;
 const int MAX_RECETA_MODIFICAR = 50000;

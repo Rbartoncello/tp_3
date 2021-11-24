@@ -50,6 +50,8 @@ public:
      * Post: Me devuelve el maxima_cantidad_permitidos.
      */
     int devolver_maxima_cantidad_permitidos();
+
+        bool brinda_material();
 };
 
 #endif //EDIFICIO_H

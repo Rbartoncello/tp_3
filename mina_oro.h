@@ -1,62 +1,46 @@
 #ifndef MINA_ORO_H
 #define MINA_ORO_H
 #include "edificacion.h"
+#include "receta.h"
 
 class Mina_oro : public Edificacion{
     private:
-        int cantidad_material;
+        int cantidad_material_brinda;
         bool produce_material;
         string material_producido;
         string emoji;
+        Receta* receta;
+        int maxima_cantidad_permitidos;
     public:
-        /*
-         * Constructor sin parametros:
-         * Pre: -.
-         * Post: Me va a crear el objeto Mina_oro con emoji = EMOJI_MINA_ORO produce_material = true cantidad_material = 50 y material_producido = ANDYCOINS.
-         */
+
         Mina_oro(string nombre);
 
-        /*
-         * Pre: -.
-         * Post: Devuelve cantidad_material.
-         */
-        int devolver_cantidad_material();
+        Mina_oro(int piedra, int madera, int metal, int maxima_cantidad_permitidos);
 
+        ~Mina_oro();
         /*
-         * Pre: -.
-         * Post: Devuelve emoji.
+         * Pre: -
+         * Post: Me devuelve el piedra.
          */
-        string devolver_emoji();
+        Receta* devolver_receta();
 
-        /*
-         * Pre: -.
-         * Post: Devuelve la posicion del objeto Mina_oro.
-         */
-        void devolver_posicion();
+        int devolver_maxima_cantidad_permitidos();
 
-        /*
-         * Pre: -.
-         * Post: Imprime por pantalla el EMOJI_MINA_ORO que representa al objeto MIna_oro
-         */
-        void imprimir_edificio();
-
-        /*
-         * Pre: -.
-         * Post: Devuelve devuelve TRUE si produce_material o FALSE en caso contrario
-         */
         bool brinda_material();
 
-        /*
-         * Pre: -.
-         * Post: Devuelve la cantidad de material_producido.
-         */
+        //PRE:
+        //POST:Va a sumar a la lista de materiales lo que el edificio que este custruido otorgue.
+        int devolver_cantidad_material_brinda();
+
+        void imprimirLetra();
+
+        //PRE:
+        //POST:Va a sumar a la lista de materiales lo que el edificio que este custruido otorgue.
         string devolver_material_producido();
 
-        /*
-         * Pre: -.
-         * Post: Devuelve un mensaje diciendo que objeto es.
-         */
+        //PRE:
+        //POST:Va a decir el tipo de edificio que tiene.
         void hablar_sobre_mi();
 };
 
-#endif //MINA_ORO_H
+#endif 

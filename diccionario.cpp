@@ -3,7 +3,6 @@
 #include "diccionario.h"
 #include "obelisco.h"
 #include "mina.h"
-#include "mina_oro.h"
 #include "escuela.h"
 #include "planta.h"
 #include "constantes.h"
