@@ -203,7 +203,7 @@ int Archivo::arreglarCoordenadaY(string coordY)
     return (stoi(coordY));
 }
 
-void Archivo::agregar_posicion_jugador(string coordX, string coordY, Mapa *&mapa) {
+void Archivo::agregar_posicion_jugador(int coordX, int coordY, Mapa *&mapa) {
 
     mapa->agregar_jugador(coordX,coordY);
 

@@ -135,7 +135,7 @@ void Mapa::construirEdificio(int coordX, int coordY, string nuevo_edificio)
 
 void Mapa::agregar_jugador(int coordX, int coordY)
 {
-    casilleros[coordX][coordY]->modificar_terreno()
+    //casilleros[coordX][coordY]->modificar_terreno();
 
 }
 
