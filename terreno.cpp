@@ -32,7 +32,10 @@ void Terreno::crear_edificio(string nombre_edificio){
     }
     else if(nombre_edificio == EDIFICIO_MINA){
         puntero_edificio = new Mina(nombre_edificio);
-    }
+    } 
+    else if(nombre_edificio == EDIFICIO_MINA_ORO){
+        //puntero_edificio = new Mina_oro(nombre_edificio);
+    } 
     else if(nombre_edificio == EDIFICIO_PLANTA_ELECTRICA){
         puntero_edificio = new Planta(nombre_edificio);
     }

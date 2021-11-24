@@ -6,8 +6,5 @@ Madera::Madera() : Material(MADERA, EMOJI_MADERA, 0){
     
 }
 
-Madera::Madera(int cantidad) {
-    this->nombre = MADERA;
-    this->emoji = EMOJI_MADERA;
-    this->cantidad = cantidad;
+Madera::Madera(int cantidad) : Material(MADERA, EMOJI_MADERA, cantidad){
 }

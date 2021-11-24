@@ -5,6 +5,7 @@
 using namespace std;
 
 const string EDIFICIO_MINA = "mina";
+const string EDIFICIO_MINA_ORO = "mina oro";
 const string EDIFICIO_ASERRADERO = "aserradero";
 const string EDIFICIO_FABRICA = "fabrica";
 const string EDIFICIO_ESCUELA = "escuela";
@@ -75,5 +76,8 @@ const int DEMOLIENDO= 0;
 const int AUMENTAR_CANTIDAD_PIEDRA = 15;
 const int AUMENTAR_CANTIDAD_MADERA = 25;
 const int AUMENTAR_CANTIDAD_METAL = 40;
+
+const int MIN_RECETA_MODIFICAR = 0;
+const int MAX_RECETA_MODIFICAR = 50000;
 
 #endif

@@ -56,7 +56,7 @@ int Edificios::procesar_archivo(){
             archivo >> metal;
             archivo >> max_cant_permitidos;
 
-            agregar_edificio(new Edificio (nombre, emoji, stoi(piedra), stoi(madera), stoi(metal), stoi(max_cant_permitidos)));
+            agregar_edificio(new Edificio (nombre, stoi(piedra), stoi(madera), stoi(metal), stoi(max_cant_permitidos)));
         }
         archivo.close();
     }

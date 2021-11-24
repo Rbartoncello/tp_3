@@ -7,6 +7,7 @@ Juego::Juego(){
     this->lector_archivos = new Archivo();
     this->inventario_p1 = new Inventario();
     this->inventario_p2 = new Inventario();
+    this->diccionario = new Diccionario();
 }
 
 Juego::~Juego(){
@@ -14,19 +15,19 @@ Juego::~Juego(){
     delete this->lector_archivos;
     delete this->inventario_p1;
     delete this->inventario_p2;
+    delete this->diccionario;
 
 }
 
 int Juego::cargar() {
     int ejecucion = 0;
 
-    if( lector_archivos->leer_archivos_materiales(inventario_p1,inventario_p2)== ERROR || this->mapa->leer_archivo() == ERROR )
+    if( lector_archivos->leer_archivos_materiales(inventario_p1,inventario_p2)== ERROR || this->mapa->leer_archivo() == ERROR || lector_archivos->leer_archivos_edificios( this->diccionario) == ERROR )
         ejecucion = ERROR;
     
     lector_archivos->leer_archivo_ubicaciones(mapa);
     inventario_p1->mostrar();
     inventario_p2->mostrar();
-
     return ejecucion;
 }
 
@@ -65,7 +66,7 @@ bool Juego::es_opcion_valida(int opcion){
 void Juego::procesar_opcion_nueva_partida(int opcion){
     switch (opcion){
         case MODIFICAR_EDIFICIO_POR_NOMBRE:
-            cout<<"Modificar Edificio por Nombre"<<endl;
+            modificar_edificio(this->diccionario);
             break;
         case LISTAR_TODOS_EDIFICIOS:
             cout<<"Listar todos los edificios"<<endl;
@@ -108,3 +109,50 @@ string Juego::buscar_tipo_emoji(string nombre_edificio){
     return emoji;
 }
 
+void Juego::modificar_receta(Diccionario* diccionario, string nombre_edificio, string material){
+    int opcion;
+    imprimir_mensaje_receta_edificio(nombre_edificio, material, diccionario->buscar(nombre_edificio)->devolver_receta(material));
+    imprimir_mensaje_afirmativo_negativo();
+    cin >> opcion;
+
+    while ( !ingreso_afirmativo_negativo_valido(opcion) ){
+        imprimir_mensaje_error_ingreso();
+        cin >> opcion;
+    }
+    if( opcion == AFIRMATIVO ){
+        imprimir_mensaje_receta_modificar();
+        int cantidad;
+        cin >> cantidad;
+        while ( !cantidad_valida(cantidad) ){
+            imprimir_mensaje_error_ingreso();
+            cin >> cantidad;
+        }
+        diccionario->buscar(nombre_edificio)->modificar_receta(material, cantidad);
+    }
+}
+
+bool Juego::ingreso_afirmativo_negativo_valido(int ingreso){
+    return ( ( ingreso == AFIRMATIVO ) || ( ingreso == NEGATIVO ) );
+}
+
+bool Juego::cantidad_valida(int ingreso){
+    return ( ( ingreso >= MIN_RECETA_MODIFICAR ) && ( ingreso <= MAX_RECETA_MODIFICAR ) );
+}
+
+void Juego::modificar_edificio(Diccionario* diccionario){
+    string nombre_edificio;
+    imprimir_mensaje_ingresar_edificio();
+    cin >> nombre_edificio;
+
+    while ( !diccionario->existe(nombre_edificio) ){
+        imprimir_mensaje_error_ingresar_edificio();
+        cin >> nombre_edificio;
+    }
+    if (nombre_edificio != EDIFICIO_OBELISCO){
+        modificar_receta(diccionario, nombre_edificio, EMOJI_PIEDRA);
+        modificar_receta(diccionario, nombre_edificio, EMOJI_MADERA);
+        modificar_receta(diccionario, nombre_edificio, EMOJI_METAL);
+    } else {
+        imprimir_mensaje_error_ingresar_edificio_obelisco();
+    }
+}

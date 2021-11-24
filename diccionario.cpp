@@ -1,6 +1,13 @@
 #include <iostream>
 #include "diccionario.h"
-
+#include "obelisco.h"
+#include "mina.h"
+#include "mina_oro.h"
+#include "escuela.h"
+#include "planta.h"
+#include "constantes.h"
+#include "fabrica.h"
+#include "aserradero.h"
 
 Diccionario::Diccionario() {
     this->rama = NULL;
@@ -20,7 +27,7 @@ Nodo* Diccionario::insertar(Nodo* nodo, Edificio* edificio) {
     return nodo;
 }
 
-Receta Diccionario::buscar(string edificio) {
+Receta* Diccionario::buscar(string edificio) {
     return buscar(this->rama, edificio)->devolver_edificio()->devolver_receta();
 }
 
@@ -49,6 +56,24 @@ void Diccionario::imprimir_in_order(Nodo * nodo) {
 Nodo* Diccionario::devolver_rama() {
     return this->rama;
 }
+
+bool Diccionario::existe(string edificio) {
+    return existe(this->rama, edificio);
+}
+
+bool Diccionario::existe(Nodo* nodo, string edificio) {
+    bool exite = false;
+    if(nodo != NULL){
+        if (nodo->devolver_edificio()->devolver_nombre_edificio() == edificio)
+            exite = true;
+        else if (edificio > nodo->devolver_edificio()->devolver_nombre_edificio())
+            return existe(nodo->devolver_derecha(), edificio);
+        else 
+            return existe(nodo->devolver_izquierda(), edificio);
+    }
+    return exite;
+}
+
 
 Diccionario::~Diccionario() {
     borrar_todo();

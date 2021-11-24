@@ -6,9 +6,6 @@ Piedra::Piedra() : Material(PIEDRA, EMOJI_PIEDRA, 0){
     
 }
 
-Piedra::Piedra(int cantidad) {
-    this->nombre = PIEDRA;
-    this->emoji = EMOJI_PIEDRA;
-    this->cantidad = cantidad;
+Piedra::Piedra(int cantidad) : Material(PIEDRA, EMOJI_PIEDRA, cantidad) {
 }
 

@@ -75,4 +75,40 @@ void imprimir_mensaje_error_ingreso();
  */
 void imprimir_mensaje_enter_continuar();
 
+/*
+ * Pre: -
+ * Post: Imprime por pantalla que ingrese un edificio.
+ */
+void imprimir_mensaje_ingresar_edificio();
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla que hubo un error y que vuelva a ingresar un edificio.
+ */
+void imprimir_mensaje_error_ingresar_edificio();
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla que hubo un error y que vuelva a ingresar EDICIFIO_OBELISCO.
+ */
+void imprimir_mensaje_error_ingresar_edificio_obelisco();
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla la receta del edificio.
+ */
+void imprimir_mensaje_receta_edificio(string edificio, string material, int cantidad);
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla que el usuario ingrese si o no.
+ */
+void imprimir_mensaje_afirmativo_negativo();
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla que el usuario ingrese la cantidad de receta a modificar.
+ */
+void imprimir_mensaje_receta_modificar();
+
 #endif

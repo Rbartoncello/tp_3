@@ -12,7 +12,7 @@ int main() {
 
 
     if (juego->cargar() != ERROR){
-        juego->mostrar();
+        juego->nueva_partida();
     }
 
 

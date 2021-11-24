@@ -11,7 +11,7 @@ Jugador::~Jugador(){
 }
 
 void Jugador::pedir_nombre(){
-    int nombre_ingresado = ERROR;
+    string nombre_ingresado;
     cout << "\tPor favor ingrese el nobre del jugador: ";
     cin >> nombre_ingresado;
 

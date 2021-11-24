@@ -8,17 +8,18 @@ using namespace std;
 class Edificio {
 private:
     string nombre_edificio;
-    string emoji;
-    Receta receta;
+    Receta* receta;
     int maxima_cantidad_permitidos;
 public:
-    Edificio();
+    //Edificio();
     /*
      * Constructor:
      * Pre: -.
      * Post: Me va a crear el objeto edificio.
      */
-    Edificio(string nombre_edificio, string emoji, int piedra, int madera, int metal, int   maxima_cantidad_permitidos);
+    Edificio(string nombre_edificio, int piedra, int madera, int metal, int   maxima_cantidad_permitidos);
+
+    ~Edificio();
 
     /*
      * Pre: -
@@ -36,7 +37,7 @@ public:
      * Pre: -
      * Post: Me devuelve el piedra.
      */
-    Receta devolver_receta();
+    Receta* devolver_receta();
 
     /*
      * Pre: Recibe un nombre de un material

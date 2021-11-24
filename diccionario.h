@@ -13,11 +13,13 @@ class Diccionario {
 
         void insertar(Edificio* edificio);
 
-        Receta buscar(string edificio);
+        Receta* buscar(string edificio);
 
         void imprimir_in_orden();
 
         Nodo* devolver_rama();
+
+        bool existe(string edificio);
 
         void borrar_todo();
 
@@ -28,6 +30,8 @@ class Diccionario {
         void imprimir_in_order(Nodo * nodo);
 
         Nodo* buscar(Nodo* nodo, string edificio);
+
+        bool existe(Nodo* nodo, string edificio);
 
         void borrar_todo(Nodo* nodo);
 

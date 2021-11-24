@@ -187,3 +187,38 @@ void imprimir_mensaje_enter_continuar(){
     system("clear");
 }
 
+void imprimir_mensaje_ingresar_edificio(){
+    system("clear");
+    cout << "Ingrese el nombre del edificio que desee modificar: ";
+}
+
+void imprimir_mensaje_error_ingresar_edificio() {
+    system("clear");
+    imprimir_mensaje_error();
+    cout << "El nombre de edificio ingresado " << TXT_BOLD << TXT_UNDERLINE <<  "no" << END_COLOR << " exite, por favor ingrese un nombre de edificio que exista: ";
+}
+
+void imprimir_mensaje_receta_edificio(string edificio, string material, int cantidad) {
+    system("clear");
+    cout << "El edificio " << edificio << " necesita " << cantidad << " de " << material << "  desea modificarlo" << endl;
+}
+
+void imprimir_mensaje_afirmativo_negativo() {
+    cout << endl << "\t ";
+    cout << TXT_BOLD << TXT_GREEN_118 <<  AFIRMATIVO << ") SI " << END_COLOR << endl;
+    cout << endl << "\t ";
+    cout << TXT_BOLD << TXT_LIGHT_RED_9 <<  NEGATIVO << ") NO " << END_COLOR << endl;
+}
+
+void imprimir_mensaje_receta_modificar() {
+    system("clear");
+    cout << endl << "Ingrese la cantidad entre [ " << MIN_RECETA_MODIFICAR << ", " << MAX_RECETA_MODIFICAR << " ] que decee modificar: ";
+}
+
+void imprimir_mensaje_error_ingresar_edificio_obelisco() {
+    system("clear");
+    imprimir_mensaje_error();
+    cout <<  TXT_BOLD << TXT_UNDERLINE <<  "No" << END_COLOR << "se puede modificar el " << EDIFICIO_OBELISCO << endl;
+
+    imprimir_mensaje_esperar(2);
+}

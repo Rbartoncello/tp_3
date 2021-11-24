@@ -9,9 +9,6 @@
 #include "mapa.h"
 
 class Archivo {
-    private:
-        Diccionario* diccionario;
-
     public:
 
         //Pre:Debe recibir el nombre del Archivo.
@@ -37,7 +34,7 @@ class Archivo {
 
         //Pre:
         //Post:
-        //int leer_archivos_edificios(Juego* &juego);
+        int leer_archivos_edificios(Diccionario* &diccionario);
 
         //Pre:
         //Post:

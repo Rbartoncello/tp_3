@@ -10,15 +10,10 @@
  *
  */
 
-Archivo::Archivo()
-{
-    diccionario = nullptr;
+Archivo::Archivo(){
 }
 
-/*
-int Archivo::leer_archivos_edificios(Juego* &juego)  {
-    diccionario = new Diccionario;
-
+int Archivo::leer_archivos_edificios(Diccionario* &diccionario)  {
     ifstream archivo(PATH_EDIFICIO);
     string nombre, piedra, madera, metal, max_cant_permitidos, nombre_aux;
 
@@ -31,14 +26,12 @@ int Archivo::leer_archivos_edificios(Juego* &juego)  {
                 archivo >> nombre_aux;
                 nombre += " " + nombre_aux;
             }
-
-            string emoji = juego->buscar_tipo_emoji(nombre);
             archivo >> piedra;
             archivo >> madera;
             archivo >> metal;
             archivo >> max_cant_permitidos;
 
-            diccionario->insertar(new Edificio (nombre, emoji, stoi(piedra), stoi(madera), stoi(metal), stoi(max_cant_permitidos)));
+            diccionario->insertar(new Edificio (nombre,  stoi(piedra), stoi(madera), stoi(metal), stoi(max_cant_permitidos)));
         }
         archivo.close();
     }
@@ -46,12 +39,12 @@ int Archivo::leer_archivos_edificios(Juego* &juego)  {
     diccionario->imprimir_in_orden();
 
     string nombre_edificio = "fabrica";
-    cout << endl << "Piedra: " << diccionario->buscar(nombre_edificio).devoler_piedra() << " Madera: " << diccionario->buscar(nombre_edificio).devoler_madera() << " Metal: " << diccionario->buscar(nombre_edificio).devoler_metal() << endl;
+    cout << endl << "Piedra: " << diccionario->buscar(nombre_edificio)->devoler_piedra() << " Madera: " << diccionario->buscar(nombre_edificio)->devoler_madera() << " Metal: " << diccionario->buscar(nombre_edificio)->devoler_metal() << endl;
 
 
     return 1;
 }
- */
+
 
 int Archivo::leer_archivos_materiales(Inventario *&inventario_jugador_1, Inventario *&inventario_jugador_2)
 {
@@ -226,7 +219,5 @@ int Archivo::arreglarCoordenadaY(string coordY)
     return (stoi(coordY));
 }
 
-Archivo::~Archivo()
-{
-    delete diccionario;
+Archivo::~Archivo(){
 }
