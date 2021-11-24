@@ -12,7 +12,6 @@
 #include "constantes.h"
 #include "fabrica.h"
 #include "aserradero.h"
-#include "diccionario.h"
 
 using namespace std;
 
@@ -31,11 +30,11 @@ class Terreno : public Casillero_construible{
         * Pre:Recibe lo que va agregar
         * Post:verifica que es lo que se realizara en el terreno.
         */
-        void modificar_terreno(string elemento,int accion,Diccionario* dict);
+        void modificar_terreno(string elemento,int accion);
 
         //Pre:Recibe el nombre del edificio.
         //Post:crear una instancia en el heap de un edificio y lo vincula al punteroEdificio.
-        void crear_edificio(string nombreEdificio, Diccionario* diccionario);
+        void crear_edificio(string nombreEdificio);
 
         //Pre:
         //Post:Elimina la direccion de memoria del edificio y apunta a nullptr el punteroEdificio.

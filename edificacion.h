@@ -11,21 +11,28 @@ using namespace std;
 class Edificacion
 {
 private:
-
     string nombre;
+    string emoji;
     int maxima_cantidad_permitidos;
-
 public:
-
-    Edificacion(string nombre_edificio);
     
     //PRE:necesita el nombre del Edificacion
     //POST: guarda el nombre del edficio en nombre
-    Edificacion(string nombre_edificio, int piedra, int madera, int metal, int   maxima_cantidad_permitidos);
+    Edificacion (string tipoEdificacion, string emoji);
 
     //PRE:
     //POST: devuelve el nombre del edifico
-    string devolverNombre();
+    string devolver_nombre_edificio();
+
+    /*
+    * Pre: -
+    * Post: Me devuelve el emoji.
+    */
+    string devolver_emoji();
+
+    virtual int devolver_maxima_cantidad_permitidos() = 0;
+
+    virtual Receta* devolver_receta() = 0;
 
     //PRE:
     //POST:imprime la letra del tipo de casillero de forma polimorfica o lo que tiene dentro
@@ -34,23 +41,6 @@ public:
     //PRE:
     //POST:Va a sumar a la lista de materiales lo que el Edificacion que este custruido otorgue.
     virtual int cantidadMaterial() = 0;
-    /*
-    * Pre: -
-    * Post: Me devuelve el piedra.
-    */
-    Receta* devolver_receta();
-
-    /*
- * Pre: -
- * Post: Me devuelve el maxima_cantidad_permitidos.
- */
-    int devolver_maxima_cantidad_permitidos();
-
-    /*
-    * Pre: -
-    * Post: Me devuelve el nombre_edificio.
-    */
-    string devolver_nombre_edificio();
 
     //PRE:
     //POST:Va a sumar a la lista de materiales lo que el Edificacion que este custruido otorgue.

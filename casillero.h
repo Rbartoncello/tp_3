@@ -1,7 +1,6 @@
 #ifndef CASILLERO_H
 #define CASILLERO_H
 #include "colors.h"
-#include "diccionario.h"
 #include <string>
 #include <iostream>
 
@@ -30,7 +29,7 @@ class Casillero{
          */
         Casillero();
         
-         /*
+        /*
          * 
          * Pre: -.
          * Post: devuelve el tipo de terreno.
@@ -42,7 +41,7 @@ class Casillero{
          * Pre:Recibe lo que va agregar
          * Post:Llama al hijo respectivo.
          */
-        virtual void modificar_terreno(string elemento,int accion, Diccionario* dict) = 0;
+        virtual void modificar_terreno(string elemento,int accion) = 0;
         
         /*
          * Destructor:

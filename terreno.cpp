@@ -1,6 +1,5 @@
 #include <iostream>
 #include "terreno.h"
-#include "diccionario.h"
 
 using namespace std;
 
@@ -14,11 +13,11 @@ Terreno::Terreno(char tipo_terreno, int pos_x, int pos_y) : Casillero_construibl
     puntero_edificio = nullptr;
 }
 
-void Terreno::modificar_terreno(string nombre_edificio,int accion,Diccionario* dict){
+void Terreno::modificar_terreno(string nombre_edificio,int accion){
 
     if(accion == CONSTRUYENDO)
     {
-        crear_edificio(nombre_edificio, dict);
+        crear_edificio(nombre_edificio);
     }
     else if (accion == DEMOLIENDO)
     {
@@ -26,32 +25,28 @@ void Terreno::modificar_terreno(string nombre_edificio,int accion,Diccionario* d
     }
 }
 
-void Terreno::crear_edificio(string nombre_edificio, Diccionario* diccionario){
-    int piedra = diccionario->buscar(nombre_edificio)->devoler_piedra();
-    int madera = diccionario->buscar(nombre_edificio)->devoler_madera();
-    int metal = diccionario->buscar(nombre_edificio)->devoler_metal();
-    int max = diccionario->buscar_max(nombre_edificio);
+void Terreno::crear_edificio(string nombre_edificio){
 
     if(nombre_edificio == EDIFICIO_OBELISCO){
-        puntero_edificio = new Obelisco(nombre_edificio,piedra,madera,metal,max);
+        puntero_edificio = new Obelisco(nombre_edificio);
     }
     else if(nombre_edificio == EDIFICIO_MINA){
-        puntero_edificio = new Mina(nombre_edificio,piedra,madera,metal,max);
+        puntero_edificio = new Mina(nombre_edificio);
     } 
     else if(nombre_edificio == EDIFICIO_MINA_ORO){
         //puntero_edificio = new Mina_oro(nombre_edificio);
     } 
     else if(nombre_edificio == EDIFICIO_PLANTA_ELECTRICA){
-        puntero_edificio = new Planta(nombre_edificio,piedra,madera,metal,max);
+        puntero_edificio = new Planta(nombre_edificio);
     }
     else if(nombre_edificio == EDIFICIO_ESCUELA){
-        puntero_edificio = new Escuela(nombre_edificio,piedra,madera,metal,max);
+        puntero_edificio = new Escuela(nombre_edificio);
     }
     else if(nombre_edificio == EDIFICIO_FABRICA){
-        puntero_edificio = new Fabrica(nombre_edificio,piedra,madera,metal,max);
+        puntero_edificio = new Fabrica(nombre_edificio);
     }
     else if(nombre_edificio == EDIFICIO_ASERRADERO){
-        puntero_edificio = new Aserradero(nombre_edificio,piedra,madera,metal,max);
+        puntero_edificio = new Aserradero(nombre_edificio);
     }
 
 }
@@ -80,5 +75,5 @@ void Terreno::mostrar(){
 }
 
 string Terreno::devolver_nombre_edificio(){
-    return this->puntero_edificio->devolverNombre();
+    return this->puntero_edificio->devolver_nombre_edificio();
 }

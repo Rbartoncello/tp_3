@@ -2,7 +2,6 @@
 #define INTERFACE_H
 #include <string>
 #include "mapa.h"
-#include "edificio.h"
 #include "edificacion.h"
 
 using namespace std;

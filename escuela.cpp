@@ -1,11 +1,21 @@
 #include "escuela.h"
 #include "emojis.h"
+#include "constantes.h"
 
-Escuela::Escuela(string nombre, int cant_piedra, int cant_madera, int cant_metal, int max) : Edificacion (nombre){
-    this->emoji = EMOJI_ESCUELA;
-    this->piedra = new Piedra(cant_piedra);
-    this->madera = new Madera(cant_madera);
-    this->metal = new Metal(cant_metal);
+Escuela::Escuela(string nombre) : Edificacion (nombre, EMOJI_ESCUELA){
+}
+
+Escuela::Escuela(int piedra, int madera, int metal, int maxima_cantidad_permitidos) : Edificacion (EDIFICIO_ESCUELA, EMOJI_ESCUELA){
+    this->receta = new Receta(piedra, madera, metal);
+    this->maxima_cantidad_permitidos = maxima_cantidad_permitidos;
+}
+
+Escuela::~Escuela(){
+    delete this->receta;
+}
+
+Receta *Escuela::devolver_receta(){
+    return this->receta;
 }
 
 void Escuela::imprimirLetra()
@@ -25,7 +35,9 @@ string Escuela::materialProducido(){
 
 void Escuela::hablarSobreMi(){
 
-    cout << "SOY UN " + devolverNombre() + " Y ME ENCUENTRO EN EL CASILLERO CONSULTADO" << endl;
+    cout << "SOY UN " + devolver_nombre_edificio() + " Y ME ENCUENTRO EN EL CASILLERO CONSULTADO" << endl;
 }
 
-Escuela::~Escuela(){}
+int Escuela::devolver_maxima_cantidad_permitidos(){
+    return this->maxima_cantidad_permitidos;
+}

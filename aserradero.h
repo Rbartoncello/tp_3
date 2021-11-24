@@ -1,39 +1,45 @@
 #ifndef ASERRADERO_H
 #define ASERRADERO_H
 #include "edificacion.h"
+#include "receta.h"
 
-class Aserradero : public Edificacion
-{
-private:
-    const int CANTIDADMATERIAL = 0;
-    const string MATERIAL = "no brinda"; //Porque const?
-    string emoji;
-    Piedra* piedra;
-    Madera* madera;
-    Metal* metal;
-public:
+class Aserradero : public Edificacion{
+    private:
+        const int CANTIDADMATERIAL = 0;
+        const string MATERIAL = "no brinda"; //Porque const?
+        string emoji;
+        Receta* receta;
+        int maxima_cantidad_permitidos;
+    public:
 
-    Aserradero();
+        Aserradero(string nombre);
 
-    Aserradero(string nombre, int cant_piedra, int cant_madera, int cant_metal, int max);
+        Aserradero(int piedra, int madera, int metal, int maxima_cantidad_permitidos);
 
-    //PRE:
-    //POST:Imprime la letra "A"
-    void imprimirLetra();
+        ~Aserradero();
+        /*
+         * Pre: -
+         * Post: Me devuelve el piedra.
+         */
+        Receta* devolver_receta();
 
-    //PRE:
-    //POST:Va a sumar a la lista de materiales lo que el edificio que este custruido otorgue.
-    int cantidadMaterial();
+        int devolver_maxima_cantidad_permitidos();
 
-    //PRE:
-    //POST:Va a sumar a la lista de materiales lo que el edificio que este custruido otorgue.
-    string materialProducido();
+        //PRE:
+        //POST:Imprime la letra "A"
+        void imprimirLetra();
 
-    //PRE:
-    //POST:Va a decir el tipo de edificio que tiene.
-    void hablarSobreMi();
+        //PRE:
+        //POST:Va a sumar a la lista de materiales lo que el edificio que este custruido otorgue.
+        int cantidadMaterial();
 
-    virtual ~Aserradero();
+        //PRE:
+        //POST:Va a sumar a la lista de materiales lo que el edificio que este custruido otorgue.
+        string materialProducido();
+
+        //PRE:
+        //POST:Va a decir el tipo de edificio que tiene.
+        void hablarSobreMi();
 };
 
 #endif 

@@ -123,11 +123,11 @@ void Mapa::mostrar(){
     cout << endl;
 }
 
-void Mapa::construirEdificio(int coordX, int coordY, string nuevo_edificio,Diccionario* dict)
+void Mapa::construirEdificio(int coordX, int coordY, string nuevo_edificio)
 {
     if (validar_tipo_construible(coordX, coordY))
     {
-        casilleros[coordX][coordY]->modificar_terreno(nuevo_edificio, CONSTRUYENDO, dict);
+        casilleros[coordX][coordY]->modificar_terreno(nuevo_edificio, CONSTRUYENDO);
     }
 
     cout << "Por aqui paso: " + nuevo_edificio << endl;

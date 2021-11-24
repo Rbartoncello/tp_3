@@ -1,11 +1,25 @@
 #include "fabrica.h"
 #include "emojis.h"
+#include "constantes.h"
 
-Fabrica::Fabrica(string nombre, int cant_piedra, int cant_madera, int cant_metal, int max) : Edificacion (nombre){
-    this->emoji = EMOJI_FABRICA;
-    this->piedra = new Piedra(cant_piedra);
-    this->madera = new Madera(cant_madera);
-    this->metal = new Metal(cant_metal);
+Fabrica::Fabrica(string nombre) : Edificacion (nombre, EMOJI_FABRICA){
+}
+
+Fabrica::Fabrica(int piedra, int madera, int metal, int maxima_cantidad_permitidos) : Edificacion (EDIFICIO_FABRICA, EMOJI_FABRICA){
+    this->receta = new Receta(piedra, madera, metal);
+    this->maxima_cantidad_permitidos = maxima_cantidad_permitidos;
+}
+
+Fabrica::~Fabrica(){
+    delete this->receta;
+}
+
+Receta *Fabrica::devolver_receta(){
+    return this->receta;
+}
+
+int Fabrica::devolver_maxima_cantidad_permitidos(){
+    return this->maxima_cantidad_permitidos;
 }
 
 
@@ -26,7 +40,6 @@ string Fabrica::materialProducido(){
 
 void Fabrica::hablarSobreMi(){
 
-    cout << "SOY UN " + devolverNombre() + " Y ME ENCUENTRO EN EL CASILLERO CONSULTADO" << endl;
+    cout << "SOY UN " + devolver_nombre_edificio() + " Y ME ENCUENTRO EN EL CASILLERO CONSULTADO" << endl;
 }
 
-Fabrica::~Fabrica(){}

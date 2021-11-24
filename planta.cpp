@@ -1,11 +1,23 @@
 #include "planta.h"
 #include "emojis.h"
+Planta::Planta(string nombre) : Edificacion (nombre, EMOJI_PLANTA_ENERGIA){
+}
 
-Planta::Planta(string nombre, int cant_piedra, int cant_madera, int cant_metal, int max) : Edificacion (nombre){
-    this->emoji = EMOJI_PLANTA_ENERGIA;
-    this->piedra = new Piedra(cant_piedra);
-    this->madera = new Madera(cant_madera);
-    this->metal = new Metal(cant_metal);
+Planta::Planta(int piedra, int madera, int metal, int maxima_cantidad_permitidos) : Edificacion (EDIFICIO_PLANTA_ELECTRICA, EMOJI_PLANTA_ENERGIA){
+    this->receta = new Receta(piedra, madera, metal);
+    this->maxima_cantidad_permitidos = maxima_cantidad_permitidos;
+}
+
+Planta::~Planta(){
+    delete this->receta;
+}
+
+Receta* Planta::devolver_receta() {
+    return this->receta;
+}
+
+int Planta::devolver_maxima_cantidad_permitidos(){
+    return this->maxima_cantidad_permitidos;
 }
 
 void Planta::imprimirLetra()
@@ -25,7 +37,5 @@ string Planta::materialProducido(){
 
 void Planta::hablarSobreMi(){
 
-    cout << "SOY UN " + devolverNombre() + " Y ME ENCUENTRO EN EL CASILLERO CONSULTADO" << endl;
+    cout << "SOY UN " + devolver_nombre_edificio() + " Y ME ENCUENTRO EN EL CASILLERO CONSULTADO" << endl;
 }
-
-Planta::~Planta(){}

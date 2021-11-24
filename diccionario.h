@@ -28,8 +28,6 @@ class Diccionario {
          */
         Receta* buscar(string edificio);
 
-        int buscar_max(string edificio);
-
         /*
          * Pre: -
          * Post: Me va a listar en en orden el diccionario
@@ -90,8 +88,6 @@ class Diccionario {
          * Post: Me va a la receta del edificio
          */
         Nodo* buscar(Nodo* nodo, string edificio);
-
-        Nodo* buscar_max(Nodo* nodo, string edificio);
 
         /*
          * Pre: -

@@ -1,15 +1,11 @@
-
-
 #ifndef DICCIONARIO_NODO_H
 #define DICCIONARIO_NODO_H
 
-#include "edificio.h"
 #include "edificacion.h"
 
 
 class Nodo {
     private:
-        //Edificio* edificio;
         Edificacion* edificio;
         Nodo* izquierda;
         Nodo* derecha;

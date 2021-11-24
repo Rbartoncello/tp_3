@@ -26,7 +26,7 @@ class Casillero_transitable : public Casillero{
          * Pre:Recibe lo que va agregar
          * Post:crea el material.
          */
-        virtual void modificar_terreno(string elemento,int accion, Diccionario* dict)=0;
+        virtual void modificar_terreno(string elemento,int accion)=0;
 
         /*
          * Pre: -

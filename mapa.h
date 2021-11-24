@@ -2,7 +2,6 @@
 #define MAPA_H
 #include <fstream>
 #include "casillero.h"
-#include "diccionario.h"
 
 using namespace std;
 class Mapa{
@@ -50,7 +49,7 @@ class Mapa{
 
         char devolver_tipo_terreno(int coord1, int coord2);
 
-        void construirEdificio(int coordX, int coordY, string nuevo_edificio, Diccionario* dict);
+        void construirEdificio(int coordX, int coordY, string nuevo_edificio);
 
         /*
          * Pre: recibe un nombre.

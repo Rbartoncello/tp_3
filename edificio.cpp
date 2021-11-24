@@ -8,9 +8,6 @@ using namespace std;
 Edificio::Edificio(string nombre, int piedra, int madera, int metal, int max_cant_permitidos){
     this->nombre_edificio = nombre;
     this->receta = new Receta(piedra, madera, metal);
-    //this->receta->modificar_piedra(piedra);
-    //this->receta->modificar_madera(madera);
-    //this->receta->modificar_metal(metal);
     this->maxima_cantidad_permitidos = max_cant_permitidos;
 }
 
