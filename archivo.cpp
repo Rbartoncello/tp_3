@@ -1,15 +1,5 @@
 #include "archivo.h"
 
-/*
- *
- *  Tenemos que discutir si la lectura de Mapa la hacemos en esta unica clase o en cada una
- *
- *
- *  de las clases
- *
- *
- */
-
 Archivo::Archivo(){
 }
 
@@ -119,19 +109,13 @@ void Archivo::leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa)
         {
             documento >> coordX;
             documento >> coordY;
-            agregar_posicion_jugador(coordX,coordY,mapa);
-            cout << "El jugador 1 estaria en (" << coordX << ", " << coordY << ")" << endl;
+            //agregar_posicion_jugador(coordX,coordY,mapa);
+            int cleanCoordX = arreglarCoordenadaX(coordX);
+            int cleanCoordY = arreglarCoordenadaY(coordY);
+            cout << "El jugador 1 estaria en (" << cleanCoordX << ", " << cleanCoordY << ")" << endl;
             leyendoMateriales = false;
         }
     }
-}
-
-
-void Archivo::agregar_posicion_jugador(string coordX, string coordY,Mapa* &mapa){
-
-    /* int cleanCoordX = arreglarCoordenadaX(coordX);
-    int cleanCoordY = arreglarCoordenadaY(coordY); */
-
 }
 
 void Archivo::leer_edificios_jugador2(ifstream &documento,Mapa* &mapa){
@@ -164,8 +148,10 @@ void Archivo::leer_edificios_jugador1(ifstream &documento, string jugador, Mapa*
         {
             documento >> coordX;
             documento >> coordY;
-            agregar_posicion_jugador(coordX,coordY,mapa);
-            cout << "El jugador 2 estaria en (" << coordX << ", " << coordY << ")" << endl;
+            //agregar_posicion_jugador(coordX,coordY,mapa);
+            int cleanCoordX = arreglarCoordenadaX(coordX);
+            int cleanCoordY = arreglarCoordenadaY(coordY);
+            cout << "El jugador 2 estaria en (" << cleanCoordX << ", " << cleanCoordY << ")" << endl;
             leyendo_edificios_P1 = false;
         }
     }
