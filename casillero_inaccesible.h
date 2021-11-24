@@ -21,6 +21,13 @@ class Casillero_inaccesible : public Casillero {
         Casillero_inaccesible();
 
         /*
+         * 
+         * Pre:
+         * Post:Esta declarado al tenerlo el padre
+         */
+        void modificar_terreno(string elemento,int accion);
+
+        /*
          * Pre: -
          * Post: De devuleve TRUE si esta ocupado y FALSE en caso contrario.
          */

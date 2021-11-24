@@ -1,16 +1,25 @@
-15 15
-C C C C C C L L L C C C C C C
-C B B B B C M M M C B B B B C
-C B T T B C C C C C B T T B C
-C B T T B C C C C C B T T B C
-C B B B B C M M M C B B B B C
-C C C C C C L L L C C C C C C
-L M C C M L L L L L M C C M L
-L M C C M L L L L L M C C M L
-L M C C M L L L L L M C C M L
-C C C C C C L L L C C C C C C
-C B B B B C M M M C B B B B C
-C B T T B C C C C C B T T B C
-C B T T B C C C C C B T T B C
-C B B B B C M M M C B B B B C
-C C C C C C L L L C C C C C C
+24 24
+L L L L L L L L L L L L L L L L L L L L L L L L
+L L L L L L L M M M M M M L L M M M M M L L L L
+L L M M M M M M C C C C M M M M C C C M M M M M
+L L M C C C C C C T T C C C C C C T C C C C C C
+L L M C T T T T C T T T C T T T C T T T C T T T
+L L M C C T B T C T B T C T B T C T B T C T B T
+L L M M C T B T C T B T C T B T C T B T C T B T
+L L L M C T T T C T T T C T T T C T T T C T T T
+L L L M C C C C C C C C C C C C C C C C C C C C
+L L L M M C T T T T T T C T T T C T T T C T T T
+L L L L M C C T B B B T C T B T C T B T C T B T
+L L L L M M C T T T T T C T T T C T T T C T T T
+L L L L L M C C C C C C C C C C C C C C C C C C
+L L L L L M C T T T T T C T T T C T T T C T T T
+L L L L L M C T B B B T C T B T C T B T C T B T
+L L L M M M C T T T T T C T T T C T T T C T T T
+L L L M C C C C C C C C C C C C C C C C C C C C
+L L L M C T T T T T T T C T T T C T T T C T T T
+L L L M C T T T B B T T C T B T C T B T C T B T
+L L L M C C T T T B T T C T T T C T T T C T T T
+L L L M M C C C T T T T C C C C C C C C C C C C
+L L L L M M M C C C C T C T T T C T T T C T T T
+L L L L L L M M M M C C C T B T C T B T C T B T
+L L L L L L L L L M M M C T T T C T T T C T T T

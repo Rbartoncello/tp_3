@@ -5,6 +5,7 @@
 class Casillero_transitable : public Casillero{
     private:
         bool ocupado;
+
     public:
         /*
          * Constructor:
@@ -19,6 +20,13 @@ class Casillero_transitable : public Casillero{
          * Post: Me va a crear el objeto Casillero con tipo_terreno = ' ',  pos_x = 0, pos_y = 0 y this->ocupado = false.
          */
         Casillero_transitable();
+
+        /*
+         * 
+         * Pre:Recibe lo que va agregar
+         * Post:crea el material.
+         */
+        virtual void modificar_terreno(string elemento,int accion)=0;
 
         /*
          * Pre: -

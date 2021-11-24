@@ -1,9 +1,15 @@
 #ifndef CASILLERO_H
 #define CASILLERO_H
 #include "colors.h"
+#include <string>
+#include <iostream>
+
+using namespace std;
+
 class Casillero{
     protected:
         char tipo_terreno;
+        
     private:
         int pos_x;
         int pos_y;
@@ -22,6 +28,20 @@ class Casillero{
          * Post: Me va a crear el objeto Casillero con tipo_terreno = ' ',  pos_x = 0 y pos_y = 0.
          */
         Casillero();
+        
+         /*
+         * 
+         * Pre: -.
+         * Post: devuelve el tipo de terreno.
+         */
+        char devolver_tipo_terreno();
+
+        /*
+         * 
+         * Pre:Recibe lo que va agregar
+         * Post:Llama al hijo respectivo.
+         */
+        virtual void modificar_terreno(string elemento,int accion) = 0;
         
         /*
          * Destructor:

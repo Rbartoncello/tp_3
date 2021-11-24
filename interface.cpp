@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include "interface.h"
 #include "colors.h"
+#include "constantes.h"
 #include "emojis.h"
 
 void imprimir_mensaje_bienvenida(){
@@ -45,7 +46,7 @@ void imprimir_mensaje_bienvenida(){
     system("clear");
 }
 
-void imprimir_menu_principal(){
+void imprimir_menu_nueva_partida(){
     cout << TXT_LIGHT_AQUA_43 << TXT_BOLD;
     cout << "\t\t\t\t\t╔════╦═══════════════════════════════════════╗" << endl;
     cout << "\t\t\t\t\t║ " << EMOJI_UNO << " ║" << END_COLOR << TXT_BOLD <<" Modificar edificio por nombre " << EMOJI_EDIFICIO_CONSTRUCION << TXT_LIGHT_AQUA_43 << "       ║" << endl;
@@ -74,7 +75,7 @@ void imprimir_menu_juego(){
     cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
     cout << "\t\t\t\t\t║ " << EMOJI_CINCO << " ║" << END_COLOR << TXT_BOLD <<" Reparar un edificio por coordenada " << EMOJI_EDIFICIO_CONSTRUCION << TXT_LIGHT_AQUA_43 << "  ║" << endl;
     cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
-    cout << "\t\t\t\t\t║ " << EMOJI_SEIS << " ║" << END_COLOR << TXT_BOLD <<" Comprar bombas " << EMOJI_BOMBA << TXT_LIGHT_AQUA_43 << "                     ║" << endl;
+    cout << "\t\t\t\t\t║ " << EMOJI_SEIS << " ║" << END_COLOR << TXT_BOLD <<" Comprar Bomba " << EMOJI_BOMBA << TXT_LIGHT_AQUA_43 << "                     ║" << endl;
     cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
     cout << "\t\t\t\t\t║ " << EMOJI_SIETE << " ║" << END_COLOR << TXT_BOLD <<" Consultar coordenada " << EMOJI_BRUJULA << TXT_LIGHT_AQUA_43 << "               ║" << endl;
     cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
@@ -163,6 +164,26 @@ void imprimir_mensaje_recolectando_recursos_producidos() {
     cout << END_COLOR;
     
     sleep(2);
+    system("clear");
+}
+
+int pedir_opcion(){
+    int opcion_elegida = ERROR;
+    cout << "\tPor favor ingrese una de las opciones: ";
+    cin >> opcion_elegida;
+
+    return opcion_elegida;
+}
+
+void imprimir_mensaje_error_ingreso() {
+    imprimir_mensaje_error();
+    cout << "La opción elegida no es una opcion válida, por favor ingrese otra opción: ";
+}
+
+void imprimir_mensaje_enter_continuar(){
+    cout << "Presione [ENTER] para continuar"<< endl;
+    cin.ignore();
+    cin.get();
     system("clear");
 }
 

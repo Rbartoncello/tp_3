@@ -1,11 +1,22 @@
-#include "juego.h"
+#include <iostream>
+#include <fstream>
+#include "diccionario.h"
+#include "emojis.h"
 #include "constantes.h"
+#include "edificio.h"
+#include "juego.h"
+#include "archivo.h"
 
 int main() {
-    Juego juego;
+    Juego* juego = new Juego();
 
-    if(juego.cargar() != ERROR)
-        juego.mostrar();
+
+    if (juego->cargar() != ERROR){
+        juego->mostrar();
+    }
+
+
+    delete juego;
 
     return 0;
 }

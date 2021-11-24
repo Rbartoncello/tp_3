@@ -7,17 +7,16 @@ using namespace std;
 
 class Material{
     private:
-        string nombre_material;
+        string nombre;
         string emoji;
-        int cantidad_material_jugador_1;
-        int cantidad_material_jugador_2;
+        int cantidad;
     public:
         /*
         * Constructor:
         * Pre: -.
         * Post: Me va a crear el objeto Material.
         */
-        Material(string nombre_material, int cantidad_material_jugador_1, int cantidad_material_jugador_2);
+        Material(string nombre, string emoji, int cantidad);
 
         /*
         * Constructor:
@@ -40,9 +39,9 @@ class Material{
 
         /*
         * Pre: -
-        * Post: Me devuelve el nombre_material.
+        * Post: Me devuelve el nombre
         */
-        string devolver_nombre_material();
+        string devolver_nombre();
 
         /*
         * Pre: -
@@ -52,15 +51,15 @@ class Material{
 
         /*
         * Pre: -
-        * Post: Me devuelve el cantidad_material_jugador_1.
+        * Post: Me devuelve el cantidad.
         */
-        int devolver_cantidad_material_jugador_1();
+        int devolver_cantidad();
 
         /*
-        * Pre: -
-        * Post: Me devuelve el cantidad_material_jugador_2.
-        */
-        int devolver_cantidad_material_jugador_2();
+         * Pre: cantidad > 0.
+         * Post: Modifica la cantidad de Material.
+         */
+        void modificar_cantidad(int cantidad);
 };
 
 #endif //MATERIAL_H

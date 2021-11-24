@@ -43,6 +43,12 @@ class Mapa{
          * Post: Me muestra por pantalla el mapa.
          */
         void mostrar();
+
+
+        char devolver_tipo_terreno(int coord1, int coord2);
+
+        void construirEdificio(int coordX, int coordY, string nuevo_edificio);
+        
     private:
         /*
          * Pre: El archivo tiene que estar abierto y de formato correcto.
@@ -55,6 +61,14 @@ class Mapa{
          * Post: Me crea una matriz del tipo casillero de forma dinamica.
          */
         void crear_matriz_casilleros();
+
+        /*
+         * Pre: -
+         * Post: valida que una coordenada es de tipo construible
+         */
+        bool validar_tipo_construible(int coord1, int coord2);
+
+        
 };
 
 #endif //MAPA_H

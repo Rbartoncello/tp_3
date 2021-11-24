@@ -1,27 +1,51 @@
-//
-// Created by rbartoncello on 11/19/21.
-//
-
-#ifndef TP_3_TERRENO_H
-#define TP_3_TERRENO_H
+#ifndef TERRENO_H
+#define TERRENO_H
 #include "casillero_construible.h"
+#include "edificacion.h"
+#include "casillero.h"
+#include "obelisco.h"
+#include "mina.h"
+#include "escuela.h"
+#include "planta.h"
+#include "constantes.h"
+#include "fabrica.h"
+#include "aserradero.h"
+
+
 
 class Terreno : public Casillero_construible{
     private:
         int costo;
+        Edificacion* puntero_edificio;
+
     public:
         Terreno();
         
         Terreno(char tipo_terreno, int pos_x, int pos_y);
 
+        /*
+        * 
+        * Pre:Recibe lo que va agregar
+        * Post:verifica que es lo que se realizara en el terreno.
+        */
+        void modificar_terreno(string elemento,int accion);
+
+        //Pre:Recibe el nombre del edificio.
+        //Post:crear una instancia en el heap de un edificio y lo vincula al punteroEdificio.
+        void crear_edificio(string nombreEdificio);
+
+        //Pre:
+        //Post:Elimina la direccion de memoria del edificio y apunta a nullptr el punteroEdificio.
+        void remover_edificio();
+
         void modicar_costo(int costo);
 
         int devolver_costo();
 
-        ~Terreno();
-
         void mostrar();
+
+        virtual ~Terreno();
 };
 
 
-#endif //TP_3_TERRENO_H
+#endif //TERRENO_H

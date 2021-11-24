@@ -13,7 +13,7 @@ void imprimir_mensaje_bienvenida();
  * Pre: -
  * Post: Imprime por pantalla el manu principal.
 */
-void imprimir_menu_principal();
+void imprimir_menu_nueva_partida();
 
 /*
  * Pre: -
@@ -56,5 +56,23 @@ void imprimir_mensaje_guardado();
  * Post: Imprimira un mensaje por pantalla
  */
 void imprimir_mensaje_recolectando_recursos_producidos();
+
+/*
+ * Pre: -
+ * Post: Devuelve el entero ingresado por pantalla.
+ */
+int pedir_opcion();
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla el error.
+ */
+void imprimir_mensaje_error_ingreso();
+
+/*
+ * Pre: -
+ * Post: Pausa la pantalla con un cin.
+ */
+void imprimir_mensaje_enter_continuar();
 
 #endif
