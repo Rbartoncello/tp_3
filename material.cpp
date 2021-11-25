@@ -34,3 +34,7 @@ void Material::modificar_cantidad(int cantidad) {
     this->cantidad = cantidad;
 }
 
+void Material::imprimir_resumen(){
+    cout <<"\tSoy un material de nombre " << nombre << " y me encuentro en el casillero consultado."<< endl;
+}
+

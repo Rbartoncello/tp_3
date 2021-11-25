@@ -60,6 +60,12 @@ class Material{
          * Post: Modifica la cantidad de Material.
          */
         void modificar_cantidad(int cantidad);
+
+        /*
+         * Pre: -
+         * Post: Imprime un resumen escrito del material
+        */
+        void imprimir_resumen();
 };
 
 #endif //MATERIAL_H

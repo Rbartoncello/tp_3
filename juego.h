@@ -7,6 +7,7 @@
 #include "archivo.h"
 #include "diccionario.h"
 
+
 class Juego{
     private:
         Mapa* mapa;
@@ -115,6 +116,42 @@ class Juego{
          * Post: Me devuelve TRUE si  MIN_RECETA_MODIFICAR <= ingreso <= MAX_RECETA_MODIFICAR y FLASE en caso contrario.
         */
         bool cantidad_valida(int ingreso);
+
+        /*
+         * Pre: -
+         * Post: Devuelve el entero ingresado por pantalla..
+        */
+        int pedir_fila();
+
+        /*
+         * Pre: -
+         * Post: Devuelve el entero ingresado por pantalla..
+        */
+        int pedir_columna();
+
+        /*
+         * Pre: -
+         * Post: repite el input hasta que se cumpla la condicion pedida (0 y n_fila).
+        */
+        void validar_fila(int &fila);
+
+        /*
+         * Pre: -
+         * Post: repite el input hasta que se cumpla la condicion pedida (0 y n_columna).
+        */
+        void validar_columna(int &columna);
+
+        /*
+         * Pre: -
+         * Post: Imprime por pantalla el error.
+        */
+        void imprimir_mensaje_error_ingreso();
+
+        /*
+         * Pre: -
+         * Post: Pide al usuario una ubicacion via input y le infroma sobre el contenido del mismo.
+        */
+        void mostrar_coordenada();
 };
 
 #endif //JUEGO_H

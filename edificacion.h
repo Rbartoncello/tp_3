@@ -54,6 +54,12 @@ public:
 
     virtual ~Edificacion() = 0;
 
+    /*
+     * Pre: -
+     * Post: Imprime un resumen escrito del edificio.
+    */
+    void imprimir_resumen();
+
 };
 
 

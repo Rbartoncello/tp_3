@@ -52,6 +52,12 @@ public:
     int devolver_maxima_cantidad_permitidos();
 
         bool brinda_material();
+
+    /*
+         * Pre: -
+         * Post: Imprime un resumen escrito del edificio.
+        */
+        void imprimir_resumen();
 };
 
 #endif //EDIFICIO_H

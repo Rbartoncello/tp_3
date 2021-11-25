@@ -18,3 +18,7 @@ int Edificacion::devolver_maxima_cantidad_permitidos(){
 }
 
 Edificacion::~Edificacion(){}
+
+void Edificacion::imprimir_resumen(){
+    cout <<"\tSoy un edificio de nombre " << nombre << " ( " << emoji << " ) y me encuentro en el casillero consultado."<< endl;
+}

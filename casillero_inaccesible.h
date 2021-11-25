@@ -44,6 +44,12 @@ class Casillero_inaccesible : public Casillero {
          * Post: Metodo vacio para la clase casillero_construible
         */
         string devolver_nombre_edificio(){return nullptr;};
+
+        /*
+         * Pre: -
+         * Post: Imprime un resumen escrito del casillero
+        */
+        void imprimir_resumen();
 };
 
 #endif
