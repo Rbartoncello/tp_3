@@ -36,6 +36,14 @@ class Materiales{
          */
         //void agregar_material(Material* material);
 
+
+        /*
+         * Pre: Recibe un objeto Material que ya existe en el vector dinamico.
+         * Post: Suma la cnatidad del objeto ingresado al objeto del mismo tipo que se encuentra en el vector dinámico.
+         */
+        //void sumar_material(Material* material);
+
+
         /*
          * Pre: -
          * Post: Me muestra lista por pantalla toso los objetos del tipo Material.

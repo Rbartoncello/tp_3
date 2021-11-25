@@ -55,6 +55,16 @@ Materiales::~Materiales(){
     this->total_materiales++;
 } */
 
+/* void Materiales::sumar_material(Material* material){
+
+    for ( int i = 0; i < tope_viejo; i++ )
+        if(materiales[i]->devolver_nombre() == material->devolver_nombre()){
+            materiales[i]->modificar_cantidad(materiales[i]->devolver_cantidad() + material->devolver_cantidad());
+        }
+} */
+
+
+
 void Materiales::mostrar() {
     for (int i = 0; i < this->total_materiales; i++)
         this->materiales[i]->mostrar();

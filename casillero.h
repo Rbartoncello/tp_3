@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include "material.h"
+#include "edificacion.h"
 
 using namespace std;
 
@@ -68,6 +69,12 @@ class Casillero{
          * Post: Metodo virtual vacio para la clase casillero_construible
         */
         virtual string devolver_nombre_edificio(){return nullptr;};
+
+        /*
+         * Pre: -
+         * Post: Metodo virtual vacio para las clases hijas
+        */
+        virtual void imprimir_resumen(){};
 
         /*
          * Pre: -

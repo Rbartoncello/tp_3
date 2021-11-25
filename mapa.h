@@ -62,6 +62,24 @@ class Mapa{
          * Post: devuelve la cantidad de ese nombre en el mapa.
         */
         int cantidad_edificio_construido(string nombre);
+
+        /*
+         * Pre: -
+         * Post: Devuelve la cantidad de filas que tiene la matriz de casilleros
+        */
+        int devolver_cantidad_filas();
+
+        /*
+         * Pre: -
+         * Post: Devuelve la cantidad de columnas que tiene la matriz de casilleros
+        */
+        int devolver_cantidad_columnas();
+
+        /*
+         * Pre: Recibe coordenadas dentro del dominio de la matriz
+         * Post: Imprime por pantalla un resumen del casillero pedido
+        */
+        void imprimir_resumen_casillero(int fila, int columna);
     private:
         /*
          * Pre: El archivo tiene que estar abierto y de formato correcto.

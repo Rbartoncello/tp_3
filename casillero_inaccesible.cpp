@@ -16,3 +16,7 @@ void Casillero_inaccesible::modificar_terreno(string elemento,int accion){}
 bool Casillero_inaccesible::esta_ocupado(){
     return this->ocupado;
 }
+
+void Casillero_inaccesible::imprimir_resumen(){
+    cout <<"\tSoy un casillero inaccesible y me encuentro vacío" << endl;
+}

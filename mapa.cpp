@@ -159,3 +159,15 @@ bool Mapa::validar_tipo_transitable(int coord1, int coord2){
 char Mapa::devolver_tipo_terreno(int coord1, int coord2){
     return casilleros[coord1][coord2]->devolver_tipo_terreno();
 }
+
+int Mapa::devolver_cantidad_columnas(){
+    return this->cantidad_columnas;
+}
+
+int Mapa::devolver_cantidad_filas(){
+    return this->cantidad_filas;
+}
+
+void Mapa::imprimir_resumen_casillero(int fila, int columna){
+    this->casilleros[fila][columna]->imprimir_resumen();
+}

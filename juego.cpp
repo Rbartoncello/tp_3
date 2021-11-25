@@ -189,6 +189,8 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
         case COMPRAR_BOMBA:
             break;
         case CONSULTAR_COORDENADA:
+            this->mostrar_coordenada();
+            imprimir_mensaje_enter_continuar();
             break;
         case MOSTRAR_INVENTARIO:
             this->inventario_p1->mostrar();
@@ -204,4 +206,60 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
         case FINALIZAR_TURNO:
             break;
     }
+}
+
+
+
+int Juego::pedir_fila(){
+    int opcion_elegida = 0;
+    cout << " Por favor ingrese la fila: ";
+    cin >> opcion_elegida;
+
+    return opcion_elegida;
+}
+
+int Juego::pedir_columna(){
+    int opcion_elegida = 0;
+    cout << " Por favor ingrese la columna: ";
+    cin >> opcion_elegida;
+
+    return opcion_elegida;
+}
+
+void Juego::validar_fila(int &fila){
+    bool es_valida = (fila >= 0 && fila < (this->mapa->devolver_cantidad_filas()));
+    while(!es_valida){
+        this->imprimir_mensaje_error_ingreso();
+
+        cin >> fila;
+        es_valida = (fila >= 0 && fila < this->mapa->devolver_cantidad_filas());
+    }
+}
+
+void Juego::validar_columna(int &columna){
+    bool es_valida = (columna >= 0 && columna < this->mapa->devolver_cantidad_columnas());
+    while(!es_valida){
+        this->imprimir_mensaje_error_ingreso();
+
+        cin >> columna;
+        es_valida = (columna >= 1 && columna < this->mapa->devolver_cantidad_columnas());
+    }
+}
+
+void Juego::imprimir_mensaje_error_ingreso(){
+    imprimir_mensaje_error();
+    cout << "La opción elegida no es una opcion válida, por favor ingrese otra opción: ";
+}
+
+void Juego::mostrar_coordenada(){
+    system("clear");
+
+    int fila = this->pedir_fila();
+    this->validar_fila(fila);
+
+    int columna = this->pedir_columna();
+    this->validar_columna(columna);
+
+    system("clear");
+    this->mapa->imprimir_resumen_casillero(fila, columna);    
 }
