@@ -11,13 +11,15 @@
 Archivo::Archivo(){
 }
 
-int Archivo::leer_archivos_edificios(Diccionario* &diccionario)  {
+int Archivo::leer_archivos_edificios(Diccionario* &diccionario){
+    int ejecucion = 1;
+
     ifstream archivo(PATH_EDIFICIO);
     string nombre, piedra, madera, metal, max_cant_permitidos, nombre_aux;
 
     if (!archivo.is_open()){
         cout << "No se pudo abrir el archivo: " << PATH_EDIFICIO << endl;
-        return ERROR;
+        ejecucion = ERROR;
     } else {
         while ( archivo >> nombre ){
             if (nombre == PLANTA){
@@ -37,12 +39,7 @@ int Archivo::leer_archivos_edificios(Diccionario* &diccionario)  {
         }
         archivo.close();
     }
-
-    string nombre_edificio = "fabrica";
-    cout << endl << "Piedra: " << diccionario->buscar(nombre_edificio)->devoler_piedra() << " Madera: " << diccionario->buscar(nombre_edificio)->devoler_madera() << " Metal: " << diccionario->buscar(nombre_edificio)->devoler_metal() << endl;
-
-
-    return 1;
+    return ejecucion;
 }
 
 Edificacion* Archivo::buscar_edificacion(string nombre, int piedra, int madera, int metal, int max_cant_permitidos){
@@ -66,20 +63,18 @@ Edificacion* Archivo::buscar_edificacion(string nombre, int piedra, int madera, 
 }
 
 
-int Archivo::leer_archivos_materiales(Inventario *&inventario_jugador_1, Inventario *&inventario_jugador_2)
-{
+int Archivo::leer_archivos_materiales(Inventario *&inventario_jugador_1, Inventario *&inventario_jugador_2){
+    int ejecucion = 1;
 
     ifstream archivo(PATH_MATERIALES);
 
     string nombre, cantidad_jugador_1, cantidad_jugador_2;
 
-    if (!archivo.is_open())
-    {
+    if (!archivo.is_open()){
         cout << "No se pudo abrir el archivo: " << PATH_MATERIALES << endl;
-        return ERROR;
+        ejecucion = ERROR;
     }
-    else
-    {
+    else {
         while (archivo >> nombre)
         {
             archivo >> cantidad_jugador_1;
@@ -90,35 +85,34 @@ int Archivo::leer_archivos_materiales(Inventario *&inventario_jugador_1, Inventa
     }
     archivo.close();
 
-    return 0;
+    return ejecucion;
 }
 
-int Archivo::leer_archivo_ubicaciones(Mapa* &mapa)
-{
+int Archivo::leer_archivo_ubicaciones(Mapa* &mapa){
+    int ejecucion = 1;
+
     string jugador_2 = "2";
 
     ifstream documento(PATH_UBICACIONES);
 
-    if (!documento.is_open())
-    {
-        cout << "No se pudo abrir el archivo: " << PATH_UBICACIONES << endl;
-        return ERROR;
+    if (!documento.is_open()){
+        ejecucion = ERROR;
+    } else {
+        ejecucion = leer_ubicaciones_materiales(documento,mapa);
+        if (ejecucion != ERROR){
+            leer_edificios_jugador1(documento, jugador_2,mapa);     
+            leer_edificios_jugador2(documento,mapa);
+        }
+        
+        
+        documento.close();
     }
-
-    leer_ubicaciones_materiales(documento,mapa);
-
-    leer_edificios_jugador1(documento, jugador_2,mapa);
-
-    leer_edificios_jugador2(documento,mapa);
-
-    documento.close();
-
-    return 0;
+    return ejecucion;
 }
 
 
-void Archivo::leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa)
-{
+int Archivo::leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa){
+    int ejecucion = 1;
 
     bool leyendoMateriales = true;
 
@@ -126,28 +120,29 @@ void Archivo::leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa)
     string coordX, coordY;
 /*     int cleanCoordX, cleanCoordY;
  */
-    while (leyendoMateriales)
-    {
-        documento >> nombreMaterial;
-        if (nombreMaterial != "1")
-        {
+    while (leyendoMateriales){
+
+        if (documento >> nombreMaterial){
+            if (nombreMaterial != "1"){
             documento >> coordX;
             documento >> coordY;
             /* cleanCoordX = arreglarCoordenadaX(coordX);
             cleanCoordY = arreglarCoordenadaY(coordY); */
             //agregar material a casillero
-        }
-        else
-        {
-            documento >> coordX;
-            documento >> coordY;
-            int cleanCoordX = arreglarCoordenadaX(coordX);
-            int cleanCoordY = arreglarCoordenadaY(coordY);
-            agregar_posicion_jugador(cleanCoordX,cleanCoordY,mapa);
-            cout << "El jugador 1 estaria en (" << cleanCoordX << ", " << cleanCoordY << ")" << endl;
+            } else {
+                documento >> coordX;
+                documento >> coordY;
+                int cleanCoordX = arreglarCoordenadaX(coordX);
+                int cleanCoordY = arreglarCoordenadaY(coordY);
+                agregar_posicion_jugador(cleanCoordX,cleanCoordY,mapa);
+                leyendoMateriales = false;
+            }
+        } else {
             leyendoMateriales = false;
+            ejecucion = ERROR;
         }
     }
+    return ejecucion;
 }
 
 void Archivo::leer_edificios_jugador2(ifstream &documento,Mapa* &mapa){
@@ -183,7 +178,6 @@ void Archivo::leer_edificios_jugador1(ifstream &documento, string jugador, Mapa*
             int cleanCoordX = arreglarCoordenadaX(coordX);
             int cleanCoordY = arreglarCoordenadaY(coordY);
             agregar_posicion_jugador(cleanCoordX,cleanCoordY,mapa);
-            cout << "El jugador 2 estaria en (" << cleanCoordX << ", " << cleanCoordY << ")" << endl;
             leyendo_edificios_P1 = false;
         }
     }
@@ -207,8 +201,6 @@ void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa*
         segundoNombre = coordX;
         nombre_edificio = nombre_edificio + " " + segundoNombre;
         documento >> coordX;
-        
-        cout << "Mina de oro encontrada";
     }
 
     documento >> coordY;

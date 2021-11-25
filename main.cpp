@@ -12,7 +12,11 @@ int main() {
 
 
     if (juego->cargar() != ERROR){
-        juego->nueva_partida();
+        if (juego->archivo_ubicaciones() == ERROR){
+            juego->nueva_partida();
+        } else {
+            juego->partida_empezada();
+        }
     }
 
 

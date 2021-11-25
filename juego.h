@@ -36,12 +36,22 @@ class Juego{
         int cargar();
 
         /*
+         * Pre: -.
+         * Post: Devolvera TRUE si exite o ERROR en el caso que no exita o este vacio
+         */
+        int archivo_ubicaciones();
+
+        /*
         * Pre: -
         * Post: Mostra un menu con las opciones de nueva_partida y cada opcion con si respectiva funcionalidad 
         */
         void nueva_partida();
 
-        string buscar_tipo_emoji(string nombre_edificio);
+        /*
+        * Pre: -
+        * Post: Mostra un menu con las opciones de partida_empezada y cada opcion con si respectiva funcionalidad 
+        */
+        void partida_empezada();
         
         void mostrar();
 
@@ -50,19 +60,37 @@ class Juego{
          * Pre: -
          * Post: Repite el input hasta que se cumpla la condicion pedida (MAX_OPCION_NUEVA_PARTIDA y MIN_OPCION_NUEVA_PARTIDA).
         */
-        void validar_opcion_ingresada(int &opcion_elegida);
+        void validar_opcion_ingresada_nueva_partida(int &opcion_elegida);
 
         /*        
          * Pre: -
          * Post: Devuelve TRUE si MIN_OPCION_NUEVA_PARTIDA <= opcion <= MAX_OPCION_NUEVA_PARTIDA y FALSE en caso contrario.
         */
-        bool es_opcion_valida(int opcion);
+        bool es_opcion_valida_nueva_partida(int opcion);
 
         /*
          * Pre: -
          * Post: Realiza la opcion pedida
         */
         void procesar_opcion_nueva_partida(int opcion);
+
+        /*
+         * Pre: -
+         * Post: Repite el input hasta que se cumpla la condicion pedida (MAX_OPCION_JUEGO y MIN_OPCION_JUEGO).
+        */
+        void validar_opcion_ingresada_partida_empezada(int &opcion_elegida);
+
+        /*        
+         * Pre: -
+         * Post: Devuelve TRUE si MIN_OPCION_JUEGO <= opcion <= MAX_OPCION_JUEGO y FALSE en caso contrario.
+        */
+        bool es_opcion_valida_partida_empezada(int opcion);
+
+        /*
+         * Pre: -
+         * Post: Realiza la opcion pedida
+        */
+        void procesar_opcion_partida_empezada(int opcion);
 
         /*
          * Pre: Diccionario ya tiene que estar creado y con todos los edificios cargados

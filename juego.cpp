@@ -23,42 +23,48 @@ int Juego::cargar() {
 
     if( lector_archivos->leer_archivos_materiales(inventario_p1,inventario_p2)== ERROR || this->mapa->leer_archivo() == ERROR || lector_archivos->leer_archivos_edificios( this->diccionario) == ERROR )
         ejecucion = ERROR;
-    
-    lector_archivos->leer_archivo_ubicaciones(mapa);
-    inventario_p1->mostrar();
-    inventario_p2->mostrar();
+
     return ejecucion;
+}
+
+int Juego::archivo_ubicaciones(){
+    return lector_archivos->leer_archivo_ubicaciones(mapa);
 }
 
 void Juego::nueva_partida(){
     imprimir_menu_nueva_partida();
 
+    bool empezo_juego = false;
+
     int opcion_elegida = pedir_opcion();
 
-    validar_opcion_ingresada(opcion_elegida);
+    validar_opcion_ingresada_nueva_partida(opcion_elegida);
 
-    while(opcion_elegida != GUARDA_SALIR_NUEVA_PARTIDA){
+    while( (opcion_elegida != GUARDA_SALIR_NUEVA_PARTIDA) && !empezo_juego ){
         procesar_opcion_nueva_partida(opcion_elegida);
-        imprimir_menu_nueva_partida();
+        if(opcion_elegida != COMENZAR_PARTIDA){
+            imprimir_menu_nueva_partida();
 
-        opcion_elegida = pedir_opcion();
-        validar_opcion_ingresada(opcion_elegida);
+            opcion_elegida = pedir_opcion();
+            validar_opcion_ingresada_nueva_partida(opcion_elegida);
+        } else
+            empezo_juego = true;
     }
     this->diccionario->guardar_pre_orden();
     imprimir_mensaje_guardado();
 }
 
-void Juego::validar_opcion_ingresada(int &opcion_elegida){
-    bool es_valida = es_opcion_valida(opcion_elegida);
+void Juego::validar_opcion_ingresada_nueva_partida(int &opcion_elegida){
+    bool es_valida = es_opcion_valida_nueva_partida(opcion_elegida);
     while(!es_valida){
         imprimir_mensaje_error_ingreso();
 
         cin >> opcion_elegida;
-        es_valida = es_opcion_valida(opcion_elegida);
+        es_valida = es_opcion_valida_nueva_partida(opcion_elegida);
     }
 }
 
-bool Juego::es_opcion_valida(int opcion){
+bool Juego::es_opcion_valida_nueva_partida(int opcion){
     return( ( opcion >= MIN_OPCION_NUEVA_PARTIDA ) && ( opcion <= MAX_OPCION_NUEVA_PARTIDA ) );
 }
 
@@ -76,9 +82,7 @@ void Juego::procesar_opcion_nueva_partida(int opcion){
             imprimir_mensaje_enter_continuar();
             break;
         case COMENZAR_PARTIDA:
-            cout<<"Comenzar Partida"<<endl;
-            break;
-        default:
+            partida_empezada();
             break;
     }
 }
@@ -134,5 +138,69 @@ void Juego::modificar_edificio(Diccionario* diccionario){
         modificar_receta(diccionario, nombre_edificio, EMOJI_METAL);
     } else {
         imprimir_mensaje_error_ingresar_edificio_obelisco();
+    }
+}
+
+void Juego::partida_empezada(){
+    imprimir_menu_juego();
+
+    int opcion_elegida = pedir_opcion();
+
+    validar_opcion_ingresada_partida_empezada(opcion_elegida);
+
+    while(opcion_elegida != GUARDA_SALIR){
+        procesar_opcion_partida_empezada(opcion_elegida);
+        imprimir_menu_juego();
+
+        opcion_elegida = pedir_opcion();
+        validar_opcion_ingresada_partida_empezada(opcion_elegida);
+    }
+    this->diccionario->guardar_pre_orden();
+    imprimir_mensaje_guardado();
+}
+
+void Juego::validar_opcion_ingresada_partida_empezada(int &opcion_elegida){
+    bool es_valida = es_opcion_valida_partida_empezada(opcion_elegida);
+    while(!es_valida){
+        imprimir_mensaje_error_ingreso();
+
+        cin >> opcion_elegida;
+        es_valida = es_opcion_valida_partida_empezada(opcion_elegida);
+    }
+}
+
+bool Juego::es_opcion_valida_partida_empezada(int opcion){
+    return( ( opcion >= MIN_OPCION_JUEGO ) && ( opcion <= MAX_OPCION_JUEGO ) );
+}
+
+void Juego::procesar_opcion_partida_empezada(int opcion){
+    switch (opcion){
+        case CONSTRUIR_EDIFICIO_NOMBRE:
+            this->mapa->mostrar();
+            break;
+        case LISTAR_MIS_EDIFICIOS_CONSTRUIDOS:
+            break;
+        case DEMOLER_EDIFICIO_COORDENADA:
+            break;
+        case ATARCAR_EDIFICIO_COORDENADA:
+            break;
+        case REPARAR_EDIFICIO_COORDENADA:
+            break;
+        case COMPRAR_BOMBA:
+            break;
+        case CONSULTAR_COORDENADA:
+            break;
+        case MOSTRAR_INVENTARIO:
+            this->inventario_p1->mostrar();
+            this->inventario_p1->mostrar();
+            break;
+        case MOSTRAR_OBJETIVOS:
+            break;
+        case RECOLECTAR_RECURSOS:
+            break;
+        case MOVERSE_COORDENAD:
+            break;
+        case FINALIZAR_TURNO:
+            break;
     }
 }

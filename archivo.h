@@ -49,7 +49,7 @@ class Archivo {
         //Post:valida si existe el Archivo.
         void validarArchivo();
 
-        void leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa);
+        int leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa);
 
         void agregar_edificio(ifstream &documento,string nombre_edificio,Mapa* &mapa);
 
@@ -64,7 +64,6 @@ class Archivo {
         int arreglarCoordenadaY(string coordY);
 
         Edificacion* buscar_edificacion(string nombre, int piedra, int madera, int metal, int max_cant_permitidos);
-
 };
 
 #endif //ARCHIVO_H

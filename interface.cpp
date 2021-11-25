@@ -78,7 +78,7 @@ void imprimir_menu_juego(){
     cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
     cout << "\t\t\t\t\t║ " << EMOJI_CINCO << " ║" << END_COLOR << TXT_BOLD <<" Reparar un edificio por coordenada " << EMOJI_EDIFICIO_CONSTRUCION << TXT_LIGHT_AQUA_43 << "  ║" << endl;
     cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
-    cout << "\t\t\t\t\t║ " << EMOJI_SEIS << " ║" << END_COLOR << TXT_BOLD <<" Comprar Bomba " << EMOJI_BOMBA << TXT_LIGHT_AQUA_43 << "                     ║" << endl;
+    cout << "\t\t\t\t\t║ " << EMOJI_SEIS << " ║" << END_COLOR << TXT_BOLD <<" Comprar Bomba " << EMOJI_BOMBA << TXT_LIGHT_AQUA_43 << "                      ║" << endl;
     cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
     cout << "\t\t\t\t\t║ " << EMOJI_SIETE << " ║" << END_COLOR << TXT_BOLD <<" Consultar coordenada " << EMOJI_BRUJULA << TXT_LIGHT_AQUA_43 << "               ║" << endl;
     cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
