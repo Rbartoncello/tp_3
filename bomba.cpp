@@ -6,8 +6,6 @@ Bomba::Bomba() : Material(BOMBA, EMOJI_BOMBA, 0){
     
 }
 
-Bomba::Bomba(int cantidad) {
-    this->nombre = BOMBA;
-    this->emoji = EMOJI_BOMBA;
-    this->cantidad = cantidad;
+Bomba::Bomba(int cantidad) : Material(METAL, EMOJI_METAL, cantidad) {
+    
 }

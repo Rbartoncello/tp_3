@@ -81,6 +81,12 @@ class Casillero{
          * Post: Metodo virtual vacio para la clase casillero_transitable
         */
         virtual void agregar_material(Material* nombre_material){};
+
+        /*
+         * Pre: -
+         * Post: Metodo virtual vacio para la clase casillero_construible
+        */
+        virtual void agregar_edificio(Edificacion* edificio){};
 };
 
 

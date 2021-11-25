@@ -12,7 +12,7 @@ class Aserradero : public Edificacion{
         Receta* receta;
         int maxima_cantidad_permitidos;
     public:
-
+    
         Aserradero(string nombre);
 
         Aserradero(int piedra, int madera, int metal, int maxima_cantidad_permitidos);

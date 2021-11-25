@@ -5,8 +5,8 @@
 #include "piedra.h"
 #include "madera.h"
 #include "metal.h"
-#include "bomba.h"
 #include "andycoins.h"
+#include "bomba.h"
 
 Inventario::Inventario() {
     this->total_materiales = 0;

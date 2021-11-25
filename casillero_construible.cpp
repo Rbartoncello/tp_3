@@ -14,13 +14,8 @@ bool Casillero_construible::esta_ocupado(){
     return this->ocupado;
 }
 
-Casillero_construible::~Casillero_construible(){}
-
-void Casillero_construible::imprimir_resumen(){
-    if(this->esta_ocupado()){
-        cout << "\tSoy un casillero construible y no me encuentro vacío" << endl;
-        this->edificio->imprimir_resumen();
-    }else{
-        cout << "\tSoy un casillero construible y me encuentro vacío" << endl;
-    }
+void Casillero_construible::modificar_ocupado(bool estado) {
+    this->ocupado = estado;
 }
+
+Casillero_construible::~Casillero_construible(){}

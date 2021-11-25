@@ -1,5 +1,6 @@
 #include <iostream>
 #include "mapa.h"
+#include "interface.h"
 #include "constantes.h"
 #include "camino.h"
 #include "betun.h"
@@ -119,17 +120,14 @@ void Mapa::mostrar(){
         else if ( i == this->cantidad_columnas )
             cout << BGND_BROWN_137 << "  " << END_COLOR;
     }
+    
+    imprimir_objetos_mapa();
 
     cout << endl;
 }
 
 void Mapa::agregar_material(Material* material, int fila, int columna) {
         this->casilleros[fila][columna]->agregar_material(material);
-}
-
-void Mapa::construirEdificio(int fila, int columna, string nuevo_edificio){
-    if (validar_tipo_construible(fila, columna))
-        this->casilleros[fila][columna]->modificar_terreno(nuevo_edificio, CONSTRUYENDO);
 }
 
 void Mapa::agregar_jugador(int fila, int columna){
@@ -148,16 +146,21 @@ int Mapa::cantidad_edificio_construido(string nombre){
     return cantidad;
 }
 
-bool Mapa::validar_tipo_construible(int coord1, int coord2){
-    return ( ( devolver_tipo_terreno(coord1, coord2) == TERRENO ) );
+bool Mapa::validar_tipo_construible(int fila, int columna){
+    return ( ( devolver_tipo_terreno(fila, columna) == TERRENO ) );
 }
 
-bool Mapa::validar_tipo_transitable(int coord1, int coord2){
-    return ( ( devolver_tipo_terreno(coord1, coord2) == CAMINO ) );
+bool Mapa::validar_tipo_transitable(int fila, int columna){
+    return ( ( devolver_tipo_terreno(fila, columna) == CAMINO ) );
 }
 
-char Mapa::devolver_tipo_terreno(int coord1, int coord2){
-    return casilleros[coord1][coord2]->devolver_tipo_terreno();
+char Mapa::devolver_tipo_terreno(int fila, int columna){
+    return casilleros[fila][columna]->devolver_tipo_terreno();
+}
+
+void Mapa::agregar_edificacion(Edificacion* edificacion, int fila, int columna) {
+    if ( validar_tipo_construible(fila, columna) )
+        this->casilleros[fila][columna]->agregar_edificio(edificacion);
 }
 
 int Mapa::devolver_cantidad_columnas(){

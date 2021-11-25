@@ -55,7 +55,7 @@ class Mapa{
 
         char devolver_tipo_terreno(int coord1, int columna);
 
-        void construirEdificio(int coordX, int coordY, string nuevo_edificio);
+        void agregar_edificacion(Edificacion* edificacion, int fila, int columna);
 
         /*
          * Pre: recibe un nombre.

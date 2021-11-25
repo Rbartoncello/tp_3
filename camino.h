@@ -8,8 +8,18 @@ class Camino : public Casillero_transitable{
         Material* material;
         int costo;
     public:
+        /*
+         * Constructor:
+         * Pre: -.
+         * Post: Me va a crear el objeto Camino.
+         */
         Camino();
 
+        /*
+         * Constructor:
+         * Pre: -.
+         * Post: Me va a crear el objeto Camino.
+         */
         Camino(char tipo_terreno, int pos_x, int pos_y);
 
         /*
@@ -19,12 +29,29 @@ class Camino : public Casillero_transitable{
          */
         void modificar_terreno(string elemento,int accion);
 
+        /*
+         * PRE: -
+         * POST: Me modifica el costo
+         */
         void modicar_costo(int costo);
 
+        /*
+         * PRE: -
+         * POST: Me devuele el costo
+         */
         int devolver_costo();
 
+        /*
+         * Destructor:
+         * Pre: -.
+         * Post: Me va a destruir el objeto Camino.
+         */
         ~Camino();
 
+        /*
+         * Pre: -
+         * Post: Me muestra por pantalla.
+         */
         void mostrar();
 
         /*
@@ -38,6 +65,12 @@ class Camino : public Casillero_transitable{
          * Post: Me va a devolver el material al casillero
         */
         Material* devolver_material();
+
+        /*
+         * Pre: -
+         * Post: Imprime un resumen escrito del casillero
+         */
+        void imprimir_resumen();
 };
 
 

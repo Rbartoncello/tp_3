@@ -51,13 +51,19 @@ class Casillero_transitable : public Casillero{
          * Pre: -
          * Post: Imprime un resumen escrito del casillero
         */
-        void imprimir_resumen();
+        virtual void imprimir_resumen() = 0;
 
         /*
          * Pre: -
          * Post: Metodo virtual vacio para la clase casillero_transitable
         */
         virtual void agregar_material(Material* nombre_material){};
+
+        /*
+         * Pre: -
+         * Post: Metodo virtual vacio para la clase casillero_construible
+        */
+        virtual void agregar_edificio(Edificacion* edificio){};
     
 };
 

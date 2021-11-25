@@ -12,6 +12,7 @@ const string EDIFICIO_ESCUELA = "escuela";
 const string EDIFICIO_OBELISCO = "obelisco";
 const string EDIFICIO_PLANTA_ELECTRICA = "planta electrica";
 const string PLANTA = "planta";
+const string ORO = "oro";
 
 const string PATH_EDIFICIO = "archivos/edificios.txt";
 const string PATH_UBICACIONES = "archivos/ubicaciones.txt";
@@ -45,7 +46,7 @@ const int CONSULTAR_COORDENADA = 7;
 const int MOSTRAR_INVENTARIO = 8;
 const int MOSTRAR_OBJETIVOS = 9;
 const int RECOLECTAR_RECURSOS = 10;
-const int MOVERSE_COORDENAD = 11;
+const int MOVERSE_COORDENADA = 11;
 const int FINALIZAR_TURNO = 12;
 const int GUARDA_SALIR = 13;
 

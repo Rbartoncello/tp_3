@@ -6,6 +6,7 @@
 #include "casillero.h"
 #include "obelisco.h"
 #include "mina.h"
+#include "mina_oro.h"
 #include "escuela.h"
 #include "planta.h"
 #include "constantes.h"
@@ -16,42 +17,83 @@ using namespace std;
 
 class Terreno : public Casillero_construible{
     private:
+        Edificacion* edificacion;
         int costo;
-        Edificacion* puntero_edificio;
-
     public:
+        /*
+         * Constructor:
+         * PRE: -.
+         * POST: Me va a crear el objeto Terreno.
+         */
         Terreno();
         
+        /*
+         * Constructor:
+         * PRE: -.
+         * POST: Me va a crear el objeto Terreno.
+         */
         Terreno(char tipo_terreno, int pos_x, int pos_y);
 
         /*
-        * 
-        * Pre:Recibe lo que va agregar
-        * Post:verifica que es lo que se realizara en el terreno.
-        */
-        void modificar_terreno(string elemento,int accion);
+         * PRE:Recibe lo que va agregar
+         * POST:verifica que es lo que se realizara en el terreno.
+         */
+        void modificar_terreno(string elemento, int accion);
 
-        //Pre:Recibe el nombre del edificio.
-        //Post:crear una instancia en el heap de un edificio y lo vincula al punteroEdificio.
-        void crear_edificio(string nombreEdificio);
-
-        //Pre:
-        //Post:Elimina la direccion de memoria del edificio y apunta a nullptr el punteroEdificio.
+        /*
+         * PRE:Recibe el nombre del edificio.
+         * POST:crear una instancia en el heap de un edificio y lo vincula al edificio.
+         */
+        void crear_edificio(string nombre_edificio);
+        
+        /*
+         * PRE:
+         * POST:Elimina la direccion de memoria del edificio y apunta a nullptr el edificio.
+         */
         void remover_edificio();
 
+        /*
+         * PRE: costo tiene que ser mayor a 0
+         * POST: Me modifica el costo
+         */
         void modicar_costo(int costo);
 
+        /*
+         * PRE: -
+         * POST: Me devuele el costo
+         */
         int devolver_costo();
 
+        /*
+         * PRE: -
+         * POST: Me muestra por pantalla el contenido de este casillero
+         */
         void mostrar();
 
         /*
-         * Pre: Tiene que haber un edificio en el casillero
-         * Post: Devuelve el nombre del edificio
-        */
+         * PRE: Tiene que haber un edificio en el casillero
+         * POST: Devuelve el nombre del edificio
+         */
         string devolver_nombre_edificio();
 
+        /*
+         * PRE: -
+         * POST: Metodo virtual vacio para la clase casillero_construible
+         */
+        void agregar_edificio(Edificacion* edificio);
+
+        /*
+         * Destructor:
+         * PRE: -.
+         * POST: Me va a destrulle el objeto Terreno.
+         */
         virtual ~Terreno();
+        
+        /*
+         * PRE: -
+         * POST: Imprime un resumen escrito del casillero
+         */
+        void imprimir_resumen();
 };
 
 

@@ -7,6 +7,8 @@
 #include "fabrica.h"
 #include "aserradero.h"
 #include "mina_oro.h"
+#include "andycoins.h"
+#include "bomba.h"
 
 Archivo::Archivo(){
 }
@@ -44,6 +46,7 @@ int Archivo::leer_archivos_edificios(Diccionario* &diccionario){
 
 Edificacion* Archivo::buscar_edificacion(string nombre, int piedra, int madera, int metal, int max_cant_permitidos){
     Edificacion* edificio;
+    
     if (nombre == EDIFICIO_ASERRADERO)
         edificio = new Aserradero(piedra, madera, metal, max_cant_permitidos);
     else if (nombre == EDIFICIO_ESCUELA)
@@ -88,7 +91,7 @@ int Archivo::leer_archivos_materiales(Inventario *&inventario_jugador_1, Inventa
     return ejecucion;
 }
 
-int Archivo::leer_archivo_ubicaciones(Mapa* &mapa){
+int Archivo::leer_archivo_ubicaciones(Mapa* &mapa, Diccionario* diccionario){
     int ejecucion = 1;
 
     string jugador_2 = "2";
@@ -100,8 +103,8 @@ int Archivo::leer_archivo_ubicaciones(Mapa* &mapa){
     } else {
         ejecucion = leer_ubicaciones_materiales(documento,mapa);
         if (ejecucion != ERROR){
-            leer_edificios_jugador1(documento, jugador_2,mapa);     
-            leer_edificios_jugador2(documento,mapa);
+            leer_edificios_jugador_1(documento, jugador_2,mapa, diccionario);     
+            leer_edificios_jugador_2(documento,mapa, diccionario);
         }
         documento.close();
     }
@@ -146,44 +149,42 @@ int Archivo::leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa){
 
 Material* Archivo::buscar_material(string nombre){
     Material* material;
-    if (nombre == PIEDRA){
+
+    if (nombre == PIEDRA)
         material = new Piedra;
-    } else if (nombre == MADERA){
+    else if (nombre == MADERA)
         material = new Madera;
-    } else if (nombre == METAL){
+    else if (nombre == METAL)
         material = new Metal;
-    }
+    else if (nombre == ANDYCOINS)
+        material = new Andycoins;
+    else if (nombre == ANDYCOINS)
+        material = new Bomba;
+
     return material;
 }
 
-void Archivo::leer_edificios_jugador2(ifstream &documento,Mapa* &mapa){
-
+void Archivo::leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Diccionario* diccionario){
     string nombre_edificio;
 
     while (documento >> nombre_edificio)
-    {
-        agregar_edificio(documento, nombre_edificio,mapa);
-    }
+        agregar_edificio(documento, nombre_edificio,mapa, diccionario);
+
 }
 
 
-void Archivo::leer_edificios_jugador1(ifstream &documento, string jugador, Mapa* &mapa)
-{
+void Archivo::leer_edificios_jugador_1(ifstream &documento, string jugador, Mapa* &mapa, Diccionario* diccionario){
 
     bool leyendo_edificios_P1 = true;
 
     string nombre_edificio, segundo_nombre;
     string fila, columna;
 
-    while (leyendo_edificios_P1)
-    {
+    while (leyendo_edificios_P1){
         documento >> nombre_edificio;
         if (nombre_edificio != "2")
-        {
-            agregar_edificio(documento,nombre_edificio,mapa);
-        }
-        else
-        {
+            agregar_edificio(documento,nombre_edificio,mapa, diccionario);
+        else{
             documento >> fila;
             documento >> columna;
             int clean_fila = arreglarCoordenadaX(fila);
@@ -194,21 +195,19 @@ void Archivo::leer_edificios_jugador1(ifstream &documento, string jugador, Mapa*
     }
 }
 
-void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa* &mapa)
+void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa* &mapa, Diccionario* diccionario)
 {
     string segundo_nombre, fila, columna;
     int clean_fila, clean_columna;
 
-    if (nombre_edificio == "planta")
-    {
+    if (nombre_edificio == PLANTA){
         documento >> segundo_nombre;
         nombre_edificio = nombre_edificio + " " + segundo_nombre;
     }
 
     documento >> fila;
 
-    if (fila == "oro")
-    {
+    if (fila == ORO){
         segundo_nombre = fila;
         nombre_edificio = nombre_edificio + " " + segundo_nombre;
         documento >> fila;
@@ -218,30 +217,29 @@ void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa*
 
     clean_fila = arreglarCoordenadaX(fila);
     clean_columna = arreglarCoordenadaY(columna);
-
-    mapa->construirEdificio(clean_fila,clean_columna,nombre_edificio);
+    
+    int piedra = diccionario->buscar(nombre_edificio)->devoler_piedra();
+    int madera = diccionario->buscar(nombre_edificio)->devoler_madera();
+    int metal = diccionario->buscar(nombre_edificio)->devoler_metal();
+    int max_cant_permitidos = diccionario->devolver_rama()->devolver_edificio()->devolver_maxima_cantidad_permitidos();
+    
+    mapa->agregar_edificacion(buscar_edificacion(nombre_edificio,  piedra, madera, metal, max_cant_permitidos), clean_fila,clean_columna);
 }
 
-int Archivo::arreglarCoordenadaX(string fila)
-{
-
+int Archivo::arreglarCoordenadaX(string fila){
     fila = fila.substr(1);
     fila.pop_back();
 
     return (stoi(fila));
 }
 
-int Archivo::arreglarCoordenadaY(string columna)
-{
-
+int Archivo::arreglarCoordenadaY(string columna){
     columna.pop_back();
     return (stoi(columna));
 }
 
 void Archivo::agregar_posicion_jugador(int fila, int columna, Mapa *&mapa) {
-
     mapa->agregar_jugador(fila,columna);
-
 }
 
 

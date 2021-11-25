@@ -107,7 +107,7 @@ void imprimir_objetos_mapa(){
     cout << TXT_LIGHT_PURPLE_104 << "║" << END_COLOR << "\t-Aserradero ( " << EMOJI_ASERRADERO << " )\t\t-Madera ( " << EMOJI_MADERA << "  )" << TXT_LIGHT_PURPLE_104 << "\t    ║" << END_COLOR << endl;
     cout << TXT_LIGHT_PURPLE_104 << "■" << END_COLOR << "\t-Fabrica ( " << EMOJI_FABRICA << " )\t\t\t-Metal ( " << EMOJI_METAL << " )" << TXT_LIGHT_PURPLE_104 << "\t    ■" << END_COLOR <<endl;
     cout << TXT_LIGHT_PURPLE_104 << "║" << END_COLOR << "\t-Escuela ( " << EMOJI_ESCUELA << " )\t\t\t-Bomba ( " << EMOJI_BOMBA << " )" <<  TXT_LIGHT_PURPLE_104 << "\t    ║" << END_COLOR << endl;
-    cout << TXT_LIGHT_PURPLE_104 << "■" << END_COLOR << "\t-Obelisco ( " << EMOJI_OBELISCO << " )\t\t-Andycoins ( " << EMOJI_ANDYCOINS << "  )" << TXT_LIGHT_PURPLE_104 << "   ■" << END_COLOR << endl;
+    cout << TXT_LIGHT_PURPLE_104 << "■" << END_COLOR << "\t-Obelisco ( " << EMOJI_OBELISCO << " )\t\t-Andycoins ( " << EMOJI_ANDYCOINS << " )" << TXT_LIGHT_PURPLE_104 << "   ■" << END_COLOR << endl;
     cout << TXT_LIGHT_PURPLE_104 << "║" << END_COLOR << "\t-Planta eléctrica ( " << EMOJI_PLANTA_ENERGIA << " )" << TXT_LIGHT_PURPLE_104 << "\t\t\t    ║" << END_COLOR << endl;
     cout << TXT_LIGHT_PURPLE_104;
     cout <<"■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■" << endl;

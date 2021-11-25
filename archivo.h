@@ -9,6 +9,7 @@
 #include "mapa.h"
 #include "edificacion.h"
 
+
 class Archivo {
     public:
 
@@ -22,12 +23,12 @@ class Archivo {
 
         //Pre:
         //Post:
-        int leer_archivos_materiales(Inventario* &inventario_jugador_1,Inventario* &inventario_jugador_2);
+        int leer_archivos_materiales(Inventario* &inventario_jugador_1, Inventario* &inventario_jugador_2);
 
 
         //Pre:
         //Post:
-        int leer_archivo_ubicaciones(Mapa* &mapa);
+        int leer_archivo_ubicaciones(Mapa* &mapa, Diccionario* diccionario);
 
         //Pre:
         //Post:retorna el nombre del archivo.
@@ -51,13 +52,13 @@ class Archivo {
 
         int leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa);
 
-        void agregar_edificio(ifstream &documento,string nombre_edificio,Mapa* &mapa);
+        void agregar_edificio(ifstream &documento,string nombre_edificio,Mapa* &mapa, Diccionario* diccionario);
 
         void agregar_posicion_jugador(int coordX, int coordY,Mapa* &mapa);
         
-        void leer_edificios_jugador1(ifstream &documento, string jugador,Mapa* &mapa);
+        void leer_edificios_jugador_1(ifstream &documento, string jugador,Mapa* &mapa, Diccionario* diccionario);
 
-        void leer_edificios_jugador2(ifstream &documento,Mapa* &mapa);
+        void leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Diccionario* diccionario);
 
         int arreglarCoordenadaX(string coordX);
 

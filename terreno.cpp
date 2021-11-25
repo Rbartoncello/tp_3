@@ -5,22 +5,18 @@ using namespace std;
 
 Terreno::Terreno() {
     this->costo = 0;
-    puntero_edificio = nullptr;
+    edificacion = nullptr;
 }
 
 Terreno::Terreno(char tipo_terreno, int pos_x, int pos_y) : Casillero_construible(tipo_terreno, pos_x, pos_y) {
     this->costo = 0;
-    puntero_edificio = nullptr;
+    edificacion = nullptr;
 }
 
 void Terreno::modificar_terreno(string nombre_edificio,int accion){
-
-    if(accion == CONSTRUYENDO)
-    {
+    if(accion == CONSTRUYENDO){
         crear_edificio(nombre_edificio);
-    }
-    else if (accion == DEMOLIENDO)
-    {
+    } else if (accion == DEMOLIENDO){
         remover_edificio();
     }
 }
@@ -28,32 +24,32 @@ void Terreno::modificar_terreno(string nombre_edificio,int accion){
 void Terreno::crear_edificio(string nombre_edificio){
 
     if(nombre_edificio == EDIFICIO_OBELISCO){
-        puntero_edificio = new Obelisco(nombre_edificio);
+        edificacion = new Obelisco(nombre_edificio);
     }
     else if(nombre_edificio == EDIFICIO_MINA){
-        puntero_edificio = new Mina(nombre_edificio);
+        edificacion = new Mina(nombre_edificio);
     } 
     else if(nombre_edificio == EDIFICIO_MINA_ORO){
-        //puntero_edificio = new Mina_oro(nombre_edificio);
+        edificacion = new Mina_oro(nombre_edificio);
     } 
     else if(nombre_edificio == EDIFICIO_PLANTA_ELECTRICA){
-        puntero_edificio = new Planta(nombre_edificio);
+        edificacion = new Planta(nombre_edificio);
     }
     else if(nombre_edificio == EDIFICIO_ESCUELA){
-        puntero_edificio = new Escuela(nombre_edificio);
+        edificacion = new Escuela(nombre_edificio);
     }
     else if(nombre_edificio == EDIFICIO_FABRICA){
-        puntero_edificio = new Fabrica(nombre_edificio);
+        edificacion = new Fabrica(nombre_edificio);
     }
     else if(nombre_edificio == EDIFICIO_ASERRADERO){
-        puntero_edificio = new Aserradero(nombre_edificio);
+        edificacion = new Aserradero(nombre_edificio);
     }
 
 }
 
 void Terreno::remover_edificio(){
-    delete puntero_edificio;
-    puntero_edificio = nullptr;
+    delete edificacion;
+    edificacion = nullptr;
 }
 
 void Terreno::modicar_costo(int costo) {
@@ -65,15 +61,30 @@ int Terreno::devolver_costo() {
 }
 
 Terreno::~Terreno() {
-    if (puntero_edificio != nullptr)
-        delete puntero_edificio;
+    if (edificacion != nullptr)
+        delete edificacion;
 }
 
 void Terreno::mostrar(){
     if (!this->esta_ocupado())
         cout << BGND_DARK_GREEN_28 << "  " << END_COLOR;
+    else
+        cout << BGND_DARK_GREEN_28 << this->edificacion->devolver_emoji()  << END_COLOR;
 }
 
 string Terreno::devolver_nombre_edificio(){
-    return this->puntero_edificio->devolver_nombre_edificio();
+    return this->edificacion->devolver_nombre_edificio();
+}
+
+void Terreno::agregar_edificio(Edificacion *edificio){
+    this->edificacion = edificio;
+    modificar_ocupado(true);
+}
+
+void Terreno::imprimir_resumen(){
+    if(this->esta_ocupado()){
+        cout << "\tSoy un casillero construible y no me encuentro vacío" << endl;
+        this->edificacion->imprimir_resumen();
+    } else
+        cout << "\tSoy un casillero construible y me encuentro vacío" << endl;
 }

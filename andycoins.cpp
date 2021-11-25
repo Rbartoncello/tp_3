@@ -6,8 +6,6 @@ Andycoins::Andycoins() : Material(ANDYCOINS, EMOJI_ANDYCOINS, 0){
     
 }
 
-Andycoins::Andycoins(int cantidad) {
-    this->nombre = ANDYCOINS;
-    this->emoji = EMOJI_ANDYCOINS;
-    this->cantidad = cantidad;
+Andycoins::Andycoins(int cantidad) : Material(METAL, EMOJI_METAL, cantidad) {
+    
 }

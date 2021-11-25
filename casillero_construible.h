@@ -5,19 +5,18 @@
 class Casillero_construible : public Casillero{
     private:
         bool ocupado;
-        Edificacion* edificio;
     public:
         /*
          * Constructor:
          * Pre: -.
-         * Post: Me va a crear el objeto Casillero.
+         * Post: Me va a crear el objeto Casillero_construible.
          */
         Casillero_construible(char tipo_terreno, int pos_x, int pos_y);
         
         /*
          * Constructor sin parametros:
          * Pre: -.
-         * Post: Me va a crear el objeto Casillero con tipo_terreno = ' ',  pos_x = 0, pos_y = 0 y this->ocupado = false.
+         * Post: Me va a crear el objeto Casillero_construible con tipo_terreno = ' ',  pos_x = 0, pos_y = 0 y this->ocupado = false.
          */
         Casillero_construible();
 
@@ -33,6 +32,8 @@ class Casillero_construible : public Casillero{
          * Post: De devuleve TRUE si esta ocupado y FALSE en caso contrario.
          */
         bool esta_ocupado();
+
+        void modificar_ocupado(bool estado);
 
         /*
          * Pre: -
@@ -52,13 +53,19 @@ class Casillero_construible : public Casillero{
          * Pre: -
          * Post: Imprime un resumen escrito del casillero
         */
-        void imprimir_resumen();
+        virtual void imprimir_resumen() = 0;
 
         /*
          * Pre: -
          * Post: Metodo virtual vacio para la clase casillero_transitable
         */
         void agregar_material(Material* nombre_material){};
+
+        /*
+         * Pre: -
+         * Post: Metodo virtual vacio para la clase casillero_construible
+        */
+        virtual void agregar_edificio(Edificacion* edificio){};
 };
 
 #endif

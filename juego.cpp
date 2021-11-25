@@ -28,7 +28,7 @@ int Juego::cargar() {
 }
 
 int Juego::archivo_ubicaciones(){
-    return lector_archivos->leer_archivo_ubicaciones(mapa);
+    return lector_archivos->leer_archivo_ubicaciones(mapa, this->diccionario);
 }
 
 void Juego::nueva_partida(){
@@ -181,10 +181,16 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
         case LISTAR_MIS_EDIFICIOS_CONSTRUIDOS:
             break;
         case DEMOLER_EDIFICIO_COORDENADA:
+            this->mapa->mostrar();
+            imprimir_mensaje_enter_continuar();
             break;
         case ATARCAR_EDIFICIO_COORDENADA:
+            this->mapa->mostrar();
+            imprimir_mensaje_enter_continuar();
             break;
         case REPARAR_EDIFICIO_COORDENADA:
+            this->mapa->mostrar();
+            imprimir_mensaje_enter_continuar();
             break;
         case COMPRAR_BOMBA:
             break;
@@ -201,7 +207,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             break;
         case RECOLECTAR_RECURSOS:
             break;
-        case MOVERSE_COORDENAD:
+        case MOVERSE_COORDENADA:
             break;
         case FINALIZAR_TURNO:
             break;
