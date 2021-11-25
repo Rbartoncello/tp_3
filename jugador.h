@@ -9,6 +9,7 @@ class Jugador{
         string nombre;
         int energia;
         Materiales* inventario;
+        int fila, columna;
         //Objetivo_secundario** objetivos_secundarios
         //Objetivo_primario* objetivo_primario
     public:
