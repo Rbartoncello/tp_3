@@ -194,7 +194,8 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             break;
         case MOSTRAR_INVENTARIO:
             this->inventario_p1->mostrar();
-            this->inventario_p1->mostrar();
+            this->inventario_p2->mostrar();
+            imprimir_mensaje_enter_continuar();
             break;
         case MOSTRAR_OBJETIVOS:
             break;

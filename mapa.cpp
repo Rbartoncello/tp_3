@@ -123,22 +123,18 @@ void Mapa::mostrar(){
     cout << endl;
 }
 
-void Mapa::construirEdificio(int coordX, int coordY, string nuevo_edificio)
-{
-    if (validar_tipo_construible(coordX, coordY))
-    {
-        casilleros[coordX][coordY]->modificar_terreno(nuevo_edificio, CONSTRUYENDO);
-    }
-
-    cout << "Por aqui paso: " + nuevo_edificio << endl;
+void Mapa::agregar_material(Material* material, int fila, int columna) {
+        this->casilleros[fila][columna]->agregar_material(material);
 }
 
-void Mapa::agregar_jugador(int coordX, int coordY)
-{
-    //casilleros[coordX][coordY]->modificar_terreno();
-
+void Mapa::construirEdificio(int fila, int columna, string nuevo_edificio){
+    if (validar_tipo_construible(fila, columna))
+        this->casilleros[fila][columna]->modificar_terreno(nuevo_edificio, CONSTRUYENDO);
 }
 
+void Mapa::agregar_jugador(int fila, int columna){
+    //casilleros[fila][columna]->modificar_terreno();
+}
 
 int Mapa::cantidad_edificio_construido(string nombre){
     int cantidad = 0;
@@ -153,12 +149,14 @@ int Mapa::cantidad_edificio_construido(string nombre){
 }
 
 bool Mapa::validar_tipo_construible(int coord1, int coord2){
-
-    return ((devolver_tipo_terreno(coord1, coord2) == TERRENO));
+    return ( ( devolver_tipo_terreno(coord1, coord2) == TERRENO ) );
 }
 
-char Mapa::devolver_tipo_terreno(int coord1, int coord2)
-{
+bool Mapa::validar_tipo_transitable(int coord1, int coord2){
+    return ( ( devolver_tipo_terreno(coord1, coord2) == CAMINO ) );
+}
+
+char Mapa::devolver_tipo_terreno(int coord1, int coord2){
     return casilleros[coord1][coord2]->devolver_tipo_terreno();
 }
 

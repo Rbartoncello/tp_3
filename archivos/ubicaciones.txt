@@ -1,0 +1,6 @@
+madera (20, 20)
+piedra (23, 16)
+metal (23, 20)
+madera (20, 3)
+piedra (9, 16)
+metal (10, 22)

@@ -5,9 +5,8 @@
 
 class Camino : public Casillero_transitable{
     private:
-    
+        Material* material;
         int costo;
-
     public:
         Camino();
 
@@ -27,6 +26,18 @@ class Camino : public Casillero_transitable{
         ~Camino();
 
         void mostrar();
+
+        /*
+         * Pre: -
+         * Post: Me va a agregar el material al casillero
+        */
+        void agregar_material(Material* material);
+
+        /*
+         * Pre: -
+         * Post: Me va a devolver el material al casillero
+        */
+        Material* devolver_material();
 };
 
 

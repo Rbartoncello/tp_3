@@ -50,6 +50,12 @@ class Casillero_inaccesible : public Casillero {
          * Post: Imprime un resumen escrito del casillero
         */
         void imprimir_resumen();
+
+        /*
+         * Pre: -
+         * Post: Metodo virtual vacio para la clase casillero_transitable
+        */
+        void agregar_material(Material* nombre_material){};
 };
 
 #endif

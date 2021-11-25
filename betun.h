@@ -4,6 +4,7 @@
 
 class Betun : public Casillero_transitable{
     private:
+        Material* material;
         int costo;
     public:
         Betun();
@@ -28,6 +29,18 @@ class Betun : public Casillero_transitable{
          * Post: Me muestra por pantalla.
          */
         void mostrar();
+
+        /*
+         * Pre: -
+         * Post: Me va a agregar el material al casillero
+        */
+        void agregar_material(Material* material);
+
+        /*
+         * Pre: -
+         * Post: Me va a devolver el material al casillero
+        */
+        Material* devolver_material();
 };
 
 

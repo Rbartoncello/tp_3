@@ -17,8 +17,13 @@ bool Casillero_transitable::esta_ocupado(){
 void Casillero_transitable::imprimir_resumen(){
     if(this->esta_ocupado()){
         cout << "\tSoy un casillero transitable y no me encuentro vacío" << endl;
-        this->material->imprimir_resumen();
+        //this->material->imprimir_resumen();
     }else{
         cout << "\tSoy un casillero transitable y me encuentro vacío" << endl;
     }
+}
+
+void Casillero_transitable::modificar_ocupado(bool estado) 
+{
+    this->ocupado = estado;
 }

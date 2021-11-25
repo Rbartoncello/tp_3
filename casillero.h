@@ -75,6 +75,12 @@ class Casillero{
          * Post: Metodo virtual vacio para las clases hijas
         */
         virtual void imprimir_resumen(){};
+
+        /*
+         * Pre: -
+         * Post: Metodo virtual vacio para la clase casillero_transitable
+        */
+        virtual void agregar_material(Material* nombre_material){};
 };
 
 
