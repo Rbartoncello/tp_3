@@ -13,3 +13,8 @@ Casillero_transitable::Casillero_transitable(): Casillero(){
 bool Casillero_transitable::esta_ocupado(){
     return this->ocupado;
 }
+
+void Casillero_transitable::modificar_ocupado(bool estado) 
+{
+    this->ocupado = estado;
+}

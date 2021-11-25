@@ -3,6 +3,7 @@
 #include "colors.h"
 #include <string>
 #include <iostream>
+#include "material.h"
 
 using namespace std;
 
@@ -67,6 +68,12 @@ class Casillero{
          * Post: Metodo virtual vacio para la clase casillero_construible
         */
         virtual string devolver_nombre_edificio(){return nullptr;};
+
+        /*
+         * Pre: -
+         * Post: Metodo virtual vacio para la clase casillero_transitable
+        */
+        virtual void agregar_material(Material* nombre_material){};
 };
 
 

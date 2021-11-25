@@ -44,10 +44,16 @@ class Mapa{
          */
         void mostrar();
 
+        /*
+         * Pre: nombre de material,fila y columna en indice de la matriz
+         * Post: Agrega al casillero marcado el material pasado por parametro
+         */
+        void agregar_material(Material* material, int fila, int columna);
+
         void agregar_jugador(int coordX, int coordY);
 
 
-        char devolver_tipo_terreno(int coord1, int coord2);
+        char devolver_tipo_terreno(int coord1, int columna);
 
         void construirEdificio(int coordX, int coordY, string nuevo_edificio);
 
@@ -73,7 +79,13 @@ class Mapa{
          * Pre: -
          * Post: valida que una coordenada es de tipo construible
          */
-        bool validar_tipo_construible(int coord1, int coord2);
+        bool validar_tipo_construible(int fila, int columna);
+
+        /*
+         * Pre: -
+         * Post: valida que una coordenada es de tipo transitable
+         */
+        bool validar_tipo_transitable(int fila, int columna);
 
         
 };

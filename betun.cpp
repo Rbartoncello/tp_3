@@ -4,10 +4,12 @@
 using namespace std;
 
 Betun::Betun() {
+    this->material = nullptr;
     this->costo = 0;
 }
 
 Betun::Betun(char tipo_terreno, int pos_x, int pos_y) : Casillero_transitable(tipo_terreno, pos_x , pos_y){
+    this->material = nullptr;
     this->costo = 0;
 }
 
@@ -24,10 +26,21 @@ int Betun::devolver_costo() {
 }
 
 Betun::~Betun() {
-
+    delete this->material;
 }
 
 void Betun::mostrar(){
     if(!this->esta_ocupado())
         cout << BGND_BLACK_232  << "  " << END_COLOR;
+    else
+        cout << this->material->devolver_emoji() << " " << END_COLOR;
+}
+
+void Betun::agregar_material(Material* material) {
+    this->material = material;
+    modificar_ocupado(true);
+}
+
+Material* Betun::devolver_material() {
+    return this->material;
 }

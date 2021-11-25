@@ -44,6 +44,12 @@ class Casillero_inaccesible : public Casillero {
          * Post: Metodo vacio para la clase casillero_construible
         */
         string devolver_nombre_edificio(){return nullptr;};
+
+        /*
+         * Pre: -
+         * Post: Metodo virtual vacio para la clase casillero_transitable
+        */
+        void agregar_material(Material* nombre_material){};
 };
 
 #endif

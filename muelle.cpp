@@ -5,10 +5,12 @@ using namespace std;
 
 
 Muelle::Muelle() {
+    this->material = nullptr;
     this->costo = 0;
 }
 
 Muelle::Muelle(char tipo_terreno, int pos_x, int pos_y) : Casillero_transitable(tipo_terreno, pos_x, pos_y){
+    this->material = nullptr;
     this->costo = 0;
 }
 
@@ -25,11 +27,24 @@ int Muelle::devolver_costo() {
 }
 
 Muelle::~Muelle() {
-
+    delete this->material;
 }
 
 void Muelle::mostrar(){
     if (!this->esta_ocupado())
         cout << BGND_BROWN_94 << "  " << END_COLOR;
+    else
+        cout << BGND_BROWN_94  << this->material->devolver_emoji() << " " << END_COLOR;
 }
+
+void Muelle::agregar_material(Material* material) {
+    this->material = material;
+    modificar_ocupado(true);
+}
+
+Material* Muelle::devolver_material() {
+    return this->material;
+}
+
+
 

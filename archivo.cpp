@@ -103,8 +103,6 @@ int Archivo::leer_archivo_ubicaciones(Mapa* &mapa){
             leer_edificios_jugador1(documento, jugador_2,mapa);     
             leer_edificios_jugador2(documento,mapa);
         }
-        
-        
         documento.close();
     }
     return ejecucion;
@@ -114,35 +112,48 @@ int Archivo::leer_archivo_ubicaciones(Mapa* &mapa){
 int Archivo::leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa){
     int ejecucion = 1;
 
-    bool leyendoMateriales = true;
+    bool leyendo_materiales = true;
 
-    string nombre_edificio, segundoNombre, nombreMaterial;
-    string coordX, coordY;
-/*     int cleanCoordX, cleanCoordY;
- */
-    while (leyendoMateriales){
+    string nombre_material;
+    string fila, columna;
+    int clean_fila, clean_columna;
 
-        if (documento >> nombreMaterial){
-            if (nombreMaterial != "1"){
-            documento >> coordX;
-            documento >> coordY;
-            /* cleanCoordX = arreglarCoordenadaX(coordX);
-            cleanCoordY = arreglarCoordenadaY(coordY); */
-            //agregar material a casillero
+    while (leyendo_materiales){
+
+        if (documento >> nombre_material){
+            if (nombre_material != "1"){
+            documento >> fila;
+            documento >> columna;
+            clean_fila = arreglarCoordenadaX(fila);
+            clean_columna = arreglarCoordenadaY(columna);
+            
+            mapa->agregar_material(buscar_material(nombre_material),clean_fila, clean_columna);
             } else {
-                documento >> coordX;
-                documento >> coordY;
-                int cleanCoordX = arreglarCoordenadaX(coordX);
-                int cleanCoordY = arreglarCoordenadaY(coordY);
-                agregar_posicion_jugador(cleanCoordX,cleanCoordY,mapa);
-                leyendoMateriales = false;
+                documento >> fila;
+                documento >> columna;
+                int clean_fila = arreglarCoordenadaX(fila);
+                int clean_columna = arreglarCoordenadaY(columna);
+                agregar_posicion_jugador(clean_fila,clean_columna,mapa);
+                leyendo_materiales = false;
             }
         } else {
-            leyendoMateriales = false;
+            leyendo_materiales = false;
             ejecucion = ERROR;
         }
     }
     return ejecucion;
+}
+
+Material* Archivo::buscar_material(string nombre){
+    Material* material;
+    if (nombre == PIEDRA){
+        material = new Piedra;
+    } else if (nombre == MADERA){
+        material = new Madera;
+    } else if (nombre == METAL){
+        material = new Metal;
+    }
+    return material;
 }
 
 void Archivo::leer_edificios_jugador2(ifstream &documento,Mapa* &mapa){
@@ -161,8 +172,8 @@ void Archivo::leer_edificios_jugador1(ifstream &documento, string jugador, Mapa*
 
     bool leyendo_edificios_P1 = true;
 
-    string nombre_edificio, segundoNombre;
-    string coordX, coordY;
+    string nombre_edificio, segundo_nombre;
+    string fila, columna;
 
     while (leyendo_edificios_P1)
     {
@@ -173,11 +184,11 @@ void Archivo::leer_edificios_jugador1(ifstream &documento, string jugador, Mapa*
         }
         else
         {
-            documento >> coordX;
-            documento >> coordY;
-            int cleanCoordX = arreglarCoordenadaX(coordX);
-            int cleanCoordY = arreglarCoordenadaY(coordY);
-            agregar_posicion_jugador(cleanCoordX,cleanCoordY,mapa);
+            documento >> fila;
+            documento >> columna;
+            int clean_fila = arreglarCoordenadaX(fila);
+            int clean_columna = arreglarCoordenadaY(columna);
+            agregar_posicion_jugador(clean_fila,clean_columna,mapa);
             leyendo_edificios_P1 = false;
         }
     }
@@ -185,51 +196,51 @@ void Archivo::leer_edificios_jugador1(ifstream &documento, string jugador, Mapa*
 
 void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa* &mapa)
 {
-    string segundoNombre, coordX, coordY;
-    int cleanCoordX, cleanCoordY;
+    string segundo_nombre, fila, columna;
+    int clean_fila, clean_columna;
 
     if (nombre_edificio == "planta")
     {
-        documento >> segundoNombre;
-        nombre_edificio = nombre_edificio + " " + segundoNombre;
+        documento >> segundo_nombre;
+        nombre_edificio = nombre_edificio + " " + segundo_nombre;
     }
 
-    documento >> coordX;
+    documento >> fila;
 
-    if (coordX == "oro")
+    if (fila == "oro")
     {
-        segundoNombre = coordX;
-        nombre_edificio = nombre_edificio + " " + segundoNombre;
-        documento >> coordX;
+        segundo_nombre = fila;
+        nombre_edificio = nombre_edificio + " " + segundo_nombre;
+        documento >> fila;
     }
 
-    documento >> coordY;
+    documento >> columna;
 
-    cleanCoordX = arreglarCoordenadaX(coordX);
-    cleanCoordY = arreglarCoordenadaY(coordY);
+    clean_fila = arreglarCoordenadaX(fila);
+    clean_columna = arreglarCoordenadaY(columna);
 
-    mapa->construirEdificio(cleanCoordX,cleanCoordY,nombre_edificio);
+    mapa->construirEdificio(clean_fila,clean_columna,nombre_edificio);
 }
 
-int Archivo::arreglarCoordenadaX(string coordX)
+int Archivo::arreglarCoordenadaX(string fila)
 {
 
-    coordX = coordX.substr(1);
-    coordX.pop_back();
+    fila = fila.substr(1);
+    fila.pop_back();
 
-    return (stoi(coordX));
+    return (stoi(fila));
 }
 
-int Archivo::arreglarCoordenadaY(string coordY)
+int Archivo::arreglarCoordenadaY(string columna)
 {
 
-    coordY.pop_back();
-    return (stoi(coordY));
+    columna.pop_back();
+    return (stoi(columna));
 }
 
-void Archivo::agregar_posicion_jugador(int coordX, int coordY, Mapa *&mapa) {
+void Archivo::agregar_posicion_jugador(int fila, int columna, Mapa *&mapa) {
 
-    mapa->agregar_jugador(coordX,coordY);
+    mapa->agregar_jugador(fila,columna);
 
 }
 

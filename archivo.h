@@ -64,6 +64,8 @@ class Archivo {
         int arreglarCoordenadaY(string coordY);
 
         Edificacion* buscar_edificacion(string nombre, int piedra, int madera, int metal, int max_cant_permitidos);
+
+        Material* buscar_material(string nombre);
 };
 
 #endif //ARCHIVO_H
