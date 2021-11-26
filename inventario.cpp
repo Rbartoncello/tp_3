@@ -33,7 +33,7 @@ void Inventario::agregar_material(string nombre, int cantidad){
 
 void Inventario::mostrar() {
     for (int i = 0; i < this->total_materiales; i++){
-        cout << this->materiales[i]->devolver_nombre() << endl;
+        this->materiales[i]->mostrar();
     }
     
 }
@@ -49,7 +49,7 @@ Material* Inventario::buscar_tipo_material(string nombre) {
         material = new Metal;
     else if(nombre == BOMBA)
         material = new Bomba;
-    else if(nombre == ANDYCOINS)
+    else
         material = new Andycoins;
 
     return material;

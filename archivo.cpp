@@ -158,7 +158,7 @@ Material* Archivo::buscar_material(string nombre){
         material = new Metal;
     else if (nombre == ANDYCOINS)
         material = new Andycoins;
-    else if (nombre == ANDYCOINS)
+    else
         material = new Bomba;
 
     return material;

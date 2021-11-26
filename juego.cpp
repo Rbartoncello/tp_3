@@ -199,17 +199,21 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             imprimir_mensaje_enter_continuar();
             break;
         case MOSTRAR_INVENTARIO:
-            this->inventario_p1->mostrar();
+            this->inventario_p1->mostrar(); // Aca deberia mostrar solo uno de estos, dependiendo de quien sea el turno
             this->inventario_p2->mostrar();
             imprimir_mensaje_enter_continuar();
             break;
         case MOSTRAR_OBJETIVOS:
+            cout<<"Mostrar Objetivos"<<endl;
             break;
         case RECOLECTAR_RECURSOS:
+            cout<<"Recolectar recursos"<<endl;
             break;
         case MOVERSE_COORDENADA:
+            cout<<"Moverse Coordeanada"<<endl;
             break;
         case FINALIZAR_TURNO:
+            cout<<"Aqui finalizaría el turno"<<endl;
             break;
     }
 }
