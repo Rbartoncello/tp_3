@@ -28,9 +28,9 @@ const string EMOJI_MOVERSE = "\U0001f3c3";
 const string EMOJI_LLUVIA = "\U0001f327";
 const string EMOJI_LLUVIA_CON_TRUENOS = "\u26C8";
 
-const string EMOJI_PIEDRA = "\U0001faa8";
-const string EMOJI_MADERA = "\U0001fab5";
-const string EMOJI_METAL = "\u2699";
+const string EMOJI_PIEDRA = "\U0001faa8 ";
+const string EMOJI_MADERA = "\U0001fab5 ";
+const string EMOJI_METAL = "\u2699 ";
 const string EMOJI_BOMBA = "\U0001f4a3";
 const string EMOJI_ANDYCOINS = "\U0001f4b0";
 

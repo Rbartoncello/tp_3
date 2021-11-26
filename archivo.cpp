@@ -65,7 +65,6 @@ Edificacion* Archivo::buscar_edificacion(string nombre, int piedra, int madera, 
     return edificio;
 }
 
-
 int Archivo::leer_archivos_materiales(Inventario *&inventario_jugador_1, Inventario *&inventario_jugador_2){
     int ejecucion = 1;
 
@@ -151,15 +150,13 @@ Material* Archivo::buscar_material(string nombre){
     Material* material;
 
     if (nombre == PIEDRA)
-        material = new Piedra;
+        material = new Piedra(LLUVIA_GENERA_PIEDRA);
     else if (nombre == MADERA)
-        material = new Madera;
+        material = new Madera(LLUVIA_GENERA_MADERA);
     else if (nombre == METAL)
-        material = new Metal;
+        material = new Metal(LLUVIA_GENERA_METAL);
     else if (nombre == ANDYCOINS)
-        material = new Andycoins;
-    else
-        material = new Bomba;
+        material = new Andycoins(LLUVIA_GENERA_ANDYCOINS);
 
     return material;
 }

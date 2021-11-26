@@ -1,12 +1,14 @@
 #include <iostream>
 #include "jugador.h"
 
-Jugador::Jugador(){
+Jugador::Jugador(int numero){
+    this->numero = numero;
     this -> energia = 0;
     this -> inventario = new Materiales;
 }
 
 Jugador::~Jugador(){
+    delete this->inventario;
     //delete this->objetivos_secundarios
 }
 
@@ -28,4 +30,16 @@ void Jugador::sumar_energia(int cantidad){
 
 void Jugador::recoger_recurso(Material* recurso){
     //this->inventario->sumar_material(recurso)    (me falta hacer el metodo en materiales en el que sume un material al array al recibir un Material*)
+}
+
+void Jugador::modificar_numero(int numero){
+    this->numero = numero;
+}
+
+void Jugador::modificar_fila(int fila){
+    this->fila = fila;
+}
+
+void Jugador::modificar_columna(int columna){
+    this->columna = columna;
 }

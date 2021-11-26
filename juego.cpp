@@ -8,6 +8,8 @@ Juego::Juego(){
     this->inventario_p1 = new Inventario();
     this->inventario_p2 = new Inventario();
     this->diccionario = new Diccionario();
+    this->jugador_1 = new Jugador(1);
+    this->jugador_2 = new Jugador(2);
 }
 
 Juego::~Juego(){
@@ -16,6 +18,8 @@ Juego::~Juego(){
     delete this->inventario_p1;
     delete this->inventario_p2;
     delete this->diccionario;
+    delete this->jugador_1;
+    delete this->jugador_2;
 }
 
 int Juego::cargar() {
@@ -36,36 +40,22 @@ void Juego::nueva_partida(){
 
     bool empezo_juego = false;
 
-    int opcion_elegida = pedir_opcion();
+    int opcion_elegida = pedir_opcion(12, 0);
 
-    validar_opcion_ingresada_nueva_partida(opcion_elegida);
+    validar_opcion_ingresada(opcion_elegida, MAX_OPCION_NUEVA_PARTIDA, MIN_OPCION_NUEVA_PARTIDA);
 
     while( (opcion_elegida != GUARDA_SALIR_NUEVA_PARTIDA) && !empezo_juego ){
         procesar_opcion_nueva_partida(opcion_elegida);
         if(opcion_elegida != COMENZAR_PARTIDA){
             imprimir_menu_nueva_partida();
 
-            opcion_elegida = pedir_opcion();
-            validar_opcion_ingresada_nueva_partida(opcion_elegida);
+            opcion_elegida = pedir_opcion(12, 0);
+            validar_opcion_ingresada(opcion_elegida, MAX_OPCION_NUEVA_PARTIDA, MIN_OPCION_NUEVA_PARTIDA);
         } else
             empezo_juego = true;
     }
     this->diccionario->guardar_pre_orden();
     imprimir_mensaje_guardado();
-}
-
-void Juego::validar_opcion_ingresada_nueva_partida(int &opcion_elegida){
-    bool es_valida = es_opcion_valida_nueva_partida(opcion_elegida);
-    while(!es_valida){
-        imprimir_mensaje_error_ingreso();
-
-        cin >> opcion_elegida;
-        es_valida = es_opcion_valida_nueva_partida(opcion_elegida);
-    }
-}
-
-bool Juego::es_opcion_valida_nueva_partida(int opcion){
-    return( ( opcion >= MIN_OPCION_NUEVA_PARTIDA ) && ( opcion <= MAX_OPCION_NUEVA_PARTIDA ) );
 }
 
 void Juego::procesar_opcion_nueva_partida(int opcion){
@@ -82,13 +72,13 @@ void Juego::procesar_opcion_nueva_partida(int opcion){
             imprimir_mensaje_enter_continuar();
             break;
         case COMENZAR_PARTIDA:
-            partida_empezada();
+            comenzar_partida();
             break;
     }
 }
 
 void Juego::mostrar() {
-    imprimir_menu_juego();
+    imprimir_menu_juego(this->mapa, this->jugador_actual);
     imprimir_objetos_mapa();
 }
 
@@ -141,36 +131,90 @@ void Juego::modificar_edificio(Diccionario* diccionario){
     }
 }
 
+void Juego::comenzar_partida(){
+    ingresar_primer_jugador();
+    
+    partida_empezada();
+}
+
+void Juego::ingresar_primer_jugador(){
+    int numero_jugador = 0;
+    imprimir_mensaje_ingrese_jugador();
+    cin >> numero_jugador;
+    validar_opcion_ingresada(numero_jugador, JUGADOR_2, JUGADOR_1);
+    
+    if (numero_jugador == JUGADOR_1){
+        this->mapa->mostrar();
+        cout << "Jugador: "<< JUGADOR_1 << endl;
+        posicionar_jugador_mapa(jugador_1);
+        cout << "Jugador: "<< JUGADOR_2 << endl;
+        posicionar_jugador_mapa(jugador_2);
+    } else {
+        this->mapa->mostrar();
+        cout << "Jugador: " << JUGADOR_2 << endl;
+        posicionar_jugador_mapa(jugador_2);
+        cout << "Jugador: " << JUGADOR_1 << endl;
+        posicionar_jugador_mapa(jugador_1);
+    }
+}
+
+void Juego::posicionar_jugador_mapa(Jugador *&jugador){
+    int fila, columna;
+    imprimir_mensaje_ingrese_fila_jugador();
+    cin >> fila;
+    validar_opcion_ingresada(fila, this->mapa->devolver_cantidad_filas(), 0);
+    imprimir_mensaje_ingrese_columna_jugador();
+    cin >> columna;
+    validar_opcion_ingresada(columna, this->mapa->devolver_cantidad_columnas(), 0);
+    /*
+    *
+    * VALIDAD SI SE PUEDE METER EN EL MAPA
+    *
+    */
+    jugador->modificar_fila(fila);
+    jugador->modificar_columna(columna);
+}
+
 void Juego::partida_empezada(){
-    imprimir_menu_juego();
+    this->jugador_actual = numero_aleatorio(JUGADOR_1,JUGADOR_2);
+    imprimir_menu_juego(this->mapa, this->jugador_actual);
 
-    int opcion_elegida = pedir_opcion();
+    int opcion_elegida = pedir_opcion(29, 60);
 
-    validar_opcion_ingresada_partida_empezada(opcion_elegida);
+    validar_opcion_ingresada(opcion_elegida, MAX_OPCION_JUEGO, MIN_OPCION_JUEGO);
 
     while(opcion_elegida != GUARDA_SALIR){
         procesar_opcion_partida_empezada(opcion_elegida);
-        imprimir_menu_juego();
+        imprimir_menu_juego(this->mapa, this->jugador_actual);
 
-        opcion_elegida = pedir_opcion();
-        validar_opcion_ingresada_partida_empezada(opcion_elegida);
+        opcion_elegida = pedir_opcion(29, 60);
+        validar_opcion_ingresada(opcion_elegida, MAX_OPCION_JUEGO, MIN_OPCION_JUEGO);
     }
     this->diccionario->guardar_pre_orden();
     imprimir_mensaje_guardado();
 }
 
-void Juego::validar_opcion_ingresada_partida_empezada(int &opcion_elegida){
-    bool es_valida = es_opcion_valida_partida_empezada(opcion_elegida);
+int Juego::numero_aleatorio(int desde, int hasta){
+    srand (( unsigned)time(NULL));
+    int numero = ( desde + rand() % hasta );
+    
+    while (numero > hasta)
+        numero = ( desde + rand() % hasta );
+    return numero;
+}
+
+void Juego::validar_opcion_ingresada(int &opcion_elegida, int max, int min){
+    bool es_valida = es_opcion_valida(opcion_elegida, max, min);
     while(!es_valida){
         imprimir_mensaje_error_ingreso();
 
         cin >> opcion_elegida;
-        es_valida = es_opcion_valida_partida_empezada(opcion_elegida);
+        es_valida = es_opcion_valida(opcion_elegida, max, min);
     }
 }
 
-bool Juego::es_opcion_valida_partida_empezada(int opcion){
-    return( ( opcion >= MIN_OPCION_JUEGO ) && ( opcion <= MAX_OPCION_JUEGO ) );
+bool Juego::es_opcion_valida(int opcion, int max, int min){
+    return( ( opcion >= min ) && ( opcion <= max ) );
 }
 
 void Juego::procesar_opcion_partida_empezada(int opcion){

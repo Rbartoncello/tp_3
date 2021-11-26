@@ -14,10 +14,10 @@ const string EDIFICIO_PLANTA_ELECTRICA = "planta electrica";
 const string PLANTA = "planta";
 const string ORO = "oro";
 
-const string PATH_EDIFICIO = "../archivos/edificios.txt";
-const string PATH_UBICACIONES = "../archivos/ubicaciones.txt";
-const string PATH_MAPA = "../archivos/mapa.txt";
-const string PATH_MATERIALES = "../archivos/materiales.txt";
+const string PATH_EDIFICIO = "archivos/edificios.txt";
+const string PATH_UBICACIONES = "archivos/ubicaciones.txt";
+const string PATH_MAPA = "archivos/mapa.txt";
+const string PATH_MATERIALES = "archivos/materiales.txt";
 
 const int MIN_OPCION_NUEVA_PARTIDA = 1;
 const int MAX_OPCION_NUEVA_PARTIDA = 5;
@@ -50,15 +50,6 @@ const int MOVERSE_COORDENADA = 11;
 const int FINALIZAR_TURNO = 12;
 const int GUARDA_SALIR = 13;
 
-const int MIN_GENERAR_PIEDRA = 1;
-const int MAX_GENERAR_PIEDRA = 2;
-
-const int MIN_GENERAR_MADERA = 0;
-const int MAX_GENERAR_MADERA = 2;
-
-const int MIN_GENERAR_METAL = 2;
-const int MAX_GENERAR_METAL = 4;
-
 const char CAMINO = 'C';
 const char BETUN = 'B';
 const char LAGO = 'L';
@@ -75,10 +66,9 @@ const string ENERGIA = "energia";
 const int CONSTRUYENDO = 1;
 const int DEMOLIENDO= 0;
 
-const int AUMENTAR_CANTIDAD_PIEDRA = 15;
-const int AUMENTAR_CANTIDAD_MADERA = 25;
-const int AUMENTAR_CANTIDAD_METAL = 40;
-
+/* 
+ *  CANTIDAD QUE BRINDA CADA EDIFICIO  
+ */
 const int BRINDA_MINA = 15;
 const int BRINDA_ASERRADERO = 25;
 const int BRINDA_FABRICA = 40;
@@ -86,8 +76,36 @@ const int BRINDA_ESCUELA = 25;
 const int BRINDA_PLANTA_ELECTRICA = 15;
 const int BRINDA_MINA_ORO = 50;
 
-
+/* 
+ *  MAXIMOS Y MINIMOS PARA MODIFICAR EDIFICIO  
+ */
 const int MIN_RECETA_MODIFICAR = 0;
 const int MAX_RECETA_MODIFICAR = 50000;
+
+/* 
+ *  CANTIDAD QUE SE GENERA CON LA LLUVIA DE RECURSOS  
+ */
+const int LLUVIA_GENERA_PIEDRA = 100;
+const int LLUVIA_GENERA_MADERA = 50;
+const int LLUVIA_GENERA_METAL = 50;
+const int LLUVIA_GENERA_ANDYCOINS = 250;
+
+/* 
+ *  MAXIMOS Y MINIMOS QUE SE GENERA CON LA LLUVIA DE RECURSOS  
+ */
+const int MIN_GENERAR_PIEDRA = 1;
+const int MAX_GENERAR_PIEDRA = 2;
+
+const int MIN_GENERAR_MADERA = 0;
+const int MAX_GENERAR_MADERA = 3;
+
+const int MIN_GENERAR_METAL = 2;
+const int MAX_GENERAR_METAL = 4;
+
+const int MIN_GENERAR_ANDYCOINS = 0;
+const int MAX_GENERAR_ANDYCOINS = 1;
+
+const int JUGADOR_1 = 1;
+const int JUGADOR_2 = 2; 
 
 #endif

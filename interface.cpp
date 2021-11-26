@@ -5,6 +5,7 @@
 #include "colors.h"
 #include "constantes.h"
 #include "emojis.h"
+#include "gotoxy.h"
 
 void imprimir_mensaje_bienvenida(){
     system("clear");
@@ -64,36 +65,39 @@ void imprimir_menu_nueva_partida(){
     cout << END_COLOR;
 }
 
-void imprimir_menu_juego(){
+void imprimir_menu_juego(Mapa* mapa, int jugador_actual){
     system("clear");
-    cout << TXT_LIGHT_AQUA_43 << TXT_BOLD;;
-    cout << "\t\t\t\t\t╔════╦═══════════════════════════════════════╗" << endl;
-    cout << "\t\t\t\t\t║ " << EMOJI_UNO << " ║" << END_COLOR << TXT_BOLD <<" Construir edificio por nombre " << EMOJI_EDIFICIO_CONSTRUCION << TXT_LIGHT_AQUA_43 << "       ║" << endl;
-    cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
-    cout << "\t\t\t\t\t║ " << EMOJI_DOS << " ║" << END_COLOR << TXT_BOLD <<" Listar mis edificios construidos " << EMOJI_LISTA << TXT_LIGHT_AQUA_43 << "   ║" << endl;
-    cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
-    cout << "\t\t\t\t\t║ " << EMOJI_TRES << " ║" << END_COLOR << TXT_BOLD <<" Demoler un edificio por coordenada " << EMOJI_MINA  << TXT_LIGHT_AQUA_43 <<" ║" << endl;
-    cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
-    cout << "\t\t\t\t\t║ " << EMOJI_CUATRO << " ║" << END_COLOR << TXT_BOLD <<" Atacar un edificio por coordenada " << EMOJI_BOMBA  << TXT_LIGHT_AQUA_43 << "  ║" << endl;
-    cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
-    cout << "\t\t\t\t\t║ " << EMOJI_CINCO << " ║" << END_COLOR << TXT_BOLD <<" Reparar un edificio por coordenada " << EMOJI_EDIFICIO_CONSTRUCION << TXT_LIGHT_AQUA_43 << "  ║" << endl;
-    cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
-    cout << "\t\t\t\t\t║ " << EMOJI_SEIS << " ║" << END_COLOR << TXT_BOLD <<" Comprar Bomba " << EMOJI_BOMBA << TXT_LIGHT_AQUA_43 << "                      ║" << endl;
-    cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
-    cout << "\t\t\t\t\t║ " << EMOJI_SIETE << " ║" << END_COLOR << TXT_BOLD <<" Consultar coordenada " << EMOJI_BRUJULA << TXT_LIGHT_AQUA_43 << "               ║" << endl;
-    cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
-    cout << "\t\t\t\t\t║ " << EMOJI_OCHO << " ║" << END_COLOR << TXT_BOLD <<" Mostrar inventario " << EMOJI_INVENTARIO << TXT_LIGHT_AQUA_43 << "                 ║" << endl;
-    cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
-    cout << "\t\t\t\t\t║ " << EMOJI_NUEVE << " ║" << END_COLOR << TXT_BOLD <<" Mostrar objetivos " << EMOJI_LISTA << TXT_LIGHT_AQUA_43 << "                  ║" << endl;
-    cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
-    cout << "\t\t\t\t\t║ " << EMOJI_DIEZ << " ║" << END_COLOR << TXT_BOLD <<" Recolectar recursos producidos " << EMOJI_BUSQUEDA << TXT_LIGHT_AQUA_43 << "     ║" << endl;
-    cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
-    cout << "\t\t\t\t\t║ " << EMOJI_ONCE << " ║" << END_COLOR << TXT_BOLD <<" Moverse a una coordenada " << EMOJI_MOVERSE << TXT_LIGHT_AQUA_43 << "           ║" << endl;
-    cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
-    cout << "\t\t\t\t\t║ " << EMOJI_DOCE << " ║" << END_COLOR << TXT_BOLD <<" Finalizar turno " << EMOJI_START << TXT_LIGHT_AQUA_43 << "                    ║" << endl;
-    cout << "\t\t\t\t\t╠────╬───────────────────────────────────────╣" << endl;
-    cout << "\t\t\t\t\t║ " << EMOJI_TRECE << " ║" << END_COLOR << TXT_BOLD <<" Guarda y salir " << EMOJI_GUARDA_SALIR << TXT_LIGHT_AQUA_43 << "                     ║" << endl;
-    cout << "\t\t\t\t\t╚════╩═══════════════════════════════════════╝" << endl;
+    Gotoxy gotoxy;
+    mapa->mostrar();
+    cout << gotoxy.pos(1, 65 ) << "Jugador: " << jugador_actual << endl;
+    cout << TXT_LIGHT_AQUA_43 << TXT_BOLD;
+    cout << gotoxy.pos(2, 65 ) << "╔════╦═══════════════════════════════════════╗" << endl
+    << gotoxy.pos(3, 65 )  << "║ " << EMOJI_UNO << " ║" << END_COLOR << TXT_BOLD <<" Construir edificio por nombre " << EMOJI_EDIFICIO_CONSTRUCION << TXT_LIGHT_AQUA_43 << "       ║" << endl
+    << gotoxy.pos(4, 65 )  << "╠────╬───────────────────────────────────────╣" << endl
+    << gotoxy.pos(5, 65 )  << "║ " << EMOJI_DOS << " ║" << END_COLOR << TXT_BOLD <<" Listar mis edificios construidos " << EMOJI_LISTA << TXT_LIGHT_AQUA_43 << "   ║" << endl
+    << gotoxy.pos(6, 65 )  << "╠────╬───────────────────────────────────────╣" << endl
+    << gotoxy.pos(7, 65 )  << "║ " << EMOJI_TRES << " ║" << END_COLOR << TXT_BOLD <<" Demoler un edificio por coordenada " << EMOJI_MINA  << TXT_LIGHT_AQUA_43 <<" ║" << endl
+    << gotoxy.pos(8, 65 )  << "╠────╬───────────────────────────────────────╣" << endl
+    << gotoxy.pos(9, 65 )  << "║ " << EMOJI_CUATRO << " ║" << END_COLOR << TXT_BOLD <<" Atacar un edificio por coordenada " << EMOJI_BOMBA  << TXT_LIGHT_AQUA_43 << "  ║" << endl
+    << gotoxy.pos(10, 65 )  << "╠────╬───────────────────────────────────────╣" << endl
+    << gotoxy.pos(11, 65 ) << "║ " << EMOJI_CINCO << " ║" << END_COLOR << TXT_BOLD <<" Reparar un edificio por coordenada " << EMOJI_EDIFICIO_CONSTRUCION << TXT_LIGHT_AQUA_43 << "  ║" << endl
+    << gotoxy.pos(12, 65 ) << "╠────╬───────────────────────────────────────╣" << endl
+    << gotoxy.pos(13, 65 ) << "║ " << EMOJI_SEIS << " ║" << END_COLOR << TXT_BOLD <<" Comprar Bomba " << EMOJI_BOMBA << TXT_LIGHT_AQUA_43 << "                      ║" << endl
+    << gotoxy.pos(14, 65 ) << "╠────╬───────────────────────────────────────╣" << endl
+    << gotoxy.pos(15, 65 ) << "║ " << EMOJI_SIETE << " ║" << END_COLOR << TXT_BOLD <<" Consultar coordenada " << EMOJI_BRUJULA << TXT_LIGHT_AQUA_43 << "               ║" << endl
+    << gotoxy.pos(16, 65 ) << "╠────╬───────────────────────────────────────╣" << endl
+    << gotoxy.pos(17, 65 ) << "║ " << EMOJI_OCHO << " ║" << END_COLOR << TXT_BOLD <<" Mostrar inventario " << EMOJI_INVENTARIO << TXT_LIGHT_AQUA_43 << "                 ║" << endl
+    << gotoxy.pos(18, 65 ) << "╠────╬───────────────────────────────────────╣" << endl
+    << gotoxy.pos(19, 65 ) << "║ " << EMOJI_NUEVE << " ║" << END_COLOR << TXT_BOLD <<" Mostrar objetivos " << EMOJI_LISTA << TXT_LIGHT_AQUA_43 << "                  ║" << endl
+    << gotoxy.pos(20, 65 ) << "╠────╬───────────────────────────────────────╣" << endl
+    << gotoxy.pos(21, 65 ) << "║ " << EMOJI_DIEZ << " ║" << END_COLOR << TXT_BOLD <<" Recolectar recursos producidos " << EMOJI_BUSQUEDA << TXT_LIGHT_AQUA_43 << "     ║" << endl
+    << gotoxy.pos(22, 65 ) << "╠────╬───────────────────────────────────────╣" << endl
+    << gotoxy.pos(23, 65 ) << "║ " << EMOJI_ONCE << " ║" << END_COLOR << TXT_BOLD <<" Moverse a una coordenada " << EMOJI_MOVERSE << TXT_LIGHT_AQUA_43 << "           ║" << endl
+    << gotoxy.pos(24, 65 ) << "╠────╬───────────────────────────────────────╣" << endl
+    << gotoxy.pos(25, 65 ) << "║ " << EMOJI_DOCE << " ║" << END_COLOR << TXT_BOLD <<" Finalizar turno " << EMOJI_START << TXT_LIGHT_AQUA_43 << "                    ║" << endl
+    << gotoxy.pos(26, 65 ) << "╠────╬───────────────────────────────────────╣" << endl
+    << gotoxy.pos(27, 65 ) << "║ " << EMOJI_TRECE << " ║" << END_COLOR << TXT_BOLD <<" Guarda y salir " << EMOJI_GUARDA_SALIR << TXT_LIGHT_AQUA_43 << "                     ║" << endl
+    << gotoxy.pos(28, 65 ) << "╚════╩═══════════════════════════════════════╝" << endl;
     cout << END_COLOR;
 }
 
@@ -104,10 +108,10 @@ void imprimir_objetos_mapa(){
     cout << END_COLOR;
     cout << TXT_LIGHT_PURPLE_104 << "║" << END_COLOR << "\t" << TXT_UNDERLINE << TXT_BOLD << "Edificio:\t\t\tMateriales" << END_COLOR << TXT_LIGHT_PURPLE_104 << "\t    ║" << END_COLOR << endl;
     cout << TXT_LIGHT_PURPLE_104 << "■" << END_COLOR << "\t-Mina ( " << EMOJI_MINA << " )\t\t\t-Piedra ( " << EMOJI_PIEDRA << "  )" << TXT_LIGHT_PURPLE_104 << "\t    ■" << END_COLOR << endl;
-    cout << TXT_LIGHT_PURPLE_104 << "║" << END_COLOR << "\t-Aserradero ( " << EMOJI_ASERRADERO << " )\t\t-Madera ( " << EMOJI_MADERA << "  )" << TXT_LIGHT_PURPLE_104 << "\t    ║" << END_COLOR << endl;
-    cout << TXT_LIGHT_PURPLE_104 << "■" << END_COLOR << "\t-Fabrica ( " << EMOJI_FABRICA << " )\t\t\t-Metal ( " << EMOJI_METAL << " )" << TXT_LIGHT_PURPLE_104 << "\t    ■" << END_COLOR <<endl;
-    cout << TXT_LIGHT_PURPLE_104 << "║" << END_COLOR << "\t-Escuela ( " << EMOJI_ESCUELA << " )\t\t\t-Bomba ( " << EMOJI_BOMBA << " )" <<  TXT_LIGHT_PURPLE_104 << "\t    ║" << END_COLOR << endl;
-    cout << TXT_LIGHT_PURPLE_104 << "■" << END_COLOR << "\t-Obelisco ( " << EMOJI_OBELISCO << " )\t\t-Andycoins ( " << EMOJI_ANDYCOINS << " )" << TXT_LIGHT_PURPLE_104 << "   ■" << END_COLOR << endl;
+    cout << TXT_LIGHT_PURPLE_104 << "║" << END_COLOR << "\t-Aserradero ( " << EMOJI_ASERRADERO << " )\t\t-Madera ( " << EMOJI_MADERA << " )" << TXT_LIGHT_PURPLE_104 << "\t    ║" << END_COLOR << endl;
+    cout << TXT_LIGHT_PURPLE_104 << "■" << END_COLOR << "\t-Fabrica ( " << EMOJI_FABRICA << " )\t\t\t-Metal ( " << EMOJI_METAL << ")" << TXT_LIGHT_PURPLE_104 << "\t    ■" << END_COLOR <<endl;
+    cout << TXT_LIGHT_PURPLE_104 << "║" << END_COLOR << "\t-Escuela ( " << EMOJI_ESCUELA << " )\t\t\t-Andycoins ( " << EMOJI_ANDYCOINS << " )" <<  TXT_LIGHT_PURPLE_104 << "   ║" << END_COLOR << endl;
+    cout << TXT_LIGHT_PURPLE_104 << "■" << END_COLOR << "\t-Obelisco ( " << EMOJI_OBELISCO << " )" << TXT_LIGHT_PURPLE_104 << "\t\t\t\t    ■" << END_COLOR << endl;
     cout << TXT_LIGHT_PURPLE_104 << "║" << END_COLOR << "\t-Planta eléctrica ( " << EMOJI_PLANTA_ENERGIA << " )" << TXT_LIGHT_PURPLE_104 << "\t\t\t    ║" << END_COLOR << endl;
     cout << TXT_LIGHT_PURPLE_104;
     cout <<"■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■" << endl;
@@ -170,9 +174,10 @@ void imprimir_mensaje_recolectando_recursos_producidos() {
     system("clear");
 }
 
-int pedir_opcion(){
+int pedir_opcion(int fila, int columna){
+    Gotoxy gotoxy;
     int opcion_elegida = ERROR;
-    cout << "\tPor favor ingrese una de las opciones: ";
+    cout << gotoxy.pos(fila, columna) <<"\tPor favor ingrese una de las opciones: ";
     cin >> opcion_elegida;
 
     return opcion_elegida;
@@ -250,4 +255,17 @@ void imprimir_lista_edificios_construidos(Edificacion* edificio, Mapa* mapa) {
     cout << "│" << setfill(' ') << setw(7) << edificio->devolver_maxima_cantidad_permitidos()- mapa->cantidad_edificio_construido(edificio->devolver_nombre_edificio()) << setfill(' ') << setw(9);
     cout << "│" << setfill(' ') << setw(10) << brinda << setw(11) << "║" << endl;
     cout << "\t╠──────────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────────╣" << endl;
+}
+
+void imprimir_mensaje_ingrese_jugador() {
+    system("clear");
+    cout << "Por favor ingrese el numero de jugador que desee ser [1 o 2]: ";
+}
+
+void imprimir_mensaje_ingrese_fila_jugador() {
+    cout << "Por favor ingrese la fila con la que desee empezar: ";
+}
+
+void imprimir_mensaje_ingrese_columna_jugador() {
+    cout << "Por favor ingrese la columna con la que desee empezar: ";
 }

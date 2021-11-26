@@ -33,7 +33,7 @@ void Camino::mostrar(){
     if(!this->esta_ocupado())
         cout << BGND_GRAY_243 << "  " << END_COLOR;
     else
-        cout << BGND_GRAY_243  << this->material->devolver_emoji() << " " << END_COLOR;
+        cout << BGND_GRAY_243  << this->material->devolver_emoji()  << END_COLOR;
 }
 
 void Camino::agregar_material(Material* material) {

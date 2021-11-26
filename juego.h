@@ -6,6 +6,7 @@
 #include "emojis.h"
 #include "archivo.h"
 #include "diccionario.h"
+#include "jugador.h"
 
 
 class Juego{
@@ -14,7 +15,9 @@ class Juego{
         Archivo* lector_archivos;
         Inventario* inventario_p1, *inventario_p2; //CAMBIARLO A JUGADOR1 JUGADOR2 (el inventario va dentro de ellos)
         Diccionario* diccionario;
-
+        Jugador* jugador_1;
+        Jugador* jugador_2;
+        int jugador_actual;
     public:
         /*
          * Constructor sin parametros:
@@ -57,17 +60,6 @@ class Juego{
         void mostrar();
 
     private:
-        /*
-         * Pre: -
-         * Post: Repite el input hasta que se cumpla la condicion pedida (MAX_OPCION_NUEVA_PARTIDA y MIN_OPCION_NUEVA_PARTIDA).
-        */
-        void validar_opcion_ingresada_nueva_partida(int &opcion_elegida);
-
-        /*        
-         * Pre: -
-         * Post: Devuelve TRUE si MIN_OPCION_NUEVA_PARTIDA <= opcion <= MAX_OPCION_NUEVA_PARTIDA y FALSE en caso contrario.
-        */
-        bool es_opcion_valida_nueva_partida(int opcion);
 
         /*
          * Pre: -
@@ -77,15 +69,15 @@ class Juego{
 
         /*
          * Pre: -
-         * Post: Repite el input hasta que se cumpla la condicion pedida (MAX_OPCION_JUEGO y MIN_OPCION_JUEGO).
+         * Post: Repite el input hasta que se cumpla la condicion pedida (max y min).
         */
-        void validar_opcion_ingresada_partida_empezada(int &opcion_elegida);
+        void validar_opcion_ingresada(int &opcion_elegida, int max, int min);
 
         /*        
          * Pre: -
-         * Post: Devuelve TRUE si MIN_OPCION_JUEGO <= opcion <= MAX_OPCION_JUEGO y FALSE en caso contrario.
+         * Post: Devuelve TRUE si min <= opcion <= max y FALSE en caso contrario.
         */
-        bool es_opcion_valida_partida_empezada(int opcion);
+        bool es_opcion_valida(int opcion, int max, int min);
 
         /*
          * Pre: -
@@ -152,6 +144,30 @@ class Juego{
          * Post: Pide al usuario una ubicacion via input y le infroma sobre el contenido del mismo.
         */
         void mostrar_coordenada();
+
+        /*
+         * Pre: -
+         * Post: Comienza la partida
+         */
+        void comenzar_partida();
+
+        /*
+         * Pre: -
+         * Post: Ingresara el primer jugador
+         */
+        void ingresar_primer_jugador();
+
+        /*
+         * Pre: -
+         * Post: Me posicionara el jugador en el mapa
+         */
+        void posicionar_jugador_mapa(Jugador* &jugador);
+
+        /*
+         * Pre: Recibe 2 numeros
+         * Post: Devuelve un numero aleatorio entre esos 2 numeros
+        */
+        int numero_aleatorio(int desde, int hasta);
 };
 
 #endif //JUEGO_H

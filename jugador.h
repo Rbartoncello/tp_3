@@ -8,8 +8,10 @@ class Jugador{
     private:
         string nombre;
         int energia;
+        int numero;
         Materiales* inventario;
-        int fila, columna;
+        int fila;
+        int columna;
         //Objetivo_secundario** objetivos_secundarios
         //Objetivo_primario* objetivo_primario
     public:
@@ -18,7 +20,7 @@ class Jugador{
          * Pre: -.
          * Post: Me va a crear el Jugador vacio
          */
-        Jugador();
+        Jugador(int numero);
 
 
         /*
@@ -56,8 +58,11 @@ class Jugador{
          */
         void recoger_recurso(Material* recurso);
 
+        void modificar_numero(int numero);
 
-        
+        void modificar_fila(int fila);
+
+        void modificar_columna(int columna);
 };
 
 

@@ -21,7 +21,7 @@ void imprimir_menu_nueva_partida();
  * Pre: -
  * Post: Imprime por pantalla el manu principal.
 */
-void imprimir_menu_juego();
+void imprimir_menu_juego(Mapa* mapa, int jugador_acutal);
 
 /*
  * Pre: -
@@ -63,7 +63,7 @@ void imprimir_mensaje_recolectando_recursos_producidos();
  * Pre: -
  * Post: Devuelve el entero ingresado por pantalla.
  */
-int pedir_opcion();
+int pedir_opcion(int fila, int columna);
 
 /*
  * Pre: -
@@ -124,5 +124,25 @@ void encabezado_edificios_construidos();
  * Post: Imprime por pantalla listar edificios.
  */
 void imprimir_lista_edificios_construidos(Edificacion* edificio, Mapa* mapa);
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla que ingrese el numero de jugador
+ */
+void imprimir_mensaje_ingrese_jugador();
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla que ingrese la fila de jugador
+ */
+void imprimir_mensaje_ingrese_fila_jugador();
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla que ingrese la columna de jugador
+ */
+void imprimir_mensaje_ingrese_columna_jugador();
+
+
 
 #endif

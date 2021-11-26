@@ -33,7 +33,7 @@ void Betun::mostrar(){
     if(!this->esta_ocupado())
         cout << BGND_BLACK_232  << "  " << END_COLOR;
     else
-        cout << this->material->devolver_emoji() << " " << END_COLOR;
+        cout << this->material->devolver_emoji() << END_COLOR;
 }
 
 void Betun::agregar_material(Material* material) {

@@ -34,7 +34,7 @@ void Muelle::mostrar(){
     if (!this->esta_ocupado())
         cout << BGND_BROWN_94 << "  " << END_COLOR;
     else
-        cout << BGND_BROWN_94  << this->material->devolver_emoji() << " " << END_COLOR;
+        cout << BGND_BROWN_94  << this->material->devolver_emoji() << END_COLOR;
 }
 
 void Muelle::agregar_material(Material* material) {
