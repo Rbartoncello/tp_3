@@ -216,10 +216,10 @@ void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa*
     clean_fila = arreglarCoordenadaX(fila);
     clean_columna = arreglarCoordenadaY(columna);
     
-    int piedra = diccionario->buscar_receta(nombre_edificio)->devoler_piedra();
-    int madera = diccionario->buscar_receta(nombre_edificio)->devoler_madera();
-    int metal = diccionario->buscar_receta(nombre_edificio)->devoler_metal();
-    int max_cant_permitidos = diccionario->devolver_rama()->devolver_edificio()->devolver_maxima_cantidad_permitidos();
+    int piedra = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_piedra();
+    int madera = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_madera();
+    int metal = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_metal();
+    int max_cant_permitidos = diccionario->devolver_rama()->devolver_contenido()->devolver_maxima_cantidad_permitidos();
     
     mapa->agregar_edificacion(buscar_edificacion(nombre_edificio,  piedra, madera, metal, max_cant_permitidos), clean_fila,clean_columna);
 }

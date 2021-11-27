@@ -37,7 +37,7 @@ class Receta {
          * Pre: -
          * Post: Me devuelve el cantidad de material PIEDRA, MADERA o METAL y 0 en el caso que no sea ninguno de los anteriores.
          */
-        int devolver_receta(string material);
+        int devolver_material(string material);
 
         /*
          * Pre: material tiene que ser si o si PIEDRA, MADERA o METAL
