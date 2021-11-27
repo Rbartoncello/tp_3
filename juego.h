@@ -14,7 +14,7 @@ class Juego{
         Mapa* mapa;
         Archivo* lector_archivos;
         Inventario* inventario_p1, *inventario_p2; //CAMBIARLO A JUGADOR1 JUGADOR2 (el inventario va dentro de ellos)
-        Diccionario* diccionario;
+        Diccionario<Edificacion>* diccionario;
         Jugador* jugador_1;
         Jugador* jugador_2;
         int jugador_actual;
@@ -89,13 +89,13 @@ class Juego{
          * Pre: Diccionario ya tiene que estar creado y con todos los edificios cargados
          * Post: Me modificara la reseta del edificio ingresado
         */
-        void modificar_edificio(Diccionario* diccionario);
+        void modificar_edificio(Diccionario<Edificacion>*&diccionario);
 
         /*
          * Pre: -
          * Post: Me modificara la reseta.
         */
-        void modificar_receta(Diccionario* diccionario, string nombre_edificio, string material);
+        void modificar_receta(Diccionario<Edificacion>*&diccionario, string nombre_edificio, string material);
 
         /*
          * Pre: -

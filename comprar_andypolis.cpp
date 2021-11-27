@@ -21,7 +21,7 @@ void Comprar_andypolis::mostrar_descripcion(){
 
 void Comprar_andypolis::verificar_estado_objetivo(){
 
-    if (andycoins_recolectados = OBJETIVO_COMPRAR_ANDYCOINS)
+    if (andycoins_recolectados == OBJETIVO_COMPRAR_ANDYCOINS)
         objetivo_realizado = true;
 }
 

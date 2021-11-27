@@ -5,6 +5,7 @@ Jugador::Jugador(int numero){
     this->numero = numero;
     this -> energia = 0;
     this -> inventario = new Materiales;
+    //crear objetivo_principal
 }
 
 Jugador::~Jugador(){

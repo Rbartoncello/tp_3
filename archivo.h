@@ -28,7 +28,7 @@ class Archivo {
 
         //Pre:
         //Post:
-        int leer_archivo_ubicaciones(Mapa* &mapa, Diccionario* diccionario);
+        int leer_archivo_ubicaciones(Mapa* &mapa, Diccionario<Edificacion>* &diccionario);
 
         //Pre:
         //Post:retorna el nombre del archivo.
@@ -36,7 +36,7 @@ class Archivo {
 
         //Pre:
         //Post:
-        int leer_archivos_edificios(Diccionario* &diccionario);
+        int leer_archivos_edificios(Diccionario<Edificacion>*&diccionario);
 
         //Pre:
         //Post:
@@ -52,13 +52,13 @@ class Archivo {
 
         int leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa);
 
-        void agregar_edificio(ifstream &documento,string nombre_edificio,Mapa* &mapa, Diccionario* diccionario);
+        void agregar_edificio(ifstream &documento,string nombre_edificio,Mapa* &mapa, Diccionario<Edificacion>*&diccionario);
 
         void agregar_posicion_jugador(int coordX, int coordY,Mapa* &mapa);
         
-        void leer_edificios_jugador_1(ifstream &documento, string jugador,Mapa* &mapa, Diccionario* diccionario);
+        void leer_edificios_jugador_1(ifstream &documento, string jugador,Mapa* &mapa, Diccionario<Edificacion>*&diccionario);
 
-        void leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Diccionario* diccionario);
+        void leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Diccionario<Edificacion>*&diccionario);
 
         int arreglarCoordenadaX(string coordX);
 

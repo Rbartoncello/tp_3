@@ -16,7 +16,7 @@ void Bombardero::agregar_datos(int sumar_andycoins){
 
 void Bombardero::verificar_estado_objetivo(){
 
-    if (bombas_usadas = OBJETIVO_BOMBARDERO)
+    if (bombas_usadas == OBJETIVO_BOMBARDERO)
         objetivo_realizado = true;
 }
 

@@ -13,7 +13,7 @@
 Archivo::Archivo(){
 }
 
-int Archivo::leer_archivos_edificios(Diccionario* &diccionario){
+int Archivo::leer_archivos_edificios(Diccionario<Edificacion>* &diccionario){
     int ejecucion = 1;
 
     ifstream archivo(PATH_EDIFICIO);
@@ -90,7 +90,7 @@ int Archivo::leer_archivos_materiales(Inventario *&inventario_jugador_1, Inventa
     return ejecucion;
 }
 
-int Archivo::leer_archivo_ubicaciones(Mapa* &mapa, Diccionario* diccionario){
+int Archivo::leer_archivo_ubicaciones(Mapa* &mapa, Diccionario<Edificacion>* &diccionario){
     int ejecucion = 1;
 
     string jugador_2 = "2";
@@ -161,7 +161,7 @@ Material* Archivo::buscar_material(string nombre){
     return material;
 }
 
-void Archivo::leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Diccionario* diccionario){
+void Archivo::leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Diccionario<Edificacion>*&diccionario){
     string nombre_edificio;
 
     while (documento >> nombre_edificio)
@@ -170,7 +170,7 @@ void Archivo::leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Dicciona
 }
 
 
-void Archivo::leer_edificios_jugador_1(ifstream &documento, string jugador, Mapa* &mapa, Diccionario* diccionario){
+void Archivo::leer_edificios_jugador_1(ifstream &documento, string jugador, Mapa* &mapa, Diccionario<Edificacion>*&diccionario){
 
     bool leyendo_edificios_P1 = true;
 
@@ -192,7 +192,7 @@ void Archivo::leer_edificios_jugador_1(ifstream &documento, string jugador, Mapa
     }
 }
 
-void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa* &mapa, Diccionario* diccionario)
+void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa* &mapa, Diccionario<Edificacion>*&diccionario)
 {
     string segundo_nombre, fila, columna;
     int clean_fila, clean_columna;

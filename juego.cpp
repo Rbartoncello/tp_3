@@ -7,7 +7,7 @@ Juego::Juego(){
     this->lector_archivos = new Archivo();
     this->inventario_p1 = new Inventario();
     this->inventario_p2 = new Inventario();
-    this->diccionario = new Diccionario();
+    this->diccionario = new Diccionario<Edificacion>();
     this->jugador_1 = new Jugador(1);
     this->jugador_2 = new Jugador(2);
 }
@@ -82,7 +82,7 @@ void Juego::mostrar() {
     imprimir_objetos_mapa();
 }
 
-void Juego::modificar_receta(Diccionario* diccionario, string nombre_edificio, string material){
+void Juego::modificar_receta(Diccionario<Edificacion>*&diccionario, string nombre_edificio, string material){
     int opcion;
     imprimir_mensaje_receta_edificio(nombre_edificio, material, diccionario->buscar(nombre_edificio)->devolver_receta(material));
     imprimir_mensaje_afirmativo_negativo();
@@ -112,7 +112,7 @@ bool Juego::cantidad_valida(int ingreso){
     return ( ( ingreso >= MIN_RECETA_MODIFICAR ) && ( ingreso <= MAX_RECETA_MODIFICAR ) );
 }
 
-void Juego::modificar_edificio(Diccionario* diccionario){
+void Juego::modificar_edificio(Diccionario<Edificacion>*&diccionario){
     string nombre_edificio;
     imprimir_mensaje_ingresar_edificio();
     cin.ignore();

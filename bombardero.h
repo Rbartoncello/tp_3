@@ -30,7 +30,7 @@ public:
     void verificar_estado_objetivo();
 
 
-    ~Bombardero();
+    virtual ~Bombardero();
 };
 
 
