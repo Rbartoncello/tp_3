@@ -6,18 +6,22 @@ using namespace std;
 
 class Objetivos
 {
-private:
+protected:
     bool objetivo_realizado;
+
+private:
+
+    string nombre_objetivo;
 
 public:
 
     //Pre:
     //Post: coloca al objetivo_realizo como valor falso.
-    Objetivos();
+    Objetivos(string nombre_de_objetivo);
 
     //Pre:
     //Post:Debbera devolver el tipo de objetivo, preguntara al hijo polimorficamente.
-    virtual string devolver_tipo_objetivo() = 0;
+    string devolver_tipo_objetivo();
 
     //Pre:Necesita datos utilizados en partida
     //Post:Agrega datos a sus hijos de acuerdo al tipo de objetivo.
