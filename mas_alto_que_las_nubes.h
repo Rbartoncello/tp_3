@@ -10,20 +10,22 @@ class Mas_alto_que_las_nubes : public Objetivos
 private:
 
     int cantidad_obelisco;
+    string descripcion_objetivo;
+    Edificacion* edificios_jugador;
 
 public:
 
     //Pre:
     //Post: coloca al objetivo_realizo como valor falso.
-    Mas_alto_que_las_nubes();
-
-    //Pre:
-    //Post:Debbera devolver el tipo de objetivo, preguntara al hijo polimorficamente.
-    string devolver_tipo_objetivo();
+    Mas_alto_que_las_nubes(Edificacion* &edificios_jugador);
 
     //Pre:
     //Post:Agrega datos al conteo para alcanzar el objetivo
-    void agregar_datos(Edificacion* &cantidad_Obelisco);
+    void agregar_datos();
+
+    //Pre:
+    //Post:Muestra por pantalla la descripcion
+    void mostrar_descripcion();
 
     //Pre:
     //Post:valida si el objetivo se ha realizado.

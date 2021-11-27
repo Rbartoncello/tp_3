@@ -1,6 +1,7 @@
 #ifndef OBJETIVOS_H
 #define OBJETIVOS_H
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -8,6 +9,7 @@ class Objetivos
 {
 protected:
     bool objetivo_realizado;
+    string descripcion_objetivo;
 
 private:
 
@@ -26,6 +28,10 @@ public:
     //Pre:Necesita datos utilizados en partida
     //Post:Agrega datos a sus hijos de acuerdo al tipo de objetivo.
     void sumar_datos();
+
+    //Pre:
+    //Post:Muestra por pantalla la descripcion
+    virtual void mostrar_descripcion() = 0;
 
     //Pre:
     //Post:Agrega datos al conteo para alcanzar el objetivo
