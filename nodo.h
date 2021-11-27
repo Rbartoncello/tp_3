@@ -7,6 +7,7 @@
 class Nodo {
     private:
         Edificacion* edificio;
+        string clave;
         Nodo* izquierda;
         Nodo* derecha;
         Nodo* padre;
@@ -16,31 +17,37 @@ class Nodo {
          * Pre: -.
          * Post: Me va a crear el objeto Nodo con edificio = edificio, izquierda = NULL, derecha = NULL y padre = NULL
          */
-        Nodo(Edificacion* edificio);
+        Nodo(Edificacion*& edificio,string clave);
 
         /*
          * Pre: -.
          * Post: Me va a devolver edificio
          */
-        Edificacion* devolver_edificio();
+        Edificacion*& devolver_edificio();
 
         /*
          * Pre: -.
          * Post: Me va a devolver el nodo de la izquierda
          */
-        Nodo* devolver_izquierda();
+        Nodo*& devolver_izquierda();
+
+        /*
+         * Pre: -.
+         * Post: Me va a devolver la clave del nodo
+         */
+        string devolver_clave();
 
         /*
          * Pre: -.
          * Post: Me va a devolver el nodo de la derecha
          */
-        Nodo* devolver_derecha();
+        Nodo*& devolver_derecha();
 
         /*
          * Pre: -.
          * Post: Me va a devolver el nodo padre
          */
-        Nodo* devolver_padre();
+        Nodo*& devolver_padre();
 
         /*
          * Pre: -.

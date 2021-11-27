@@ -84,7 +84,7 @@ void Juego::mostrar() {
 
 void Juego::modificar_receta(Diccionario<Edificacion>*&diccionario, string nombre_edificio, string material){
     int opcion;
-    imprimir_mensaje_receta_edificio(nombre_edificio, material, diccionario->buscar(nombre_edificio)->devolver_receta(material));
+    imprimir_mensaje_receta_edificio(nombre_edificio, material, diccionario->buscar_receta(nombre_edificio)->devolver_receta(material));
     imprimir_mensaje_afirmativo_negativo();
     cin >> opcion;
 
@@ -100,7 +100,7 @@ void Juego::modificar_receta(Diccionario<Edificacion>*&diccionario, string nombr
             imprimir_mensaje_error_ingreso();
             cin >> cantidad;
         }
-        diccionario->buscar(nombre_edificio)->modificar_receta(material, cantidad);
+        diccionario->buscar_receta(nombre_edificio)->modificar_receta(material, cantidad);
     }
 }
 
