@@ -239,7 +239,5 @@ void Archivo::agregar_posicion_jugador(int fila, int columna, Mapa *&mapa) {
     mapa->agregar_jugador(fila,columna);
 }
 
-
-Archivo::~Archivo(){
-}
+Archivo::~Archivo(){}
 
