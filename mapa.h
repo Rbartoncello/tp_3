@@ -3,6 +3,9 @@
 #include <fstream>
 #include "casillero.h"
 #include "andycoins.h"
+#include "edificacion.h"
+#include <string>
+#include "lista.h"
 
 using namespace std;
 class Mapa{
@@ -51,13 +54,13 @@ class Mapa{
          */
         void agregar_material(string nombre, int fila, int columna);
 
-   
+        Edificacion* crear_edificio(string nombre, int piedra, int madera, int metal, int max_cant_permitidos);
 
         void agregar_jugador(int coordX, int coordY);
 
         char devolver_tipo_terreno(int coord1, int columna);
 
-        void agregar_edificacion(Edificacion* edificacion, int fila, int columna, int duenio);
+        void agregar_edificacion(string nombre, int fila, int columna, int duenio, Lista<Edificacion>* &edificios_jugador);
 
         /*
          * Pre: recibe un nombre.

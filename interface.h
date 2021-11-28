@@ -7,6 +7,7 @@
 #include "nodo_lista.h"
 
 using namespace std;
+
 /*  
 * Pre: -
 * Post: Imprimira por pantalla el nombre del programa.
@@ -23,7 +24,7 @@ void imprimir_menu_nueva_partida();
  * Pre: -
  * Post: Imprime por pantalla el manu principal.
 */
-void imprimir_menu_juego(Mapa* mapa, int jugador_acutal);
+void imprimir_menu_juego(Mapa* &mapa, int jugador_acutal);
 
 /*
  * Pre: -
@@ -35,7 +36,7 @@ void imprimir_objetos_mapa();
  * Pre: -
  * Post:Imprime el inventario del jugador
  */
-void imprimir_materiales_jugador(Nodo_lista<Material>*& primero, int cantidad_en_lista);
+void imprimir_materiales_jugador(Nodo_lista<Material> *&primero, int cantidad_en_lista);
 
 /*
 * Pre: -
@@ -58,7 +59,7 @@ void imprimir_procesamiento_accion(string action_realizada, string nombre_edific
 /*
  * Pre: -
  * Post: Imprime por pantalla que se guardo correctamente.
- */ 
+ */
 void imprimir_mensaje_guardado();
 
 /*
@@ -131,13 +132,13 @@ void encabezado_edificios_construidos();
  * Pre: -
  * Post: Imprime por pantalla listar edificios.
  */
-void imprimir_lista_edificios_construidos(Edificacion* edificio, Mapa* mapa);
+void imprimir_lista_edificios_construidos(Edificacion *edificio, Mapa *mapa);
 
 /*
  * Pre: -
  * Post: Imprime por pantalla los materiales del jugador;
  */
-void imprimir_lista_materiales_jugador(Material* material);
+void imprimir_lista_materiales_jugador(Material *material);
 
 /*
  * Pre: -
@@ -167,7 +168,6 @@ void imprimir_mensaje_ingrese_columna_jugador();
  * Pre: -
  * Post: Me muestra por pantalla los edificios contruidos del jugador actual.
  */
-void imprimir_edificio(Edificacion* edificio, int jugador, int fila, int columna, int cantidad_construidos);
-
+void imprimir_edificio(Edificacion *edificio, int jugador, int fila, int columna, int cantidad_construidos);
 
 #endif

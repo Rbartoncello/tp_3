@@ -12,6 +12,7 @@ class Jugador{
         Lista<Material>* inventario;
         Objetivos** objetivos_secundarios;
         //Mas_alto_que_las_nubes* objetivo_primario;
+        Lista<Edificacion>* edificios_propios;
         
 
     public:
@@ -65,6 +66,8 @@ class Jugador{
         void recoger_recurso(Material* recurso);
 
         Lista<Material>*& devolver_inventario();
+
+        Lista<Edificacion>*& devolver_edificio_jugador();
 
         void modificar_numero(int numero);
 

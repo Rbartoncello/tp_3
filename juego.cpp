@@ -21,15 +21,16 @@ Juego::~Juego(){
 
 int Juego::cargar() {
     int ejecucion = 0;
-
-    if( lector_archivos->leer_archivos_materiales(jugador_1->devolver_inventario(),jugador_2->devolver_inventario())== ERROR || this->mapa->leer_archivo() == ERROR || lector_archivos->leer_archivos_edificios( this->diccionario) == ERROR )
+    int sarasa;
+    if( lector_archivos->leer_archivos_materiales(jugador_1->devolver_inventario(),jugador_2->devolver_inventario())== ERROR || 
+        this->mapa->leer_archivo() == ERROR || lector_archivos->leer_archivos_edificios(diccionario,mapa) == ERROR )
         ejecucion = ERROR;
-
+    cin >> sarasa;
     return ejecucion;
 }
 
 int Juego::archivo_ubicaciones(){
-    return lector_archivos->leer_archivo_ubicaciones(mapa, this->diccionario);
+    return lector_archivos->leer_archivo_ubicaciones(mapa, diccionario,jugador_1->devolver_edificio_jugador(),jugador_2->devolver_edificio_jugador());
 }
 
 void Juego::nueva_partida(){

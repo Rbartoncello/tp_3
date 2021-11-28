@@ -8,6 +8,7 @@
 #include "jugador.h"
 #include "mapa.h"
 #include "edificacion.h"
+#include "lista.h"
 
 class Archivo {
     public:
@@ -28,7 +29,7 @@ class Archivo {
 
         //Pre:
         //Post:
-        int leer_archivo_ubicaciones(Mapa* &mapa, Diccionario<Edificacion>* &diccionario);
+        int leer_archivo_ubicaciones(Mapa* &mapa, Diccionario<Edificacion>* &diccionario,Lista<Edificacion>*& edificios_jugador1,Lista<Edificacion>*& edificios_jugador2);
 
         //Pre:
         //Post:retorna el nombre del archivo.
@@ -36,7 +37,7 @@ class Archivo {
 
         //Pre:
         //Post:
-        int leer_archivos_edificios(Diccionario<Edificacion>*&diccionario);
+        int leer_archivos_edificios(Diccionario<Edificacion>*&diccionario, Mapa*& mapa);
 
         //Pre:
         //Post:
@@ -52,19 +53,17 @@ class Archivo {
 
         int leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa);
 
-        void agregar_edificio(ifstream &documento,string nombre_edificio,Mapa* &mapa, Diccionario<Edificacion>*&diccionario, int duenio);
+        void agregar_edificio(ifstream &documento,string nombre_edificio,Mapa* &mapa, Diccionario<Edificacion>*&diccionario, int duenio,Lista<Edificacion>*& edificios_jugador);
 
         void agregar_posicion_jugador(int coordX, int coordY,Mapa* &mapa);
         
-        void leer_edificios_jugador_1(ifstream &documento, string jugador,Mapa* &mapa, Diccionario<Edificacion>*&diccionario);
+        void leer_edificios_jugador_1(ifstream &documento, string jugador,Mapa* &mapa, Diccionario<Edificacion>*&diccionario,Lista<Edificacion>*& edificios_jugador1);
 
-        void leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Diccionario<Edificacion>*&diccionario);
+        void leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Diccionario<Edificacion>*&diccionario,Lista<Edificacion>*& edificios_jugador2);
 
         int arreglarCoordenadaX(string coordX);
 
         int arreglarCoordenadaY(string coordY);
-
-        Edificacion* buscar_edificacion(string nombre, int piedra, int madera, int metal, int max_cant_permitidos);
 
         Material* buscar_material(string nombre);
 };

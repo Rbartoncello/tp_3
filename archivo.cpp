@@ -13,7 +13,7 @@
 Archivo::Archivo(){
 }
 
-int Archivo::leer_archivos_edificios(Diccionario<Edificacion>* &diccionario){
+int Archivo::leer_archivos_edificios(Diccionario<Edificacion>* &diccionario,Mapa*& mapa){
     int ejecucion = 1;
 
     ifstream archivo(PATH_EDIFICIO);
@@ -38,7 +38,7 @@ int Archivo::leer_archivos_edificios(Diccionario<Edificacion>* &diccionario){
             archivo >> madera;
             archivo >> metal;
             archivo >> max_cant_permitidos;
-            edificio = buscar_edificacion(nombre,  stoi(piedra), stoi(madera), stoi(metal), stoi(max_cant_permitidos));
+            edificio = mapa->crear_edificio(nombre,  stoi(piedra), stoi(madera), stoi(metal), stoi(max_cant_permitidos));
             diccionario->insertar(nombre,edificio);
         }
         archivo.close();
@@ -46,26 +46,7 @@ int Archivo::leer_archivos_edificios(Diccionario<Edificacion>* &diccionario){
     return ejecucion;
 }
 
-Edificacion* Archivo::buscar_edificacion(string nombre, int piedra, int madera, int metal, int max_cant_permitidos){
-    Edificacion* edificio;
-    
-    if (nombre == EDIFICIO_ASERRADERO)
-        edificio = new Aserradero(piedra, madera, metal, max_cant_permitidos);
-    else if (nombre == EDIFICIO_ESCUELA)
-        edificio = new Escuela(piedra, madera, metal, max_cant_permitidos);
-    else if (nombre == EDIFICIO_FABRICA)
-        edificio = new Fabrica(piedra, madera, metal, max_cant_permitidos);
-    else if (nombre == EDIFICIO_MINA)
-        edificio = new Mina(piedra, madera, metal, max_cant_permitidos);
-    else if (nombre == EDIFICIO_MINA_ORO)
-        edificio = new Mina_oro(piedra, madera, metal, max_cant_permitidos);
-    else if (nombre == EDIFICIO_OBELISCO)
-        edificio = new Obelisco(piedra, madera, metal, max_cant_permitidos);
-    else if (nombre == EDIFICIO_PLANTA_ELECTRICA)
-        edificio = new Planta(piedra, madera, metal, max_cant_permitidos);
-    
-    return edificio;
-}
+
 
 int Archivo::leer_archivos_materiales(Lista<Material> *&inventario_jugador_1, Lista<Material> *&inventario_jugador_2){
     int ejecucion = 1;
@@ -110,7 +91,7 @@ Material* Archivo::generar_material(string nombre, int cantidad){
     return material;
 }
 
-int Archivo::leer_archivo_ubicaciones(Mapa* &mapa, Diccionario<Edificacion>* &diccionario){
+int Archivo::leer_archivo_ubicaciones(Mapa* &mapa, Diccionario<Edificacion>* &diccionario,Lista<Edificacion>*& edificios_jugador1,Lista<Edificacion>*& edificios_jugador2){
     int ejecucion = 1;
 
     string jugador_2 = "2";
@@ -122,8 +103,8 @@ int Archivo::leer_archivo_ubicaciones(Mapa* &mapa, Diccionario<Edificacion>* &di
     } else {
         ejecucion = leer_ubicaciones_materiales(documento,mapa);
         if (ejecucion != ERROR){
-            leer_edificios_jugador_1(documento, jugador_2,mapa, diccionario);     
-            leer_edificios_jugador_2(documento,mapa, diccionario);
+            leer_edificios_jugador_1(documento, jugador_2,mapa, diccionario,edificios_jugador1);     
+            leer_edificios_jugador_2(documento,mapa, diccionario,edificios_jugador2);
         }
         documento.close();
     }
@@ -166,16 +147,7 @@ int Archivo::leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa){
     return ejecucion;
 }
 
-
-void Archivo::leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Diccionario<Edificacion>*&diccionario){
-    string nombre_edificio;
-
-    while (documento >> nombre_edificio)
-        agregar_edificio(documento, nombre_edificio,mapa, diccionario, JUGADOR_2);
-
-}
-
-void Archivo::leer_edificios_jugador_1(ifstream &documento, string jugador, Mapa* &mapa, Diccionario<Edificacion>*&diccionario){
+void Archivo::leer_edificios_jugador_1(ifstream &documento, string jugador, Mapa* &mapa, Diccionario<Edificacion>*&diccionario,Lista<Edificacion>*& edificios_jugador1){
 
     bool leyendo_edificios_P1 = true;
 
@@ -185,7 +157,7 @@ void Archivo::leer_edificios_jugador_1(ifstream &documento, string jugador, Mapa
     while (leyendo_edificios_P1){
         documento >> nombre_edificio;
         if (nombre_edificio != "2")
-            agregar_edificio(documento,nombre_edificio,mapa, diccionario, JUGADOR_1);
+            agregar_edificio(documento,nombre_edificio,mapa, diccionario, JUGADOR_1,edificios_jugador1);
         else{
             documento >> fila;
             documento >> columna;
@@ -197,7 +169,16 @@ void Archivo::leer_edificios_jugador_1(ifstream &documento, string jugador, Mapa
     }
 }
 
-void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa* &mapa, Diccionario<Edificacion>*&diccionario, int propietario){
+
+void Archivo::leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Diccionario<Edificacion>*&diccionario,Lista<Edificacion>*& edificios_jugador2){
+    string nombre_edificio;
+
+    while (documento >> nombre_edificio)
+        agregar_edificio(documento, nombre_edificio,mapa, diccionario, JUGADOR_2,edificios_jugador2);
+
+}
+
+void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa* &mapa, Diccionario<Edificacion>*&diccionario, int propietario,Lista<Edificacion>*& edificios_jugador){
     string segundo_nombre, fila, columna;
     int clean_fila, clean_columna;
 
@@ -219,12 +200,7 @@ void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa*
     clean_fila = arreglarCoordenadaX(fila);
     clean_columna = arreglarCoordenadaY(columna);
     
-    int piedra = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_piedra();
-    int madera = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_madera();
-    int metal = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_metal();
-    int max_cant_permitidos = diccionario->devolver_rama()->devolver_contenido()->devolver_maxima_cantidad_permitidos();
-    
-    mapa->agregar_edificacion(buscar_edificacion(nombre_edificio,  piedra, madera, metal, max_cant_permitidos), clean_fila,clean_columna, propietario);
+    mapa->agregar_edificacion(nombre_edificio,clean_fila,clean_columna,propietario,edificios_jugador);
 }
 
 int Archivo::arreglarCoordenadaX(string fila){

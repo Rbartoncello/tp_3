@@ -5,11 +5,14 @@ Jugador::Jugador(int numero){
     this->numero = numero;
     this -> energia = 0;
     this -> inventario = new Lista<Material>();
+    this->edificios_propios = new Lista<Edificacion>();
     //objetivo_primario = new Mas_alto_que_las_nubes();
+    objetivos_secundarios = NULL;
 }
 
 Jugador::~Jugador(){
     delete this->inventario;
+    delete this->edificios_propios;
     //delete this->objetivos_secundarios
 }
 
@@ -40,6 +43,11 @@ void Jugador::recoger_recurso(Material* recurso){
 Lista<Material>*& Jugador::devolver_inventario(){
     return(inventario);
 }
+
+Lista<Edificacion>*& Jugador::devolver_edificio_jugador(){
+    return(edificios_propios);
+}
+
 
 void Jugador::modificar_numero(int numero){
     this->numero = numero;

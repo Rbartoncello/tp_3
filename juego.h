@@ -7,6 +7,7 @@
 #include "archivo.h"
 #include "diccionario.h"
 #include "jugador.h"
+#include "interface.h"
 
 
 class Juego{

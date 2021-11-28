@@ -68,7 +68,7 @@ void imprimir_menu_nueva_partida()
     cout << END_COLOR;
 }
 
-void imprimir_menu_juego(Mapa *mapa, int jugador_actual)
+void imprimir_menu_juego(Mapa* &mapa, int jugador_actual)
 {
     system("clear");
     Gotoxy gotoxy;
