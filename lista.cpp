@@ -1,4 +1,4 @@
-#include "lista.h"
+/* #include "lista.h"
 
 Lista::Lista()
 {
@@ -60,4 +60,4 @@ Lista::~Lista()
                 auxiliar = primero->direccion_siguiente();
         }
     }
-}
+} */

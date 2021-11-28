@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include <iomanip>
 #include "mapa.h"
 #include "interface.h"

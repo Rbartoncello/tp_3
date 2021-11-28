@@ -1,4 +1,4 @@
-#include "nodo_lista.h"
+/* #include "nodo_lista.h"
 
 Nodo_lista::Nodo_lista(Material* contenido){
     this->contenido = contenido;
@@ -28,4 +28,4 @@ void Nodo_lista::cambiar_siguiente(Nodo_lista* nuevo_siguiente){
 Nodo_lista::~Nodo_lista(){
     delete contenido;
 
-}
+} */
