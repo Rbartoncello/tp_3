@@ -151,24 +151,25 @@ void Mapa::mostrar()
 }
 
 void Mapa::agregar_material(string nombre, int fila, int columna){
-    int cantidad;
-
-    if (nombre == PIEDRA)
-        cantidad = LLUVIA_GENERA_PIEDRA;
-    else if (nombre == MADERA)
-        cantidad = LLUVIA_GENERA_MADERA;
-    else if (nombre == METAL)
-        cantidad = LLUVIA_GENERA_METAL;
-    else if (nombre == ANDYCOINS)
-        cantidad = LLUVIA_GENERA_ANDYCOINS;
-
-    Material *material_agregar = generar_material(nombre, cantidad);
-
-    this->casilleros[fila][columna]->agregar_material(material_agregar);
+    this->casilleros[fila][columna]->agregar_material( buscar_material(nombre) );
 }
 
-Material* Mapa::generar_material(string nombre, int cantidad)
-{
+Material* Mapa::buscar_material(string nombre) {
+    Material *material;
+
+    if (nombre == PIEDRA)
+        material = new Piedra(LLUVIA_GENERA_PIEDRA);
+    else if (nombre == MADERA)
+        material = new Madera(LLUVIA_GENERA_MADERA);
+    else if (nombre == METAL)
+        material = new Metal(LLUVIA_GENERA_METAL);
+    else if (nombre == ANDYCOINS)
+        material = new Andycoins(LLUVIA_GENERA_ANDYCOINS);
+
+    return material;
+}
+
+Material* Mapa::generar_material(string nombre, int cantidad){
     Material *material;
 
     if (nombre == PIEDRA)
@@ -183,13 +184,11 @@ Material* Mapa::generar_material(string nombre, int cantidad)
     return material;
 }
 
-void Mapa::agregar_jugador(int fila, int columna)
-{
+void Mapa::agregar_jugador(int fila, int columna){
     //casilleros[fila][columna]->modificar_terreno();
 }
 
-int Mapa::cantidad_edificio_construido(string nombre)
-{
+int Mapa::cantidad_edificio_construido(string nombre){
     int cantidad = 0;
     for (int i = 0; i < this->cantidad_filas; i++)
     {
@@ -204,18 +203,17 @@ int Mapa::cantidad_edificio_construido(string nombre)
     return cantidad;
 }
 
-bool Mapa::validar_tipo_construible(int fila, int columna)
-{
-    return ((devolver_tipo_terreno(fila, columna) == TERRENO));
+bool Mapa::validar_tipo_construible(int fila, int columna){
+    return ( ( devolver_tipo_terreno(fila, columna) == TERRENO ) );
 }
 
-bool Mapa::validar_tipo_transitable(int fila, int columna)
-{
-    return ((devolver_tipo_terreno(fila, columna) == CAMINO));
+bool Mapa::validar_tipo_transitable(int fila, int columna){
+    return ( ( devolver_tipo_terreno(fila, columna) == CAMINO ) );
 }
 
-char Mapa::devolver_tipo_terreno(int fila, int columna)
-{
+
+
+char Mapa::devolver_tipo_terreno(int fila, int columna){
     return casilleros[fila][columna]->devolver_tipo_terreno();
 }
 

@@ -55,7 +55,6 @@ class Mapa{
 
         void agregar_jugador(int coordX, int coordY);
 
-
         char devolver_tipo_terreno(int coord1, int columna);
 
         void agregar_edificacion(Edificacion* edificacion, int fila, int columna, int duenio);
@@ -114,7 +113,11 @@ class Mapa{
          */
         bool validar_tipo_transitable(int fila, int columna);
 
-        
+        /*
+         * Pre: El nombre tiene que ser de un material exitente
+         * Post: Me devolver el material buscado.
+         */
+        Material* buscar_material(string nombre);
 };
 
 #endif //MAPA_H
