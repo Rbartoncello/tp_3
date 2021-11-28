@@ -261,7 +261,7 @@ void encabezado_edificios_construidos()
     cout << "\t╔══════════════════════╦═════════════════════════════════════════╦═════════════╦═════════════╦═════════════════╗" << endl;
     cout << "\t║                      ║ Materiales necesarios para construirlos ║             ║             ║                 ║" << endl;
     cout << "\t║  Nombre de edificio  ╠═════════════╦═════════════╦═════════════╣ Construidos ║ Disponibles ║ Brinda material ║" << endl;
-    cout << "\t║                      ║ Piedra (" << EMOJI_PIEDRA << " ) ║ Madera (" << EMOJI_MADERA << " ) ║  Metal (" << EMOJI_METAL << ")  ║             ║             ║                 ║" << endl;
+    cout << "\t║                      ║ Piedra (" << EMOJI_PIEDRA << ") ║ Madera (" << EMOJI_MADERA << ") ║  Metal (" << EMOJI_METAL << ") ║             ║             ║                 ║" << endl;
     cout << "\t╠══════════════════════╬═════════════╬═════════════╬═════════════╬═════════════╬═════════════╬═════════════════╣" << endl;
     cout << END_COLOR;
 }
