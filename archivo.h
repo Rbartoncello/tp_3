@@ -5,10 +5,9 @@
 #include <fstream>
 #include <iostream>
 #include "emojis.h"
-#include "inventario.h"
+#include "jugador.h"
 #include "mapa.h"
 #include "edificacion.h"
-
 
 class Archivo {
     public:
@@ -23,7 +22,7 @@ class Archivo {
 
         //Pre:
         //Post:
-        int leer_archivos_materiales(Diccionario<Material>* &inventario_jugador_1, Diccionario<Material>* &inventario_jugador_2,Mapa* &mapa);
+        int leer_archivos_materiales(Jugador* &jugador_1, Jugador* &jugador_2);
 
 
         //Pre:
@@ -52,7 +51,7 @@ class Archivo {
 
         int leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa);
 
-        void agregar_edificio(ifstream &documento,string nombre_edificio,Mapa* &mapa, Diccionario<Edificacion>*&diccionario);
+        void agregar_edificio(ifstream &documento,string nombre_edificio,Mapa* &mapa, Diccionario<Edificacion>*&diccionario, int duenio);
 
         void agregar_posicion_jugador(int coordX, int coordY,Mapa* &mapa);
         

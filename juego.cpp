@@ -5,18 +5,16 @@
 Juego::Juego(){
     this->mapa = new Mapa();
     this->lector_archivos = new Archivo();
+    this->diccionario = new Diccionario<Edificacion>();
     this->jugador_1 = new Jugador(1);
     this->jugador_2 = new Jugador(2);
-    this->inventario_jugador1 = jugador_1->devolver_inventario();
-    this->inventario_jugador2 = jugador_2->devolver_inventario();
-    this->edificios_disponibles = new Diccionario<Edificacion>();
 
 }
 
 Juego::~Juego(){
     delete this->mapa;
     delete this->lector_archivos;
-    delete this->edificios_disponibles;
+    delete this->diccionario;
     delete this->jugador_1;
     delete this->jugador_2;
 }
@@ -24,14 +22,14 @@ Juego::~Juego(){
 int Juego::cargar() {
     int ejecucion = 0;
 
-    if( lector_archivos->leer_archivos_materiales(inventario_jugador1,inventario_jugador2,mapa)== ERROR || this->mapa->leer_archivo() == ERROR || lector_archivos->leer_archivos_edificios( this->edificios_disponibles) == ERROR )
+    if( lector_archivos->leer_archivos_materiales(this->jugador_1,this->jugador_2)== ERROR || this->mapa->leer_archivo() == ERROR || lector_archivos->leer_archivos_edificios( this->diccionario) == ERROR )
         ejecucion = ERROR;
 
     return ejecucion;
 }
 
 int Juego::archivo_ubicaciones(){
-    return lector_archivos->leer_archivo_ubicaciones(mapa, this->edificios_disponibles);
+    return lector_archivos->leer_archivo_ubicaciones(mapa, this->diccionario);
 }
 
 void Juego::nueva_partida(){
@@ -53,17 +51,17 @@ void Juego::nueva_partida(){
         } else
             empezo_juego = true;
     }
-    this->edificios_disponibles->guardar_pre_orden();
+    this->diccionario->guardar_pre_orden();
     imprimir_mensaje_guardado();
 }
 
 void Juego::procesar_opcion_nueva_partida(int opcion){
     switch (opcion){
         case MODIFICAR_EDIFICIO_POR_NOMBRE:
-            modificar_edificio(this->edificios_disponibles);
+            modificar_edificio(this->diccionario);
             break;
         case LISTAR_TODOS_EDIFICIOS:
-            this->edificios_disponibles->listar_en_orden(this->mapa);
+            this->diccionario->listar_en_orden(this->mapa);
             imprimir_mensaje_enter_continuar();
             break;
         case MOSTAR_MAPA:
@@ -81,9 +79,9 @@ void Juego::mostrar() {
     imprimir_objetos_mapa();
 }
 
-void Juego::modificar_receta(Diccionario<Edificacion>*&edificios_disponibles, string nombre_edificio, string material){
+void Juego::modificar_receta(Diccionario<Edificacion>*&diccionario, string nombre_edificio, string material){
     int opcion;
-    int cantidad = edificios_disponibles->buscar(nombre_edificio)->devolver_receta()->devolver_material(material);
+    int cantidad = diccionario->buscar(nombre_edificio)->devolver_receta()->devolver_material(material);
     imprimir_mensaje_receta_edificio(nombre_edificio, material, cantidad);
     imprimir_mensaje_afirmativo_negativo();
     cin >> opcion;
@@ -100,7 +98,7 @@ void Juego::modificar_receta(Diccionario<Edificacion>*&edificios_disponibles, st
             imprimir_mensaje_error_ingreso();
             cin >> cantidad;
         }
-        edificios_disponibles->buscar(nombre_edificio)->devolver_receta()->modificar_receta(material, cantidad);
+        diccionario->buscar(nombre_edificio)->devolver_receta()->modificar_receta(material, cantidad);
     }
 }
 
@@ -112,20 +110,20 @@ bool Juego::cantidad_valida(int ingreso){
     return ( ( ingreso >= MIN_RECETA_MODIFICAR ) && ( ingreso <= MAX_RECETA_MODIFICAR ) );
 }
 
-void Juego::modificar_edificio(Diccionario<Edificacion>*&edificios_disponibles){
+void Juego::modificar_edificio(Diccionario<Edificacion>*&diccionario){
     string nombre_edificio;
     imprimir_mensaje_ingresar_edificio();
     cin.ignore();
     getline(cin, nombre_edificio);
 
-    while ( !edificios_disponibles->existe(nombre_edificio) ){
+    while ( !diccionario->existe(nombre_edificio) ){
         imprimir_mensaje_error_ingresar_edificio();
         cin >> nombre_edificio;
     }
     if (nombre_edificio != EDIFICIO_OBELISCO){
-        modificar_receta(edificios_disponibles, nombre_edificio, EMOJI_PIEDRA);
-        modificar_receta(edificios_disponibles, nombre_edificio, EMOJI_MADERA);
-        modificar_receta(edificios_disponibles, nombre_edificio, EMOJI_METAL);
+        modificar_receta(diccionario, nombre_edificio, EMOJI_PIEDRA);
+        modificar_receta(diccionario, nombre_edificio, EMOJI_MADERA);
+        modificar_receta(diccionario, nombre_edificio, EMOJI_METAL);
     } else {
         imprimir_mensaje_error_ingresar_edificio_obelisco();
     }
@@ -190,7 +188,7 @@ void Juego::partida_empezada(){
         opcion_elegida = pedir_opcion(29, 60);
         validar_opcion_ingresada(opcion_elegida, MAX_OPCION_JUEGO, MIN_OPCION_JUEGO);
     }
-    this->edificios_disponibles->guardar_pre_orden();
+    this->diccionario->guardar_pre_orden();
     imprimir_mensaje_guardado();
 }
 
@@ -201,6 +199,21 @@ int Juego::numero_aleatorio(int desde, int hasta){
     while (numero > hasta)
         numero = ( desde + rand() % hasta );
     return numero;
+}
+
+Jugador* Juego::devolver_jugador_turno() {
+    Jugador* jugador;
+    
+    if (this->jugador_actual == JUGADOR_1)
+        jugador = this->jugador_1;
+    else    
+        jugador = this->jugador_2;
+
+    return jugador;
+}
+
+void Juego::mostrar_inventario(Jugador* jugador_turno) {
+    jugador_turno->mostrar_inventario();
 }
 
 void Juego::validar_opcion_ingresada(int &opcion_elegida, int max, int min){
@@ -223,6 +236,8 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             this->mapa->mostrar();
             break;
         case LISTAR_MIS_EDIFICIOS_CONSTRUIDOS:
+            this->mapa->mostrar_edificios_construidos(this->jugador_actual);
+            imprimir_mensaje_enter_continuar();
             break;
         case DEMOLER_EDIFICIO_COORDENADA:
             this->mapa->mostrar();
@@ -243,8 +258,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             imprimir_mensaje_enter_continuar();
             break;
         case MOSTRAR_INVENTARIO:
-           // this->inventario_jugador1->listar_en_orden(mapa); // Aca deberia mostrar solo uno de estos, dependiendo de quien sea el turno
-           // this->inventario_jugador2->listar_en_orden(mapa);
+            mostrar_inventario(devolver_jugador_turno());
             imprimir_mensaje_enter_continuar();
             break;
         case MOSTRAR_OBJETIVOS:

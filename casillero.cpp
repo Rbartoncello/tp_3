@@ -19,3 +19,23 @@ Casillero::Casillero(){
 char Casillero::devolver_tipo_terreno(){
     return tipo_terreno;
 }
+
+int Casillero::devolver_pos_x(){
+    return this->pos_x;
+}
+
+int Casillero::devolver_pos_y(){
+    return this->pos_y;
+}
+
+void Casillero::modificar_tipo_terreno(char tipo_terreno){
+    this->tipo_terreno = tipo_terreno;
+}
+
+void Casillero::modificar_pos_x(int x){
+    this->pos_x = x;
+}
+
+void Casillero::modificar_pos_y(int y){
+    this->pos_y = y;
+}

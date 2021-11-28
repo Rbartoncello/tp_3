@@ -25,17 +25,10 @@ class Materiales{
         ~Materiales();
 
         /*
-         * Pre: -
-         * Post: Guarda cada linea en un objeto Material
-         */
-        //int leer_archivo();
-
-        /*
-         * Pre: Recibe un objeto Material.
+         * Pre: Recibe un nombre de materail que exita.
          * Post: Ingresa el objeto en un vector dinámico.
          */
-        //void agregar_material(Material* material);
-
+        void agregar_material(string nombre, int cantidad);
 
         /*
          * Pre: Recibe un objeto Material que ya existe en el vector dinamico.
@@ -49,6 +42,12 @@ class Materiales{
          * Post: Me muestra lista por pantalla toso los objetos del tipo Material.
          */
         void mostrar();
+    private:
+        /*
+         * Pre: Nombre tiene que ser un nombre de material existen
+         * Post: Devuelve el tipo de material a buscar.
+         */
+        Material* buscar_tipo_material(string nombre, int cantidad);
 ;
 };
 

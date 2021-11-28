@@ -1,6 +1,6 @@
 #include "planta.h"
 #include "emojis.h"
-Planta::Planta(string nombre) : Edificacion (nombre, EMOJI_PLANTA_ENERGIA){
+Planta::Planta() : Edificacion (EDIFICIO_PLANTA_ELECTRICA, EMOJI_PLANTA_ENERGIA){
     this->produce_material = true;
     this->cantidad_material_brinda = BRINDA_PLANTA_ELECTRICA;
     this->material_producido = ENERGIA;
@@ -22,17 +22,16 @@ Receta* Planta::devolver_receta() {
     return this->receta;
 }
 
+bool Planta::devolver_necesita_reparacion() {
+    return this->necesita_reparacion;
+}
+
 int Planta::devolver_maxima_cantidad_permitidos(){
     return this->maxima_cantidad_permitidos;
 }
 
 bool Planta::brinda_material() {
     return this->produce_material;
-}
-
-void Planta::imprimirLetra()
-{
-    cout<< BGND_LIGHT_GREEN_77 <<TXT_BLACK_16<< "P" << END_COLOR;
 }
 
 int Planta::devolver_cantidad_material_brinda(){
@@ -44,6 +43,5 @@ string Planta::devolver_material_producido(){
 }
 
 void Planta::hablar_sobre_mi(){
-
     cout << "SOY UN " + devolver_nombre_edificio() + " Y ME ENCUENTRO EN EL CASILLERO CONSULTADO" << endl;
 }

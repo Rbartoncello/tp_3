@@ -39,6 +39,36 @@ class Casillero{
         char devolver_tipo_terreno();
 
         /*
+         * Pre: -
+         * Post: Me va devolver pos_x.
+         */
+        int devolver_pos_x();
+
+        /*
+         * Pre: -
+         * Post: Me va devolver pos_y.
+         */
+        int devolver_pos_y();
+
+        /*
+         * Pre: -
+         * Post: Me va modificar tipo_terreno.
+         */
+        void modificar_tipo_terreno(char tipo_terreno);
+
+        /*
+         * Pre: -
+         * Post: Me va modificar pos_x.
+         */
+        void modificar_pos_x(int x);
+
+        /*
+         * Pre: -
+         * Post: Me va modificar pos_y.
+         */
+        void modificar_pos_y(int y);
+
+        /*
          * 
          * Pre:Recibe lo que va agregar
          * Post:Llama al hijo respectivo.
@@ -87,6 +117,12 @@ class Casillero{
          * Post: Metodo virtual vacio para la clase casillero_construible
         */
         virtual void agregar_edificio(Edificacion* edificio){};
+
+        /*
+         * Pre: -
+         * Post: Metodo virtual vacio para las clases hijas
+        */
+        virtual void mostrar_casillero(int jugador, int cantidad_construidos) = 0;
 };
 
 
