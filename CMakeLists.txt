@@ -37,4 +37,12 @@ add_executable(tp_3 constantes.h main.cpp
         madera.cpp madera.h
         metal.cpp metal.h
         bomba.cpp bomba.h
-        andycoins.cpp andycoins.h)
+        andycoins.cpp andycoins.h
+        gotoxy.h
+        comprar_andypolis.cpp comprar_andypolis.h
+        edad_piedra.cpp edad_piedra.h
+        mas_alto_que_las_nubes.cpp mas_alto_que_las_nubes.h
+        diccionario.cpp diccionario.h
+        bombardero.cpp bomba.h
+        receta.cpp receta.h
+        objetivos.cpp objetivos.h)
