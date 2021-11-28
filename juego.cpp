@@ -5,8 +5,6 @@
 Juego::Juego(){
     this->mapa = new Mapa();
     this->lector_archivos = new Archivo();
-    this->inventario_p1 = new Inventario();
-    this->inventario_p2 = new Inventario();
     this->diccionario = new Diccionario<Edificacion>();
     this->jugador_1 = new Jugador(1);
     this->jugador_2 = new Jugador(2);
@@ -15,8 +13,6 @@ Juego::Juego(){
 Juego::~Juego(){
     delete this->mapa;
     delete this->lector_archivos;
-    delete this->inventario_p1;
-    delete this->inventario_p2;
     delete this->diccionario;
     delete this->jugador_1;
     delete this->jugador_2;
@@ -25,7 +21,7 @@ Juego::~Juego(){
 int Juego::cargar() {
     int ejecucion = 0;
 
-    if( lector_archivos->leer_archivos_materiales(inventario_p1,inventario_p2)== ERROR || this->mapa->leer_archivo() == ERROR || lector_archivos->leer_archivos_edificios( this->diccionario) == ERROR )
+    if( lector_archivos->leer_archivos_materiales(this->jugador_1,this->jugador_2)== ERROR || this->mapa->leer_archivo() == ERROR || lector_archivos->leer_archivos_edificios( this->diccionario) == ERROR )
         ejecucion = ERROR;
 
     return ejecucion;
@@ -203,6 +199,21 @@ int Juego::numero_aleatorio(int desde, int hasta){
     return numero;
 }
 
+Jugador* Juego::devolver_jugador_turno() {
+    Jugador* jugador;
+    
+    if (this->jugador_actual == JUGADOR_1)
+        jugador = this->jugador_1;
+    else    
+        jugador = this->jugador_2;
+
+    return jugador;
+}
+
+void Juego::mostrar_inventario(Jugador* jugador_turno) {
+    jugador_turno->mostrar_inventario();
+}
+
 void Juego::validar_opcion_ingresada(int &opcion_elegida, int max, int min){
     bool es_valida = es_opcion_valida(opcion_elegida, max, min);
     while(!es_valida){
@@ -223,6 +234,8 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             this->mapa->mostrar();
             break;
         case LISTAR_MIS_EDIFICIOS_CONSTRUIDOS:
+            this->mapa->mostrar_edificios_construidos(this->jugador_actual);
+            imprimir_mensaje_enter_continuar();
             break;
         case DEMOLER_EDIFICIO_COORDENADA:
             this->mapa->mostrar();
@@ -243,8 +256,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             imprimir_mensaje_enter_continuar();
             break;
         case MOSTRAR_INVENTARIO:
-            this->inventario_p1->mostrar(); // Aca deberia mostrar solo uno de estos, dependiendo de quien sea el turno
-            this->inventario_p2->mostrar();
+            mostrar_inventario(devolver_jugador_turno());
             imprimir_mensaje_enter_continuar();
             break;
         case MOSTRAR_OBJETIVOS:

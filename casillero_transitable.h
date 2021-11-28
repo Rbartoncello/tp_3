@@ -64,7 +64,12 @@ class Casillero_transitable : public Casillero{
          * Post: Metodo virtual vacio para la clase casillero_construible
         */
         virtual void agregar_edificio(Edificacion* edificio){};
-    
+
+        /*
+         * Pre: -
+         * Post: Muestra graficamente el casillero por pantalla
+        */
+        void mostrar_casillero(int jugador, int cantidad_construidos);
 };
 
 #endif

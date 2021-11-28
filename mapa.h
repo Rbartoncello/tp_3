@@ -55,7 +55,7 @@ class Mapa{
 
         char devolver_tipo_terreno(int coord1, int columna);
 
-        void agregar_edificacion(Edificacion* edificacion, int fila, int columna);
+        void agregar_edificacion(Edificacion* edificacion, int fila, int columna, int duenio);
 
         /*
          * Pre: recibe un nombre.
@@ -80,6 +80,12 @@ class Mapa{
          * Post: Imprime por pantalla un resumen del casillero pedido
         */
         void imprimir_resumen_casillero(int fila, int columna);
+
+        /*
+         * Pre: -
+         * Post: Me muestra por pantalla los edificios contruidos del jugador actual.
+         */
+        void mostrar_edificios_construidos(int jugador_actual);
     private:
         /*
          * Pre: El archivo tiene que estar abierto y de formato correcto.

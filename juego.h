@@ -13,7 +13,6 @@ class Juego{
     private:
         Mapa* mapa;
         Archivo* lector_archivos;
-        Inventario* inventario_p1, *inventario_p2; //CAMBIARLO A JUGADOR1 JUGADOR2 (el inventario va dentro de ellos)
         Diccionario<Edificacion>* diccionario;
         Jugador* jugador_1;
         Jugador* jugador_2;
@@ -168,6 +167,10 @@ class Juego{
          * Post: Devuelve un numero aleatorio entre esos 2 numeros
         */
         int numero_aleatorio(int desde, int hasta);
+
+        Jugador* devolver_jugador_turno();
+
+        void mostrar_inventario(Jugador* jugador_turno);
 };
 
 #endif //JUEGO_H

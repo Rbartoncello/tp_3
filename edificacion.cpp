@@ -5,12 +5,20 @@ Edificacion::Edificacion(string tipoEdificacion, string emoji) {
     this->emoji = emoji;
 }
 
+void Edificacion::modificar_duenio(int duenio){
+    this->duenio = duenio;
+}
+
 string Edificacion::devolver_nombre_edificio(){ 
     return this->nombre;
 }
 
 string Edificacion::devolver_emoji(){
     return this->emoji;
+}
+
+int Edificacion::devolver_duenio(){
+    return this->duenio;
 }
 
 int Edificacion::devolver_maxima_cantidad_permitidos(){

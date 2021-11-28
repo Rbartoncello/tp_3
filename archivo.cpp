@@ -66,7 +66,7 @@ Edificacion* Archivo::buscar_edificacion(string nombre, int piedra, int madera, 
     return edificio;
 }
 
-int Archivo::leer_archivos_materiales(Inventario *&inventario_jugador_1, Inventario *&inventario_jugador_2){
+int Archivo::leer_archivos_materiales(Jugador *&inventario_jugador_1, Jugador *&inventario_jugador_2){
     int ejecucion = 1;
 
     ifstream archivo(PATH_MATERIALES);
@@ -166,10 +166,9 @@ void Archivo::leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Dicciona
     string nombre_edificio;
 
     while (documento >> nombre_edificio)
-        agregar_edificio(documento, nombre_edificio,mapa, diccionario);
+        agregar_edificio(documento, nombre_edificio,mapa, diccionario, JUGADOR_2);
 
 }
-
 
 void Archivo::leer_edificios_jugador_1(ifstream &documento, string jugador, Mapa* &mapa, Diccionario<Edificacion>*&diccionario){
 
@@ -181,7 +180,7 @@ void Archivo::leer_edificios_jugador_1(ifstream &documento, string jugador, Mapa
     while (leyendo_edificios_P1){
         documento >> nombre_edificio;
         if (nombre_edificio != "2")
-            agregar_edificio(documento,nombre_edificio,mapa, diccionario);
+            agregar_edificio(documento,nombre_edificio,mapa, diccionario, JUGADOR_1);
         else{
             documento >> fila;
             documento >> columna;
@@ -193,8 +192,7 @@ void Archivo::leer_edificios_jugador_1(ifstream &documento, string jugador, Mapa
     }
 }
 
-void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa* &mapa, Diccionario<Edificacion>*&diccionario)
-{
+void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa* &mapa, Diccionario<Edificacion>*&diccionario, int duenio){
     string segundo_nombre, fila, columna;
     int clean_fila, clean_columna;
 
@@ -221,7 +219,7 @@ void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa*
     int metal = diccionario->buscar_receta(nombre_edificio)->devoler_metal();
     int max_cant_permitidos = diccionario->devolver_rama()->devolver_edificio()->devolver_maxima_cantidad_permitidos();
     
-    mapa->agregar_edificacion(buscar_edificacion(nombre_edificio,  piedra, madera, metal, max_cant_permitidos), clean_fila,clean_columna);
+    mapa->agregar_edificacion(buscar_edificacion(nombre_edificio,  piedra, madera, metal, max_cant_permitidos), clean_fila,clean_columna, duenio);
 }
 
 int Archivo::arreglarCoordenadaX(string fila){

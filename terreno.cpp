@@ -1,5 +1,6 @@
 #include <iostream>
 #include "terreno.h"
+#include "interface.h"
 
 using namespace std;
 
@@ -24,27 +25,26 @@ void Terreno::modificar_terreno(string nombre_edificio,int accion){
 void Terreno::crear_edificio(string nombre_edificio){
 
     if(nombre_edificio == EDIFICIO_OBELISCO){
-        edificacion = new Obelisco(nombre_edificio);
+        edificacion = new Obelisco;
     }
     else if(nombre_edificio == EDIFICIO_MINA){
-        edificacion = new Mina(nombre_edificio);
+        edificacion = new Mina;
     } 
     else if(nombre_edificio == EDIFICIO_MINA_ORO){
-        edificacion = new Mina_oro(nombre_edificio);
+        edificacion = new Mina_oro;
     } 
     else if(nombre_edificio == EDIFICIO_PLANTA_ELECTRICA){
-        edificacion = new Planta(nombre_edificio);
+        edificacion = new Planta;
     }
     else if(nombre_edificio == EDIFICIO_ESCUELA){
-        edificacion = new Escuela(nombre_edificio);
+        edificacion = new Escuela;
     }
     else if(nombre_edificio == EDIFICIO_FABRICA){
-        edificacion = new Fabrica(nombre_edificio);
+        edificacion = new Fabrica;
     }
     else if(nombre_edificio == EDIFICIO_ASERRADERO){
-        edificacion = new Aserradero(nombre_edificio);
+        edificacion = new Aserradero;
     }
-
 }
 
 void Terreno::remover_edificio(){
@@ -87,4 +87,8 @@ void Terreno::imprimir_resumen(){
         this->edificacion->imprimir_resumen();
     } else
         cout << "\tSoy un casillero construible y me encuentro vacío" << endl;
+}
+
+void Terreno::mostrar_casillero(int jugador, int cantidad_construidos){
+    imprimir_edificio(this->edificacion, jugador, devolver_pos_y(), devolver_pos_x(),cantidad_construidos);
 }

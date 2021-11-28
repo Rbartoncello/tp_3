@@ -3,6 +3,7 @@
 #include <string>
 #include "mapa.h"
 #include "edificacion.h"
+#include "materiales.h"
 
 using namespace std;
 /*  
@@ -143,6 +144,17 @@ void imprimir_mensaje_ingrese_fila_jugador();
  */
 void imprimir_mensaje_ingrese_columna_jugador();
 
+/*
+ * Pre: -
+ * Post: Imprime por pantalla el inventario
+ */
+void mostrar_inventario(Material** materiales, int total_materiales);
+
+/*
+ * Pre: -
+ * Post: Me muestra por pantalla los edificios contruidos del jugador actual.
+ */
+void imprimir_edificio(Edificacion* edificio, int jugador, int fila, int columna, int cantidad_construidos);
 
 
 #endif

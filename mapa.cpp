@@ -1,4 +1,6 @@
 #include <iostream>
+
+#include <iomanip>
 #include "mapa.h"
 #include "interface.h"
 #include "constantes.h"
@@ -158,9 +160,11 @@ char Mapa::devolver_tipo_terreno(int fila, int columna){
     return casilleros[fila][columna]->devolver_tipo_terreno();
 }
 
-void Mapa::agregar_edificacion(Edificacion* edificacion, int fila, int columna) {
-    if ( validar_tipo_construible(fila, columna) )
+void Mapa::agregar_edificacion(Edificacion* edificacion, int fila, int columna, int duenio) {
+    if ( validar_tipo_construible(fila, columna) ){
+        edificacion->modificar_duenio(duenio);
         this->casilleros[fila][columna]->agregar_edificio(edificacion);
+    }
 }
 
 int Mapa::devolver_cantidad_columnas(){
@@ -173,4 +177,35 @@ int Mapa::devolver_cantidad_filas(){
 
 void Mapa::imprimir_resumen_casillero(int fila, int columna){
     this->casilleros[fila][columna]->imprimir_resumen();
+}
+
+void Mapa::mostrar_edificios_construidos(int jugador_actual){
+    system("clear");
+
+    cout << TXT_BOLD;
+    cout << "\t\t╔═══════════════════════╦══════╦═════════╦══════════════════════╦═════════════════════╗" << endl;
+    cout << "\t\t║ Edificios construidos ║ Fila ║ Columna ║ Cantidad construidos ║ Necesita reparacion ║" << endl;
+    cout << "\t\t╠═══════════════════════╬══════╬═════════╬══════════════════════╬═════════════════════╣" << endl;
+    cout << END_COLOR;
+
+    bool hay_edificios = false;
+
+    for (int i = 0; i < this->cantidad_filas; i++){
+        for (int j = 0; j < this->cantidad_columnas; j++){
+            if ( ( this->casilleros[i][j]->devolver_tipo_terreno() == TERRENO ) && ( this->casilleros[i][j]->esta_ocupado() ) ){
+                hay_edificios = true;
+
+                this->casilleros[i][j]->mostrar_casillero(jugador_actual, this->cantidad_edificio_construido(this->casilleros[i][j]->devolver_nombre_edificio()));
+                if( ( i == this->cantidad_filas - 1 ) && ( j == this->cantidad_columnas - 1 ) )
+                    cout << "\t\t╚═══════════════════════╩══════╩═════════╩══════════════════════╩═════════════════════╝" << endl;
+            }
+        }
+    }
+
+    if (!hay_edificios){
+        cout << TXT_BOLD;
+        cout << "\t\t║ " << TXT_RED_196 << setfill(' ') << setw(49) << "NO HAY NINGUN EDIFICIO CONSTRUIDO" << setfill(' ') << setw(16) << END_COLOR << " ║" << endl;
+        cout << "\t\t╚═══════════════════════════════════════════════════════════════╝" << endl;
+    }
+    
 }

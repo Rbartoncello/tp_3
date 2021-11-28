@@ -56,6 +56,12 @@ class Casillero_inaccesible : public Casillero {
          * Post: Metodo virtual vacio para la clase casillero_transitable
         */
         void agregar_material(Material* nombre_material){};
+
+        /*
+         * Pre: -
+         * Post: Muestra graficamente el casillero por pantalla
+        */
+        void mostrar_casillero(int jugador, int cantidad_construidos);
 };
 
 #endif

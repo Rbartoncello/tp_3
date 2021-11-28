@@ -1,8 +1,6 @@
 #ifndef JUEGADOR_H
 #define JUEGADOR_H
-
 #include "materiales.h"
-#include "archivo.h"
 
 class Jugador{
     private:
@@ -21,7 +19,7 @@ class Jugador{
          * Post: Me va a crear el Jugador vacio
          */
         Jugador(int numero);
-
+        
 
         /*
          * Destructor:
@@ -36,6 +34,12 @@ class Jugador{
          * Post: Me va a definir como nombre el string ingresado por input (con ese nombre se va a referir al jugador por el resto del juego)
          */
         void pedir_nombre();
+
+        /*
+         * Pre: Recibe un nombre de un material que exita.
+         * Post: Ingresa el objeto en un vector dinámico.
+         */
+        void agregar_material(string nombre, int cantidad);
 
         /*
          * Destructor:
@@ -63,6 +67,12 @@ class Jugador{
         void modificar_fila(int fila);
 
         void modificar_columna(int columna);
+
+        /*
+         * Pre: -
+         * Post: Me muestra lista por pantalla el inventario.
+         */
+        void mostrar_inventario();
 };
 
 

@@ -66,6 +66,8 @@ class Material{
          * Post: Imprime un resumen escrito del material
         */
         void imprimir_resumen();
+
+        
 };
 
 #endif //MATERIAL_H

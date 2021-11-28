@@ -13,6 +13,10 @@ Jugador::~Jugador(){
     //delete this->objetivos_secundarios
 }
 
+void Jugador::agregar_material(string nombre, int cantidad){
+    this->inventario->agregar_material(nombre, cantidad);
+}
+
 void Jugador::pedir_nombre(){
     string nombre_ingresado;
     cout << "\tPor favor ingrese el nobre del jugador: ";
@@ -43,4 +47,8 @@ void Jugador::modificar_fila(int fila){
 
 void Jugador::modificar_columna(int columna){
     this->columna = columna;
+}
+
+void Jugador::mostrar_inventario(){
+    this->inventario->mostrar();
 }
