@@ -9,7 +9,7 @@ class Jugador{
         string nombre;
         int energia;
         int numero;
-        Materiales* inventario;
+        Diccionario<Material>* inventario;
         int fila;
         int columna;
         //Objetivo_secundario** objetivos_secundarios
@@ -57,6 +57,8 @@ class Jugador{
          * Post: Suma ese material a su contraparte en el inventario
          */
         void recoger_recurso(Material* recurso);
+
+        Diccionario<Material>*& devolver_inventario();
 
         void modificar_numero(int numero);
 

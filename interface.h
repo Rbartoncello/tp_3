@@ -127,6 +127,18 @@ void imprimir_lista_edificios_construidos(Edificacion* edificio, Mapa* mapa);
 
 /*
  * Pre: -
+ * Post: Imprime por pantalla los materiales del jugador;
+ */
+void imprimir_lista_materiales_jugador(Material* material);
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla el encabezado de los materiales del jugador
+ */
+void encabezado_materiale_jugador();
+
+/*
+ * Pre: -
  * Post: Imprime por pantalla que ingrese el numero de jugador
  */
 void imprimir_mensaje_ingrese_jugador();

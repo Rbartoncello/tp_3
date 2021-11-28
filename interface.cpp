@@ -244,6 +244,7 @@ void encabezado_edificios_construidos(){
 }
 
 void imprimir_lista_edificios_construidos(Edificacion* edificio, Mapa* mapa) {
+
     string brinda = EMOJI_MAL;
     if (edificio->brinda_material())
         brinda = EMOJI_HECHO;
@@ -255,6 +256,25 @@ void imprimir_lista_edificios_construidos(Edificacion* edificio, Mapa* mapa) {
     cout << "│" << setfill(' ') << setw(7) << edificio->devolver_maxima_cantidad_permitidos()- mapa->cantidad_edificio_construido(edificio->devolver_nombre_edificio()) << setfill(' ') << setw(9);
     cout << "│" << setfill(' ') << setw(10) << brinda << setw(11) << "║" << endl;
     cout << "\t╠──────────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────────╣" << endl;
+}
+
+void encabezado_materiale_jugador(){
+    system("clear");
+
+    cout << TXT_BOLD;
+    cout << "\t╔══════════════════════╦═════════════╗" << endl;
+    cout << "\t║                      ║             ║" << endl;
+    cout << "\t║  Nombre de material  ║ Disponibles ║" << endl;
+    cout << "\t║                      ║             ║" << endl;
+    cout << "\t╠══════════════════════╬═════════════╬" << endl;
+    cout << END_COLOR;
+}
+
+void imprimir_lista_materiales_jugador(Material* material) {
+
+    cout << "\t║" << setfill(' ') << setw(16) << material->devolver_nombre() << "( " <<  material->devolver_emoji()  << " )" << setfill(' ') << setw(3);
+    cout << "│" << setfill(' ') << setw(7) << material->devolver_cantidad() << setfill(' ') << setw(9);
+    cout << "\t╠──────────────────────┼─────────────────╣" << endl;
 }
 
 void imprimir_mensaje_ingrese_jugador() {

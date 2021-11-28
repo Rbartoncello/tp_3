@@ -23,7 +23,7 @@ class Archivo {
 
         //Pre:
         //Post:
-        int leer_archivos_materiales(Inventario* &inventario_jugador_1, Inventario* &inventario_jugador_2);
+        int leer_archivos_materiales(Diccionario<Material>* &inventario_jugador_1, Diccionario<Material>* &inventario_jugador_2,Mapa* &mapa);
 
 
         //Pre:

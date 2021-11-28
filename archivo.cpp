@@ -20,6 +20,7 @@ int Archivo::leer_archivos_edificios(Diccionario<Edificacion>* &diccionario){
     string nombre, piedra, madera, metal, max_cant_permitidos, nombre_aux;
     Edificacion* edificio;
 
+
     if (!archivo.is_open()){
         cout << "No se pudo abrir el archivo: " << PATH_EDIFICIO << endl;
         ejecucion = ERROR;
@@ -66,9 +67,9 @@ Edificacion* Archivo::buscar_edificacion(string nombre, int piedra, int madera, 
     return edificio;
 }
 
-int Archivo::leer_archivos_materiales(Inventario *&inventario_jugador_1, Inventario *&inventario_jugador_2){
+int Archivo::leer_archivos_materiales(Diccionario<Material>* &inventario_jugador_1, Diccionario<Material>* &inventario_jugador_2,Mapa* &mapa){
     int ejecucion = 1;
-
+  
     ifstream archivo(PATH_MATERIALES);
 
     string nombre, cantidad_jugador_1, cantidad_jugador_2;
@@ -82,14 +83,13 @@ int Archivo::leer_archivos_materiales(Inventario *&inventario_jugador_1, Inventa
         {
             archivo >> cantidad_jugador_1;
             archivo >> cantidad_jugador_2;
-            inventario_jugador_1->agregar_material(nombre, stoi(cantidad_jugador_1));
-            inventario_jugador_2->agregar_material(nombre, stoi(cantidad_jugador_2));
         }
     }
-    archivo.close();
 
+    archivo.close();
     return ejecucion;
 }
+
 
 int Archivo::leer_archivo_ubicaciones(Mapa* &mapa, Diccionario<Edificacion>* &diccionario){
     int ejecucion = 1;
@@ -130,7 +130,7 @@ int Archivo::leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa){
             clean_fila = arreglarCoordenadaX(fila);
             clean_columna = arreglarCoordenadaY(columna);
             
-            mapa->agregar_material(buscar_material(nombre_material),clean_fila, clean_columna);
+            mapa->agregar_material(nombre_material,clean_fila, clean_columna);
             } else {
                 documento >> fila;
                 documento >> columna;
@@ -147,20 +147,7 @@ int Archivo::leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa){
     return ejecucion;
 }
 
-Material* Archivo::buscar_material(string nombre){
-    Material* material;
 
-    if (nombre == PIEDRA)
-        material = new Piedra(LLUVIA_GENERA_PIEDRA);
-    else if (nombre == MADERA)
-        material = new Madera(LLUVIA_GENERA_MADERA);
-    else if (nombre == METAL)
-        material = new Metal(LLUVIA_GENERA_METAL);
-    else if (nombre == ANDYCOINS)
-        material = new Andycoins(LLUVIA_GENERA_ANDYCOINS);
-
-    return material;
-}
 
 void Archivo::leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Diccionario<Edificacion>*&diccionario){
     string nombre_edificio;

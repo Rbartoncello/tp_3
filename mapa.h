@@ -2,6 +2,7 @@
 #define MAPA_H
 #include <fstream>
 #include "casillero.h"
+#include "andycoins.h"
 
 using namespace std;
 class Mapa{
@@ -48,7 +49,9 @@ class Mapa{
          * Pre: nombre de material,fila y columna en indice de la matriz
          * Post: Agrega al casillero marcado el material pasado por parametro
          */
-        void agregar_material(Material* material, int fila, int columna);
+        void agregar_material(string nombre, int fila, int columna);
+
+        Material* generar_material(string nombre,int cantidad);
 
         void agregar_jugador(int coordX, int coordY);
 

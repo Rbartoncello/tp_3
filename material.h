@@ -66,6 +66,8 @@ class Material{
          * Post: Imprime un resumen escrito del material
         */
         void imprimir_resumen();
+
+        virtual ~Material() = 0;
 };
 
 #endif //MATERIAL_H

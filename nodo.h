@@ -1,6 +1,7 @@
 #ifndef DICCIONARIO_NODO_H
 #define DICCIONARIO_NODO_H
 #include "edificacion.h"
+#include "material.h"
 
 
 template<typename T>
@@ -17,7 +18,7 @@ class Nodo{
          * Pre: -.
          * Post: Me va a crear el objeto Nodo con edificio = edificio, izquierda = NULL, derecha = NULL y padre = NULL
          */
-        Nodo(T*& contenido,string clave);
+        Nodo(T* contenido,string clave);
 
         /*
          * Pre: -.
@@ -47,7 +48,7 @@ class Nodo{
          * Pre: -.
          * Post: Me va a devolver el nodo padre
          */
-        Nodo<T>*& devolver_padre();
+        Nodo*& devolver_padre();
 
         /*
          * Pre: -.
@@ -94,7 +95,7 @@ class Nodo{
 };
 
 template<typename T>
-Nodo<T>::Nodo(T*& contenido,string clave){
+Nodo<T>::Nodo(T* contenido,string clave){
     this->contenido = contenido;
     this->izquierda = NULL;
     this->derecha = NULL;
@@ -156,7 +157,8 @@ void Nodo<T>::modificar_derecha(Nodo* derecha, Nodo* padre) {
 
 template<typename T>
 Nodo<T>::~Nodo(){
-    delete this->contenido;
+
+    delete contenido;
 }
 
 #endif //DICCIONARIO_NODO_H

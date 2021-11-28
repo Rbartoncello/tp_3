@@ -4,7 +4,7 @@
 Jugador::Jugador(int numero){
     this->numero = numero;
     this -> energia = 0;
-    this -> inventario = new Materiales;
+    this -> inventario = new Diccionario<Material>();
     //crear objetivo_principal
 }
 
@@ -31,6 +31,11 @@ void Jugador::sumar_energia(int cantidad){
 
 void Jugador::recoger_recurso(Material* recurso){
     //this->inventario->sumar_material(recurso)    (me falta hacer el metodo en materiales en el que sume un material al array al recibir un Material*)
+}
+
+Diccionario<Material>*& Jugador::devolver_inventario(){
+
+    return(inventario);
 }
 
 void Jugador::modificar_numero(int numero){
