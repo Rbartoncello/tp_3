@@ -35,7 +35,7 @@ void imprimir_objetos_mapa();
  * Pre: -
  * Post:Imprime el inventario del jugador
  */
-void imprimir_materiales_jugador(Nodo_lista*& primero, int cantidad_en_lista);
+void imprimir_materiales_jugador(Nodo_lista<Material>*& primero, int cantidad_en_lista);
 
 /*
 * Pre: -

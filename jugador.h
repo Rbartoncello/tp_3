@@ -9,7 +9,7 @@ class Jugador{
     private:
         string nombre;
         int energia, numero, fila, columna;
-        Lista* inventario;
+        Lista<Material>* inventario;
         Objetivos** objetivos_secundarios;
         //Mas_alto_que_las_nubes* objetivo_primario;
         
@@ -64,7 +64,7 @@ class Jugador{
          */
         void recoger_recurso(Material* recurso);
 
-        Lista*& devolver_inventario();
+        Lista<Material>*& devolver_inventario();
 
         void modificar_numero(int numero);
 

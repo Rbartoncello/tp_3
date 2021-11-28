@@ -280,9 +280,9 @@ void imprimir_lista_edificios_construidos(Edificacion *edificio, Mapa *mapa){
     cout << "\t╠──────────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────────╣" << endl;
 }
 
-void imprimir_materiales_jugador(Nodo_lista*& primero, int cantidad_en_lista){
+void imprimir_materiales_jugador(Nodo_lista<Material>*& primero, int cantidad_en_lista){
 
-    Nodo_lista* auxiliar = primero;
+    Nodo_lista<Material>* auxiliar = primero;
 
     encabezado_materiale_jugador();
 

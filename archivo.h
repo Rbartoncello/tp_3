@@ -22,7 +22,7 @@ class Archivo {
 
         //Pre:
         //Post:
-        int leer_archivos_materiales(Lista* &jugador_1, Lista* &jugador_2);
+        int leer_archivos_materiales(Lista<Material>* &jugador_1, Lista<Material>* &jugador_2);
 
         Material* generar_material(string nombre,int cantidad);
 
