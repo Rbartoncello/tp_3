@@ -169,21 +169,6 @@ Material* Mapa::buscar_material(string nombre) {
     return material;
 }
 
-Material* Mapa::generar_material(string nombre, int cantidad){
-    Material *material;
-
-    if (nombre == PIEDRA)
-        material = new Piedra(cantidad);
-    else if (nombre == MADERA)
-        material = new Madera(cantidad);
-    else if (nombre == METAL)
-        material = new Metal(cantidad);
-    else if (nombre == ANDYCOINS)
-        material = new Andycoins(cantidad);
-
-    return material;
-}
-
 void Mapa::agregar_jugador(int fila, int columna){
     //casilleros[fila][columna]->modificar_terreno();
 }

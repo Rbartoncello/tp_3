@@ -2,7 +2,7 @@
 #define LISTA_H
 #include <iostream>
 #include "nodo_lista.h"
-#include "material.h"
+#include "interface.h"
 
 class Lista
 {

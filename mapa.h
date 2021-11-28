@@ -51,7 +51,7 @@ class Mapa{
          */
         void agregar_material(string nombre, int fila, int columna);
 
-        Material* generar_material(string nombre,int cantidad);
+   
 
         void agregar_jugador(int coordX, int coordY);
 

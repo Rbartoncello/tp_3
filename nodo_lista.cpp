@@ -25,4 +25,7 @@ void Nodo_lista::cambiar_siguiente(Nodo_lista* nuevo_siguiente){
     siguiente = nuevo_siguiente;
 }
 
-Nodo_lista::~Nodo_lista(){}
+Nodo_lista::~Nodo_lista(){
+    delete contenido;
+
+}

@@ -67,7 +67,7 @@ Edificacion* Archivo::buscar_edificacion(string nombre, int piedra, int madera, 
     return edificio;
 }
 
-int Archivo::leer_archivos_materiales(Jugador *&inventario_jugador_1, Jugador *&inventario_jugador_2){
+int Archivo::leer_archivos_materiales(Lista *&inventario_jugador_1, Lista *&inventario_jugador_2){
     int ejecucion = 1;
 
     ifstream archivo(PATH_MATERIALES);
@@ -78,16 +78,36 @@ int Archivo::leer_archivos_materiales(Jugador *&inventario_jugador_1, Jugador *&
         cout << "No se pudo abrir el archivo: " << PATH_MATERIALES << endl;
         ejecucion = ERROR;
     } else {
+        Material* material;
         while (archivo >> nombre){
             archivo >> cantidad_jugador_1;
             archivo >> cantidad_jugador_2;
-            inventario_jugador_1->agregar_material(nombre, stoi(cantidad_jugador_1));
-            inventario_jugador_2->agregar_material(nombre, stoi(cantidad_jugador_2));
+            material = generar_material(nombre,stoi(cantidad_jugador_1));
+            inventario_jugador_1->agregar_elemento(material,1);
+            material = generar_material(nombre, stoi(cantidad_jugador_2));
+            inventario_jugador_2->agregar_elemento(material, 1);   
         }
     }
 
     archivo.close();
     return ejecucion;
+}
+
+Material* Archivo::generar_material(string nombre, int cantidad){
+    Material *material;
+
+    if (nombre == PIEDRA)
+        material = new Piedra(cantidad);
+    else if (nombre == MADERA)
+        material = new Madera(cantidad);
+    else if (nombre == METAL)
+        material = new Metal(cantidad);
+    else if (nombre == ANDYCOINS)
+        material = new Andycoins(cantidad);
+    else if (nombre == BOMBA)
+        material = new Bomba(cantidad);
+
+    return material;
 }
 
 int Archivo::leer_archivo_ubicaciones(Mapa* &mapa, Diccionario<Edificacion>* &diccionario){

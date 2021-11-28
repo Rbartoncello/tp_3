@@ -22,7 +22,7 @@ Juego::~Juego(){
 int Juego::cargar() {
     int ejecucion = 0;
 
-    if( lector_archivos->leer_archivos_materiales(this->jugador_1,this->jugador_2)== ERROR || this->mapa->leer_archivo() == ERROR || lector_archivos->leer_archivos_edificios( this->diccionario) == ERROR )
+    if( lector_archivos->leer_archivos_materiales(jugador_1->devolver_inventario(),jugador_2->devolver_inventario())== ERROR || this->mapa->leer_archivo() == ERROR || lector_archivos->leer_archivos_edificios( this->diccionario) == ERROR )
         ejecucion = ERROR;
 
     return ejecucion;

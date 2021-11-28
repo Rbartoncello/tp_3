@@ -37,9 +37,11 @@ Nodo_lista* Lista::obtener_direccion_nodo(int posicion){
 void Lista::mostrarLista(){
     Nodo_lista* auxiliar = primero;
 
+    encabezado_materiale_jugador();
+
     for (int i = 0; i < cantidadEnLista; i++)
     {
-        std::cout << auxiliar->devolver_dato() << " ";
+        imprimir_lista_materiales_jugador(auxiliar->devolver_dato());
         auxiliar = auxiliar->direccion_siguiente();
     }
     
@@ -58,7 +60,7 @@ Lista::~Lista()
             delete primero;
             primero = auxiliar;
             if (auxiliar!= nullptr)
-                auxiliar = auxiliar->direccion_siguiente();
+                auxiliar = primero->direccion_siguiente();
         }
     }
 }

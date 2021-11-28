@@ -1,13 +1,14 @@
 #ifndef JUEGADOR_H
 #define JUEGADOR_H
 #include "materiales.h"
+#include "lista.h"
 
 class Jugador{
     private:
         string nombre;
         int energia;
         int numero;
-        Materiales* inventario;
+        Lista* inventario;
         int fila;
         int columna;
         //Objetivo_secundario** objetivos_secundarios
@@ -62,7 +63,7 @@ class Jugador{
          */
         void recoger_recurso(Material* recurso);
 
-        //Diccionario<Material>*& devolver_inventario();
+        Lista*& devolver_inventario();
 
         void modificar_numero(int numero);
 

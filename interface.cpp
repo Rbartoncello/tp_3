@@ -295,8 +295,8 @@ void encabezado_materiale_jugador(){
 void imprimir_lista_materiales_jugador(Material* material) {
 
     cout << "\t║" << setfill(' ') << setw(16) << material->devolver_nombre() << "( " <<  material->devolver_emoji()  << " )" << setfill(' ') << setw(3);
-    cout << "│" << setfill(' ') << setw(7) << material->devolver_cantidad() << setfill(' ') << setw(9);
-    cout << "\t╠──────────────────────┼─────────────────╣" << endl;
+    cout << "║" << setfill(' ') << setw(7) << material->devolver_cantidad() << setfill(' ') << setw(9) << "║";
+    cout << "\n\t╠──────────────────────┼─────────────╣" << endl;
 }
 
 void imprimir_mensaje_ingrese_jugador() {
@@ -312,27 +312,6 @@ void imprimir_mensaje_ingrese_fila_jugador()
 void imprimir_mensaje_ingrese_columna_jugador()
 {
     cout << "Por favor ingrese la columna con la que desee empezar: ";
-}
-
-void mostrar_inventario(Material **materiales, int total_materiales)
-{
-    system("clear");
-
-    cout << TXT_BOLD;
-    cout << "\t\t╔═════════════════╦════════════╗" << endl;
-    cout << "\t\t║    Materiales   ║  Cantidad  ║" << endl;
-    cout << "\t\t╠═════════════════╬════════════╣" << endl;
-    cout << END_COLOR;
-
-    for (int i = 0; i < total_materiales; i++)
-    {
-        cout << "\t\t║" << setfill(' ') << setw(10) << materiales[i]->devolver_nombre() << " ( " << materiales[i]->devolver_emoji() << " )" << setfill(' ') << setw(3);
-        cout << "│" << setfill(' ') << setw(8) << materiales[i]->devolver_cantidad() << setfill(' ') << setw(7) << "║" << endl;
-        if (i < total_materiales - 1)
-            cout << "\t\t╠─────────────────┼────────────╣" << endl;
-        else
-            cout << "\t\t╚═════════════════╩════════════╝" << endl;
-    }
 }
 
 void imprimir_edificio(Edificacion *edificacion, int jugador, int fila, int columna, int cantidad_construidos)
