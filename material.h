@@ -67,7 +67,7 @@ class Material{
         */
         void imprimir_resumen();
 
-        
+        virtual ~Material() = 0;
 };
 
 #endif //MATERIAL_H

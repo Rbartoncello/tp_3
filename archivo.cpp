@@ -20,6 +20,7 @@ int Archivo::leer_archivos_edificios(Diccionario<Edificacion>* &diccionario){
     string nombre, piedra, madera, metal, max_cant_permitidos, nombre_aux;
     Edificacion* edificio;
 
+
     if (!archivo.is_open()){
         cout << "No se pudo abrir el archivo: " << PATH_EDIFICIO << endl;
         ejecucion = ERROR;
@@ -76,18 +77,16 @@ int Archivo::leer_archivos_materiales(Jugador *&inventario_jugador_1, Jugador *&
     if (!archivo.is_open()){
         cout << "No se pudo abrir el archivo: " << PATH_MATERIALES << endl;
         ejecucion = ERROR;
-    }
-    else {
-        while (archivo >> nombre)
-        {
+    } else {
+        while (archivo >> nombre){
             archivo >> cantidad_jugador_1;
             archivo >> cantidad_jugador_2;
             inventario_jugador_1->agregar_material(nombre, stoi(cantidad_jugador_1));
             inventario_jugador_2->agregar_material(nombre, stoi(cantidad_jugador_2));
         }
     }
-    archivo.close();
 
+    archivo.close();
     return ejecucion;
 }
 
@@ -130,7 +129,7 @@ int Archivo::leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa){
             clean_fila = arreglarCoordenadaX(fila);
             clean_columna = arreglarCoordenadaY(columna);
             
-            mapa->agregar_material(buscar_material(nombre_material),clean_fila, clean_columna);
+            mapa->agregar_material(nombre_material,clean_fila, clean_columna);
             } else {
                 documento >> fila;
                 documento >> columna;
@@ -147,20 +146,6 @@ int Archivo::leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa){
     return ejecucion;
 }
 
-Material* Archivo::buscar_material(string nombre){
-    Material* material;
-
-    if (nombre == PIEDRA)
-        material = new Piedra(LLUVIA_GENERA_PIEDRA);
-    else if (nombre == MADERA)
-        material = new Madera(LLUVIA_GENERA_MADERA);
-    else if (nombre == METAL)
-        material = new Metal(LLUVIA_GENERA_METAL);
-    else if (nombre == ANDYCOINS)
-        material = new Andycoins(LLUVIA_GENERA_ANDYCOINS);
-
-    return material;
-}
 
 void Archivo::leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Diccionario<Edificacion>*&diccionario){
     string nombre_edificio;
@@ -214,10 +199,10 @@ void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa*
     clean_fila = arreglarCoordenadaX(fila);
     clean_columna = arreglarCoordenadaY(columna);
     
-    int piedra = diccionario->buscar_receta(nombre_edificio)->devoler_piedra();
-    int madera = diccionario->buscar_receta(nombre_edificio)->devoler_madera();
-    int metal = diccionario->buscar_receta(nombre_edificio)->devoler_metal();
-    int max_cant_permitidos = diccionario->devolver_rama()->devolver_edificio()->devolver_maxima_cantidad_permitidos();
+    int piedra = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_piedra();
+    int madera = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_madera();
+    int metal = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_metal();
+    int max_cant_permitidos = diccionario->devolver_rama()->devolver_contenido()->devolver_maxima_cantidad_permitidos();
     
     mapa->agregar_edificacion(buscar_edificacion(nombre_edificio,  piedra, madera, metal, max_cant_permitidos), clean_fila,clean_columna, duenio);
 }

@@ -88,13 +88,13 @@ class Juego{
          * Pre: Diccionario ya tiene que estar creado y con todos los edificios cargados
          * Post: Me modificara la reseta del edificio ingresado
         */
-        void modificar_edificio(Diccionario<Edificacion>*&diccionario);
+        void modificar_edificio(Diccionario<Edificacion>*&edificios_disponibles);
 
         /*
          * Pre: -
          * Post: Me modificara la reseta.
         */
-        void modificar_receta(Diccionario<Edificacion>*&diccionario, string nombre_edificio, string material);
+        void modificar_receta(Diccionario<Edificacion>*&edificios_disponibles, string nombre_edificio, string material);
 
         /*
          * Pre: -

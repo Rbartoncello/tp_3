@@ -20,6 +20,8 @@ class Andycoins : public Material{
          * Post: Me va a crear el objeto Andycoins con nombre = ANDYCOINS, emoji = EMOJI_ANDYCOINS Y cantidad = cantidad.
          */
         Andycoins(int cantidad);
+
+        virtual ~Andycoins();
 };
 
 

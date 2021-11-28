@@ -45,7 +45,7 @@ int Receta::devoler_metal() {
     return this->metal->devolver_cantidad();
 }
 
-int Receta::devolver_receta(string material) {
+int Receta::devolver_material(string material) {
     int receta = 0;
 
     if (material == EMOJI_PIEDRA){

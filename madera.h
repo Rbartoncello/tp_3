@@ -1,6 +1,8 @@
 #ifndef MADERA_H
 #define MADERA_H
 #include "material.h"
+
+
 class Madera : public Material{
     private:
         string nombre;
@@ -19,6 +21,8 @@ class Madera : public Material{
          * Post: Me va a crear el objeto Madera con nombre = MADERA, emoji = EMOJI_MADERA Y cantidad = cantidad.
          */
         Madera(int cantidad);
+
+        virtual ~Madera();
 };
 
 

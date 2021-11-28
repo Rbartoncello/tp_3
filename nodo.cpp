@@ -1,6 +1,6 @@
 #include "nodo.h"
 
-Nodo::Nodo(Edificacion*& edificio,string clave){
+/*Nodo::Nodo(Edificacion*& edificio,string clave){
     this->edificio = edificio;
     this->izquierda = NULL;
     this->derecha = NULL;
@@ -52,6 +52,6 @@ void Nodo::modificar_derecha(Nodo* derecha, Nodo* padre) {
 
 Nodo::~Nodo(){
     delete this->edificio;
-}
+}*/
 
 

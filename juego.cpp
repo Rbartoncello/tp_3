@@ -8,6 +8,7 @@ Juego::Juego(){
     this->diccionario = new Diccionario<Edificacion>();
     this->jugador_1 = new Jugador(1);
     this->jugador_2 = new Jugador(2);
+
 }
 
 Juego::~Juego(){
@@ -80,7 +81,8 @@ void Juego::mostrar() {
 
 void Juego::modificar_receta(Diccionario<Edificacion>*&diccionario, string nombre_edificio, string material){
     int opcion;
-    imprimir_mensaje_receta_edificio(nombre_edificio, material, diccionario->buscar_receta(nombre_edificio)->devolver_receta(material));
+    int cantidad = diccionario->buscar(nombre_edificio)->devolver_receta()->devolver_material(material);
+    imprimir_mensaje_receta_edificio(nombre_edificio, material, cantidad);
     imprimir_mensaje_afirmativo_negativo();
     cin >> opcion;
 
@@ -96,7 +98,7 @@ void Juego::modificar_receta(Diccionario<Edificacion>*&diccionario, string nombr
             imprimir_mensaje_error_ingreso();
             cin >> cantidad;
         }
-        diccionario->buscar_receta(nombre_edificio)->modificar_receta(material, cantidad);
+        diccionario->buscar(nombre_edificio)->devolver_receta()->modificar_receta(material, cantidad);
     }
 }
 

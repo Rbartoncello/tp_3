@@ -37,6 +37,11 @@ void Jugador::recoger_recurso(Material* recurso){
     //this->inventario->sumar_material(recurso)    (me falta hacer el metodo en materiales en el que sume un material al array al recibir un Material*)
 }
 
+/* Diccionario<Material>*& Jugador::devolver_inventario(){
+
+    return(inventario);
+} */
+
 void Jugador::modificar_numero(int numero){
     this->numero = numero;
 }

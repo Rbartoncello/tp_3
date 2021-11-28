@@ -62,6 +62,8 @@ class Jugador{
          */
         void recoger_recurso(Material* recurso);
 
+        //Diccionario<Material>*& devolver_inventario();
+
         void modificar_numero(int numero);
 
         void modificar_fila(int fila);
