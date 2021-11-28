@@ -37,11 +37,6 @@ class Materiales{
         //void sumar_material(Material* material);
 
 
-        /*
-         * Pre: -
-         * Post: Me muestra lista por pantalla toso los objetos del tipo Material.
-         */
-        void mostrar();
     private:
         /*
          * Pre: Nombre tiene que ser un nombre de material existen

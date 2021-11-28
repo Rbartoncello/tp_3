@@ -5,7 +5,7 @@ Jugador::Jugador(int numero){
     this->numero = numero;
     this -> energia = 0;
     this -> inventario = new Lista();
-    //crear objetivo_principal
+    //objetivo_primario = new Mas_alto_que_las_nubes();
 }
 
 Jugador::~Jugador(){
@@ -54,5 +54,5 @@ void Jugador::modificar_columna(int columna){
 }
 
 void Jugador::mostrar_inventario(){
-    this->inventario->mostrarLista();
+    imprimir_materiales_jugador(inventario->retornar_primero(),inventario->devolver_cantidad_en_lista());
 }

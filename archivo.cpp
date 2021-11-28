@@ -197,7 +197,7 @@ void Archivo::leer_edificios_jugador_1(ifstream &documento, string jugador, Mapa
     }
 }
 
-void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa* &mapa, Diccionario<Edificacion>*&diccionario, int duenio){
+void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa* &mapa, Diccionario<Edificacion>*&diccionario, int propietario){
     string segundo_nombre, fila, columna;
     int clean_fila, clean_columna;
 
@@ -224,7 +224,7 @@ void Archivo::agregar_edificio(ifstream &documento,string nombre_edificio, Mapa*
     int metal = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_metal();
     int max_cant_permitidos = diccionario->devolver_rama()->devolver_contenido()->devolver_maxima_cantidad_permitidos();
     
-    mapa->agregar_edificacion(buscar_edificacion(nombre_edificio,  piedra, madera, metal, max_cant_permitidos), clean_fila,clean_columna, duenio);
+    mapa->agregar_edificacion(buscar_edificacion(nombre_edificio,  piedra, madera, metal, max_cant_permitidos), clean_fila,clean_columna, propietario);
 }
 
 int Archivo::arreglarCoordenadaX(string fila){

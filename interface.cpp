@@ -280,6 +280,21 @@ void imprimir_lista_edificios_construidos(Edificacion *edificio, Mapa *mapa){
     cout << "\t╠──────────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────────╣" << endl;
 }
 
+void imprimir_materiales_jugador(Nodo_lista*& primero, int cantidad_en_lista){
+
+    Nodo_lista* auxiliar = primero;
+
+    encabezado_materiale_jugador();
+
+    for (int i = 0; i < cantidad_en_lista; i++)
+    {
+        imprimir_lista_materiales_jugador(auxiliar->devolver_dato());
+        auxiliar = auxiliar->direccion_siguiente();
+    }
+    
+}
+
+
 void encabezado_materiale_jugador(){
     system("clear");
 

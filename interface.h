@@ -3,7 +3,8 @@
 #include <string>
 #include "mapa.h"
 #include "edificacion.h"
-#include "materiales.h"
+#include "material.h"
+#include "nodo_lista.h"
 
 using namespace std;
 /*  
@@ -29,6 +30,12 @@ void imprimir_menu_juego(Mapa* mapa, int jugador_acutal);
  * Post: Me muestra por pantalla la lista de objetos que parecen en el mapa.
  */
 void imprimir_objetos_mapa();
+
+/*
+ * Pre: -
+ * Post:Imprime el inventario del jugador
+ */
+void imprimir_materiales_jugador(Nodo_lista*& primero, int cantidad_en_lista);
 
 /*
 * Pre: -
@@ -155,12 +162,6 @@ void imprimir_mensaje_ingrese_fila_jugador();
  * Post: Imprime por pantalla que ingrese la columna de jugador
  */
 void imprimir_mensaje_ingrese_columna_jugador();
-
-/*
- * Pre: -
- * Post: Imprime por pantalla el inventario
- */
-void mostrar_inventario(Material** materiales, int total_materiales);
 
 /*
  * Pre: -

@@ -2,7 +2,7 @@
 
 Lista::Lista()
 {
-    cantidadEnLista = 0;
+    cantidad_en_lista = 0;
     primero = nullptr;
 }
 
@@ -21,7 +21,7 @@ void Lista::agregar_elemento(Material* elemento, int posicion){
         nodo_anterior_a_posicion->cambiar_siguiente(nuevo);
     }
     nuevo->cambiar_siguiente(posicion_siguiente_nodo);
-    cantidadEnLista++;
+    cantidad_en_lista++;
 }
 
 Nodo_lista* Lista::obtener_direccion_nodo(int posicion){
@@ -34,17 +34,14 @@ Nodo_lista* Lista::obtener_direccion_nodo(int posicion){
     return (auxiliar);
 }
 
-void Lista::mostrarLista(){
-    Nodo_lista* auxiliar = primero;
+Nodo_lista*& Lista::retornar_primero(){
 
-    encabezado_materiale_jugador();
+    return(primero);
+}
 
-    for (int i = 0; i < cantidadEnLista; i++)
-    {
-        imprimir_lista_materiales_jugador(auxiliar->devolver_dato());
-        auxiliar = auxiliar->direccion_siguiente();
-    }
+int Lista::devolver_cantidad_en_lista(){
     
+    return(cantidad_en_lista);
 }
 
 
@@ -52,10 +49,10 @@ Lista::~Lista()
 {   
     Nodo_lista* auxiliar;
 
-    if (cantidadEnLista != 0){
+    if (cantidad_en_lista != 0){
         auxiliar = primero->direccion_siguiente();
 
-        for (int i = 0; i < cantidadEnLista; i++)
+        for (int i = 0; i < cantidad_en_lista; i++)
         {
             delete primero;
             primero = auxiliar;

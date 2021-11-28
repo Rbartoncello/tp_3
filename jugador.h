@@ -2,17 +2,18 @@
 #define JUEGADOR_H
 #include "materiales.h"
 #include "lista.h"
+#include "objetivos.h"
+#include "mas_alto_que_las_nubes.h"
 
 class Jugador{
     private:
         string nombre;
-        int energia;
-        int numero;
+        int energia, numero, fila, columna;
         Lista* inventario;
-        int fila;
-        int columna;
-        //Objetivo_secundario** objetivos_secundarios
-        //Objetivo_primario* objetivo_primario
+        Objetivos** objetivos_secundarios;
+        //Mas_alto_que_las_nubes* objetivo_primario;
+        
+
     public:
         /*
          * Constructor sin parametros:

@@ -54,7 +54,3 @@ Material* Materiales::buscar_tipo_material(string nombre, int cantidad) {
     return material;
 }
 
-
-void Materiales::mostrar() {
-    mostrar_inventario(this->materiales, this->total_materiales);
-}

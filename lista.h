@@ -8,21 +8,25 @@ class Lista
 {
 private:
 
-    int cantidadEnLista;
+    int cantidad_en_lista;
     Nodo_lista* primero;
 
 public:
+
     Lista();
 
     void agregar_elemento(Material* elemento, int posicion);
 
-    void mostrarLista();
+    Nodo_lista*& retornar_primero();
+
+    int devolver_cantidad_en_lista();
 
     ~Lista();
 
 private:
 
     Nodo_lista* obtener_direccion_nodo(int posicion);
+
 };
 
 
