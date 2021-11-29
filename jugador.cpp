@@ -1,5 +1,6 @@
 #include <iostream>
 #include "jugador.h"
+#include "interface.h"
 
 Jugador::Jugador(int numero){
     this->numero = numero;
@@ -59,5 +60,5 @@ void Jugador::modificar_columna(int columna){
 }
 
 void Jugador::mostrar_inventario(){
-    //imprimir_materiales_jugador(inventario->retornar_primero(),inventario->devolver_cantidad_en_lista());
+    imprimir_materiales_jugador(inventario->retornar_primero(),inventario->devolver_cantidad_en_lista());
 }

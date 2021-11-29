@@ -74,7 +74,7 @@ void imprimir_menu_juego(Mapa *mapa, Jugador* jugador_actual)
     system("clear");
     Gotoxy gotoxy;
     mapa->mostrar();
-    cout << gotoxy.pos(1, 65) << "Jugador: " <<  endl;
+    cout << gotoxy.pos(1, 65) << "Jugador: " << jugador_actual->devolver_numero()<<  endl; //Aca despues iria devolver_nombre()
     cout << TXT_LIGHT_AQUA_43 << TXT_BOLD;
     cout << gotoxy.pos(2, 65) << "╔════╦═══════════════════════════════════════╗" << endl
          << gotoxy.pos(3, 65) << "║ " << EMOJI_UNO << " ║" << END_COLOR << TXT_BOLD << " Construir edificio por nombre " << EMOJI_EDIFICIO_CONSTRUCION << TXT_LIGHT_AQUA_43 << "       ║" << endl
