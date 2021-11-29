@@ -34,12 +34,10 @@ void Grafo::camino_minimo(string origen, string destino) {
 
     if(posicionOrigen == POSICION_NO_ENCONTRADA){
         cout << "El vertice " << origen << " no existe en el grafo" << endl;
-    }
-    if(posicionDestino == POSICION_NO_ENCONTRADA){
+    } else if(posicionDestino == POSICION_NO_ENCONTRADA){
         cout << "El vertice " << destino << " no existe en el grafo" << endl;
-    }
-
-    camino_minimo(posicionOrigen, posicionDestino);
+    } else
+        camino_minimo(posicionOrigen, posicionDestino);
 }
 
 void Grafo::agrandar_matriz_adyacencia() {
@@ -99,7 +97,11 @@ void Grafo::usar_floyd() {
 int Grafo::devolver_costo(string origen, string destino){
     int posicionOrigen = vertices ->obtener_posicion(origen);
     int posicionDestino = vertices ->obtener_posicion(destino);
-
-    return algoritmo_camino_minimo -> devolver_costo(posicionOrigen, posicionDestino);
+    int costo;
+    if ( ( posicionOrigen == POSICION_NO_ENCONTRADA ) || ( posicionDestino == POSICION_NO_ENCONTRADA ) )
+        costo = POSICION_NO_ENCONTRADA;
+    else
+        costo = algoritmo_camino_minimo -> devolver_costo(posicionOrigen, posicionDestino);
+    return costo;
 }
 
