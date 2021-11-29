@@ -69,7 +69,7 @@ class Casillero_transitable : public Casillero{
          * Pre: -
          * Post: Muestra graficamente el casillero por pantalla
         */
-        void mostrar_casillero(int jugador, int cantidad_construidos);
+        void mostrar_casillero(Jugador* jugador, int cantidad_construidos);
 };
 
 #endif

@@ -13,6 +13,11 @@ Jugador::~Jugador(){
     //delete this->objetivos_secundarios
 }
 
+int Jugador::devolver_numero()
+{
+    return numero;
+}
+
 void Jugador::agregar_material(string nombre, int cantidad){
     //this->inventario->(nombre, cantidad);
 }
@@ -54,5 +59,5 @@ void Jugador::modificar_columna(int columna){
 }
 
 void Jugador::mostrar_inventario(){
-    imprimir_materiales_jugador(inventario->retornar_primero(),inventario->devolver_cantidad_en_lista());
+    //imprimir_materiales_jugador(inventario->retornar_primero(),inventario->devolver_cantidad_en_lista());
 }

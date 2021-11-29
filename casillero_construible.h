@@ -71,7 +71,7 @@ class Casillero_construible : public Casillero{
          * Pre: -
          * Post: Metodo virtual vacio para las clases hijas
         */
-        virtual void mostrar_casillero(int jugador, int cantidad_construidos) = 0;
+        virtual void mostrar_casillero(Jugador* jugador, int cantidad_construidos) = 0;
 };
 
 #endif

@@ -75,7 +75,7 @@ void Juego::procesar_opcion_nueva_partida(int opcion){
 }
 
 void Juego::mostrar() {
-    imprimir_menu_juego(this->mapa, this->jugador_actual);
+    imprimir_menu_juego(mapa, jugador_actual); //Aca hubo cambio
     imprimir_objetos_mapa();
 }
 
@@ -174,7 +174,13 @@ void Juego::posicionar_jugador_mapa(Jugador *&jugador){
 }
 
 void Juego::partida_empezada(){
-    this->jugador_actual = numero_aleatorio(JUGADOR_1,JUGADOR_2);
+    int primer_jugador = numero_aleatorio(JUGADOR_1,JUGADOR_2);
+    if(primer_jugador == 1){
+        jugador_actual = jugador_1;
+    }
+    else{
+        jugador_actual = jugador_2;
+    }
     imprimir_menu_juego(this->mapa, this->jugador_actual);
 
     int opcion_elegida = pedir_opcion(29, 60);
@@ -183,7 +189,7 @@ void Juego::partida_empezada(){
 
     while(opcion_elegida != GUARDA_SALIR){
         procesar_opcion_partida_empezada(opcion_elegida);
-        imprimir_menu_juego(this->mapa, this->jugador_actual);
+        imprimir_menu_juego(mapa, jugador_actual);
 
         opcion_elegida = pedir_opcion(29, 60);
         validar_opcion_ingresada(opcion_elegida, MAX_OPCION_JUEGO, MIN_OPCION_JUEGO);
@@ -204,7 +210,7 @@ int Juego::numero_aleatorio(int desde, int hasta){
 Jugador* Juego::devolver_jugador_turno() {
     Jugador* jugador;
     
-    if (this->jugador_actual == JUGADOR_1)
+    if (jugador_actual == jugador_2)
         jugador = this->jugador_1;
     else    
         jugador = this->jugador_2;
@@ -233,7 +239,7 @@ bool Juego::es_opcion_valida(int opcion, int max, int min){
 void Juego::procesar_opcion_partida_empezada(int opcion){
     switch (opcion){
         case CONSTRUIR_EDIFICIO_NOMBRE:
-            this->mapa->mostrar();
+            mapa->mostrar();
             break;
         case LISTAR_MIS_EDIFICIOS_CONSTRUIDOS:
             this->mapa->mostrar_edificios_construidos(this->jugador_actual);
@@ -266,12 +272,13 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             break;
         case RECOLECTAR_RECURSOS:
             cout<<"Recolectar recursos"<<endl;
+
             break;
         case MOVERSE_COORDENADA:
             cout<<"Moverse Coordeanada"<<endl;
             break;
         case FINALIZAR_TURNO:
-            cout<<"Aqui finalizaría el turno"<<endl;
+            jugador_actual = devolver_jugador_turno();
             break;
     }
 }

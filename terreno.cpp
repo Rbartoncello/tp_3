@@ -89,6 +89,6 @@ void Terreno::imprimir_resumen(){
         cout << "\tSoy un casillero construible y me encuentro vacío" << endl;
 }
 
-void Terreno::mostrar_casillero(int jugador, int cantidad_construidos){
+void Terreno::mostrar_casillero(Jugador* jugador, int cantidad_construidos){
     imprimir_edificio(this->edificacion, jugador, devolver_pos_y(), devolver_pos_x(),cantidad_construidos);
 }

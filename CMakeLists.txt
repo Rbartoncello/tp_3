@@ -1,7 +1,8 @@
 project(tp_3)
 
 set(CMAKE_CXX_STANDARD 14)
-
+set(GCC_ENABLE_WARNINGS "-O1 -Wall -Werror -Wconversions")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${GCC_ENABLE_WARNINGS}")
 add_executable(tp_3 constantes.h main.cpp
         edificios.cpp edificios.h
         materiales.cpp materiales.h
@@ -37,4 +38,12 @@ add_executable(tp_3 constantes.h main.cpp
         madera.cpp madera.h
         metal.cpp metal.h
         bomba.cpp bomba.h
-        andycoins.cpp andycoins.h)
+        andycoins.cpp andycoins.h
+        bombardero.cpp bombardero.h
+        comprar_andypolis.cpp comprar_andypolis.h
+        edad_piedra.cpp edad_piedra.h
+        gotoxy.h
+        mas_alto_que_las_nubes.cpp mas_alto_que_las_nubes.h
+        mina_oro.cpp mina_oro.h
+        objetivos.cpp objetivos.h
+        lista.h)

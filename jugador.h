@@ -21,8 +21,9 @@ class Jugador{
          * Post: Me va a crear el Jugador vacio
          */
         Jugador(int numero);
-        
 
+
+        int devolver_numero();
         /*
          * Destructor:
          * Pre: -.

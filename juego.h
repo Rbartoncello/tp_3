@@ -16,7 +16,7 @@ class Juego{
         Diccionario<Edificacion>* diccionario;
         Jugador* jugador_1;
         Jugador* jugador_2;
-        int jugador_actual;
+        Jugador* jugador_actual;
     public:
         /*
          * Constructor sin parametros:

@@ -2,7 +2,6 @@
 #define LISTA_H
 #include <iostream>
 #include "nodo_lista.h"
-#include "interface.h"
 
 template<typename T>
 class Lista
