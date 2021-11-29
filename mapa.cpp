@@ -173,6 +173,11 @@ void Mapa::agregar_jugador(int fila, int columna){
     //casilleros[fila][columna]->modificar_terreno();
 }
 
+Casillero* Mapa::devolver_casillero(int fila, int columna)
+{
+    return casilleros[fila][columna];
+}
+
 int Mapa::cantidad_edificio_construido(string nombre){
     int cantidad = 0;
     for (int i = 0; i < this->cantidad_filas; i++)

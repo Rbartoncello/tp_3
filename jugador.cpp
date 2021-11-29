@@ -1,8 +1,9 @@
 #include <iostream>
 #include "jugador.h"
 
-Jugador::Jugador(int numero){
+Jugador::Jugador(int numero, string emoji){
     this->numero = numero;
+    this->emoji = emoji;
     this -> energia = 0;
     this -> inventario = new Lista();
     //objetivo_primario = new Mas_alto_que_las_nubes();
@@ -55,4 +56,20 @@ void Jugador::modificar_columna(int columna){
 
 void Jugador::mostrar_inventario(){
     imprimir_materiales_jugador(inventario->retornar_primero(),inventario->devolver_cantidad_en_lista());
+}
+
+int Jugador::devolver_fila(){
+    return fila;
+}
+
+int Jugador::devolver_columna(){
+    return columna;
+}
+
+int Jugador::devolver_numero(){
+    return numero;
+}
+
+string Jugador::devolver_emoji(){
+    return emoji;
 }

@@ -4,11 +4,11 @@
 using namespace std;
 
 Lago::Lago() {
-    this->costo = 0;
+    this->costo = 2;
 }
 
 Lago::Lago(char tipo_terreno, int pos_x, int pos_y) : Casillero_inaccesible(tipo_terreno, pos_x, pos_y) {
-    this->costo = 0;
+    this->costo = 2;
 }
 
 void Lago::modicar_costo(int costo) {

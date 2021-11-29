@@ -7,11 +7,12 @@
 #include "archivo.h"
 #include "diccionario.h"
 #include "jugador.h"
-
+#include "Grafo.h"
 
 class Juego{
     private:
         Mapa* mapa;
+        Grafo* grafo;
         Archivo* lector_archivos;
         Diccionario<Edificacion>* diccionario;
         Jugador* jugador_1;
@@ -58,7 +59,11 @@ class Juego{
         
         void mostrar();
 
+        void cargar_grafo();
+
     private:
+
+        
 
         /*
          * Pre: -

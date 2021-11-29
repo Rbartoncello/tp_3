@@ -4,15 +4,17 @@
 
 Juego::Juego(){
     this->mapa = new Mapa();
+    this->grafo = new Grafo;
     this->lector_archivos = new Archivo();
     this->diccionario = new Diccionario<Edificacion>();
-    this->jugador_1 = new Jugador(1);
-    this->jugador_2 = new Jugador(2);
+    this->jugador_1 = new Jugador(JUGADOR_1, EMOJI_JUGADOR_1);
+    this->jugador_2 = new Jugador(JUGADOR_2, EMOJI_JUGADOR_2);
 
 }
 
 Juego::~Juego(){
     delete this->mapa;
+    delete this->grafo;
     delete this->lector_archivos;
     delete this->diccionario;
     delete this->jugador_1;
@@ -77,6 +79,52 @@ void Juego::procesar_opcion_nueva_partida(int opcion){
 void Juego::mostrar() {
     imprimir_menu_juego(this->mapa, this->jugador_actual);
     imprimir_objetos_mapa();
+}
+
+void Juego::cargar_grafo() {
+    mapa->mostrar();
+    for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
+        for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
+            Casillero* casillero = mapa->devolver_casillero(i, j);
+            if ( ! ( casillero->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero->esta_ocupado() ) ) ){
+                this->grafo->agregarVertice(casillero->devolver_posicion());
+            }
+        }
+    }
+
+    for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
+        for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
+            if (j < mapa->devolver_cantidad_columnas() - 1){
+                Casillero* casillero_1 = mapa->devolver_casillero(i, j);
+                Casillero* casillero_2 = mapa->devolver_casillero(i, j+1);
+                if ( ! ( casillero_1->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_1->esta_ocupado() ) ) ){
+                    if ( ! ( casillero_2->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_2->esta_ocupado() ) ) ){
+                        this->grafo->agregar_camino(casillero_1->devolver_posicion(), casillero_2->devolver_posicion(), casillero_2->devolver_costo());
+                        this->grafo->agregar_camino(casillero_2->devolver_posicion(), casillero_1->devolver_posicion(), casillero_1->devolver_costo());
+                    }
+                }
+            }
+        }
+    }
+
+    for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
+        for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
+            if (i < mapa->devolver_cantidad_filas() - 1){
+                Casillero* casillero_1 = mapa->devolver_casillero(i, j);
+                Casillero* casillero_2 = mapa->devolver_casillero(i+1, j);
+                if ( ! ( casillero_1->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_1->esta_ocupado() ) ) ){
+                    if ( ! ( casillero_2->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_2->esta_ocupado() ) ) ){
+                        this->grafo->agregar_camino(casillero_1->devolver_posicion(), casillero_2->devolver_posicion(), casillero_2->devolver_costo());
+                        this->grafo->agregar_camino(casillero_2->devolver_posicion(), casillero_1->devolver_posicion(), casillero_1->devolver_costo());
+                    }
+                }
+            }
+        }
+    }
+
+    grafo->usar_floyd();
+    grafo->camino_minimo("10 3", "2 10");
+    cout << "Necesito de energia " << grafo->devolver_costo("10 3", "2 10") << endl;
 }
 
 void Juego::modificar_receta(Diccionario<Edificacion>*&diccionario, string nombre_edificio, string material){

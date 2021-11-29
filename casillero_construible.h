@@ -67,6 +67,8 @@ class Casillero_construible : public Casillero{
         */
         virtual void agregar_edificio(Edificacion* edificio){};
 
+        virtual int devolver_costo() = 0;
+
         /*
          * Pre: -
          * Post: Metodo virtual vacio para las clases hijas

@@ -39,3 +39,8 @@ void Casillero::modificar_pos_x(int x){
 void Casillero::modificar_pos_y(int y){
     this->pos_y = y;
 }
+
+string Casillero::devolver_posicion() {
+    string posicion =  to_string(pos_y) + " " + to_string(pos_x);
+    return posicion;
+}

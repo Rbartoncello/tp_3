@@ -5,12 +5,12 @@
 using namespace std;
 
 Terreno::Terreno() {
-    this->costo = 0;
+    this->costo = 25;
     edificacion = nullptr;
 }
 
 Terreno::Terreno(char tipo_terreno, int pos_x, int pos_y) : Casillero_construible(tipo_terreno, pos_x, pos_y) {
-    this->costo = 0;
+    this->costo = 25;
     edificacion = nullptr;
 }
 

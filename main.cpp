@@ -15,7 +15,7 @@ int main() {
         if (juego->archivo_ubicaciones() == ERROR){
             juego->nueva_partida();
         } else {
-            juego->partida_empezada();
+            juego->cargar_grafo();
         }
     }
 

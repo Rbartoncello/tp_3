@@ -34,6 +34,7 @@ class Casillero_transitable : public Casillero{
         bool esta_ocupado();
 
         void modificar_ocupado(bool estado);
+        virtual int devolver_costo() = 0;
 
         /*
          * Pre: -

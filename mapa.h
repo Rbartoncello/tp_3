@@ -26,6 +26,8 @@ class Mapa{
          */
         Mapa(int filas, int columnas);
 
+        Casillero* devolver_casillero(int fila, int columna);
+
         /*
          * Destructor:
          * Pre: -.

@@ -123,6 +123,10 @@ class Casillero{
          * Post: Metodo virtual vacio para las clases hijas
         */
         virtual void mostrar_casillero(int jugador, int cantidad_construidos) = 0;
+
+        string devolver_posicion();
+
+        virtual int devolver_costo() = 0;
 };
 
 

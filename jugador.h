@@ -8,6 +8,7 @@
 class Jugador{
     private:
         string nombre;
+        string emoji;
         int energia, numero, fila, columna;
         Lista* inventario;
         Objetivos** objetivos_secundarios;
@@ -20,7 +21,7 @@ class Jugador{
          * Pre: -.
          * Post: Me va a crear el Jugador vacio
          */
-        Jugador(int numero);
+        Jugador(int numero, string emoji);
         
 
         /*
@@ -77,6 +78,14 @@ class Jugador{
          * Post: Me muestra lista por pantalla el inventario.
          */
         void mostrar_inventario();
+
+        int devolver_fila();
+
+        int devolver_columna();
+
+        int devolver_numero();
+
+        string devolver_emoji();
 };
 
 

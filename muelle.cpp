@@ -6,12 +6,12 @@ using namespace std;
 
 Muelle::Muelle() {
     this->material = nullptr;
-    this->costo = 0;
+    this->costo = 5;
 }
 
 Muelle::Muelle(char tipo_terreno, int pos_x, int pos_y) : Casillero_transitable(tipo_terreno, pos_x, pos_y){
     this->material = nullptr;
-    this->costo = 0;
+    this->costo = 5;
 }
 
 void Muelle::modificar_terreno(string elemento,int accion){

@@ -39,6 +39,8 @@ class Casillero_inaccesible : public Casillero {
          */
         virtual void mostrar() = 0;
 
+        virtual int devolver_costo() = 0;
+
         /*
          * Pre: -
          * Post: Metodo vacio para la clase casillero_construible

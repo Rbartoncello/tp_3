@@ -1,6 +1,6 @@
 project(tp_3)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 
 add_executable(tp_3 constantes.h main.cpp
         edificios.cpp edificios.h
@@ -37,4 +37,14 @@ add_executable(tp_3 constantes.h main.cpp
         madera.cpp madera.h
         metal.cpp metal.h
         bomba.cpp bomba.h
-        andycoins.cpp andycoins.h)
+        andycoins.cpp andycoins.h
+        Grafo.cpp Grafo.h
+        Lista.h
+        lista.h lista.cpp
+        Nodo.h
+        nodo.h nodo.cpp
+        nodo_lista.cpp nodo_lista.h
+        Vertice.cpp Vertice.h
+        Floyd.cpp Floyd.h
+        Camino_minimo.cpp Camino_minimo.h
+        )
