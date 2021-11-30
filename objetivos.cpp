@@ -22,3 +22,5 @@ bool Objetivos::devolver_estado_objetivo()
 
     return (objetivo_realizado);
 }
+
+Objetivos::~Objetivos(){};

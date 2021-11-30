@@ -32,8 +32,10 @@ Betun::~Betun() {
 void Betun::mostrar(){
     if(!this->esta_ocupado())
         cout << BGND_BLACK_232  << "  " << END_COLOR;
-    else
+    else if (material != nullptr)
         cout << this->material->devolver_emoji() << END_COLOR;
+    else
+        cout << devolver_jugador()->devolver_emoji() << END_COLOR;
 }
 
 void Betun::agregar_material(Material* material) {
@@ -51,4 +53,19 @@ void Betun::imprimir_resumen(){
         this->material->imprimir_resumen();
     } else
         cout << "\tSoy un casillero transitable y me encuentro vacío" << endl;
+}
+
+void Betun::agregar_jugador(Jugador* jugador) {
+    modificar_jugador(jugador);
+    modificar_ocupado(true);
+}
+
+void Betun::eliminar_jugador() {
+    modificar_jugador(nullptr);
+    modificar_ocupado(false);
+}
+
+void Betun::mover_jugador(Jugador* jugador) {
+    modificar_jugador(jugador);
+    modificar_ocupado(true);
 }

@@ -94,6 +94,18 @@ class Terreno : public Casillero_construible{
          * POST: Imprime un resumen escrito del casillero
          */
         void imprimir_resumen();
+
+        /*
+         * Pre: -
+         * Post: Metodo virtual vacio para las clases hijas
+        */
+        void mostrar_casillero(Jugador* jugador, int cantidad_construidos);
+
+        void agregar_jugador(Jugador* jugador);
+
+        void eliminar_jugador();
+
+        void mover_jugador(Jugador* jugador);
 };
 
 

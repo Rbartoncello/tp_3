@@ -3,6 +3,9 @@
 #include <string>
 #include "mapa.h"
 #include "edificacion.h"
+#include "material.h"
+#include "nodo_lista.h"
+#include "jugador.h"
 
 using namespace std;
 /*  
@@ -21,13 +24,19 @@ void imprimir_menu_nueva_partida();
  * Pre: -
  * Post: Imprime por pantalla el manu principal.
 */
-void imprimir_menu_juego(Mapa* mapa, int jugador_acutal);
+void imprimir_menu_juego(Mapa* mapa, Jugador* jugador_acutal);
 
 /*
  * Pre: -
  * Post: Me muestra por pantalla la lista de objetos que parecen en el mapa.
  */
 void imprimir_objetos_mapa();
+
+/*
+ * Pre: -
+ * Post:Imprime el inventario del jugador
+ */
+void imprimir_materiales_jugador(Nodo_lista<Material>*& primero, int cantidad_en_lista);
 
 /*
 * Pre: -
@@ -127,6 +136,18 @@ void imprimir_lista_edificios_construidos(Edificacion* edificio, Mapa* mapa);
 
 /*
  * Pre: -
+ * Post: Imprime por pantalla los materiales del jugador;
+ */
+void imprimir_lista_materiales_jugador(Material* material);
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla el encabezado de los materiales del jugador
+ */
+void encabezado_materiale_jugador();
+
+/*
+ * Pre: -
  * Post: Imprime por pantalla que ingrese el numero de jugador
  */
 void imprimir_mensaje_ingrese_jugador();
@@ -143,6 +164,11 @@ void imprimir_mensaje_ingrese_fila_jugador();
  */
 void imprimir_mensaje_ingrese_columna_jugador();
 
+/*
+ * Pre: -
+ * Post: Me muestra por pantalla los edificios contruidos del jugador actual.
+ */
+void imprimir_edificio(Edificacion* edificio, Jugador* jugador, int fila, int columna, int cantidad_construidos);
 
 
 #endif

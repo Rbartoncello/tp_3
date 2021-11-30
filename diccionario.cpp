@@ -1,6 +1,5 @@
-#include <iostream>
+/*#include <iostream>
 #include <iomanip>
-#include "diccionario.h"
 #include "obelisco.h"
 #include "mina.h"
 #include "escuela.h"
@@ -24,7 +23,7 @@ Nodo* Diccionario::insertar(Nodo* nodo, Edificacion* edificio) {
     if (nodo == NULL)
         nodo = new Nodo(edificio);
     else if (edificio->devolver_nombre_edificio() > nodo->devolver_edificio()->devolver_nombre_edificio())
-        nodo->modificar_derecha(insertar(nodo->devolver_derecha(), edificio), nodo);
+        nodo->modificar_derecha(insertar(nodo->devolver_derecha(), edificio), nodo);//esta linea como esta implementada no es muy clara
     else
         nodo->modificar_izquierda(insertar(nodo->devolver_izquierda(), edificio), nodo);
     return nodo;
@@ -111,7 +110,7 @@ void Diccionario::borrar_todo(Nodo* nodo) {
     
     delete nodo;
 }
-
+*/
 
 
 

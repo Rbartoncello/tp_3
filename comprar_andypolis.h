@@ -31,7 +31,7 @@ public:
     void verificar_estado_objetivo();
 
 
-    ~Comprar_andypolis();
+    virtual ~Comprar_andypolis();
 };
 
 

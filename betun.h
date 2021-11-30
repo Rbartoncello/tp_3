@@ -69,6 +69,12 @@ class Betun : public Casillero_transitable{
          * Post: Imprime un resumen escrito del casillero
         */
         void imprimir_resumen();
+
+        void agregar_jugador(Jugador* jugador);
+
+        void eliminar_jugador();
+
+        void mover_jugador(Jugador* jugador);
 };
 
 

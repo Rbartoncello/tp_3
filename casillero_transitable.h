@@ -34,6 +34,7 @@ class Casillero_transitable : public Casillero{
         bool esta_ocupado();
 
         void modificar_ocupado(bool estado);
+        virtual int devolver_costo() = 0;
 
         /*
          * Pre: -
@@ -64,7 +65,18 @@ class Casillero_transitable : public Casillero{
          * Post: Metodo virtual vacio para la clase casillero_construible
         */
         virtual void agregar_edificio(Edificacion* edificio){};
-    
+
+        /*
+         * Pre: -
+         * Post: Muestra graficamente el casillero por pantalla
+        */
+        void mostrar_casillero(Jugador* jugador, int cantidad_construidos);
+
+        virtual void agregar_jugador(Jugador* jugador) = 0;
+
+        virtual void eliminar_jugador() = 0;
+
+        virtual void mover_jugador(Jugador* jugador) = 0;
 };
 
 #endif

@@ -3,13 +3,11 @@
 #include "material.h"
 class Bomba : public Material{
     private:
-        string nombre;
-        string emoji;
-        int cantidad;
+
     public:
         Bomba();
         Bomba(int cantidad);
-        ~Bomba();
+        virtual ~Bomba();
 };
 
 

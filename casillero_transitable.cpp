@@ -14,7 +14,9 @@ bool Casillero_transitable::esta_ocupado(){
     return this->ocupado;
 }
 
-void Casillero_transitable::modificar_ocupado(bool estado) 
-{
+void Casillero_transitable::modificar_ocupado(bool estado) {
     this->ocupado = estado;
+}
+
+void Casillero_transitable::mostrar_casillero(Jugador* jugador, int cantidad_construidos){
 }

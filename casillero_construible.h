@@ -66,6 +66,20 @@ class Casillero_construible : public Casillero{
          * Post: Metodo virtual vacio para la clase casillero_construible
         */
         virtual void agregar_edificio(Edificacion* edificio){};
+
+        virtual int devolver_costo() = 0;
+
+        /*
+         * Pre: -
+         * Post: Metodo virtual vacio para las clases hijas
+        */
+        virtual void mostrar_casillero(Jugador* jugador, int cantidad_construidos) = 0;
+
+        virtual void agregar_jugador(Jugador* jugador) = 0;
+
+        virtual void eliminar_jugador() = 0;
+
+        virtual void mover_jugador(Jugador* jugador) = 0;
 };
 
 #endif

@@ -35,7 +35,6 @@ void Inventario::mostrar() {
     for (int i = 0; i < this->total_materiales; i++){
         this->materiales[i]->mostrar();
     }
-    
 }
 
 Material* Inventario::buscar_tipo_material(string nombre) {
@@ -53,6 +52,11 @@ Material* Inventario::buscar_tipo_material(string nombre) {
         material = new Andycoins;
 
     return material;
+}
+
+Material** Inventario::devolver_acceso_materiales(){
+
+    return(materiales);
 }
 
 Inventario::~Inventario(){

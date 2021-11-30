@@ -1,10 +1,11 @@
 #ifndef CASILLERO_H
 #define CASILLERO_H
-#include "colors.h"
 #include <string>
 #include <iostream>
+#include "colors.h"
 #include "material.h"
 #include "edificacion.h"
+#include "jugador.h"
 
 using namespace std;
 
@@ -13,6 +14,7 @@ class Casillero{
         char tipo_terreno;
         
     private:
+        Jugador* jugador;
         int pos_x;
         int pos_y;
 
@@ -37,6 +39,36 @@ class Casillero{
          * Post: devuelve el tipo de terreno.
          */
         char devolver_tipo_terreno();
+
+        /*
+         * Pre: -
+         * Post: Me va devolver pos_x.
+         */
+        int devolver_pos_x();
+
+        /*
+         * Pre: -
+         * Post: Me va devolver pos_y.
+         */
+        int devolver_pos_y();
+
+        /*
+         * Pre: -
+         * Post: Me va modificar tipo_terreno.
+         */
+        void modificar_tipo_terreno(char tipo_terreno);
+
+        /*
+         * Pre: -
+         * Post: Me va modificar pos_x.
+         */
+        void modificar_pos_x(int x);
+
+        /*
+         * Pre: -
+         * Post: Me va modificar pos_y.
+         */
+        void modificar_pos_y(int y);
 
         /*
          * 
@@ -87,7 +119,150 @@ class Casillero{
          * Post: Metodo virtual vacio para la clase casillero_construible
         */
         virtual void agregar_edificio(Edificacion* edificio){};
+
+        /*
+         * Pre: -
+         * Post: Metodo virtual vacio para las clases hijas
+        */
+        virtual void mostrar_casillero(Jugador* jugador, int cantidad_construidos) = 0;
+
+        string devolver_posicion();
+
+        virtual int devolver_costo() = 0;
+
+        virtual void agregar_jugador(Jugador* jugador) = 0;
+
+        void modificar_jugador(Jugador* jugador);
+
+        Jugador* devolver_jugador();
+
+        virtual void eliminar_jugador() = 0;
+
+        virtual void mover_jugador(Jugador* jugador) = 0;
 };
 
 
 #endif //CASILLERO_H
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

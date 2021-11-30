@@ -10,7 +10,7 @@ class Edad_piedra : public Objetivos
 {
 private:
 
-    Inventario* inventario_jugador;
+    Material** inventario_jugador;
 
 public:
 
@@ -32,7 +32,7 @@ public:
     void verificar_estado_objetivo();
 
 
-    ~Edad_piedra();
+    virtual ~Edad_piedra();
 };
 
 

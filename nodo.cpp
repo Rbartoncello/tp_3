@@ -1,25 +1,30 @@
 #include "nodo.h"
 
-Nodo::Nodo(Edificacion* edificio){
+/*Nodo::Nodo(Edificacion*& edificio,string clave){
     this->edificio = edificio;
     this->izquierda = NULL;
     this->derecha = NULL;
     this->padre = NULL;
+    this->clave = clave;
 }
 
-Edificacion* Nodo::devolver_edificio() {
+Edificacion*& Nodo::devolver_edificio() {
     return this->edificio;
 }
 
-Nodo* Nodo::devolver_izquierda() {
+Nodo*& Nodo::devolver_izquierda() {
     return this->izquierda;
 }
 
-Nodo* Nodo::devolver_derecha() {
+string Nodo::devolver_clave() {
+    return this->clave;
+}
+
+Nodo*& Nodo::devolver_derecha() {
     return this->derecha;
 }
 
-Nodo* Nodo::devolver_padre() {
+Nodo*& Nodo::devolver_padre() {
     return this->izquierda;
 }
 
@@ -47,6 +52,6 @@ void Nodo::modificar_derecha(Nodo* derecha, Nodo* padre) {
 
 Nodo::~Nodo(){
     delete this->edificio;
-}
+}*/
 
 

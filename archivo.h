@@ -5,10 +5,9 @@
 #include <fstream>
 #include <iostream>
 #include "emojis.h"
-#include "inventario.h"
+#include "jugador.h"
 #include "mapa.h"
 #include "edificacion.h"
-
 
 class Archivo {
     public:
@@ -23,12 +22,13 @@ class Archivo {
 
         //Pre:
         //Post:
-        int leer_archivos_materiales(Inventario* &inventario_jugador_1, Inventario* &inventario_jugador_2);
+        int leer_archivos_materiales(Lista<Material>* &jugador_1, Lista<Material>* &jugador_2);
 
+        Material* generar_material(string nombre,int cantidad);
 
         //Pre:
         //Post:
-        int leer_archivo_ubicaciones(Mapa* &mapa, Diccionario* diccionario);
+        int leer_archivo_ubicaciones(Mapa* &mapa, Diccionario<Edificacion>* &diccionario, Jugador* &jugador_1, Jugador* &jugador_2);
 
         //Pre:
         //Post:retorna el nombre del archivo.
@@ -36,7 +36,7 @@ class Archivo {
 
         //Pre:
         //Post:
-        int leer_archivos_edificios(Diccionario* &diccionario);
+        int leer_archivos_edificios(Diccionario<Edificacion>*&diccionario);
 
         //Pre:
         //Post:
@@ -50,15 +50,15 @@ class Archivo {
         //Post:valida si existe el Archivo.
         void validarArchivo();
 
-        int leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa);
+        int leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa, Jugador* &jugador);
 
-        void agregar_edificio(ifstream &documento,string nombre_edificio,Mapa* &mapa, Diccionario* diccionario);
+        void agregar_edificio(ifstream &documento,string nombre_edificio,Mapa* &mapa, Diccionario<Edificacion>*&diccionario, int duenio);
 
-        void agregar_posicion_jugador(int coordX, int coordY,Mapa* &mapa);
+        void agregar_posicion_jugador(Mapa* &mapa, Jugador* &jugador);
         
-        void leer_edificios_jugador_1(ifstream &documento, string jugador,Mapa* &mapa, Diccionario* diccionario);
+        void leer_edificios_jugador_1(ifstream &documento, Mapa* &mapa, Diccionario<Edificacion>*&diccionario, Jugador* &jugador);
 
-        void leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Diccionario* diccionario);
+        void leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Diccionario<Edificacion>*&diccionario);
 
         int arreglarCoordenadaX(string coordX);
 

@@ -2,7 +2,7 @@
 #include "emojis.h"
 #include "constantes.h"
 
-Obelisco::Obelisco(string nombre) : Edificacion (nombre, EMOJI_OBELISCO){
+Obelisco::Obelisco() : Edificacion (EDIFICIO_OBELISCO, EMOJI_OBELISCO){
     this->produce_material = false;
     this->cantidad_material_brinda = 0;
     this->material_producido = "niguno";
@@ -24,16 +24,16 @@ Receta* Obelisco::devolver_receta() {
     return this->receta;
 }
 
+bool Obelisco::devolver_necesita_reparacion() {
+    return this->necesita_reparacion;
+}
+
 int Obelisco::devolver_maxima_cantidad_permitidos(){
     return this->maxima_cantidad_permitidos;
 }
 
 bool Obelisco::brinda_material() {
     return this->produce_material;
-}
-
-void Obelisco::imprimirLetra(){
-    cout<< BGND_LIGHT_GREEN_77 <<TXT_BLACK_16<< "O" << END_COLOR;
 }
 
 int Obelisco::devolver_cantidad_material_brinda(){

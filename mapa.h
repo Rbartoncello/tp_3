@@ -2,6 +2,8 @@
 #define MAPA_H
 #include <fstream>
 #include "casillero.h"
+#include "andycoins.h"
+#include "jugador.h"
 
 using namespace std;
 class Mapa{
@@ -24,6 +26,8 @@ class Mapa{
          * Post: Me va a crear el objeto Mapa.
          */
         Mapa(int filas, int columnas);
+
+        Casillero* devolver_casillero(int fila, int columna);
 
         /*
          * Destructor:
@@ -48,14 +52,15 @@ class Mapa{
          * Pre: nombre de material,fila y columna en indice de la matriz
          * Post: Agrega al casillero marcado el material pasado por parametro
          */
-        void agregar_material(Material* material, int fila, int columna);
+        void agregar_material(string nombre, int fila, int columna);
 
-        void agregar_jugador(int coordX, int coordY);
+        void agregar_jugador(Jugador* jugador);
 
+        void mover_jugador(Jugador* jugador, int fila , int columna);
 
         char devolver_tipo_terreno(int coord1, int columna);
 
-        void agregar_edificacion(Edificacion* edificacion, int fila, int columna);
+        void agregar_edificacion(Edificacion* edificacion, int fila, int columna, int duenio);
 
         /*
          * Pre: recibe un nombre.
@@ -80,6 +85,12 @@ class Mapa{
          * Post: Imprime por pantalla un resumen del casillero pedido
         */
         void imprimir_resumen_casillero(int fila, int columna);
+
+        /*
+         * Pre: -
+         * Post: Me muestra por pantalla los edificios contruidos del jugador actual.
+         */
+        void mostrar_edificios_construidos(Jugador* jugador_actual);
     private:
         /*
          * Pre: El archivo tiene que estar abierto y de formato correcto.
@@ -105,7 +116,11 @@ class Mapa{
          */
         bool validar_tipo_transitable(int fila, int columna);
 
-        
+        /*
+         * Pre: El nombre tiene que ser de un material exitente
+         * Post: Me devolver el material buscado.
+         */
+        Material* buscar_material(string nombre);
 };
 
 #endif //MAPA_H

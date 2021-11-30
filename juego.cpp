@@ -1,23 +1,23 @@
 #include <iostream>
+#include <unistd.h>
 #include "juego.h"
 #include "interface.h"
 #include <time.h>
 
 Juego::Juego(){
     this->mapa = new Mapa();
+    this->grafo = new Grafo;
     this->lector_archivos = new Archivo();
-    this->inventario_p1 = new Inventario();
-    this->inventario_p2 = new Inventario();
-    this->diccionario = new Diccionario();
-    this->jugador_1 = new Jugador(1);
-    this->jugador_2 = new Jugador(2);
+    this->diccionario = new Diccionario<Edificacion>();
+    this->jugador_1 = new Jugador(JUGADOR_1, EMOJI_JUGADOR_1);
+    this->jugador_2 = new Jugador(JUGADOR_2, EMOJI_JUGADOR_2);
+
 }
 
 Juego::~Juego(){
     delete this->mapa;
+    delete this->grafo;
     delete this->lector_archivos;
-    delete this->inventario_p1;
-    delete this->inventario_p2;
     delete this->diccionario;
     delete this->jugador_1;
     delete this->jugador_2;
@@ -26,14 +26,14 @@ Juego::~Juego(){
 int Juego::cargar() {
     int ejecucion = 0;
 
-    if( lector_archivos->leer_archivos_materiales(inventario_p1,inventario_p2)== ERROR || this->mapa->leer_archivo() == ERROR || lector_archivos->leer_archivos_edificios( this->diccionario) == ERROR )
+    if( lector_archivos->leer_archivos_materiales(jugador_1->devolver_inventario(),jugador_2->devolver_inventario())== ERROR || this->mapa->leer_archivo() == ERROR || lector_archivos->leer_archivos_edificios( this->diccionario) == ERROR )
         ejecucion = ERROR;
 
     return ejecucion;
 }
 
 int Juego::archivo_ubicaciones(){
-    return lector_archivos->leer_archivo_ubicaciones(mapa, this->diccionario);
+    return lector_archivos->leer_archivo_ubicaciones(mapa, this->diccionario, jugador_1, jugador_2);
 }
 
 void Juego::nueva_partida(){
@@ -79,13 +79,14 @@ void Juego::procesar_opcion_nueva_partida(int opcion){
 }
 
 void Juego::mostrar() {
-    imprimir_menu_juego(this->mapa, this->jugador_actual);
+    imprimir_menu_juego(mapa, jugador_actual); //Aca hubo cambio
     imprimir_objetos_mapa();
 }
 
-void Juego::modificar_receta(Diccionario* diccionario, string nombre_edificio, string material){
+void Juego::modificar_receta(Diccionario<Edificacion>*&diccionario, string nombre_edificio, string material){
     int opcion;
-    imprimir_mensaje_receta_edificio(nombre_edificio, material, diccionario->buscar(nombre_edificio)->devolver_receta(material));
+    int cantidad = diccionario->buscar(nombre_edificio)->devolver_receta()->devolver_material(material);
+    imprimir_mensaje_receta_edificio(nombre_edificio, material, cantidad);
     imprimir_mensaje_afirmativo_negativo();
     cin >> opcion;
 
@@ -101,7 +102,7 @@ void Juego::modificar_receta(Diccionario* diccionario, string nombre_edificio, s
             imprimir_mensaje_error_ingreso();
             cin >> cantidad;
         }
-        diccionario->buscar(nombre_edificio)->modificar_receta(material, cantidad);
+        diccionario->buscar(nombre_edificio)->devolver_receta()->modificar_receta(material, cantidad);
     }
 }
 
@@ -113,7 +114,7 @@ bool Juego::cantidad_valida(int ingreso){
     return ( ( ingreso >= MIN_RECETA_MODIFICAR ) && ( ingreso <= MAX_RECETA_MODIFICAR ) );
 }
 
-void Juego::modificar_edificio(Diccionario* diccionario){
+void Juego::modificar_edificio(Diccionario<Edificacion>*&diccionario){
     string nombre_edificio;
     imprimir_mensaje_ingresar_edificio();
     cin.ignore();
@@ -177,7 +178,13 @@ void Juego::posicionar_jugador_mapa(Jugador *&jugador){
 }
 
 void Juego::partida_empezada(){
-    this->jugador_actual = numero_aleatorio(JUGADOR_1,JUGADOR_2);
+    int primer_jugador = numero_aleatorio(JUGADOR_1,JUGADOR_2);
+    if(primer_jugador == 1){
+        jugador_actual = jugador_1;
+    }
+    else{
+        jugador_actual = jugador_2;
+    }
     imprimir_menu_juego(this->mapa, this->jugador_actual);
 
     int opcion_elegida = pedir_opcion(29, 60);
@@ -186,7 +193,7 @@ void Juego::partida_empezada(){
 
     while(opcion_elegida != GUARDA_SALIR){
         procesar_opcion_partida_empezada(opcion_elegida);
-        imprimir_menu_juego(this->mapa, this->jugador_actual);
+        imprimir_menu_juego(mapa, jugador_actual);
 
         opcion_elegida = pedir_opcion(29, 60);
         validar_opcion_ingresada(opcion_elegida, MAX_OPCION_JUEGO, MIN_OPCION_JUEGO);
@@ -202,6 +209,28 @@ int Juego::numero_aleatorio(int desde, int hasta){
     while (numero > hasta)
         numero = ( desde + rand() % hasta );
     return numero;
+}
+
+Jugador* Juego::devolver_jugador_turno() {
+    Jugador* jugador;
+    
+    if (jugador_actual == jugador_2)
+        jugador = this->jugador_1;
+    else    
+        jugador = this->jugador_2;
+
+    return jugador;
+}
+
+Jugador* Juego::devolver_jugador_siguiente_turno() {
+    Jugador* jugador;
+    
+    if (this->jugador_actual->devolver_numero() == JUGADOR_1)
+        jugador = this->jugador_2;
+    else    
+        jugador = this->jugador_1;
+
+    return jugador;
 }
 
 void Juego::validar_opcion_ingresada(int &opcion_elegida, int max, int min){
@@ -222,9 +251,11 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
 
     switch (opcion){
         case CONSTRUIR_EDIFICIO_NOMBRE:
-            this->mapa->mostrar();
+            mapa->mostrar();
             break;
         case LISTAR_MIS_EDIFICIOS_CONSTRUIDOS:
+            this->mapa->mostrar_edificios_construidos(this->jugador_actual);
+            imprimir_mensaje_enter_continuar();
             break;
         case DEMOLER_EDIFICIO_COORDENADA:
             this->mapa->mostrar();
@@ -245,8 +276,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             imprimir_mensaje_enter_continuar();
             break;
         case MOSTRAR_INVENTARIO:
-            this->inventario_p1->mostrar(); // Aca deberia mostrar solo uno de estos, dependiendo de quien sea el turno
-            this->inventario_p2->mostrar();
+            mostrar_inventario(devolver_jugador_turno());
             imprimir_mensaje_enter_continuar();
             break;
         case MOSTRAR_OBJETIVOS:
@@ -254,13 +284,96 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             break;
         case RECOLECTAR_RECURSOS:
             cout<<"Recolectar recursos"<<endl;
+
             break;
         case MOVERSE_COORDENADA:
-            cout<<"Moverse Coordeanada"<<endl;
+            moverse_coordenada();
             break;
         case FINALIZAR_TURNO:
-            cout<<"Aqui finalizaría el turno"<<endl;
+            jugador_actual = devolver_jugador_turno();
             break;
+    }
+}
+
+void Juego::mostrar_inventario(Jugador* jugador_turno) {
+    jugador_turno->mostrar_inventario();
+}
+
+void Juego::moverse_coordenada() {
+    int fila = pedir_fila();
+    int columna = pedir_columna();
+
+    cargar_grafo();
+
+    int fila_actual = jugador_actual->devolver_fila();
+    int columna_actual = jugador_actual->devolver_columna();
+    
+    string posicion_actual = to_string(fila_actual) + " " + to_string(columna_actual);
+    string posicion_ingresada = to_string(fila) + " " + to_string(columna);
+    //if ( devolver_jugador_turno().devolver_energia < grafo->devolver_costo("10 3", "10 10") ) VER MAS ADELANTE
+    
+    grafo->camino_minimo(posicion_actual, posicion_ingresada, mapa, jugador_actual);
+    cout << grafo->devolver_costo(posicion_actual, posicion_ingresada) << endl;
+    imprimir_mensaje_enter_continuar();
+}
+
+void Juego::cargar_grafo() {
+    //Jugador* jugador_sig = devolver_jugador_siguiente_turno();
+
+    for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
+        for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
+            Casillero* casillero = mapa->devolver_casillero(i, j);
+            if ( ! ( casillero->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero->esta_ocupado() ) ) ){
+                //if ( ( i != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) ){
+                    this->grafo->agregarVertice(casillero->devolver_posicion());
+                //}
+            }
+        }
+    }
+    cargar_costos();
+    grafo->usar_floyd();
+}
+
+void Juego::cargar_costos(){
+    //Jugador* jugador_sig = devolver_jugador_siguiente_turno();
+
+    for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
+        for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
+            if (j < mapa->devolver_cantidad_columnas() - 1){
+                Casillero* casillero_1 = mapa->devolver_casillero(i, j);
+                Casillero* casillero_2 = mapa->devolver_casillero(i, j+1);
+                if ( ! ( casillero_1->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_1->esta_ocupado() ) ) ){
+                    //if ( ( i != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) ){
+                        if ( ! ( casillero_2->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_2->esta_ocupado() ) ) ){
+                            //if ( ( i != jugador_sig->devolver_fila() ) || ( j+1 != jugador_sig->devolver_columna() ) ){
+                                this->grafo->agregar_camino(casillero_1->devolver_posicion(), casillero_2->devolver_posicion(), casillero_2->devolver_costo());
+                                this->grafo->agregar_camino(casillero_2->devolver_posicion(), casillero_1->devolver_posicion(), casillero_1->devolver_costo());
+                            //}
+                        }
+                    //}
+                }
+            }
+        }
+    }
+
+    for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
+        for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
+            if (i < mapa->devolver_cantidad_filas() - 1){
+                Casillero* casillero_1 = mapa->devolver_casillero(i, j);
+                Casillero* casillero_2 = mapa->devolver_casillero(i+1, j);
+                if ( ! ( casillero_1->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_1->esta_ocupado() ) ) ){
+                    //if ( ( i != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) ){
+                        if ( ! ( casillero_2->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_2->esta_ocupado() ) ) ){
+                            //if ( ( i+1 != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) ){
+                                this->grafo->agregar_camino(casillero_1->devolver_posicion(), casillero_2->devolver_posicion(), casillero_2->devolver_costo());
+                                this->grafo->agregar_camino(casillero_2->devolver_posicion(), casillero_1->devolver_posicion(), casillero_1->devolver_costo());
+                            //}
+                            
+                        }
+                    //}
+                }
+            }
+        }
     }
 }
 
@@ -270,6 +383,7 @@ int Juego::pedir_fila(){
     int opcion_elegida = 0;
     cout << " Por favor ingrese la fila: ";
     cin >> opcion_elegida;
+    validar_opcion_ingresada(opcion_elegida, this->mapa->devolver_cantidad_filas(), 0);
 
     return opcion_elegida;
 }
@@ -278,6 +392,8 @@ int Juego::pedir_columna(){
     int opcion_elegida = 0;
     cout << " Por favor ingrese la columna: ";
     cin >> opcion_elegida;
+    validar_opcion_ingresada(opcion_elegida, this->mapa->devolver_cantidad_columnas(), 0);
+
 
     return opcion_elegida;
 }

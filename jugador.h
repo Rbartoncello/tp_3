@@ -1,28 +1,31 @@
 #ifndef JUEGADOR_H
 #define JUEGADOR_H
-
 #include "materiales.h"
-#include "archivo.h"
+#include "lista.h"
+//#include "objetivos.h"
+//#include "mas_alto_que_las_nubes.h"
 
 class Jugador{
     private:
         string nombre;
-        int energia;
-        int numero;
-        Materiales* inventario;
-        int fila;
-        int columna;
-        //Objetivo_secundario** objetivos_secundarios
-        //Objetivo_primario* objetivo_primario
+        string emoji;
+        int energia, numero, fila, columna;
+        Lista<Material>* inventario;
+        //Objetivos** objetivos_secundarios;
+        //Mas_alto_que_las_nubes* objetivo_primario;
+        
+
     public:
         /*
          * Constructor sin parametros:
          * Pre: -.
          * Post: Me va a crear el Jugador vacio
          */
-        Jugador(int numero);
+        Jugador(int numero, string emoji);
+        
 
 
+        int devolver_numero();
         /*
          * Destructor:
          * Pre: -.
@@ -36,6 +39,12 @@ class Jugador{
          * Post: Me va a definir como nombre el string ingresado por input (con ese nombre se va a referir al jugador por el resto del juego)
          */
         void pedir_nombre();
+
+        /*
+         * Pre: Recibe un nombre de un material que exita.
+         * Post: Ingresa el objeto en un vector dinámico.
+         */
+        void aumentar_material(Material* material);
 
         /*
          * Destructor:
@@ -58,11 +67,25 @@ class Jugador{
          */
         void recoger_recurso(Material* recurso);
 
+        Lista<Material>*& devolver_inventario();
+
         void modificar_numero(int numero);
 
         void modificar_fila(int fila);
 
         void modificar_columna(int columna);
+
+        /*
+         * Pre: -
+         * Post: Me muestra lista por pantalla el inventario.
+         */
+        void mostrar_inventario();
+
+        int devolver_fila();
+
+        int devolver_columna();
+
+        string devolver_emoji();
 };
 
 

@@ -21,6 +21,12 @@ class Lago : public Casillero_inaccesible {
         ~Lago();
 
         void mostrar();
+
+        void agregar_jugador(Jugador* jugador);
+
+        void eliminar_jugador();
+
+        void mover_jugador(Jugador* jugador);
 };
 
 

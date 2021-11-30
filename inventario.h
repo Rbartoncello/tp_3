@@ -35,6 +35,12 @@ class Inventario{
          * Post: Me muestra lista por pantalla toso los objetos del tipo Material.
          */
         void mostrar();
+
+        /*
+         * Pre: -
+         * Post: Me muestra lista por pantalla toso los objetos del tipo Material.
+         */
+        Material** devolver_acceso_materiales();
     private:
         /*
          * Pre: Nombre tiene que ser un nombre de material existen

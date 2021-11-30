@@ -7,17 +7,17 @@
 #include "archivo.h"
 #include "diccionario.h"
 #include "jugador.h"
-
+#include "Grafo.h"
 
 class Juego{
     private:
         Mapa* mapa;
+        Grafo* grafo;
         Archivo* lector_archivos;
-        Inventario* inventario_p1, *inventario_p2; //CAMBIARLO A JUGADOR1 JUGADOR2 (el inventario va dentro de ellos)
-        Diccionario* diccionario;
+        Diccionario<Edificacion>* diccionario;
         Jugador* jugador_1;
         Jugador* jugador_2;
-        int jugador_actual;
+        Jugador* jugador_actual;
     public:
         /*
          * Constructor sin parametros:
@@ -59,7 +59,11 @@ class Juego{
         
         void mostrar();
 
+        void cargar_grafo();
+
     private:
+
+        
 
         /*
          * Pre: -
@@ -89,13 +93,13 @@ class Juego{
          * Pre: Diccionario ya tiene que estar creado y con todos los edificios cargados
          * Post: Me modificara la reseta del edificio ingresado
         */
-        void modificar_edificio(Diccionario* diccionario);
+        void modificar_edificio(Diccionario<Edificacion>*&edificios_disponibles);
 
         /*
          * Pre: -
          * Post: Me modificara la reseta.
         */
-        void modificar_receta(Diccionario* diccionario, string nombre_edificio, string material);
+        void modificar_receta(Diccionario<Edificacion>*&edificios_disponibles, string nombre_edificio, string material);
 
         /*
          * Pre: -
@@ -168,6 +172,16 @@ class Juego{
          * Post: Devuelve un numero aleatorio entre esos 2 numeros
         */
         int numero_aleatorio(int desde, int hasta);
+
+        Jugador* devolver_jugador_turno();
+
+        Jugador* devolver_jugador_siguiente_turno();
+
+        void mostrar_inventario(Jugador* jugador_turno);
+
+        void moverse_coordenada();
+
+        void cargar_costos();
 };
 
 #endif //JUEGO_H

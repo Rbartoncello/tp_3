@@ -32,7 +32,7 @@ public:
     void verificar_estado_objetivo();
 
 
-    ~Mas_alto_que_las_nubes();
+    virtual ~Mas_alto_que_las_nubes();
 };
 
 

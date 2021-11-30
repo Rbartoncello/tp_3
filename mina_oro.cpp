@@ -2,7 +2,7 @@
 #include "emojis.h"
 #include "constantes.h"
 
-Mina_oro::Mina_oro(string nombre) : Edificacion (nombre, EMOJI_MINA_ORO){
+Mina_oro::Mina_oro() : Edificacion (EDIFICIO_MINA_ORO, EMOJI_MINA_ORO){
     this->produce_material = true;
     this->cantidad_material_brinda = BRINDA_MINA_ORO;
     this->material_producido = ANDYCOINS;
@@ -24,9 +24,8 @@ Receta *Mina_oro::devolver_receta(){
     return this->receta;
 }
 
-void Mina_oro::imprimirLetra()
-{
-    cout<< BGND_LIGHT_GREEN_77 <<TXT_BLACK_16<< "E" << END_COLOR;
+bool Mina_oro::devolver_necesita_reparacion() {
+    return this->necesita_reparacion;
 }
 
 int Mina_oro::devolver_cantidad_material_brinda(){
@@ -42,7 +41,6 @@ bool Mina_oro::brinda_material() {
 }
 
 void Mina_oro::hablar_sobre_mi(){
-
     cout << "SOY UN " + devolver_nombre_edificio() + " Y ME ENCUENTRO EN EL CASILLERO CONSULTADO" << endl;
 }
 

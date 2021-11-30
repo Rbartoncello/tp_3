@@ -1,15 +1,22 @@
 #include <iostream>
 #include "jugador.h"
+#include "interface.h"
 
-Jugador::Jugador(int numero){
+Jugador::Jugador(int numero, string emoji){
     this->numero = numero;
+    this->emoji = emoji;
     this -> energia = 0;
-    this -> inventario = new Materiales;
+    this -> inventario = new Lista<Material>();
+    //objetivo_primario = new Mas_alto_que_las_nubes();
 }
 
 Jugador::~Jugador(){
     delete this->inventario;
     //delete this->objetivos_secundarios
+}
+
+void Jugador::aumentar_material(Material* material){
+    inventario->obtener_direccion_nodo(inventario->obtener_posicion(material->devolver_nombre()))->devolver_dato()->aumentar_cantidad(material->devolver_cantidad());
 }
 
 void Jugador::pedir_nombre(){
@@ -32,6 +39,10 @@ void Jugador::recoger_recurso(Material* recurso){
     //this->inventario->sumar_material(recurso)    (me falta hacer el metodo en materiales en el que sume un material al array al recibir un Material*)
 }
 
+Lista<Material>*& Jugador::devolver_inventario(){
+    return(inventario);
+}
+
 void Jugador::modificar_numero(int numero){
     this->numero = numero;
 }
@@ -42,4 +53,24 @@ void Jugador::modificar_fila(int fila){
 
 void Jugador::modificar_columna(int columna){
     this->columna = columna;
+}
+
+void Jugador::mostrar_inventario(){
+    imprimir_materiales_jugador(inventario->retornar_primero(),inventario->devolver_cantidad_en_lista());
+}
+
+int Jugador::devolver_fila(){
+    return fila;
+}
+
+int Jugador::devolver_columna(){
+    return columna;
+}
+
+int Jugador::devolver_numero(){
+    return numero;
+}
+
+string Jugador::devolver_emoji(){
+    return emoji;
 }
