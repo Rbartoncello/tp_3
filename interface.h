@@ -170,5 +170,7 @@ void imprimir_mensaje_ingrese_columna_jugador();
  */
 void imprimir_edificio(Edificacion* edificio, Jugador* jugador, int fila, int columna, int cantidad_construidos);
 
+void imprimir_cuadro_jugador(Jugador* &jugador_actual);
+
 
 #endif

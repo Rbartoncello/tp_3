@@ -69,41 +69,48 @@ void imprimir_menu_nueva_partida()
     cout << END_COLOR;
 }
 
+void imprimir_cuadro_jugador(Jugador* &jugador_actual){
+    Gotoxy gotoxy;
+    cout << gotoxy.pos(1, 115) << "╔══════════════════════════════╗" << endl;
+    cout << gotoxy.pos(2, 115) << "║   Jugador: " << jugador_actual->devolver_numero() << " ( " << jugador_actual->devolver_emoji()  << " )          ║" << endl;
+    cout << gotoxy.pos(3, 115) << "║   Energia disponible " << EMOJI_PLANTA_ENERGIA << " : " << jugador_actual->devolver_energia() << " ║" << endl;
+    cout << gotoxy.pos(4, 115) << "╚══════════════════════════════╝" << endl;
+}
+
 void imprimir_menu_juego(Mapa *mapa, Jugador* jugador_actual)
 {
     system("clear");
     Gotoxy gotoxy;
     mapa->mostrar();
-    cout << gotoxy.pos(1, 65) << "Jugador: " << jugador_actual->devolver_numero(); //Aca despues iria devolver_nombre()
-    cout << "\tEnergia disponible : " << jugador_actual->devolver_energia();
+    imprimir_cuadro_jugador(jugador_actual);
     cout << TXT_LIGHT_AQUA_43 << TXT_BOLD;
-    cout << gotoxy.pos(2, 65) << "╔════╦═══════════════════════════════════════╗" << endl
-         << gotoxy.pos(3, 65) << "║ " << EMOJI_UNO << " ║" << END_COLOR << TXT_BOLD << " Construir edificio por nombre " << EMOJI_EDIFICIO_CONSTRUCION << TXT_LIGHT_AQUA_43 << "       ║" << endl
-         << gotoxy.pos(4, 65) << "╠────╬───────────────────────────────────────╣" << endl
-         << gotoxy.pos(5, 65) << "║ " << EMOJI_DOS << " ║" << END_COLOR << TXT_BOLD << " Listar mis edificios construidos " << EMOJI_LISTA << TXT_LIGHT_AQUA_43 << "   ║" << endl
-         << gotoxy.pos(6, 65) << "╠────╬───────────────────────────────────────╣" << endl
-         << gotoxy.pos(7, 65) << "║ " << EMOJI_TRES << " ║" << END_COLOR << TXT_BOLD << " Demoler un edificio por coordenada " << EMOJI_MINA << TXT_LIGHT_AQUA_43 << " ║" << endl
-         << gotoxy.pos(8, 65) << "╠────╬───────────────────────────────────────╣" << endl
-         << gotoxy.pos(9, 65) << "║ " << EMOJI_CUATRO << " ║" << END_COLOR << TXT_BOLD << " Atacar un edificio por coordenada " << EMOJI_BOMBA << TXT_LIGHT_AQUA_43 << "  ║" << endl
-         << gotoxy.pos(10, 65) << "╠────╬───────────────────────────────────────╣" << endl
-         << gotoxy.pos(11, 65) << "║ " << EMOJI_CINCO << " ║" << END_COLOR << TXT_BOLD << " Reparar un edificio por coordenada " << EMOJI_EDIFICIO_CONSTRUCION << TXT_LIGHT_AQUA_43 << "  ║" << endl
-         << gotoxy.pos(12, 65) << "╠────╬───────────────────────────────────────╣" << endl
-         << gotoxy.pos(13, 65) << "║ " << EMOJI_SEIS << " ║" << END_COLOR << TXT_BOLD << " Comprar Bomba " << EMOJI_BOMBA << TXT_LIGHT_AQUA_43 << "                      ║" << endl
-         << gotoxy.pos(14, 65) << "╠────╬───────────────────────────────────────╣" << endl
-         << gotoxy.pos(15, 65) << "║ " << EMOJI_SIETE << " ║" << END_COLOR << TXT_BOLD << " Consultar coordenada " << EMOJI_BRUJULA << TXT_LIGHT_AQUA_43 << "               ║" << endl
-         << gotoxy.pos(16, 65) << "╠────╬───────────────────────────────────────╣" << endl
-         << gotoxy.pos(17, 65) << "║ " << EMOJI_OCHO << " ║" << END_COLOR << TXT_BOLD << " Mostrar inventario " << EMOJI_INVENTARIO << TXT_LIGHT_AQUA_43 << "                 ║" << endl
-         << gotoxy.pos(18, 65) << "╠────╬───────────────────────────────────────╣" << endl
-         << gotoxy.pos(19, 65) << "║ " << EMOJI_NUEVE << " ║" << END_COLOR << TXT_BOLD << " Mostrar objetivos " << EMOJI_LISTA << TXT_LIGHT_AQUA_43 << "                  ║" << endl
-         << gotoxy.pos(20, 65) << "╠────╬───────────────────────────────────────╣" << endl
-         << gotoxy.pos(21, 65) << "║ " << EMOJI_DIEZ << " ║" << END_COLOR << TXT_BOLD << " Recolectar recursos producidos " << EMOJI_BUSQUEDA << TXT_LIGHT_AQUA_43 << "     ║" << endl
-         << gotoxy.pos(22, 65) << "╠────╬───────────────────────────────────────╣" << endl
-         << gotoxy.pos(23, 65) << "║ " << EMOJI_ONCE << " ║" << END_COLOR << TXT_BOLD << " Moverse a una coordenada " << EMOJI_MOVERSE << TXT_LIGHT_AQUA_43 << "           ║" << endl
-         << gotoxy.pos(24, 65) << "╠────╬───────────────────────────────────────╣" << endl
-         << gotoxy.pos(25, 65) << "║ " << EMOJI_DOCE << " ║" << END_COLOR << TXT_BOLD << " Finalizar turno " << EMOJI_START << TXT_LIGHT_AQUA_43 << "                    ║" << endl
-         << gotoxy.pos(26, 65) << "╠────╬───────────────────────────────────────╣" << endl
-         << gotoxy.pos(27, 65) << "║ " << EMOJI_TRECE << " ║" << END_COLOR << TXT_BOLD << " Guarda y salir " << EMOJI_GUARDA_SALIR << TXT_LIGHT_AQUA_43 << "                     ║" << endl
-         << gotoxy.pos(28, 65) << "╚════╩═══════════════════════════════════════╝" << endl;
+    cout << gotoxy.pos(1, 65) << "╔════╦═══════════════════════════════════════╗" << endl
+         << gotoxy.pos(2, 65) << "║ " << EMOJI_UNO << " ║" << END_COLOR << TXT_BOLD << " Construir edificio por nombre " << EMOJI_EDIFICIO_CONSTRUCION << TXT_LIGHT_AQUA_43 << "       ║" << endl
+         << gotoxy.pos(3, 65) << "╠────╬───────────────────────────────────────╣" << endl
+         << gotoxy.pos(4, 65) << "║ " << EMOJI_DOS << " ║" << END_COLOR << TXT_BOLD << " Listar mis edificios construidos " << EMOJI_LISTA << TXT_LIGHT_AQUA_43 << "   ║" << endl
+         << gotoxy.pos(5, 65) << "╠────╬───────────────────────────────────────╣" << endl
+         << gotoxy.pos(6, 65) << "║ " << EMOJI_TRES << " ║" << END_COLOR << TXT_BOLD << " Demoler un edificio por coordenada " << EMOJI_MINA << TXT_LIGHT_AQUA_43 << " ║" << endl
+         << gotoxy.pos(7, 65) << "╠────╬───────────────────────────────────────╣" << endl
+         << gotoxy.pos(8, 65) << "║ " << EMOJI_CUATRO << " ║" << END_COLOR << TXT_BOLD << " Atacar un edificio por coordenada " << EMOJI_BOMBA << TXT_LIGHT_AQUA_43 << "  ║" << endl
+         << gotoxy.pos(9, 65) << "╠────╬───────────────────────────────────────╣" << endl
+         << gotoxy.pos(10, 65) << "║ " << EMOJI_CINCO << " ║" << END_COLOR << TXT_BOLD << " Reparar un edificio por coordenada " << EMOJI_EDIFICIO_CONSTRUCION << TXT_LIGHT_AQUA_43 << "  ║" << endl
+         << gotoxy.pos(11, 65) << "╠────╬───────────────────────────────────────╣" << endl
+         << gotoxy.pos(12, 65) << "║ " << EMOJI_SEIS << " ║" << END_COLOR << TXT_BOLD << " Comprar Bomba " << EMOJI_BOMBA << TXT_LIGHT_AQUA_43 << "                      ║" << endl
+         << gotoxy.pos(13, 65) << "╠────╬───────────────────────────────────────╣" << endl
+         << gotoxy.pos(14, 65) << "║ " << EMOJI_SIETE << " ║" << END_COLOR << TXT_BOLD << " Consultar coordenada " << EMOJI_BRUJULA << TXT_LIGHT_AQUA_43 << "               ║" << endl
+         << gotoxy.pos(15, 65) << "╠────╬───────────────────────────────────────╣" << endl
+         << gotoxy.pos(16, 65) << "║ " << EMOJI_OCHO << " ║" << END_COLOR << TXT_BOLD << " Mostrar inventario " << EMOJI_INVENTARIO << TXT_LIGHT_AQUA_43 << "                 ║" << endl
+         << gotoxy.pos(17, 65) << "╠────╬───────────────────────────────────────╣" << endl
+         << gotoxy.pos(18, 65) << "║ " << EMOJI_NUEVE << " ║" << END_COLOR << TXT_BOLD << " Mostrar objetivos " << EMOJI_LISTA << TXT_LIGHT_AQUA_43 << "                  ║" << endl
+         << gotoxy.pos(19, 65) << "╠────╬───────────────────────────────────────╣" << endl
+         << gotoxy.pos(20, 65) << "║ " << EMOJI_DIEZ << " ║" << END_COLOR << TXT_BOLD << " Recolectar recursos producidos " << EMOJI_BUSQUEDA << TXT_LIGHT_AQUA_43 << "     ║" << endl
+         << gotoxy.pos(21, 65) << "╠────╬───────────────────────────────────────╣" << endl
+         << gotoxy.pos(22, 65) << "║ " << EMOJI_ONCE << " ║" << END_COLOR << TXT_BOLD << " Moverse a una coordenada " << EMOJI_MOVERSE << TXT_LIGHT_AQUA_43 << "           ║" << endl
+         << gotoxy.pos(23, 65) << "╠────╬───────────────────────────────────────╣" << endl
+         << gotoxy.pos(24, 65) << "║ " << EMOJI_DOCE << " ║" << END_COLOR << TXT_BOLD << " Finalizar turno " << EMOJI_START << TXT_LIGHT_AQUA_43 << "                    ║" << endl
+         << gotoxy.pos(25, 65) << "╠────╬───────────────────────────────────────╣" << endl
+         << gotoxy.pos(26, 65) << "║ " << EMOJI_TRECE << " ║" << END_COLOR << TXT_BOLD << " Guarda y salir " << EMOJI_GUARDA_SALIR << TXT_LIGHT_AQUA_43 << "                     ║" << endl
+         << gotoxy.pos(27, 65) << "╚════╩═══════════════════════════════════════╝" << endl;
     cout << END_COLOR;
 }
 
