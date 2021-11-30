@@ -39,6 +39,8 @@ class Casillero_inaccesible : public Casillero {
          */
         virtual void mostrar() = 0;
 
+        virtual int devolver_costo() = 0;
+
         /*
          * Pre: -
          * Post: Metodo vacio para la clase casillero_construible
@@ -62,6 +64,14 @@ class Casillero_inaccesible : public Casillero {
          * Post: Muestra graficamente el casillero por pantalla
         */
         void mostrar_casillero(Jugador* jugador, int cantidad_construidos);
+
+        virtual void agregar_jugador(Jugador* jugador) = 0;
+
+        void modificar_ocupado(bool estado);
+
+        virtual void eliminar_jugador() = 0;
+
+        virtual void mover_jugador(Jugador* jugador) = 0;
 };
 
 #endif

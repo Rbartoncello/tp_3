@@ -7,11 +7,12 @@
 #include "archivo.h"
 #include "diccionario.h"
 #include "jugador.h"
-
+#include "Grafo.h"
 
 class Juego{
     private:
         Mapa* mapa;
+        Grafo* grafo;
         Archivo* lector_archivos;
         Diccionario<Edificacion>* diccionario;
         Jugador* jugador_1;
@@ -58,7 +59,11 @@ class Juego{
         
         void mostrar();
 
+        void cargar_grafo();
+
     private:
+
+        
 
         /*
          * Pre: -
@@ -170,7 +175,13 @@ class Juego{
 
         Jugador* devolver_jugador_turno();
 
+        Jugador* devolver_jugador_siguiente_turno();
+
         void mostrar_inventario(Jugador* jugador_turno);
+
+        void moverse_coordenada();
+
+        void cargar_costos();
 };
 
 #endif //JUEGO_H

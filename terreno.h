@@ -100,6 +100,12 @@ class Terreno : public Casillero_construible{
          * Post: Metodo virtual vacio para las clases hijas
         */
         void mostrar_casillero(Jugador* jugador, int cantidad_construidos);
+
+        void agregar_jugador(Jugador* jugador);
+
+        void eliminar_jugador();
+
+        void mover_jugador(Jugador* jugador);
 };
 
 

@@ -27,6 +27,8 @@ class Mapa{
          */
         Mapa(int filas, int columnas);
 
+        Casillero* devolver_casillero(int fila, int columna);
+
         /*
          * Destructor:
          * Pre: -.
@@ -52,9 +54,9 @@ class Mapa{
          */
         void agregar_material(string nombre, int fila, int columna);
 
-   
+        void agregar_jugador(Jugador* jugador);
 
-        void agregar_jugador(int coordX, int coordY);
+        void mover_jugador(Jugador* jugador, int fila , int columna);
 
         char devolver_tipo_terreno(int coord1, int columna);
 

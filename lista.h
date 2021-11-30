@@ -21,9 +21,12 @@ public:
 
     int devolver_cantidad_en_lista();
 
+    //post: devuelve la posicion en la que se encuentra el nombre que recibe o -1 si no lo encuentra
+    int obtener_posicion(string nombre);
+
     ~Lista();
 
-private:
+
 
     Nodo_lista<T>* obtener_direccion_nodo(int posicion);
 
@@ -76,6 +79,26 @@ template<typename T>
 int Lista<T>::devolver_cantidad_en_lista(){
     
     return(cantidad_en_lista);
+}
+
+template<typename T>
+int Lista<T>::obtener_posicion(string nombre) {
+    bool elementoEncontrado = false;
+    int i = 0;
+    Nodo_lista<T>* auxiliar = primero;
+
+    while(!elementoEncontrado && i < cantidad_en_lista){
+        if(auxiliar->devolver_dato()->devolver_nombre() == nombre){
+            elementoEncontrado = true;
+        }
+        i++;
+        auxiliar = auxiliar->direccion_siguiente();
+    }
+
+    if(!elementoEncontrado){
+        return -1;
+    }
+    return i - 1;
 }
 
 template<typename T>

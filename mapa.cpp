@@ -169,8 +169,20 @@ Material* Mapa::buscar_material(string nombre) {
     return material;
 }
 
-void Mapa::agregar_jugador(int fila, int columna){
-    //casilleros[fila][columna]->modificar_terreno();
+void Mapa::agregar_jugador(Jugador* jugador){
+    casilleros[jugador->devolver_fila()][jugador->devolver_columna()]->agregar_jugador(jugador);
+}
+
+void Mapa::mover_jugador(Jugador* jugador, int fila , int columna){
+    casilleros[jugador->devolver_fila()][jugador->devolver_columna()]->eliminar_jugador();
+    jugador->modificar_fila(fila);
+    jugador->modificar_columna(columna);
+    casilleros[fila][columna]->mover_jugador(jugador);
+}
+
+Casillero* Mapa::devolver_casillero(int fila, int columna)
+{
+    return casilleros[fila][columna];
 }
 
 int Mapa::cantidad_edificio_construido(string nombre){

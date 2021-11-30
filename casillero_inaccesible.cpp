@@ -23,3 +23,7 @@ void Casillero_inaccesible::imprimir_resumen(){
 
 void Casillero_inaccesible::mostrar_casillero(Jugador* jugador, int cantidad_construidos){
 }
+
+void Casillero_inaccesible::modificar_ocupado(bool estado) {
+    this->ocupado = estado;
+}

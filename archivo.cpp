@@ -110,19 +110,17 @@ Material* Archivo::generar_material(string nombre, int cantidad){
     return material;
 }
 
-int Archivo::leer_archivo_ubicaciones(Mapa* &mapa, Diccionario<Edificacion>* &diccionario){
+int Archivo::leer_archivo_ubicaciones(Mapa* &mapa, Diccionario<Edificacion>* &diccionario, Jugador* &jugador_1, Jugador* &jugador_2){
     int ejecucion = 1;
-
-    string jugador_2 = "2";
 
     ifstream documento(PATH_UBICACIONES);
 
     if (!documento.is_open()){
         ejecucion = ERROR;
     } else {
-        ejecucion = leer_ubicaciones_materiales(documento,mapa);
+        ejecucion = leer_ubicaciones_materiales(documento,mapa, jugador_1);
         if (ejecucion != ERROR){
-            leer_edificios_jugador_1(documento, jugador_2,mapa, diccionario);     
+            leer_edificios_jugador_1(documento,mapa, diccionario, jugador_2);     
             leer_edificios_jugador_2(documento,mapa, diccionario);
         }
         documento.close();
@@ -131,7 +129,7 @@ int Archivo::leer_archivo_ubicaciones(Mapa* &mapa, Diccionario<Edificacion>* &di
 }
 
 
-int Archivo::leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa){
+int Archivo::leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa, Jugador* &jugador){
     int ejecucion = 1;
 
     bool leyendo_materiales = true;
@@ -153,9 +151,10 @@ int Archivo::leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa){
             } else {
                 documento >> fila;
                 documento >> columna;
-                int clean_fila = arreglarCoordenadaX(fila);
-                int clean_columna = arreglarCoordenadaY(columna);
-                agregar_posicion_jugador(clean_fila,clean_columna,mapa);
+                jugador->modificar_fila(arreglarCoordenadaX(fila));
+                jugador->modificar_columna(arreglarCoordenadaY(columna));
+
+                agregar_posicion_jugador(mapa, jugador);
                 leyendo_materiales = false;
             }
         } else {
@@ -175,7 +174,7 @@ void Archivo::leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Dicciona
 
 }
 
-void Archivo::leer_edificios_jugador_1(ifstream &documento, string jugador, Mapa* &mapa, Diccionario<Edificacion>*&diccionario){
+void Archivo::leer_edificios_jugador_1(ifstream &documento, Mapa* &mapa, Diccionario<Edificacion>*&diccionario, Jugador* &jugador){
 
     bool leyendo_edificios_P1 = true;
 
@@ -189,9 +188,10 @@ void Archivo::leer_edificios_jugador_1(ifstream &documento, string jugador, Mapa
         else{
             documento >> fila;
             documento >> columna;
-            int clean_fila = arreglarCoordenadaX(fila);
-            int clean_columna = arreglarCoordenadaY(columna);
-            agregar_posicion_jugador(clean_fila,clean_columna,mapa);
+            jugador->modificar_fila(arreglarCoordenadaX(fila));
+            jugador->modificar_columna(arreglarCoordenadaY(columna));
+
+            agregar_posicion_jugador(mapa, jugador);
             leyendo_edificios_P1 = false;
         }
     }
@@ -231,6 +231,7 @@ int Archivo::arreglarCoordenadaX(string fila){
     fila = fila.substr(1);
     fila.pop_back();
 
+
     return (stoi(fila));
 }
 
@@ -239,8 +240,8 @@ int Archivo::arreglarCoordenadaY(string columna){
     return (stoi(columna));
 }
 
-void Archivo::agregar_posicion_jugador(int fila, int columna, Mapa *&mapa) {
-    mapa->agregar_jugador(fila,columna);
+void Archivo::agregar_posicion_jugador(Mapa *&mapa, Jugador* &jugador) {
+    mapa->agregar_jugador(jugador);
 }
 
 Archivo::~Archivo(){}

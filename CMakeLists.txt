@@ -46,4 +46,12 @@ add_executable(tp_3 constantes.h main.cpp
         mas_alto_que_las_nubes.cpp mas_alto_que_las_nubes.h
         mina_oro.cpp mina_oro.h
         objetivos.cpp objetivos.h
-        lista.h)
+        lista.h
+        Grafo.cpp Grafo.h
+        Lista.h
+        Nodo.h
+        nodo.h nodo.cpp
+        nodo_lista.h
+        Vertice.cpp Vertice.h
+        Floyd.cpp Floyd.h
+        Camino_minimo.cpp Camino_minimo.h)

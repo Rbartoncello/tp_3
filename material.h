@@ -67,6 +67,8 @@ class Material{
         */
         void imprimir_resumen();
 
+        void aumentar_cantidad(int cantidad);
+
         virtual ~Material() = 0;
 };
 
