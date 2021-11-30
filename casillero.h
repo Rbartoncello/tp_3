@@ -1,10 +1,11 @@
 #ifndef CASILLERO_H
 #define CASILLERO_H
-#include "colors.h"
 #include <string>
 #include <iostream>
+#include "colors.h"
 #include "material.h"
 #include "edificacion.h"
+#include "jugador.h"
 
 using namespace std;
 
@@ -13,6 +14,7 @@ class Casillero{
         char tipo_terreno;
         
     private:
+        Jugador* jugador;
         int pos_x;
         int pos_y;
 
@@ -127,6 +129,16 @@ class Casillero{
         string devolver_posicion();
 
         virtual int devolver_costo() = 0;
+
+        virtual void agregar_jugador(Jugador* jugador) = 0;
+
+        void modificar_jugador(Jugador* jugador);
+
+        Jugador* devolver_jugador();
+
+        virtual void eliminar_jugador() = 0;
+
+        virtual void mover_jugador(Jugador* jugador) = 0;
 };
 
 

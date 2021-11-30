@@ -2,8 +2,8 @@
 #define JUEGADOR_H
 #include "materiales.h"
 #include "lista.h"
-#include "objetivos.h"
-#include "mas_alto_que_las_nubes.h"
+//#include "objetivos.h"
+//#include "mas_alto_que_las_nubes.h"
 
 class Jugador{
     private:
@@ -11,7 +11,7 @@ class Jugador{
         string emoji;
         int energia, numero, fila, columna;
         Lista* inventario;
-        Objetivos** objetivos_secundarios;
+        //Objetivos** objetivos_secundarios;
         //Mas_alto_que_las_nubes* objetivo_primario;
         
 
@@ -42,7 +42,7 @@ class Jugador{
          * Pre: Recibe un nombre de un material que exita.
          * Post: Ingresa el objeto en un vector dinámico.
          */
-        void agregar_material(string nombre, int cantidad);
+        void aumentar_material(Material* material);
 
         /*
          * Destructor:

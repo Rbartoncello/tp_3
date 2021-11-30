@@ -4,6 +4,8 @@
 #include "Lista.h"
 #include "Vertice.h"
 #include "Floyd.h"
+#include "mapa.h"
+#include "jugador.h"
 
 using namespace std;
 
@@ -18,7 +20,7 @@ private:
 
     //pre: tienen que existir tanto el origen como el destino. Ademas se deben haber calculado las matrices de Floyd
     //post: muestra el camino minimo entre el origen y el destino
-    void camino_minimo(int origen, int destino);
+    void camino_minimo(int origen, int destino, Mapa* &mapa, Jugador* &jugador);
 
     //post: agranda dinamicamente la matriz de adyacencia
     void agrandar_matriz_adyacencia();
@@ -42,7 +44,7 @@ public:
 
     //pre: se debe tener un algortimo para calcular el camino mínimo previamente elegido
     //post: muestra por terminal el camino mínimo desde un origen a un destino
-    void camino_minimo(string origen, string destino);
+    void camino_minimo(string origen, string destino, Mapa* &mapa, Jugador* &jugador);
 
     //pre: el peso es un valor positivo
     //post: Ajusta la matriz de adyacencia con el peso ingresado

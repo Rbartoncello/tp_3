@@ -1,5 +1,6 @@
 #include <iostream>
 #include "jugador.h"
+#include "interface.h"
 
 Jugador::Jugador(int numero, string emoji){
     this->numero = numero;
@@ -14,7 +15,8 @@ Jugador::~Jugador(){
     //delete this->objetivos_secundarios
 }
 
-void Jugador::agregar_material(string nombre, int cantidad){
+void Jugador::aumentar_material(Material* material){
+    inventario->obtener_direccion_nodo(inventario->obtener_posicion(material->devolver_nombre()))->devolver_dato()->aumentar_cantidad(material->devolver_cantidad());
     //this->inventario->(nombre, cantidad);
 }
 

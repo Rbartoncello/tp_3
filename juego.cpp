@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unistd.h>
 #include "juego.h"
 #include "interface.h"
 
@@ -31,7 +32,7 @@ int Juego::cargar() {
 }
 
 int Juego::archivo_ubicaciones(){
-    return lector_archivos->leer_archivo_ubicaciones(mapa, this->diccionario);
+    return lector_archivos->leer_archivo_ubicaciones(mapa, this->diccionario, jugador_1, jugador_2);
 }
 
 void Juego::nueva_partida(){
@@ -79,52 +80,6 @@ void Juego::procesar_opcion_nueva_partida(int opcion){
 void Juego::mostrar() {
     imprimir_menu_juego(this->mapa, this->jugador_actual);
     imprimir_objetos_mapa();
-}
-
-void Juego::cargar_grafo() {
-    mapa->mostrar();
-    for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
-        for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
-            Casillero* casillero = mapa->devolver_casillero(i, j);
-            if ( ! ( casillero->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero->esta_ocupado() ) ) ){
-                this->grafo->agregarVertice(casillero->devolver_posicion());
-            }
-        }
-    }
-
-    for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
-        for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
-            if (j < mapa->devolver_cantidad_columnas() - 1){
-                Casillero* casillero_1 = mapa->devolver_casillero(i, j);
-                Casillero* casillero_2 = mapa->devolver_casillero(i, j+1);
-                if ( ! ( casillero_1->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_1->esta_ocupado() ) ) ){
-                    if ( ! ( casillero_2->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_2->esta_ocupado() ) ) ){
-                        this->grafo->agregar_camino(casillero_1->devolver_posicion(), casillero_2->devolver_posicion(), casillero_2->devolver_costo());
-                        this->grafo->agregar_camino(casillero_2->devolver_posicion(), casillero_1->devolver_posicion(), casillero_1->devolver_costo());
-                    }
-                }
-            }
-        }
-    }
-
-    for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
-        for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
-            if (i < mapa->devolver_cantidad_filas() - 1){
-                Casillero* casillero_1 = mapa->devolver_casillero(i, j);
-                Casillero* casillero_2 = mapa->devolver_casillero(i+1, j);
-                if ( ! ( casillero_1->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_1->esta_ocupado() ) ) ){
-                    if ( ! ( casillero_2->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_2->esta_ocupado() ) ) ){
-                        this->grafo->agregar_camino(casillero_1->devolver_posicion(), casillero_2->devolver_posicion(), casillero_2->devolver_costo());
-                        this->grafo->agregar_camino(casillero_2->devolver_posicion(), casillero_1->devolver_posicion(), casillero_1->devolver_costo());
-                    }
-                }
-            }
-        }
-    }
-
-    grafo->usar_floyd();
-    grafo->camino_minimo("10 3", "2 10");
-    cout << "Necesito de energia " << grafo->devolver_costo("10 3", "2 10") << endl;
 }
 
 void Juego::modificar_receta(Diccionario<Edificacion>*&diccionario, string nombre_edificio, string material){
@@ -260,8 +215,15 @@ Jugador* Juego::devolver_jugador_turno() {
     return jugador;
 }
 
-void Juego::mostrar_inventario(Jugador* jugador_turno) {
-    jugador_turno->mostrar_inventario();
+Jugador* Juego::devolver_jugador_siguiente_turno() {
+    Jugador* jugador;
+    
+    if (this->jugador_actual == JUGADOR_1)
+        jugador = this->jugador_2;
+    else    
+        jugador = this->jugador_1;
+
+    return jugador;
 }
 
 void Juego::validar_opcion_ingresada(int &opcion_elegida, int max, int min){
@@ -316,11 +278,97 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             cout<<"Recolectar recursos"<<endl;
             break;
         case MOVERSE_COORDENADA:
+            moverse_coordenada();
+            
             cout<<"Moverse Coordeanada"<<endl;
             break;
         case FINALIZAR_TURNO:
             cout<<"Aqui finalizaría el turno"<<endl;
             break;
+    }
+}
+
+void Juego::mostrar_inventario(Jugador* jugador_turno) {
+    jugador_turno->mostrar_inventario();
+}
+
+void Juego::moverse_coordenada() {
+    cargar_grafo();
+
+    Jugador* jugador = devolver_jugador_turno();
+
+    int fila_actual = devolver_jugador_turno()->devolver_fila();
+    int columna_actual = devolver_jugador_turno()->devolver_columna();
+    
+    int fila = pedir_fila();
+    int columna = pedir_columna();
+    
+    string posicion_actual = to_string(fila_actual) + " " + to_string(columna_actual);
+    string posicion_ingresada = to_string(fila) + " " + to_string(columna);
+    //if ( devolver_jugador_turno().devolver_energia < grafo->devolver_costo("10 3", "10 10") )
+    
+    grafo->camino_minimo(posicion_actual, posicion_ingresada, mapa, jugador);
+    cout << grafo->devolver_costo(posicion_actual, posicion_ingresada) << endl;
+    imprimir_mensaje_enter_continuar();
+}
+
+void Juego::cargar_grafo() {
+    Jugador* jugador = devolver_jugador_siguiente_turno();
+
+    for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
+        for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
+            Casillero* casillero = mapa->devolver_casillero(i, j);
+            if ( ! ( casillero->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero->esta_ocupado() ) ) ){
+                if ( ( i != jugador->devolver_fila() ) || ( j != jugador->devolver_columna() ) ){
+                    this->grafo->agregarVertice(casillero->devolver_posicion());
+                }
+            }
+        }
+    }
+    cargar_costos();
+    grafo->usar_floyd();
+}
+
+void Juego::cargar_costos(){
+    Jugador* jugador = devolver_jugador_siguiente_turno();
+
+    for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
+        for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
+            if (j < mapa->devolver_cantidad_columnas() - 1){
+                Casillero* casillero_1 = mapa->devolver_casillero(i, j);
+                Casillero* casillero_2 = mapa->devolver_casillero(i, j+1);
+                if ( ! ( casillero_1->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_1->esta_ocupado() ) ) ){
+                    if ( ( i != jugador_1->devolver_fila() ) || ( j != jugador->devolver_columna() ) ){
+                        if ( ! ( casillero_2->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_2->esta_ocupado() ) ) ){
+                            if ( ( i != jugador->devolver_fila() ) || ( j+1 != jugador->devolver_columna() ) ){
+                                this->grafo->agregar_camino(casillero_1->devolver_posicion(), casillero_2->devolver_posicion(), casillero_2->devolver_costo());
+                                this->grafo->agregar_camino(casillero_2->devolver_posicion(), casillero_1->devolver_posicion(), casillero_1->devolver_costo());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
+        for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
+            if (i < mapa->devolver_cantidad_filas() - 1){
+                Casillero* casillero_1 = mapa->devolver_casillero(i, j);
+                Casillero* casillero_2 = mapa->devolver_casillero(i+1, j);
+                if ( ! ( casillero_1->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_1->esta_ocupado() ) ) ){
+                    if ( ( i != jugador->devolver_fila() ) || ( j != jugador->devolver_columna() ) ){
+                        if ( ! ( casillero_2->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_2->esta_ocupado() ) ) ){
+                            if ( ( i+1 != jugador->devolver_fila() ) || ( j != jugador->devolver_columna() ) ){
+                                this->grafo->agregar_camino(casillero_1->devolver_posicion(), casillero_2->devolver_posicion(), casillero_2->devolver_costo());
+                                this->grafo->agregar_camino(casillero_2->devolver_posicion(), casillero_1->devolver_posicion(), casillero_1->devolver_costo());
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

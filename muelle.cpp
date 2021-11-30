@@ -31,10 +31,12 @@ Muelle::~Muelle() {
 }
 
 void Muelle::mostrar(){
-    if (!this->esta_ocupado())
-        cout << BGND_BROWN_94 << "  " << END_COLOR;
-    else
+    if(!this->esta_ocupado())
+        cout << BGND_BROWN_94  << "  " << END_COLOR;
+    else if (material != nullptr)
         cout << BGND_BROWN_94  << this->material->devolver_emoji() << END_COLOR;
+    else
+        cout << BGND_BROWN_94  << devolver_jugador()->devolver_emoji() << END_COLOR;
 }
 
 void Muelle::agregar_material(Material* material) {
@@ -54,5 +56,17 @@ void Muelle::imprimir_resumen(){
         cout << "\tSoy un casillero transitable y me encuentro vacío" << endl;
 }
 
+void Muelle::agregar_jugador(Jugador* jugador) {
+    modificar_jugador(jugador);
+    modificar_ocupado(true);
+}
 
+void Muelle::eliminar_jugador() {
+    modificar_jugador(nullptr);
+    modificar_ocupado(false);
+}
 
+void Muelle::mover_jugador(Jugador* jugador) {
+    modificar_jugador(jugador);
+    modificar_ocupado(true);
+}

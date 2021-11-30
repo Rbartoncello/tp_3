@@ -44,3 +44,11 @@ string Casillero::devolver_posicion() {
     string posicion =  to_string(pos_y) + " " + to_string(pos_x);
     return posicion;
 }
+
+void Casillero::modificar_jugador(Jugador* jugador) {
+    this->jugador = jugador;
+}
+
+Jugador* Casillero::devolver_jugador() {
+    return jugador;
+}

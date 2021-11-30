@@ -1,4 +1,5 @@
 #include "Floyd.h"
+#include <unistd.h>
 
 int ** Floyd::crear_matriz_caminos(){
 
@@ -57,17 +58,22 @@ void Floyd::calcular_matrices() {
 
 }
 
-void Floyd::camino_minimo(int origen, int destino) {
+void Floyd::camino_minimo(int origen, int destino, Mapa* &mapa, Jugador* &jugador) {
 
     if(matriz_caminos[origen][destino] == POSICION_NO_ENCONTRADA){
         cout << "No hay un camino que conecte " <<  vertices->obtener_nombre(origen + 1) << " con " << vertices->obtener_nombre(destino + 1);
     }else{
-        cout << "El camino minimo que une " <<  vertices->obtener_nombre(origen + 1) << " con " << vertices->obtener_nombre(destino + 1);
-        cout << " tiene un costo de: " << matriz_costos[origen][destino] << " y es el siguiente: ";
-        cout << vertices->obtener_nombre(origen + 1);
         do{
             origen = matriz_caminos[origen][destino];
-            cout << " -> " << vertices->obtener_nombre(origen + 1);
+            string fila = vertices->obtener_nombre(origen + 1);
+            fila.pop_back();
+            int num_fila = stoi(fila);
+            string columna = vertices->obtener_nombre(origen + 1);
+            columna = columna.substr(2);
+            int num_columna = stoi(columna);
+            mapa->mover_jugador(jugador, num_fila, num_columna);
+            sleep(1);
+            mapa->mostrar();
         }while(origen != destino);
     }
     cout << endl;

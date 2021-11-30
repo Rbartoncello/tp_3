@@ -28,7 +28,7 @@ void Grafo::agregar_camino(string origen, string destino, int peso) {
     }
 }
 
-void Grafo::camino_minimo(string origen, string destino) {
+void Grafo::camino_minimo(string origen, string destino, Mapa* &mapa, Jugador* &jugador) {
     int posicionOrigen = vertices ->obtener_posicion(origen);
     int posicionDestino = vertices ->obtener_posicion(destino);
 
@@ -37,7 +37,7 @@ void Grafo::camino_minimo(string origen, string destino) {
     } else if(posicionDestino == POSICION_NO_ENCONTRADA){
         cout << "El vertice " << destino << " no existe en el grafo" << endl;
     } else
-        camino_minimo(posicionOrigen, posicionDestino);
+        camino_minimo(posicionOrigen, posicionDestino, mapa, jugador);
 }
 
 void Grafo::agrandar_matriz_adyacencia() {
@@ -85,8 +85,8 @@ Grafo::~Grafo() {
     delete algoritmo_camino_minimo;
 }
 
-void Grafo::camino_minimo(int origen, int destino) {
-    algoritmo_camino_minimo -> camino_minimo(origen, destino);
+void Grafo::camino_minimo(int origen, int destino, Mapa* &mapa, Jugador* &jugador) {
+    algoritmo_camino_minimo -> camino_minimo(origen, destino, mapa, jugador);
 }
 
 void Grafo::usar_floyd() {

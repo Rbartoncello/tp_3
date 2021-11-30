@@ -24,5 +24,23 @@ Lago::~Lago() {
 }
 
 void Lago::mostrar(){
-    cout << BGND_LIGHT_BLUE_68 << "  " << END_COLOR;
+    if(!this->esta_ocupado())
+        cout << BGND_LIGHT_BLUE_68  << "  " << END_COLOR;
+    else
+        cout << BGND_LIGHT_BLUE_68  << devolver_jugador()->devolver_emoji() << END_COLOR;
+}
+
+void Lago::agregar_jugador(Jugador* jugador) {
+    modificar_jugador(jugador);
+    modificar_ocupado(true);
+}
+
+void Lago::eliminar_jugador() {
+    modificar_jugador(nullptr);
+    modificar_ocupado(false);
+}
+
+void Lago::mover_jugador(Jugador* jugador) {
+    modificar_jugador(jugador);
+    modificar_ocupado(true);
 }

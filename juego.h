@@ -175,7 +175,13 @@ class Juego{
 
         Jugador* devolver_jugador_turno();
 
+        Jugador* devolver_jugador_siguiente_turno();
+
         void mostrar_inventario(Jugador* jugador_turno);
+
+        void moverse_coordenada();
+
+        void cargar_costos();
 };
 
 #endif //JUEGO_H

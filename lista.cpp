@@ -34,6 +34,25 @@ Nodo_lista* Lista::obtener_direccion_nodo(int posicion){
     return (auxiliar);
 }
 
+int Lista::obtener_posicion(string nombre) {
+    bool elementoEncontrado = false;
+    int i = 0;
+    Nodo_lista* auxiliar = primero;
+
+    while(!elementoEncontrado && i < cantidad_en_lista){
+        if(auxiliar->devolver_dato()->devolver_nombre() == nombre){
+            elementoEncontrado = true;
+        }
+        i++;
+        auxiliar = auxiliar->direccion_siguiente();
+    }
+
+    if(!elementoEncontrado){
+        return -1;
+    }
+    return i - 1;
+}
+
 Nodo_lista*& Lista::retornar_primero(){
 
     return(primero);

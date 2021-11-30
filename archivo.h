@@ -28,7 +28,7 @@ class Archivo {
 
         //Pre:
         //Post:
-        int leer_archivo_ubicaciones(Mapa* &mapa, Diccionario<Edificacion>* &diccionario);
+        int leer_archivo_ubicaciones(Mapa* &mapa, Diccionario<Edificacion>* &diccionario, Jugador* &jugador_1, Jugador* &jugador_2);
 
         //Pre:
         //Post:retorna el nombre del archivo.
@@ -50,13 +50,13 @@ class Archivo {
         //Post:valida si existe el Archivo.
         void validarArchivo();
 
-        int leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa);
+        int leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa, Jugador* &jugador);
 
         void agregar_edificio(ifstream &documento,string nombre_edificio,Mapa* &mapa, Diccionario<Edificacion>*&diccionario, int duenio);
 
-        void agregar_posicion_jugador(int coordX, int coordY,Mapa* &mapa);
+        void agregar_posicion_jugador(Mapa* &mapa, Jugador* &jugador);
         
-        void leer_edificios_jugador_1(ifstream &documento, string jugador,Mapa* &mapa, Diccionario<Edificacion>*&diccionario);
+        void leer_edificios_jugador_1(ifstream &documento, Mapa* &mapa, Diccionario<Edificacion>*&diccionario, Jugador* &jugador);
 
         void leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Diccionario<Edificacion>*&diccionario);
 

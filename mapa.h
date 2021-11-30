@@ -3,6 +3,7 @@
 #include <fstream>
 #include "casillero.h"
 #include "andycoins.h"
+#include "jugador.h"
 
 using namespace std;
 class Mapa{
@@ -53,9 +54,9 @@ class Mapa{
          */
         void agregar_material(string nombre, int fila, int columna);
 
-   
+        void agregar_jugador(Jugador* jugador);
 
-        void agregar_jugador(int coordX, int coordY);
+        void mover_jugador(Jugador* jugador, int fila , int columna);
 
         char devolver_tipo_terreno(int coord1, int columna);
 

@@ -34,8 +34,8 @@ const string EMOJI_METAL = "\u2699 ";
 const string EMOJI_BOMBA = "\U0001f4a3";
 const string EMOJI_ANDYCOINS = "\U0001f4b0";
 
-const string EMOJI_JUGADOR_1 = "\U0001f9cd\u200D\u2642";
-const string EMOJI_JUGADOR_2 = "\U0001f9cd";
+const string EMOJI_JUGADOR_1 = "\U0001f469";
+const string EMOJI_JUGADOR_2 = "\U0001f468";
 
 const string EMOJI_MINA ="\u26CF ";
 const string EMOJI_MINA_ORO = "\U0001fa99 ";

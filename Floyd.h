@@ -29,7 +29,7 @@ public:
     Floyd(Lista_grafo<Vertice> *vertices, int ** matriz_adyacencia);
 
     //post: muestra por pantalla el camino mínimo entre el origen y el destino, detallando su recorrido y peso
-    void camino_minimo(int origen, int destino);
+    void camino_minimo(int origen, int destino, Mapa* &mapa, Jugador* &jugador);
 
     ~Floyd();
 };
