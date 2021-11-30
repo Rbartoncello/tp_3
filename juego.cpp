@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include "juego.h"
 #include "interface.h"
+#include <time.h>
 
 Juego::Juego(){
     this->mapa = new Mapa();
@@ -247,6 +248,7 @@ bool Juego::es_opcion_valida(int opcion, int max, int min){
 }
 
 void Juego::procesar_opcion_partida_empezada(int opcion){
+
     switch (opcion){
         case CONSTRUIR_EDIFICIO_NOMBRE:
             mapa->mostrar();

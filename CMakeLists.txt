@@ -39,6 +39,7 @@ add_executable(tp_3 constantes.h main.cpp
         metal.cpp metal.h
         bomba.cpp bomba.h
         andycoins.cpp andycoins.h
+        diccionario_como_template
         bombardero.cpp bombardero.h
         comprar_andypolis.cpp comprar_andypolis.h
         edad_piedra.cpp edad_piedra.h
