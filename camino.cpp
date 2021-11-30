@@ -17,7 +17,7 @@ void Camino::modificar_terreno(string elemento,int accion){
     //crear material y asignarlo a Materiales
 }
 
-void Camino::modicar_costo(int costo) {
+void Camino::modificar_costo(int costo) {
     this->costo = costo;
 }
 
@@ -34,7 +34,7 @@ void Camino::mostrar(){
         cout << BGND_GRAY_243  << "  " << END_COLOR;
     else if (material != nullptr)
         cout << BGND_GRAY_243  << this->material->devolver_emoji() << END_COLOR;
-    else //if (devolver_jugador() != nullptr)
+    else
         cout << BGND_GRAY_243  << devolver_jugador()->devolver_emoji() << END_COLOR;
 }
 
@@ -50,7 +50,10 @@ Material* Camino::devolver_material() {
 void Camino::imprimir_resumen(){
     if(this->esta_ocupado()){
         cout << "\tSoy un casillero transitable y no me encuentro vacío" << endl;
-        this->material->imprimir_resumen();
+        if (material != nullptr)
+            this->material->imprimir_resumen();
+        else
+            cout <<"\tSoy el jugador: " << devolver_jugador()->devolver_numero() << " ( " << devolver_jugador()->devolver_emoji() << " ) y me encuentro en el casillero consultado."<< endl;
     } else
         cout << "\tSoy un casillero transitable y me encuentro vacío" << endl;
 }
@@ -66,7 +69,7 @@ void Camino::eliminar_jugador() {
 }
 
 void Camino::mover_jugador(Jugador* jugador) {
-    if (esta_ocupado()){
+    if (esta_ocupado() && material != nullptr){
         jugador->aumentar_material(material);
         delete material;
         material = nullptr;

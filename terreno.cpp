@@ -52,7 +52,7 @@ void Terreno::remover_edificio(){
     edificacion = nullptr;
 }
 
-void Terreno::modicar_costo(int costo) {
+void Terreno::modificar_costo(int costo) {
     this->costo = costo;
 }
 
@@ -86,7 +86,10 @@ void Terreno::agregar_edificio(Edificacion *edificio){
 void Terreno::imprimir_resumen(){
     if(this->esta_ocupado()){
         cout << "\tSoy un casillero construible y no me encuentro vacío" << endl;
-        this->edificacion->imprimir_resumen();
+        if (edificacion != nullptr)
+            this->edificacion->imprimir_resumen();
+        else
+            cout <<"\tSoy el jugador: " << devolver_jugador()->devolver_numero() << " ( " << devolver_jugador()->devolver_emoji() << " ) y me encuentro en el casillero consultado."<< endl;
     } else
         cout << "\tSoy un casillero construible y me encuentro vacío" << endl;
 }

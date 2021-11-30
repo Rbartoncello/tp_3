@@ -14,7 +14,7 @@ class Lago : public Casillero_inaccesible {
 
         Lago(char tipo_terreno, int pos_x, int pos_y);
 
-        void modicar_costo(int costo);
+        void modificar_costo(int costo);
 
         int devolver_costo();
 

@@ -18,7 +18,7 @@ void Muelle::modificar_terreno(string elemento,int accion){
     //crear material y asignarlo a Materiales
 }
 
-void Muelle::modicar_costo(int costo) {
+void Muelle::modificar_costo(int costo) {
     this->costo = costo;
 }
 
@@ -51,7 +51,10 @@ Material* Muelle::devolver_material() {
 void Muelle::imprimir_resumen(){
     if(this->esta_ocupado()){
         cout << "\tSoy un casillero transitable y no me encuentro vacío" << endl;
-        this->material->imprimir_resumen();
+        if (material != nullptr)
+            this->material->imprimir_resumen();
+        else
+            cout <<"\tSoy el jugador: " << devolver_jugador()->devolver_numero() << " ( " << devolver_jugador()->devolver_emoji() << " ) y me encuentro en el casillero consultado."<< endl;
     } else
         cout << "\tSoy un casillero transitable y me encuentro vacío" << endl;
 }
@@ -67,6 +70,12 @@ void Muelle::eliminar_jugador() {
 }
 
 void Muelle::mover_jugador(Jugador* jugador) {
+    if (esta_ocupado()){
+        jugador->aumentar_material(material);
+        delete material;
+        material = nullptr;
+    }
+    
     modificar_jugador(jugador);
     modificar_ocupado(true);
 }

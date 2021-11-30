@@ -287,6 +287,9 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             break;
         case FINALIZAR_TURNO:
             jugador_actual = devolver_jugador_turno();
+            if (jugador_actual->devolver_energia() <= 0){
+                jugador_actual = devolver_jugador_turno();
+            }
             break;
     }
 }
@@ -341,13 +344,30 @@ void Juego::cargar_costos(){
     cargar_costos_columnas();
 }
 
+void Juego::modificar_costo_casillero(Casillero* &casillero){
+    if ( casillero->devolver_tipo_terreno() == LAGO ){
+        if ( jugador_actual->devolver_numero() ==  JUGADOR_1 )
+            casillero->modificar_costo(2);
+        else
+            casillero->modificar_costo(5);
+    } else if ( casillero->devolver_tipo_terreno() == MUELLE ){
+        if ( jugador_actual->devolver_numero() ==  JUGADOR_1 )
+            casillero->modificar_costo(5);
+        else
+            casillero->modificar_costo(2);
+    }
+}
+
 void Juego::cargar_costos_filas(){
     for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
         for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
             if (j < mapa->devolver_cantidad_columnas() - 1){
                 Casillero* casillero_1 = mapa->devolver_casillero(i, j);
                 Casillero* casillero_2 = mapa->devolver_casillero(i, j+1);
+                modificar_costo_casillero(casillero_1);
+                modificar_costo_casillero(casillero_2);
                 if ( ! ( casillero_1->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_1->esta_ocupado() ) ) ){
+
                     //if ( ( i != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) ){
                         if ( ! ( casillero_2->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_2->esta_ocupado() ) ) ){
                             //if ( ( i != jugador_sig->devolver_fila() ) || ( j+1 != jugador_sig->devolver_columna() ) ){
@@ -368,6 +388,8 @@ void Juego::cargar_costos_columnas(){
             if (i < mapa->devolver_cantidad_filas() - 1){
                 Casillero* casillero_1 = mapa->devolver_casillero(i, j);
                 Casillero* casillero_2 = mapa->devolver_casillero(i+1, j);
+                modificar_costo_casillero(casillero_1);
+                modificar_costo_casillero(casillero_2);
                 if ( ! ( casillero_1->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_1->esta_ocupado() ) ) ){
                     //if ( ( i != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) ){
                         if ( ! ( casillero_2->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_2->esta_ocupado() ) ) ){

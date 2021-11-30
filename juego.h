@@ -185,6 +185,8 @@ class Juego{
         void cargar_costos_columnas();
 
         void agregar_energia_comienza_partida();
+
+        void modificar_costo_casillero(Casillero* &casillero);
 };
 
 #endif //JUEGO_H

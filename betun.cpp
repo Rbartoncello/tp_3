@@ -17,7 +17,7 @@ void Betun::modificar_terreno(string elemento,int accion){
     //crear material y asignarlo a Materiales
 }
 
-void Betun::modicar_costo(int costo) {
+void Betun::modificar_costo(int costo) {
     this->costo = costo;
 }
 
@@ -50,7 +50,10 @@ Material* Betun::devolver_material() {
 void Betun::imprimir_resumen(){
     if(this->esta_ocupado()){
         cout << "\tSoy un casillero transitable y no me encuentro vacío" << endl;
-        this->material->imprimir_resumen();
+        if (material != nullptr)
+            this->material->imprimir_resumen();
+        else
+            cout <<"\tSoy el jugador: " << devolver_jugador()->devolver_numero() << " ( " << devolver_jugador()->devolver_emoji() << " ) y me encuentro en el casillero consultado."<< endl;
     } else
         cout << "\tSoy un casillero transitable y me encuentro vacío" << endl;
 }
@@ -66,6 +69,12 @@ void Betun::eliminar_jugador() {
 }
 
 void Betun::mover_jugador(Jugador* jugador) {
+    if (esta_ocupado() && material != nullptr){
+        jugador->aumentar_material(material);
+        delete material;
+        material = nullptr;
+    }
+    
     modificar_jugador(jugador);
     modificar_ocupado(true);
 }

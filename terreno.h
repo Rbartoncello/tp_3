@@ -56,7 +56,7 @@ class Terreno : public Casillero_construible{
          * PRE: costo tiene que ser mayor a 0
          * POST: Me modifica el costo
          */
-        void modicar_costo(int costo);
+        void modificar_costo(int costo);
 
         /*
          * PRE: -

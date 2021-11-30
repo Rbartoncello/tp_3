@@ -11,7 +11,7 @@ Lago::Lago(char tipo_terreno, int pos_x, int pos_y) : Casillero_inaccesible(tipo
     this->costo = 2;
 }
 
-void Lago::modicar_costo(int costo) {
+void Lago::modificar_costo(int costo) {
     this->costo = costo;
 }
 

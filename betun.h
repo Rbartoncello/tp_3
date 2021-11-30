@@ -31,7 +31,7 @@ class Betun : public Casillero_transitable{
          * PRE: -
          * POST: Me modifica el costo
          */
-        void modicar_costo(int costo);
+        void modificar_costo(int costo);
 
         /*
          * PRE: -

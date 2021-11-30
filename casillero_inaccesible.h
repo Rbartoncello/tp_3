@@ -72,6 +72,8 @@ class Casillero_inaccesible : public Casillero {
         virtual void eliminar_jugador() = 0;
 
         virtual void mover_jugador(Jugador* jugador) = 0;
+
+        virtual void modificar_costo(int costo) = 0;
 };
 
 #endif
