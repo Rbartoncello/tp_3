@@ -74,7 +74,8 @@ void imprimir_menu_juego(Mapa *mapa, Jugador* jugador_actual)
     system("clear");
     Gotoxy gotoxy;
     mapa->mostrar();
-    cout << gotoxy.pos(1, 65) << "Jugador: " << jugador_actual->devolver_numero()<<  endl; //Aca despues iria devolver_nombre()
+    cout << gotoxy.pos(1, 65) << "Jugador: " << jugador_actual->devolver_numero(); //Aca despues iria devolver_nombre()
+    cout << "\tEnergia disponible : " << jugador_actual->devolver_energia();
     cout << TXT_LIGHT_AQUA_43 << TXT_BOLD;
     cout << gotoxy.pos(2, 65) << "╔════╦═══════════════════════════════════════╗" << endl
          << gotoxy.pos(3, 65) << "║ " << EMOJI_UNO << " ║" << END_COLOR << TXT_BOLD << " Construir edificio por nombre " << EMOJI_EDIFICIO_CONSTRUCION << TXT_LIGHT_AQUA_43 << "       ║" << endl
@@ -113,12 +114,14 @@ void imprimir_objetos_mapa()
     cout << "■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■" << endl;
     cout << END_COLOR;
     cout << TXT_LIGHT_PURPLE_104 << "║" << END_COLOR << "\t" << TXT_UNDERLINE << TXT_BOLD << "Edificio:\t\t\tMateriales" << END_COLOR << TXT_LIGHT_PURPLE_104 << "\t    ║" << END_COLOR << endl;
-    cout << TXT_LIGHT_PURPLE_104 << "■" << END_COLOR << "\t-Mina ( " << EMOJI_MINA << " )\t\t\t-Piedra ( " << EMOJI_PIEDRA << "  )" << TXT_LIGHT_PURPLE_104 << "\t    ■" << END_COLOR << endl;
+    cout << TXT_LIGHT_PURPLE_104 << "■" << END_COLOR << "\t-Mina ( " << EMOJI_MINA << " )\t\t\t-Piedra ( " << EMOJI_PIEDRA << " )" << TXT_LIGHT_PURPLE_104 << "\t    ■" << END_COLOR << endl;
     cout << TXT_LIGHT_PURPLE_104 << "║" << END_COLOR << "\t-Aserradero ( " << EMOJI_ASERRADERO << " )\t\t-Madera ( " << EMOJI_MADERA << " )" << TXT_LIGHT_PURPLE_104 << "\t    ║" << END_COLOR << endl;
     cout << TXT_LIGHT_PURPLE_104 << "■" << END_COLOR << "\t-Fabrica ( " << EMOJI_FABRICA << " )\t\t\t-Metal ( " << EMOJI_METAL << ")" << TXT_LIGHT_PURPLE_104 << "\t    ■" << END_COLOR << endl;
     cout << TXT_LIGHT_PURPLE_104 << "║" << END_COLOR << "\t-Escuela ( " << EMOJI_ESCUELA << " )\t\t\t-Andycoins ( " << EMOJI_ANDYCOINS << " )" << TXT_LIGHT_PURPLE_104 << "   ║" << END_COLOR << endl;
     cout << TXT_LIGHT_PURPLE_104 << "■" << END_COLOR << "\t-Obelisco ( " << EMOJI_OBELISCO << " )" << TXT_LIGHT_PURPLE_104 << "\t\t\t\t    ■" << END_COLOR << endl;
     cout << TXT_LIGHT_PURPLE_104 << "║" << END_COLOR << "\t-Planta eléctrica ( " << EMOJI_PLANTA_ENERGIA << " )" << TXT_LIGHT_PURPLE_104 << "\t\t\t    ║" << END_COLOR << endl;
+    cout << TXT_LIGHT_PURPLE_104 << "■" << END_COLOR << "\t" << TXT_UNDERLINE << TXT_BOLD << "Jugadores:\t\t\t\t" << END_COLOR << TXT_LIGHT_PURPLE_104 << "\t    ■" << END_COLOR << endl;
+    cout << TXT_LIGHT_PURPLE_104 << "║" << END_COLOR << "\t-Jugador 1 ( " << EMOJI_JUGADOR_1 << " )\t-Jugador 2 ( " << EMOJI_JUGADOR_2 << " )" << TXT_LIGHT_PURPLE_104 << "\t    ║" << END_COLOR << endl;
     cout << TXT_LIGHT_PURPLE_104;
     cout << "■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■ ═ ■" << endl;
     cout << END_COLOR;

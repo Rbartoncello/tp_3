@@ -178,13 +178,15 @@ void Juego::posicionar_jugador_mapa(Jugador *&jugador){
 }
 
 void Juego::partida_empezada(){
+    agregar_energia_comienza_partida();
+
     int primer_jugador = numero_aleatorio(JUGADOR_1,JUGADOR_2);
-    if(primer_jugador == 1){
+
+    if(primer_jugador == 1)
         jugador_actual = jugador_1;
-    }
-    else{
+    else
         jugador_actual = jugador_2;
-    }
+        
     imprimir_menu_juego(this->mapa, this->jugador_actual);
 
     int opcion_elegida = pedir_opcion(29, 60);
@@ -200,6 +202,11 @@ void Juego::partida_empezada(){
     }
     this->diccionario->guardar_pre_orden();
     imprimir_mensaje_guardado();
+}
+
+void Juego::agregar_energia_comienza_partida(){
+    jugador_1->sumar_energia(ENERGIA_COMIENZO_PARTIDA);
+    jugador_2->sumar_energia(ENERGIA_COMIENZO_PARTIDA);
 }
 
 int Juego::numero_aleatorio(int desde, int hasta){
@@ -300,6 +307,7 @@ void Juego::mostrar_inventario(Jugador* jugador_turno) {
 }
 
 void Juego::moverse_coordenada() {
+    mapa->mostrar();
     int fila = pedir_fila();
     int columna = pedir_columna();
 
@@ -314,7 +322,6 @@ void Juego::moverse_coordenada() {
     
     grafo->camino_minimo(posicion_actual, posicion_ingresada, mapa, jugador_actual);
     cout << grafo->devolver_costo(posicion_actual, posicion_ingresada) << endl;
-    imprimir_mensaje_enter_continuar();
 }
 
 void Juego::cargar_grafo() {

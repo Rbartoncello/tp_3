@@ -108,4 +108,6 @@ const int MAX_GENERAR_ANDYCOINS = 1;
 const int JUGADOR_1 = 1;
 const int JUGADOR_2 = 2; 
 
+const int ENERGIA_COMIENZO_PARTIDA = 50;
+
 #endif

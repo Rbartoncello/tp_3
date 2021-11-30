@@ -26,6 +26,8 @@ class Jugador{
 
 
         int devolver_numero();
+
+        int devolver_energia();
         /*
          * Destructor:
          * Pre: -.

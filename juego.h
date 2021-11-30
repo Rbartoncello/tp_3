@@ -182,6 +182,8 @@ class Juego{
         void moverse_coordenada();
 
         void cargar_costos();
+
+        void agregar_energia_comienza_partida();
 };
 
 #endif //JUEGO_H

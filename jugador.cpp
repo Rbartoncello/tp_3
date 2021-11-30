@@ -71,6 +71,10 @@ int Jugador::devolver_numero(){
     return numero;
 }
 
+int Jugador::devolver_energia(){
+    return energia;
+}
+
 string Jugador::devolver_emoji(){
     return emoji;
 }
