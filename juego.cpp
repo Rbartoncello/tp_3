@@ -186,7 +186,7 @@ void Juego::partida_empezada(){
         jugador_actual = jugador_1;
     else
         jugador_actual = jugador_2;
-        
+
     imprimir_menu_juego(this->mapa, this->jugador_actual);
 
     int opcion_elegida = pedir_opcion(29, 60);
@@ -318,10 +318,16 @@ void Juego::moverse_coordenada() {
     
     string posicion_actual = to_string(fila_actual) + " " + to_string(columna_actual);
     string posicion_ingresada = to_string(fila) + " " + to_string(columna);
-    //if ( devolver_jugador_turno().devolver_energia < grafo->devolver_costo("10 3", "10 10") ) VER MAS ADELANTE
-    
-    grafo->camino_minimo(posicion_actual, posicion_ingresada, mapa, jugador_actual);
-    cout << grafo->devolver_costo(posicion_actual, posicion_ingresada) << endl;
+
+    int costo = grafo->devolver_costo(posicion_actual, posicion_ingresada);
+
+    if ( jugador_actual->devolver_energia() >= costo ){
+        grafo->camino_minimo(posicion_actual, posicion_ingresada, mapa, jugador_actual);
+        jugador_actual->restar_energia(costo);
+    } else {
+        cout << "No cuentas con la energia necesaria: " << costo << endl;
+        sleep(2);
+    }
 }
 
 void Juego::cargar_grafo() {
