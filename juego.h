@@ -175,13 +175,14 @@ class Juego{
 
         Jugador* devolver_jugador_turno();
 
-        Jugador* devolver_jugador_siguiente_turno();
-
         void mostrar_inventario(Jugador* jugador_turno);
 
         void moverse_coordenada();
 
         void cargar_costos();
+
+        void cargar_costos_filas();
+        void cargar_costos_columnas();
 
         void agregar_energia_comienza_partida();
 };

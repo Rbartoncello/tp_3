@@ -229,17 +229,6 @@ Jugador* Juego::devolver_jugador_turno() {
     return jugador;
 }
 
-Jugador* Juego::devolver_jugador_siguiente_turno() {
-    Jugador* jugador;
-    
-    if (this->jugador_actual->devolver_numero() == JUGADOR_1)
-        jugador = this->jugador_2;
-    else    
-        jugador = this->jugador_1;
-
-    return jugador;
-}
-
 void Juego::validar_opcion_ingresada(int &opcion_elegida, int max, int min){
     bool es_valida = es_opcion_valida(opcion_elegida, max, min);
     while(!es_valida){
@@ -261,7 +250,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             mapa->mostrar();
             break;
         case LISTAR_MIS_EDIFICIOS_CONSTRUIDOS:
-            this->mapa->mostrar_edificios_construidos(this->jugador_actual);
+            this->mapa->mostrar_edificios_construidos(jugador_actual);
             imprimir_mensaje_enter_continuar();
             break;
         case DEMOLER_EDIFICIO_COORDENADA:
@@ -283,7 +272,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             imprimir_mensaje_enter_continuar();
             break;
         case MOSTRAR_INVENTARIO:
-            mostrar_inventario(devolver_jugador_turno());
+            mostrar_inventario(jugador_actual);
             imprimir_mensaje_enter_continuar();
             break;
         case MOSTRAR_OBJETIVOS:
@@ -348,8 +337,11 @@ void Juego::cargar_grafo() {
 }
 
 void Juego::cargar_costos(){
-    //Jugador* jugador_sig = devolver_jugador_siguiente_turno();
+    cargar_costos_filas();
+    cargar_costos_columnas();
+}
 
+void Juego::cargar_costos_filas(){
     for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
         for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
             if (j < mapa->devolver_cantidad_columnas() - 1){
@@ -368,7 +360,9 @@ void Juego::cargar_costos(){
             }
         }
     }
+}
 
+void Juego::cargar_costos_columnas(){
     for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
         for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
             if (i < mapa->devolver_cantidad_filas() - 1){
@@ -389,7 +383,6 @@ void Juego::cargar_costos(){
         }
     }
 }
-
 
 
 int Juego::pedir_fila(){
