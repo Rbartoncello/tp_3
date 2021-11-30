@@ -78,7 +78,7 @@ void Juego::procesar_opcion_nueva_partida(int opcion){
 }
 
 void Juego::mostrar() {
-    imprimir_menu_juego(this->mapa, this->jugador_actual);
+    imprimir_menu_juego(mapa, jugador_actual); //Aca hubo cambio
     imprimir_objetos_mapa();
 }
 
@@ -177,7 +177,13 @@ void Juego::posicionar_jugador_mapa(Jugador *&jugador){
 }
 
 void Juego::partida_empezada(){
-    this->jugador_actual = numero_aleatorio(JUGADOR_1,JUGADOR_2);
+    int primer_jugador = numero_aleatorio(JUGADOR_1,JUGADOR_2);
+    if(primer_jugador == 1){
+        jugador_actual = jugador_1;
+    }
+    else{
+        jugador_actual = jugador_2;
+    }
     imprimir_menu_juego(this->mapa, this->jugador_actual);
 
     int opcion_elegida = pedir_opcion(29, 60);
@@ -186,7 +192,7 @@ void Juego::partida_empezada(){
 
     while(opcion_elegida != GUARDA_SALIR){
         procesar_opcion_partida_empezada(opcion_elegida);
-        imprimir_menu_juego(this->mapa, this->jugador_actual);
+        imprimir_menu_juego(mapa, jugador_actual);
 
         opcion_elegida = pedir_opcion(29, 60);
         validar_opcion_ingresada(opcion_elegida, MAX_OPCION_JUEGO, MIN_OPCION_JUEGO);
@@ -207,7 +213,7 @@ int Juego::numero_aleatorio(int desde, int hasta){
 Jugador* Juego::devolver_jugador_turno() {
     Jugador* jugador;
     
-    if (this->jugador_actual == JUGADOR_1)
+    if (jugador_actual == jugador_2)
         jugador = this->jugador_1;
     else    
         jugador = this->jugador_2;
@@ -218,7 +224,7 @@ Jugador* Juego::devolver_jugador_turno() {
 Jugador* Juego::devolver_jugador_siguiente_turno() {
     Jugador* jugador;
     
-    if (this->jugador_actual == JUGADOR_1)
+    if (this->jugador_actual->devolver_numero() == JUGADOR_1)
         jugador = this->jugador_2;
     else    
         jugador = this->jugador_1;
@@ -243,7 +249,7 @@ bool Juego::es_opcion_valida(int opcion, int max, int min){
 void Juego::procesar_opcion_partida_empezada(int opcion){
     switch (opcion){
         case CONSTRUIR_EDIFICIO_NOMBRE:
-            this->mapa->mostrar();
+            mapa->mostrar();
             break;
         case LISTAR_MIS_EDIFICIOS_CONSTRUIDOS:
             this->mapa->mostrar_edificios_construidos(this->jugador_actual);
@@ -276,14 +282,13 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             break;
         case RECOLECTAR_RECURSOS:
             cout<<"Recolectar recursos"<<endl;
+
             break;
         case MOVERSE_COORDENADA:
             moverse_coordenada();
-            
-            cout<<"Moverse Coordeanada"<<endl;
             break;
         case FINALIZAR_TURNO:
-            cout<<"Aqui finalizaría el turno"<<endl;
+            jugador_actual = devolver_jugador_turno();
             break;
     }
 }
@@ -293,35 +298,33 @@ void Juego::mostrar_inventario(Jugador* jugador_turno) {
 }
 
 void Juego::moverse_coordenada() {
-    cargar_grafo();
-
-    Jugador* jugador = devolver_jugador_turno();
-
-    int fila_actual = devolver_jugador_turno()->devolver_fila();
-    int columna_actual = devolver_jugador_turno()->devolver_columna();
-    
     int fila = pedir_fila();
     int columna = pedir_columna();
+
+    cargar_grafo();
+
+    int fila_actual = jugador_actual->devolver_fila();
+    int columna_actual = jugador_actual->devolver_columna();
     
     string posicion_actual = to_string(fila_actual) + " " + to_string(columna_actual);
     string posicion_ingresada = to_string(fila) + " " + to_string(columna);
-    //if ( devolver_jugador_turno().devolver_energia < grafo->devolver_costo("10 3", "10 10") )
+    //if ( devolver_jugador_turno().devolver_energia < grafo->devolver_costo("10 3", "10 10") ) VER MAS ADELANTE
     
-    grafo->camino_minimo(posicion_actual, posicion_ingresada, mapa, jugador);
+    grafo->camino_minimo(posicion_actual, posicion_ingresada, mapa, jugador_actual);
     cout << grafo->devolver_costo(posicion_actual, posicion_ingresada) << endl;
     imprimir_mensaje_enter_continuar();
 }
 
 void Juego::cargar_grafo() {
-    Jugador* jugador = devolver_jugador_siguiente_turno();
+    //Jugador* jugador_sig = devolver_jugador_siguiente_turno();
 
     for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
         for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
             Casillero* casillero = mapa->devolver_casillero(i, j);
             if ( ! ( casillero->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero->esta_ocupado() ) ) ){
-                if ( ( i != jugador->devolver_fila() ) || ( j != jugador->devolver_columna() ) ){
+                //if ( ( i != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) ){
                     this->grafo->agregarVertice(casillero->devolver_posicion());
-                }
+                //}
             }
         }
     }
@@ -330,7 +333,7 @@ void Juego::cargar_grafo() {
 }
 
 void Juego::cargar_costos(){
-    Jugador* jugador = devolver_jugador_siguiente_turno();
+    //Jugador* jugador_sig = devolver_jugador_siguiente_turno();
 
     for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
         for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
@@ -338,14 +341,14 @@ void Juego::cargar_costos(){
                 Casillero* casillero_1 = mapa->devolver_casillero(i, j);
                 Casillero* casillero_2 = mapa->devolver_casillero(i, j+1);
                 if ( ! ( casillero_1->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_1->esta_ocupado() ) ) ){
-                    if ( ( i != jugador_1->devolver_fila() ) || ( j != jugador->devolver_columna() ) ){
+                    //if ( ( i != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) ){
                         if ( ! ( casillero_2->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_2->esta_ocupado() ) ) ){
-                            if ( ( i != jugador->devolver_fila() ) || ( j+1 != jugador->devolver_columna() ) ){
+                            //if ( ( i != jugador_sig->devolver_fila() ) || ( j+1 != jugador_sig->devolver_columna() ) ){
                                 this->grafo->agregar_camino(casillero_1->devolver_posicion(), casillero_2->devolver_posicion(), casillero_2->devolver_costo());
                                 this->grafo->agregar_camino(casillero_2->devolver_posicion(), casillero_1->devolver_posicion(), casillero_1->devolver_costo());
-                            }
+                            //}
                         }
-                    }
+                    //}
                 }
             }
         }
@@ -357,15 +360,15 @@ void Juego::cargar_costos(){
                 Casillero* casillero_1 = mapa->devolver_casillero(i, j);
                 Casillero* casillero_2 = mapa->devolver_casillero(i+1, j);
                 if ( ! ( casillero_1->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_1->esta_ocupado() ) ) ){
-                    if ( ( i != jugador->devolver_fila() ) || ( j != jugador->devolver_columna() ) ){
+                    //if ( ( i != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) ){
                         if ( ! ( casillero_2->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_2->esta_ocupado() ) ) ){
-                            if ( ( i+1 != jugador->devolver_fila() ) || ( j != jugador->devolver_columna() ) ){
+                            //if ( ( i+1 != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) ){
                                 this->grafo->agregar_camino(casillero_1->devolver_posicion(), casillero_2->devolver_posicion(), casillero_2->devolver_costo());
                                 this->grafo->agregar_camino(casillero_2->devolver_posicion(), casillero_1->devolver_posicion(), casillero_1->devolver_costo());
-                            }
+                            //}
                             
                         }
-                    }
+                    //}
                 }
             }
         }
@@ -378,6 +381,7 @@ int Juego::pedir_fila(){
     int opcion_elegida = 0;
     cout << " Por favor ingrese la fila: ";
     cin >> opcion_elegida;
+    validar_opcion_ingresada(opcion_elegida, this->mapa->devolver_cantidad_filas(), 0);
 
     return opcion_elegida;
 }
@@ -386,6 +390,8 @@ int Juego::pedir_columna(){
     int opcion_elegida = 0;
     cout << " Por favor ingrese la columna: ";
     cin >> opcion_elegida;
+    validar_opcion_ingresada(opcion_elegida, this->mapa->devolver_cantidad_columnas(), 0);
+
 
     return opcion_elegida;
 }

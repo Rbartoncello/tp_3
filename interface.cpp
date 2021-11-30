@@ -6,6 +6,7 @@
 #include "constantes.h"
 #include "emojis.h"
 #include "gotoxy.h"
+#include "jugador.h"
 
 void imprimir_mensaje_bienvenida()
 {
@@ -68,12 +69,12 @@ void imprimir_menu_nueva_partida()
     cout << END_COLOR;
 }
 
-void imprimir_menu_juego(Mapa *mapa, int jugador_actual)
+void imprimir_menu_juego(Mapa *mapa, Jugador* jugador_actual)
 {
     system("clear");
     Gotoxy gotoxy;
     mapa->mostrar();
-    cout << gotoxy.pos(1, 65) << "Jugador: " << jugador_actual << endl;
+    cout << gotoxy.pos(1, 65) << "Jugador: " << jugador_actual->devolver_numero()<<  endl; //Aca despues iria devolver_nombre()
     cout << TXT_LIGHT_AQUA_43 << TXT_BOLD;
     cout << gotoxy.pos(2, 65) << "╔════╦═══════════════════════════════════════╗" << endl
          << gotoxy.pos(3, 65) << "║ " << EMOJI_UNO << " ║" << END_COLOR << TXT_BOLD << " Construir edificio por nombre " << EMOJI_EDIFICIO_CONSTRUCION << TXT_LIGHT_AQUA_43 << "       ║" << endl
@@ -280,9 +281,9 @@ void imprimir_lista_edificios_construidos(Edificacion *edificio, Mapa *mapa){
     cout << "\t╠──────────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────────╣" << endl;
 }
 
-void imprimir_materiales_jugador(Nodo_lista*& primero, int cantidad_en_lista){
+void imprimir_materiales_jugador(Nodo_lista<Material>*& primero, int cantidad_en_lista){
 
-    Nodo_lista* auxiliar = primero;
+    Nodo_lista<Material>* auxiliar = primero;
 
     encabezado_materiale_jugador();
 
@@ -329,10 +330,10 @@ void imprimir_mensaje_ingrese_columna_jugador()
     cout << "Por favor ingrese la columna con la que desee empezar: ";
 }
 
-void imprimir_edificio(Edificacion *edificacion, int jugador, int fila, int columna, int cantidad_construidos)
+void imprimir_edificio(Edificacion *edificacion, Jugador* jugador, int fila, int columna, int cantidad_construidos)
 {
     string necesita_reparacion = EMOJI_MAL;
-    if (edificacion->devolver_duenio() == jugador){
+    if (edificacion->devolver_duenio() == jugador->devolver_numero()){
         if ((edificacion->devolver_nombre_edificio() == EDIFICIO_FABRICA) || (edificacion->devolver_nombre_edificio() == EDIFICIO_MINA)){
             if (edificacion->devolver_necesita_reparacion())
                 necesita_reparacion = EMOJI_HECHO;

@@ -21,7 +21,7 @@ void Casillero_inaccesible::imprimir_resumen(){
     cout <<"\tSoy un casillero inaccesible y me encuentro vacío" << endl;
 }
 
-void Casillero_inaccesible::mostrar_casillero(int jugador, int cantidad_construidos){
+void Casillero_inaccesible::mostrar_casillero(Jugador* jugador, int cantidad_construidos){
 }
 
 void Casillero_inaccesible::modificar_ocupado(bool estado) {

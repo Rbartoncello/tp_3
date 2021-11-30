@@ -67,7 +67,7 @@ Edificacion* Archivo::buscar_edificacion(string nombre, int piedra, int madera, 
     return edificio;
 }
 
-int Archivo::leer_archivos_materiales(Lista *&inventario_jugador_1, Lista *&inventario_jugador_2){
+int Archivo::leer_archivos_materiales(Lista<Material> *&inventario_jugador_1, Lista<Material> *&inventario_jugador_2){
     int ejecucion = 1;
 
     ifstream archivo(PATH_MATERIALES);

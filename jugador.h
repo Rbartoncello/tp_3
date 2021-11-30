@@ -10,7 +10,7 @@ class Jugador{
         string nombre;
         string emoji;
         int energia, numero, fila, columna;
-        Lista* inventario;
+        Lista<Material>* inventario;
         //Objetivos** objetivos_secundarios;
         //Mas_alto_que_las_nubes* objetivo_primario;
         
@@ -24,6 +24,8 @@ class Jugador{
         Jugador(int numero, string emoji);
         
 
+
+        int devolver_numero();
         /*
          * Destructor:
          * Pre: -.
@@ -65,7 +67,7 @@ class Jugador{
          */
         void recoger_recurso(Material* recurso);
 
-        Lista*& devolver_inventario();
+        Lista<Material>*& devolver_inventario();
 
         void modificar_numero(int numero);
 
@@ -82,8 +84,6 @@ class Jugador{
         int devolver_fila();
 
         int devolver_columna();
-
-        int devolver_numero();
 
         string devolver_emoji();
 };

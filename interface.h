@@ -5,6 +5,7 @@
 #include "edificacion.h"
 #include "material.h"
 #include "nodo_lista.h"
+#include "jugador.h"
 
 using namespace std;
 /*  
@@ -23,7 +24,7 @@ void imprimir_menu_nueva_partida();
  * Pre: -
  * Post: Imprime por pantalla el manu principal.
 */
-void imprimir_menu_juego(Mapa* mapa, int jugador_acutal);
+void imprimir_menu_juego(Mapa* mapa, Jugador* jugador_acutal);
 
 /*
  * Pre: -
@@ -35,7 +36,7 @@ void imprimir_objetos_mapa();
  * Pre: -
  * Post:Imprime el inventario del jugador
  */
-void imprimir_materiales_jugador(Nodo_lista*& primero, int cantidad_en_lista);
+void imprimir_materiales_jugador(Nodo_lista<Material>*& primero, int cantidad_en_lista);
 
 /*
 * Pre: -
@@ -167,7 +168,7 @@ void imprimir_mensaje_ingrese_columna_jugador();
  * Pre: -
  * Post: Me muestra por pantalla los edificios contruidos del jugador actual.
  */
-void imprimir_edificio(Edificacion* edificio, int jugador, int fila, int columna, int cantidad_construidos);
+void imprimir_edificio(Edificacion* edificio, Jugador* jugador, int fila, int columna, int cantidad_construidos);
 
 
 #endif

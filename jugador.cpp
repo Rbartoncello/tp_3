@@ -6,7 +6,7 @@ Jugador::Jugador(int numero, string emoji){
     this->numero = numero;
     this->emoji = emoji;
     this -> energia = 0;
-    this -> inventario = new Lista();
+    this -> inventario = new Lista<Material>();
     //objetivo_primario = new Mas_alto_que_las_nubes();
 }
 
@@ -17,7 +17,6 @@ Jugador::~Jugador(){
 
 void Jugador::aumentar_material(Material* material){
     inventario->obtener_direccion_nodo(inventario->obtener_posicion(material->devolver_nombre()))->devolver_dato()->aumentar_cantidad(material->devolver_cantidad());
-    //this->inventario->(nombre, cantidad);
 }
 
 void Jugador::pedir_nombre(){
@@ -40,7 +39,7 @@ void Jugador::recoger_recurso(Material* recurso){
     //this->inventario->sumar_material(recurso)    (me falta hacer el metodo en materiales en el que sume un material al array al recibir un Material*)
 }
 
-Lista*& Jugador::devolver_inventario(){
+Lista<Material>*& Jugador::devolver_inventario(){
     return(inventario);
 }
 

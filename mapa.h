@@ -90,7 +90,7 @@ class Mapa{
          * Pre: -
          * Post: Me muestra por pantalla los edificios contruidos del jugador actual.
          */
-        void mostrar_edificios_construidos(int jugador_actual);
+        void mostrar_edificios_construidos(Jugador* jugador_actual);
     private:
         /*
          * Pre: El archivo tiene que estar abierto y de formato correcto.

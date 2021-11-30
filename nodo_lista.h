@@ -2,27 +2,64 @@
 #define NODO_LISTA_H
 #include "material.h"
 
+template<typename T>
 class Nodo_lista
 {
 private:
     
-    Material* contenido;
-    Nodo_lista* siguiente;
+    T* contenido;
+    Nodo_lista<T>* siguiente;
 
 public:
 
-    Nodo_lista(Material* contenido);
+    Nodo_lista(T* contenido);
 
-    void cambiar_dato(Material* contenido);
+    void cambiar_dato(T* contenido);
 
-    Material*& devolver_dato();
+    T*& devolver_dato();
 
-    Nodo_lista*& direccion_siguiente();
+    Nodo_lista<T>*& direccion_siguiente();
 
-    void cambiar_siguiente(Nodo_lista* nuevo_siguiente);
+    void cambiar_siguiente(Nodo_lista<T>* nuevo_siguiente);
     
     ~Nodo_lista();
 };
+
+template<typename T>
+Nodo_lista<T>::Nodo_lista(T* contenido){
+    this->contenido = contenido;
+    siguiente = nullptr;
+}
+
+template<typename T>
+void Nodo_lista<T>::cambiar_dato(T* cotenido){
+
+    this->contenido = contenido;
+}
+
+template<typename T>
+Nodo_lista<T>*& Nodo_lista<T>::direccion_siguiente(){
+
+    return (siguiente);
+}
+
+template<typename T>
+T*& Nodo_lista<T>::devolver_dato(){
+
+    return (contenido);
+}
+
+template<typename T>
+void Nodo_lista<T>::cambiar_siguiente(Nodo_lista<T>* nuevo_siguiente){
+
+    siguiente = nuevo_siguiente;
+}
+
+template<typename T>
+Nodo_lista<T>::~Nodo_lista(){
+    delete contenido;
+
+}
 
 
 #endif

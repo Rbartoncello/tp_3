@@ -236,7 +236,7 @@ void Mapa::imprimir_resumen_casillero(int fila, int columna)
     this->casilleros[fila][columna]->imprimir_resumen();
 }
 
-void Mapa::mostrar_edificios_construidos(int jugador_actual){
+void Mapa::mostrar_edificios_construidos(Jugador* jugador_actual){
     system("clear");
 
     cout << TXT_BOLD;
