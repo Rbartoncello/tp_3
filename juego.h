@@ -167,23 +167,64 @@ class Juego{
         */
         int numero_aleatorio(int desde, int hasta);
 
+         /*
+         * Pre: -
+         * Post: Devuelve devuelve el turno del jugador actual
+         */
         Jugador* devolver_jugador_turno();
 
+         /*
+         * Pre: -
+         * Post: Me muestra el inventario del jugador_actual
+         */
         void mostrar_inventario(Jugador* jugador_turno);
 
+         /*
+         * Pre: -
+         * Post: El jugador_actual se va a mover a una codenada ingresado por pantalla
+         */
         void moverse_coordenada();
 
+        /*
+         * Pre: -
+         * Post: Se van a cargar los costos del mapa
+         */
         void cargar_costos();
 
+        /*
+         * Pre: -
+         * Post: Se van a cargar los costos del mapa
+         */
         void cargar_costos_filas();
+
+        /*
+         * Pre: -
+         * Post: Se van a cargar los costos del mapa
+         */
         void cargar_costos_columnas();
 
+        /*
+         * Pre: -
+         * Post: Me agrega ENERGIA_COMIENZO_PARTIDA a cada jugador
+         */
         void agregar_energia_comienza_partida();
 
+        /*
+         * Pre: -
+         * Post: Me modifica el costo del casillero
+         */
         void modificar_costo_casillero(Casillero* &casillero);
 
+        /*
+         * Pre: -
+         * Post: Le preguntara a usuario que si decea moverse a otra coordenada
+         */
         void sin_energia_desplazarce(int costo);
 
+        /*
+         * Pre: -
+         * Post: Pone en 0 todo los materieles del inventario
+         */
         void vaciar_inventario();
 };
 
