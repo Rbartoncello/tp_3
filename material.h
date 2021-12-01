@@ -56,7 +56,7 @@ class Material{
         int devolver_cantidad();
 
         /*
-         * Pre: cantidad > 0.
+         * Pre:
          * Post: Modifica la cantidad de Material.
          */
         void modificar_cantidad(int cantidad);

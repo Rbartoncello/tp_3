@@ -1,7 +1,7 @@
 #ifndef __GRAFO_H__
 #define __GRAFO_H__
 #include <string>
-#include "Lista.h"
+#include "lista.h"
 #include "Vertice.h"
 #include "Floyd.h"
 #include "mapa.h"
@@ -13,7 +13,7 @@ class Grafo {
 /*ATRIBUTOS*/
 private:
     int ** matriz_adyacencia;
-    Lista_grafo<Vertice> * vertices;
+    Lista<Vertice> * vertices;
     Camino_minimo * algoritmo_camino_minimo;
 
 /*MÉTODOS*/

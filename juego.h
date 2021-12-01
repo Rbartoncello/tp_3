@@ -139,12 +139,6 @@ class Juego{
 
         /*
          * Pre: -
-         * Post: Imprime por pantalla el error.
-        */
-        void imprimir_mensaje_error_ingreso();
-
-        /*
-         * Pre: -
          * Post: Pide al usuario una ubicacion via input y le infroma sobre el contenido del mismo.
         */
         void mostrar_coordenada();
@@ -187,6 +181,10 @@ class Juego{
         void agregar_energia_comienza_partida();
 
         void modificar_costo_casillero(Casillero* &casillero);
+
+        void sin_energia_desplazarce(int costo);
+
+        void vaciar_inventario();
 };
 
 #endif //JUEGO_H

@@ -34,7 +34,7 @@ int ** Floyd::crear_matriz_costos(int ** matriz_adyacencia){
 
 void Floyd::calcular_matrices() {
 
-    cantidadVertices = vertices -> obtener_cantidad_elementos();
+    cantidadVertices = vertices -> devolver_cantidad_en_lista();
     matriz_costos = crear_matriz_costos(matriz_adyacencia);
     matriz_caminos = crear_matriz_caminos();
 
@@ -98,7 +98,7 @@ Floyd::~Floyd(){
     liberar_matrices();
 }
 
-Floyd::Floyd(Lista_grafo<Vertice> *vertices, int ** matriz_adyacencia) : Camino_minimo(vertices, matriz_adyacencia){
+Floyd::Floyd(Lista<Vertice> *vertices, int ** matriz_adyacencia) : Camino_minimo(vertices, matriz_adyacencia){
     calcular_matrices();
 }
 

@@ -23,7 +23,6 @@ add_executable(tp_3 constantes.h main.cpp
         interface.cpp interface.h
         diccionario.cpp diccionario.h
         receta.cpp receta.h
-        nodo.cpp nodo.h
         edificacion.cpp edificacion.h
         escuela.h escuela.cpp
         fabrica.cpp fabrica.h
@@ -49,8 +48,7 @@ add_executable(tp_3 constantes.h main.cpp
         lista.h
         Grafo.cpp Grafo.h
         Lista.h
-        Nodo.h
-        nodo.h nodo.cpp
+        nodo.h
         nodo_lista.h
         Vertice.cpp Vertice.h
         Floyd.cpp Floyd.h

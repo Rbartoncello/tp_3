@@ -1,7 +1,7 @@
 #ifndef GRAFOS_CAMINO_MINIMO_H
 #define GRAFOS_CAMINO_MINIMO_H
 #include <string>
-#include "Lista.h"
+#include "lista.h"
 #include "Vertice.h"
 #include "mapa.h"
 #include "jugador.h"
@@ -13,12 +13,12 @@ class Camino_minimo {
 //Atributos
 protected:
     int ** matriz_adyacencia;
-    Lista_grafo<Vertice> * vertices;
+    Lista<Vertice> * vertices;
     int cantidadVertices;
 
 //Métodos
 public:
-    Camino_minimo(Lista_grafo<Vertice> * vertices, int** matriz_adyacencia);
+    Camino_minimo(Lista<Vertice> * vertices, int** matriz_adyacencia);
 
     //post: muestra por pantalla el camino mínimo entre el origen y el destino, detallando su recorrido y peso
     virtual void camino_minimo(int origen, int destino, Mapa* &mapa, Jugador* &jugador) = 0;

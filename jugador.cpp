@@ -19,6 +19,16 @@ void Jugador::aumentar_material(Material* material){
     inventario->obtener_direccion_nodo(inventario->obtener_posicion(material->devolver_nombre()))->devolver_dato()->aumentar_cantidad(material->devolver_cantidad());
 }
 
+void Jugador::vaciar_inventario(){
+
+    Nodo_lista<Material>* auxiliar = inventario->retornar_primero();
+
+    for (int i = 0; i < inventario->devolver_cantidad_en_lista(); i++){
+        auxiliar->devolver_dato()->modificar_cantidad(0);
+        auxiliar = auxiliar->direccion_siguiente();
+    }
+}
+
 void Jugador::pedir_nombre(){
     string nombre_ingresado;
     cout << "\tPor favor ingrese el nobre del jugador: ";

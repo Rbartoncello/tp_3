@@ -170,7 +170,17 @@ void imprimir_mensaje_ingrese_columna_jugador();
  */
 void imprimir_edificio(Edificacion* edificio, Jugador* jugador, int fila, int columna, int cantidad_construidos);
 
+/*
+ * Pre: -
+ * Post: Me muestra por pantalla un cuadro del jugador actual.
+ */
 void imprimir_cuadro_jugador(Jugador* &jugador_actual);
+
+/*
+ * Pre: -
+ * Post: Me muestra por pantalla un mensaje que no cuanta con energia necesaria.
+ */
+void imprimir_mensaje_no_energia_sufuciente(int energia);
 
 
 #endif

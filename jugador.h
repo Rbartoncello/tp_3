@@ -88,6 +88,8 @@ class Jugador{
         int devolver_columna();
 
         string devolver_emoji();
+
+        void vaciar_inventario();
 };
 
 

@@ -37,6 +37,8 @@ int Juego::archivo_ubicaciones(){
 }
 
 void Juego::nueva_partida(){
+    vaciar_inventario();
+    
     imprimir_menu_nueva_partida();
 
     bool empezo_juego = false;
@@ -57,6 +59,11 @@ void Juego::nueva_partida(){
     }
     this->diccionario->guardar_pre_orden();
     imprimir_mensaje_guardado();
+}
+
+void Juego::vaciar_inventario(){
+    jugador_1->vaciar_inventario();
+    jugador_2->vaciar_inventario();
 }
 
 void Juego::procesar_opcion_nueva_partida(int opcion){
@@ -254,16 +261,10 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             imprimir_mensaje_enter_continuar();
             break;
         case DEMOLER_EDIFICIO_COORDENADA:
-            this->mapa->mostrar();
-            imprimir_mensaje_enter_continuar();
             break;
         case ATARCAR_EDIFICIO_COORDENADA:
-            this->mapa->mostrar();
-            imprimir_mensaje_enter_continuar();
             break;
         case REPARAR_EDIFICIO_COORDENADA:
-            this->mapa->mostrar();
-            imprimir_mensaje_enter_continuar();
             break;
         case COMPRAR_BOMBA:
             break;
@@ -276,16 +277,15 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             imprimir_mensaje_enter_continuar();
             break;
         case MOSTRAR_OBJETIVOS:
-            cout<<"Mostrar Objetivos"<<endl;
             break;
         case RECOLECTAR_RECURSOS:
-            cout<<"Recolectar recursos"<<endl;
 
             break;
         case MOVERSE_COORDENADA:
             moverse_coordenada();
             break;
         case FINALIZAR_TURNO:
+            jugador_actual->sumar_energia(ENERGIA_NUEVO_TURNO);
             jugador_actual = devolver_jugador_turno();
             if (jugador_actual->devolver_energia() <= 0){
                 jugador_actual = devolver_jugador_turno();
@@ -303,23 +303,37 @@ void Juego::moverse_coordenada() {
     int fila = pedir_fila();
     int columna = pedir_columna();
 
-    cargar_grafo();
-
     int fila_actual = jugador_actual->devolver_fila();
     int columna_actual = jugador_actual->devolver_columna();
     
     string posicion_actual = to_string(fila_actual) + " " + to_string(columna_actual);
     string posicion_ingresada = to_string(fila) + " " + to_string(columna);
 
+    cargar_grafo();
+
     int costo = grafo->devolver_costo(posicion_actual, posicion_ingresada);
 
     if ( jugador_actual->devolver_energia() >= costo ){
         grafo->camino_minimo(posicion_actual, posicion_ingresada, mapa, jugador_actual);
         jugador_actual->restar_energia(costo);
-    } else {
-        cout << "No cuentas con la energia necesaria: " << costo << endl;
-        sleep(2);
+    } else
+        sin_energia_desplazarce(costo);
+}
+
+void Juego::sin_energia_desplazarce(int costo){
+    system("clear");
+    imprimir_mensaje_no_energia_sufuciente(costo);
+    cout << "\tDesea ingresar una nueva posicion: " << endl;
+    int opcion;
+    imprimir_mensaje_afirmativo_negativo();
+    cin >> opcion;
+    
+    while ( !ingreso_afirmativo_negativo_valido(opcion) ){
+        imprimir_mensaje_error_ingreso();
+        cin >> opcion;
     }
+    if( opcion == AFIRMATIVO )
+        moverse_coordenada();
 }
 
 void Juego::cargar_grafo() {
@@ -429,7 +443,7 @@ int Juego::pedir_columna(){
 void Juego::validar_fila(int &fila){
     bool es_valida = (fila >= 0 && fila < (this->mapa->devolver_cantidad_filas()));
     while(!es_valida){
-        this->imprimir_mensaje_error_ingreso();
+        imprimir_mensaje_error_ingreso();
 
         cin >> fila;
         es_valida = (fila >= 0 && fila < this->mapa->devolver_cantidad_filas());
@@ -439,16 +453,11 @@ void Juego::validar_fila(int &fila){
 void Juego::validar_columna(int &columna){
     bool es_valida = (columna >= 0 && columna < this->mapa->devolver_cantidad_columnas());
     while(!es_valida){
-        this->imprimir_mensaje_error_ingreso();
+        imprimir_mensaje_error_ingreso();
 
         cin >> columna;
         es_valida = (columna >= 1 && columna < this->mapa->devolver_cantidad_columnas());
     }
-}
-
-void Juego::imprimir_mensaje_error_ingreso(){
-    imprimir_mensaje_error();
-    cout << "La opción elegida no es una opcion válida, por favor ingrese otra opción: ";
 }
 
 void Juego::mostrar_coordenada(){

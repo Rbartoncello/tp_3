@@ -356,3 +356,7 @@ void imprimir_edificio(Edificacion *edificacion, Jugador* jugador, int fila, int
         cout << "\t\t╠───────────────────────┼──────┼─────────┼──────────────────────┼─────────────────────╣" << endl;
     }
 }
+
+void imprimir_mensaje_no_energia_sufuciente(int energia){
+    cout << "No cuentas con la energia necesaria: " << energia << endl;
+}

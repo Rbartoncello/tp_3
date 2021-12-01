@@ -3,7 +3,7 @@
 
 Grafo::Grafo() {
     matriz_adyacencia = nullptr;
-    vertices = new Lista_grafo<Vertice>();
+    vertices = new Lista<Vertice>();
     algoritmo_camino_minimo = nullptr;
 }
 
@@ -42,7 +42,7 @@ void Grafo::camino_minimo(string origen, string destino, Mapa* &mapa, Jugador* &
 
 void Grafo::agrandar_matriz_adyacencia() {
     int** matrizAuxiliar;
-    int nuevaCantidadDeVertices = vertices->obtener_cantidad_elementos() + 1;
+    int nuevaCantidadDeVertices = vertices->devolver_cantidad_en_lista() + 1;
 
     matrizAuxiliar = new int*[nuevaCantidadDeVertices];
     for(int i = 0; i < nuevaCantidadDeVertices; i++){
@@ -56,23 +56,23 @@ void Grafo::agrandar_matriz_adyacencia() {
 }
 
 void Grafo::copiar_matriz_adyacente(int** nueva_adyacente) {
-    for(int i = 0; i < vertices -> obtener_cantidad_elementos(); i++){
-        for(int j = 0; j < vertices -> obtener_cantidad_elementos(); j++){
+    for(int i = 0; i < vertices -> devolver_cantidad_en_lista(); i++){
+        for(int j = 0; j < vertices -> devolver_cantidad_en_lista(); j++){
             nueva_adyacente[i][j] = matriz_adyacencia[i][j];
         }
     }
 }
 
 void Grafo::inicializar_muevo_vertice(int** nueva_adyacente) {
-    for(int i = 0; i < vertices -> obtener_cantidad_elementos(); i++){
-        nueva_adyacente[vertices -> obtener_cantidad_elementos()][i] = INFINITO;
-        nueva_adyacente[i][vertices -> obtener_cantidad_elementos()] = INFINITO;
+    for(int i = 0; i < vertices -> devolver_cantidad_en_lista(); i++){
+        nueva_adyacente[vertices -> devolver_cantidad_en_lista()][i] = INFINITO;
+        nueva_adyacente[i][vertices -> devolver_cantidad_en_lista()] = INFINITO;
     }
-    nueva_adyacente[vertices -> obtener_cantidad_elementos()][vertices -> obtener_cantidad_elementos()] = 0;
+    nueva_adyacente[vertices -> devolver_cantidad_en_lista()][vertices -> devolver_cantidad_en_lista()] = 0;
 }
 
 void Grafo::liberar_matriz_adyacencia() {
-    for(int i = 0; i < vertices -> obtener_cantidad_elementos(); i++){
+    for(int i = 0; i < vertices -> devolver_cantidad_en_lista(); i++){
         delete[] matriz_adyacencia[i];
     }
     delete[] matriz_adyacencia;
