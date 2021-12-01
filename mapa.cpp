@@ -44,6 +44,7 @@ void Mapa::crear_matriz_casilleros()
     }
 }
 
+
 void Mapa::agregar_casillero(ifstream &archivo)
 {
     char tipo_terreno;

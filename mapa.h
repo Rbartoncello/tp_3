@@ -12,6 +12,7 @@ class Mapa{
         int cantidad_columnas;
         Casillero*** casilleros;
 
+
     public:
         /*
          * Constructor sin parametros:
@@ -26,6 +27,9 @@ class Mapa{
          * Post: Me va a crear el objeto Mapa.
          */
         Mapa(int filas, int columnas);
+
+
+        void construir_edifcio(Jugador* jugador);
 
         Casillero* devolver_casillero(int fila, int columna);
 

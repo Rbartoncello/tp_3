@@ -254,7 +254,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
 
     switch (opcion){
         case CONSTRUIR_EDIFICIO_NOMBRE:
-            mapa->mostrar();
+            mapa->construir_edifcio(jugador_actual);
             break;
         case LISTAR_MIS_EDIFICIOS_CONSTRUIDOS:
             this->mapa->mostrar_edificios_construidos(jugador_actual);
