@@ -11,6 +11,7 @@ Juego::Juego(){
     this->diccionario = new Diccionario<Edificacion>();
     this->jugador_1 = new Jugador(JUGADOR_1, EMOJI_JUGADOR_1);
     this->jugador_2 = new Jugador(JUGADOR_2, EMOJI_JUGADOR_2);
+    this->constructora = new Constructora(diccionario,mapa);
 
 }
 
@@ -254,7 +255,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
 
     switch (opcion){
         case CONSTRUIR_EDIFICIO_NOMBRE:
-            mapa->construir_edifcio(jugador_actual);
+            constructora->construir_edificio(jugador_actual);
             break;
         case LISTAR_MIS_EDIFICIOS_CONSTRUIDOS:
             this->mapa->mostrar_edificios_construidos(jugador_actual);

@@ -8,6 +8,7 @@
 #include "diccionario.h"
 #include "jugador.h"
 #include "Grafo.h"
+#include "constructora.h"
 
 class Juego{
     private:
@@ -18,6 +19,7 @@ class Juego{
         Jugador* jugador_1;
         Jugador* jugador_2;
         Jugador* jugador_actual;
+        Constructora* constructora;
     public:
         /*
          * Constructor sin parametros:

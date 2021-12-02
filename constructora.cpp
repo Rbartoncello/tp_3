@@ -35,8 +35,15 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio){
     bool coordenadas_validas = false, materiales_validos = false, validar_terreno_vacio = false, cantidad_construida = false;
     string edificio;
 
-    cantidad_construida = validar_maximo_edificio(nombre_nuevo_edifcio);
-
+    cantidad_construida = validar_maximo_edificio(nombre_nuevo_edifcio); //FUNCIONA, falta que los edificios sepan de quien son para validar cuantos hay de un juegador en particualar
+    if(cantidad_construida)
+    {
+        cout<<"ANASHE"<<endl;
+    }
+    else{
+        cout<<"ANASHEN´t"<<endl;
+    }
+/*
     if(cantidad_construida)
         materiales_validos = validar_materiales(nombre_nuevo_edifcio);
     else{
@@ -44,23 +51,32 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio){
     }
 
     if(materiales_validos)
-        coordenadas_validas = ingresoDeCoordenadas();
+        coordenadas_validas = ingreso_de_coordenadas();
 
     if(coordenadas_validas){
-        edificio = matriz->devolverTipoEdificio(filaParaTrabajar,columnaParaTrabajar);
-        validar_terreno_vacio = terrenoVacio(edificio);
+        edificio = mapa->devolverTipoEdificio(fila_para_trabajar,columna_para_trabajar);
+        validar_terreno_vacio = terreno_vacio(edificio);
     }
 
     if (validar_terreno_vacio){
-        matriz->construirEdificio(filaParaTrabajar,columnaParaTrabajar,nombreNuevoEdificio);
+        mapa->construirEdificio(filaParaTrabajar,columnaParaTrabajar,nombreNuevoEdificio);
         restarMateriales(nombreNuevoEdificio);
         cout << "\n EL EDIFICIO SE HA CONSTRUIDO\n" << endl;
     }
     else if (materiales_validos && (!validar_terreno_vacio)){
         cout << "\nAcaso has perdido la cabeza?, aqui ya hay un edificio: ";
-    }
+    }*/
 }
 
+bool Constructora::validar_maximo_edificio(string nombre_nuevo_edificio){
+    int maxima_cantidad_permitidos = 0, cantidad_actual = 0;
+
+    maxima_cantidad_permitidos = dict_edificios->buscar(nombre_nuevo_edificio)->devolver_maxima_cantidad_permitidos();
+
+    cantidad_actual = mapa->devolver_cantidad_edificio(nombre_nuevo_edificio);
+
+    return(cantidad_actual<maxima_cantidad_permitidos);
+}
 
 
 void Constructora::mostrar_aviso(){

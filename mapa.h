@@ -41,6 +41,12 @@ class Mapa{
         ~Mapa();
 
         /*
+         * Pre: recibe un nombre.
+         * Post: devuelve la cantidad de ese nombre en el mapa.
+        */
+        int devolver_cantidad_edificio(string nombre_edificio_nuevo);
+
+        /*
          * Pre: -
          * Post: Guarda todos los datos del archivo en un objeto Mapa
          */
@@ -65,12 +71,6 @@ class Mapa{
         char devolver_tipo_terreno(int coord1, int columna);
 
         void agregar_edificacion(Edificacion* edificacion, int fila, int columna, int duenio);
-
-        /*
-         * Pre: recibe un nombre.
-         * Post: devuelve la cantidad de ese nombre en el mapa.
-        */
-        int cantidad_edificio_construido(string nombre);
 
         /*
          * Pre: -
