@@ -38,10 +38,10 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio){
     cantidad_construida = validar_maximo_edificio(nombre_nuevo_edifcio); //FUNCIONA, falta que los edificios sepan de quien son para validar cuantos hay de un juegador en particualar
     if(cantidad_construida)
     {
-        cout<<"ANASHE"<<endl;
+        cout<<"No se supero el maximo"<<endl;
     }
     else{
-        cout<<"ANASHEN´t"<<endl;
+        cout<<"Se supero el maximo"<<endl;
     }
 /*
     if(cantidad_construida)
