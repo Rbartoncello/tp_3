@@ -76,6 +76,10 @@ class Terreno : public Casillero_construible{
          */
         string devolver_nombre_edificio();
 
+
+
+        int devolver_duenio();
+
         /*
          * PRE: -
          * POST: Metodo virtual vacio para la clase casillero_construible

@@ -24,18 +24,18 @@ void Constructora::construir_edificio(Jugador* jugador)
     } while (!entrada_valida && nombre_nuevo_edifcio != "1");
 
     if(entrada_valida)
-        avanzar_con_construccion(nombre_nuevo_edifcio);
+        avanzar_con_construccion(nombre_nuevo_edifcio, jugador);
     else{
         cout << "\n Oh, no construyes nada?, bueno, vuelve pronto la constructora de Andypolis necesita trabajar\n" << endl;
     }
 }
 
-void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio){
+void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio, Jugador* jugador){
 
     bool coordenadas_validas = false, materiales_validos = false, validar_terreno_vacio = false, cantidad_construida = false;
     string edificio;
 
-    cantidad_construida = validar_maximo_edificio(nombre_nuevo_edifcio); //FUNCIONA, falta que los edificios sepan de quien son para validar cuantos hay de un juegador en particualar
+    cantidad_construida = validar_maximo_edificio(nombre_nuevo_edifcio, jugador); //FUNCIONA, falta que los edificios sepan de quien son para validar cuantos hay de un juegador en particualar
     if(cantidad_construida)
     {
         cout<<"No se supero el maximo"<<endl;
@@ -68,12 +68,12 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio){
     }*/
 }
 
-bool Constructora::validar_maximo_edificio(string nombre_nuevo_edificio){
+bool Constructora::validar_maximo_edificio(string nombre_nuevo_edificio, Jugador* jugador){
     int maxima_cantidad_permitidos = 0, cantidad_actual = 0;
 
     maxima_cantidad_permitidos = dict_edificios->buscar(nombre_nuevo_edificio)->devolver_maxima_cantidad_permitidos();
 
-    cantidad_actual = mapa->devolver_cantidad_edificio(nombre_nuevo_edificio);
+    cantidad_actual = mapa->devolver_cantidad_edificio(nombre_nuevo_edificio,jugador);
 
     return(cantidad_actual<maxima_cantidad_permitidos);
 }

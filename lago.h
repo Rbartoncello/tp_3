@@ -18,6 +18,8 @@ class Lago : public Casillero_inaccesible {
 
         int devolver_costo();
 
+        int devolver_duenio();
+
         ~Lago();
 
         void mostrar();

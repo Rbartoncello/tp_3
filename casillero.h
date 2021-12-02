@@ -102,6 +102,10 @@ class Casillero{
         */
         virtual string devolver_nombre_edificio() = 0;
 
+
+
+        virtual int devolver_duenio() = 0;
+
         /*
          * Pre: -
          * Post: Metodo virtual vacio para las clases hijas

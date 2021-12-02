@@ -78,6 +78,10 @@ string Terreno::devolver_nombre_edificio(){
     return this->edificacion->devolver_nombre_edificio();
 }
 
+int Terreno::devolver_duenio() {
+    return this->edificacion->devolver_duenio();
+}
+
 void Terreno::agregar_edificio(Edificacion *edificio){
     this->edificacion = edificio;
     modificar_ocupado(true);

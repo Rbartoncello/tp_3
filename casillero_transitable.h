@@ -54,6 +54,8 @@ class Casillero_transitable : public Casillero{
         */
         virtual void imprimir_resumen() = 0;
 
+        virtual int devolver_duenio() = 0;
+
         /*
          * Pre: -
          * Post: Metodo virtual vacio para la clase casillero_transitable

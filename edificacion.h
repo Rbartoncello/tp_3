@@ -3,6 +3,7 @@
 #include <iostream>
 #include "colors.h"
 #include "receta.h"
+#include "jugador.h"
 
 #include <string>
 

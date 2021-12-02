@@ -24,6 +24,7 @@ void Betun::modificar_costo(int costo) {
 int Betun::devolver_costo() {
     return this->costo;
 }
+int Betun::devolver_duenio() {}
 
 Betun::~Betun() {
     delete this->material;

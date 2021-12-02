@@ -44,15 +44,17 @@ void Mapa::crear_matriz_casilleros()
     }
 }
 
-int Mapa::devolver_cantidad_edificio(string nombre_edificio_nuevo){
+int Mapa::devolver_cantidad_edificio(string nombre_edificio_nuevo,Jugador* jugador){
     int cantidad = 0;
     for (int i = 0; i < this->cantidad_filas; i++)
     {
         for (int j = 0; j < this->cantidad_columnas; j++)
         {
-            if (this->casilleros[i][j]->devolver_tipo_terreno() == TERRENO && this->casilleros[i][j]->esta_ocupado() && this->casilleros[i][j]->devolver_nombre_edificio() == nombre_edificio_nuevo)
+            if (this->casilleros[i][j]->devolver_tipo_terreno() == TERRENO && this->casilleros[i][j]->esta_ocupado() && this->casilleros[i][j]->devolver_nombre_edificio() == nombre_edificio_nuevo )
             {
-                cantidad++;
+                if(jugador->devolver_numero() == this->devolver_casillero(i,j)->devolver_duenio()){
+                    cantidad++;
+                }
             }
         }
     }

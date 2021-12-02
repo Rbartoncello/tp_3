@@ -44,7 +44,7 @@ class Mapa{
          * Pre: recibe un nombre.
          * Post: devuelve la cantidad de ese nombre en el mapa.
         */
-        int devolver_cantidad_edificio(string nombre_edificio_nuevo);
+        int devolver_cantidad_edificio(string nombre_edificio_nuevo, Jugador* jugador);
 
         /*
          * Pre: -

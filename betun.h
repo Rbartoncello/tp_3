@@ -14,6 +14,8 @@ class Betun : public Casillero_transitable{
          */
         Betun();
 
+        virtual int devolver_duenio();
+
         /*
          * Constructor:
          * Pre: -.

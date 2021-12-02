@@ -22,6 +22,8 @@ class Camino : public Casillero_transitable{
          */
         Camino(char tipo_terreno, int pos_x, int pos_y);
 
+        int devolver_duenio();
+
         /*
          * 
          * Pre:Recibe lo que va agregar

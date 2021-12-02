@@ -35,6 +35,8 @@ class Casillero_construible : public Casillero{
 
         void modificar_ocupado(bool estado);
 
+        virtual int devolver_duenio() = 0;
+
         /*
          * Pre: -
          * Post: Me muestra por pantalla.
