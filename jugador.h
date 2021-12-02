@@ -90,6 +90,30 @@ class Jugador{
         string devolver_emoji();
 
         void vaciar_inventario();
+
+        /*
+         * Pre: -
+         * Post: Realizara el procedimiento de compra de bombas.
+         */
+        void comprar_bombas();
+
+        /*
+         * Pre: costo tiene que ser mayor a 0
+         * Post: Me devuelve TRUE si costo >= andycoins y FALSE en caso contrario.
+         */
+        bool andycoins_sufuciente(int costo);
+
+        /*
+         * Pre: Cantidad tiene que ser mayor a 0
+         * Post: Comprar la cantidad de bombas ingresadas.
+         */
+        void comprar_bombas(int cantidad);
+
+        /*
+         * Pre: Precio tiene que ser mayor a 0
+         * Post:Me restara el cantidad (precio) de andycoins del inventario.
+         */
+        void gastar_andycoins(int precio);
 };
 
 

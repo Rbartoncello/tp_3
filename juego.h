@@ -56,11 +56,6 @@ class Juego{
         * Post: Mostra un menu con las opciones de partida_empezada y cada opcion con si respectiva funcionalidad 
         */
         void partida_empezada();
-        
-        void mostrar();
-
-        void cargar_grafo();
-
     private:
 
         
@@ -226,6 +221,12 @@ class Juego{
          * Post: Pone en 0 todo los materieles del inventario
          */
         void vaciar_inventario();
+
+        /*
+        * Pre: -
+        * Post: Me creara el grafo 
+        */
+        void cargar_grafo();
 };
 
 #endif //JUEGO_H

@@ -88,3 +88,44 @@ int Jugador::devolver_energia(){
 string Jugador::devolver_emoji(){
     return emoji;
 }
+
+void Jugador::comprar_bombas(){
+    if (devolver_energia() >= ENERGIA_COMPRAR_BOMBAS){
+        imprimir_tienda_bombas();
+        int cantidad;
+        cin >> cantidad;
+        while (cantidad <= 0){
+            imprimir_mensaje_error_ingreso();
+            cin >> cantidad;
+        }
+        if (andycoins_sufuciente(cantidad * COSTO_POR_BOMBA)){
+            comprar_bombas(cantidad);
+            imprimir_mensaje_bombas_compradas(inventario, cantidad);
+        }
+        else 
+            imprimir_mensaje_sin_andycoins_suficientes(cantidad * COSTO_POR_BOMBA);
+
+    } else
+        imprimir_mensaje_no_energia_sufuciente(ENERGIA_COMPRAR_BOMBAS);
+}
+
+bool Jugador::andycoins_sufuciente(int costo){
+    int posicion = devolver_inventario()->obtener_posicion(ANDYCOINS);
+
+    int cantidad = devolver_inventario()->obtener_direccion_nodo(posicion)->devolver_dato()->devolver_cantidad();
+
+    return ( costo <= cantidad );
+}
+
+void Jugador::comprar_bombas(int cantidad){
+    gastar_andycoins( cantidad * COSTO_POR_BOMBA );
+
+    int posicion = devolver_inventario()->obtener_posicion(BOMBA);
+
+    devolver_inventario()->obtener_direccion_nodo(posicion)->devolver_dato()->aumentar_cantidad(cantidad);
+}
+
+void Jugador::gastar_andycoins(int precio){
+    int posicion = devolver_inventario()->obtener_posicion(ANDYCOINS);
+    devolver_inventario()->obtener_direccion_nodo(posicion)->devolver_dato()->reducir_cantidad(precio);
+}

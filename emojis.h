@@ -28,6 +28,8 @@ const string EMOJI_MOVERSE = "\U0001f3c3";
 const string EMOJI_LLUVIA = "\U0001f327";
 const string EMOJI_LLUVIA_CON_TRUENOS = "\u26C8";
 
+const string EMOJI_COMPRANDO = "\U0001f6d2";
+
 const string EMOJI_PIEDRA = "\U0001faa8 ";
 const string EMOJI_MADERA = "\U0001fab5 ";
 const string EMOJI_METAL = "\u2699 ";

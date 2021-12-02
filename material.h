@@ -67,7 +67,17 @@ class Material{
         */
         void imprimir_resumen();
 
+        /*
+         * Pre: Cantidad mayor a 0
+         * Post: Aumenta la cantidad del material
+        */
         void aumentar_cantidad(int cantidad);
+
+        /*
+         * Pre: Cantidad mayor a 0
+         * Post: Reduce la cantidad del material
+        */
+        void reducir_cantidad(int cantidad);
 
         virtual ~Material() = 0;
 };

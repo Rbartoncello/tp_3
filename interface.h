@@ -182,5 +182,23 @@ void imprimir_cuadro_jugador(Jugador* &jugador_actual);
  */
 void imprimir_mensaje_no_energia_sufuciente(int energia);
 
+/*
+ * Pre: -
+ * Post: Me muestra por pantalla la tienda de bombas.
+ */
+void imprimir_tienda_bombas();
+
+/*
+ * Pre: -
+ * Post: Me muestra por pantalla un mensaje que no cuenta con los andycoins necesarios.
+ */
+void imprimir_mensaje_sin_andycoins_suficientes(int costo);
+
+/*
+ * Pre: -
+ * Post: Me muestra por pantalla un mensaje la cantidad de bombas compradas y andycoins actual.
+ */
+void imprimir_mensaje_bombas_compradas(Lista<Material>* &inventario, int cantidad);
+
 
 #endif

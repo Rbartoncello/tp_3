@@ -38,7 +38,7 @@ int Juego::archivo_ubicaciones(){
 
 void Juego::nueva_partida(){
     vaciar_inventario();
-    
+
     imprimir_menu_nueva_partida();
 
     bool empezo_juego = false;
@@ -83,11 +83,6 @@ void Juego::procesar_opcion_nueva_partida(int opcion){
             comenzar_partida();
             break;
     }
-}
-
-void Juego::mostrar() {
-    imprimir_menu_juego(mapa, jugador_actual); //Aca hubo cambio
-    imprimir_objetos_mapa();
 }
 
 void Juego::modificar_receta(Diccionario<Edificacion>*&diccionario, string nombre_edificio, string material){
@@ -267,6 +262,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
         case REPARAR_EDIFICIO_COORDENADA:
             break;
         case COMPRAR_BOMBA:
+            jugador_actual->comprar_bombas();
             break;
         case CONSULTAR_COORDENADA:
             this->mostrar_coordenada();

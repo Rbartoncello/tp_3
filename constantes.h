@@ -59,7 +59,7 @@ const char TERRENO = 'T';
 const string PIEDRA = "piedra";
 const string MADERA = "madera";
 const string METAL = "metal";
-const string BOMBA = "bomba";
+const string BOMBA = "bombas";
 const string ANDYCOINS = "andycoins";
 const string ENERGIA = "energia";
 
@@ -113,5 +113,8 @@ const int ENERGIA_NUEVO_TURNO = 20;
 
 const int POSICION_NO_ENCONTRADA = -1;
 const string NOMBRE_NO_ENCONTRADO = "";
+
+const int COSTO_POR_BOMBA = 100;
+const int ENERGIA_COMPRAR_BOMBAS = 5;
 
 #endif
