@@ -184,6 +184,24 @@ void imprimir_mensaje_no_energia_sufuciente(int energia);
 
 /*
  * Pre: -
+ * Post: Me muestra por pantalla un mensaje que no es posible ir a esa posicion.
+ */
+void imprimir_mensaje_posicion_no_permitida();
+
+/*
+ * Pre: -
+ * Post: Me muestra por pantalla un mensaje que cambio de turno.
+ */
+void imprimir_mensaje_finalizacion_turno_automatico(Jugador* &jugador_actual);
+
+/*
+ * Pre: -
+ * Post: Me muestra por pantalla un mensaje que el casillero esta ocupado.
+ */
+void imprimir_mensaje_casillero_ocupado();
+
+/*
+ * Pre: -
  * Post: Me muestra por pantalla la tienda de bombas.
  */
 void imprimir_tienda_bombas();

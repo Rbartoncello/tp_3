@@ -180,9 +180,12 @@ void Mapa::mover_jugador(Jugador* jugador, int fila , int columna){
     casilleros[fila][columna]->mover_jugador(jugador);
 }
 
-Casillero* Mapa::devolver_casillero(int fila, int columna)
-{
+Casillero* Mapa::devolver_casillero(int fila, int columna){
     return casilleros[fila][columna];
+}
+
+bool Mapa::casillero_ocupado(int fila, int columna){
+    return casilleros[fila][columna]->esta_ocupado();
 }
 
 int Mapa::cantidad_edificio_construido(string nombre){

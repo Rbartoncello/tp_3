@@ -100,6 +100,7 @@ void Jugador::comprar_bombas(){
         }
         if (andycoins_sufuciente(cantidad * COSTO_POR_BOMBA)){
             comprar_bombas(cantidad);
+            restar_energia(ENERGIA_COMPRAR_BOMBAS);
             imprimir_mensaje_bombas_compradas(inventario, cantidad);
         }
         else 

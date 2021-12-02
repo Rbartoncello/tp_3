@@ -27,7 +27,17 @@ class Mapa{
          */
         Mapa(int filas, int columnas);
 
+        /*
+         * Pre: la fila y la columna tiene que estar dentro de los parametro del mapa.
+         * Post: Me devolvera el casillero.
+         */
         Casillero* devolver_casillero(int fila, int columna);
+
+        /*
+         * Pre: la fila y la columna tiene que estar dentro de los parametro del mapa.
+         * Post: Me devolvera TRUE si el casillero esta ocupado FALSE en caso contrario.
+         */
+        bool casillero_ocupado(int fila, int columna);
 
         /*
          * Destructor:

@@ -214,7 +214,7 @@ class Juego{
          * Pre: -
          * Post: Le preguntara a usuario que si decea moverse a otra coordenada
          */
-        void sin_energia_desplazarce(int costo);
+        void sin_energia_desplazarse(int costo);
 
         /*
          * Pre: -
@@ -227,6 +227,7 @@ class Juego{
         * Post: Me creara el grafo 
         */
         void cargar_grafo();
+
 };
 
 #endif //JUEGO_H

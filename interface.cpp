@@ -361,6 +361,22 @@ void imprimir_mensaje_no_energia_sufuciente(int energia){
     cout << "No cuentas con la energia necesaria: " << energia << endl;
 }
 
+void imprimir_mensaje_posicion_no_permitida(){
+    imprimir_mensaje_error();
+    cout << "No es posible ir a la posicion ingresada" << endl;
+    imprimir_mensaje_esperar(2);
+}
+
+void imprimir_mensaje_finalizacion_turno_automatico(Jugador* &jugador) {
+    system("clear");
+    cout << "\t El jugador " << jugador->devolver_numero() << " se a quedado con energia " << jugador->devolver_energia() << " se finalizara la partida automaticamente" << endl;
+    sleep(2);
+}
+
+void imprimir_mensaje_casillero_ocupado() {
+    cout << "La posicion elegida se encuentra ocupada" << endl;
+}
+
 void imprimir_tienda_bombas(){
     system("clear");
 
