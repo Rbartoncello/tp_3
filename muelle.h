@@ -28,6 +28,8 @@ class Muelle : public  Casillero_transitable{
          */
         void modificar_terreno(string elemento,int accion);
 
+        int devolver_duenio();
+
         /*
          * PRE: -
          * POST: Me modifica el costo

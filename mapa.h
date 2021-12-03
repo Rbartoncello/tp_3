@@ -46,6 +46,8 @@ class Mapa{
         */
         int devolver_cantidad_edificio(string nombre_edificio_nuevo, Jugador* jugador);
 
+        int devolver_cantidad_edificio(string nombre_edificio_nuevo);
+
         /*
          * Pre: -
          * Post: Guarda todos los datos del archivo en un objeto Mapa

@@ -1,4 +1,4 @@
-mina 200 50 140 2
+mina 200 50 140 1
 fabrica 0 50000 500 1
 aserradero 1000 0 159 5
 escuela 50 600 555 2
