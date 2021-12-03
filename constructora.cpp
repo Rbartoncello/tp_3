@@ -84,11 +84,21 @@ bool Constructora::validar_materiales(string nombre_nuevo_edificio, Jugador* &ju
     madera_necesaria = dict_edificios->buscar(nombre_nuevo_edificio)->devolver_receta()->devoler_madera();
     metal_necesario  = dict_edificios->buscar(nombre_nuevo_edificio)->devolver_receta()->devoler_metal();
 
-    if(piedra_necesaria <= cantidad_piedra && madera_necesaria <= cantidad_madera && metal_necesario <= cantidad_metal)
+    if(piedra_necesaria <= cantidad_piedra && madera_necesaria <= cantidad_madera && metal_necesario <= cantidad_metal) {
         return true;
+    }
+    mostrar_materiales_faltantes(cantidad_piedra, cantidad_madera, cantidad_metal, piedra_necesaria, madera_necesaria, metal_necesario);
     return false;
 }
 
+void Constructora::mostrar_materiales_faltantes(int cantidad_piedra, int cantidad_madera, int cantidad_metal, int piedra_necesaria, int madera_necesaria, int metal_necesario){
+    if(piedra_necesaria > cantidad_piedra)
+        cout << "Falto " << piedra_necesaria - cantidad_piedra << " de piedra" << endl;
+    if(madera_necesaria > cantidad_madera)
+        cout << "Falto " << madera_necesaria - cantidad_madera << " de madera" << endl;
+    if(metal_necesario > cantidad_metal)
+        cout << "Falto " << metal_necesario - cantidad_metal << " de metal" << endl;
+}
 
 void Constructora::mostrar_aviso(){
     cout << "\n EL edificio que intenta crear no existe, para salir presione 1" << endl;
