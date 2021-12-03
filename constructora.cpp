@@ -36,20 +36,16 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio, Jugador
     string edificio;
 
     cantidad_construida = validar_maximo_edificio(nombre_nuevo_edifcio, jugador); //FUNCIONA, falta que los edificios sepan de quien son para validar cuantos hay de un juegador en particualar
+
     if(cantidad_construida)
-    {
-        cout<<"No se supero el maximo"<<endl;
-    }
-    else{
-        cout<<"Se supero el maximo"<<endl;
-    }
-/*
-    if(cantidad_construida)
-        materiales_validos = validar_materiales(nombre_nuevo_edifcio);
+        materiales_validos = validar_materiales(nombre_nuevo_edifcio,jugador);
     else{
         cout << "\nOh, lamento traer malas noticias pero ya has alcanzo el maximo de construidos para este edificio: ";
     }
-
+    if(materiales_validos){
+        cout<<"Funciona"<< endl;
+    }
+/*
     if(materiales_validos)
         coordenadas_validas = ingreso_de_coordenadas();
 
@@ -76,6 +72,21 @@ bool Constructora::validar_maximo_edificio(string nombre_nuevo_edificio, Jugador
     cantidad_actual = mapa->devolver_cantidad_edificio(nombre_nuevo_edificio,jugador);
 
     return(cantidad_actual<maxima_cantidad_permitidos);
+}
+
+bool Constructora::validar_materiales(string nombre_nuevo_edificio, Jugador* &jugador) {
+    int cantidad_piedra = 0, cantidad_madera = 0, cantidad_metal = 0, piedra_necesaria = 0, madera_necesaria = 0, metal_necesario = 0;
+
+    cantidad_piedra = jugador->devolver_inventario()->devolver_material(PIEDRA);
+    cantidad_madera = jugador->devolver_inventario()->devolver_material(MADERA);
+    cantidad_metal = jugador->devolver_inventario()->devolver_material(METAL);
+    piedra_necesaria = dict_edificios->buscar(nombre_nuevo_edificio)->devolver_receta()->devoler_piedra();
+    madera_necesaria = dict_edificios->buscar(nombre_nuevo_edificio)->devolver_receta()->devoler_madera();
+    metal_necesario  = dict_edificios->buscar(nombre_nuevo_edificio)->devolver_receta()->devoler_metal();
+
+    if(piedra_necesaria <= cantidad_piedra && madera_necesaria <= cantidad_madera && metal_necesario <= cantidad_metal)
+        return true;
+    return false;
 }
 
 

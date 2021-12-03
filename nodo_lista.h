@@ -40,6 +40,8 @@ class Nodo_lista{
          */
         string obtener_nombre();
 
+        int obtener_cantidad();
+
         /*
          * Pre: -.
          * Post: Devuelve el nodo siguiente.
@@ -85,6 +87,11 @@ T*& Nodo_lista<T>::devolver_dato(){
 template<typename T>
 string Nodo_lista<T>::obtener_nombre() {
     return contenido -> devolver_nombre();
+}
+
+template<typename T>
+int Nodo_lista<T>::obtener_cantidad() {
+    return contenido -> devolver_cantidad();
 }
 
 template<typename T>
