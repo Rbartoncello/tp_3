@@ -285,8 +285,8 @@ void imprimir_lista_edificios_construidos(Edificacion *edificio, Mapa *mapa){
     cout << "│" << setfill(' ') << setw(8) << edificio->devolver_receta()->devoler_piedra() << setfill(' ') << setw(8);
     cout << "│" << setfill(' ') << setw(8) << edificio->devolver_receta()->devoler_madera() << setfill(' ') << setw(8);
     cout << "│" << setfill(' ') << setw(8) << edificio->devolver_receta()->devoler_metal() << setfill(' ') << setw(8);
-    cout << "│" << setfill(' ') << setw(7) << mapa->cantidad_edificio_construido(edificio->devolver_nombre_edificio()) << setfill(' ') << setw(9);
-    cout << "│" << setfill(' ') << setw(7) << edificio->devolver_maxima_cantidad_permitidos() - mapa->cantidad_edificio_construido(edificio->devolver_nombre_edificio()) << setfill(' ') << setw(9);
+    cout << "│" << setfill(' ') << setw(7) << mapa->devolver_cantidad_edificio(edificio->devolver_nombre_edificio()) << setfill(' ') << setw(9);
+    cout << "│" << setfill(' ') << setw(7) << edificio->devolver_maxima_cantidad_permitidos() - mapa->devolver_cantidad_edificio(edificio->devolver_nombre_edificio()) << setfill(' ') << setw(9);
     cout << "│" << setfill(' ') << setw(10) << brinda << setw(11) << "║" << endl;
     cout << "\t╠──────────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────────╣" << endl;
 }

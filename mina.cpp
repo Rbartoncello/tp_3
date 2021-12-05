@@ -7,6 +7,7 @@ Mina::Mina() : Edificacion (EDIFICIO_MINA, EMOJI_MINA){
     this->necesita_reparacion = false;
     this->cantidad_material_brinda = BRINDA_MINA;
     this->material_producido = PIEDRA;
+    this->reparable = true;
 }
 
 Mina::Mina(int piedra, int madera, int metal, int maxima_cantidad_permitidos) : Edificacion (EDIFICIO_MINA, EMOJI_MINA){
@@ -16,6 +17,7 @@ Mina::Mina(int piedra, int madera, int metal, int maxima_cantidad_permitidos) : 
     this->material_producido = PIEDRA;
     this->receta = new Receta(piedra, madera, metal);
     this->maxima_cantidad_permitidos = maxima_cantidad_permitidos;
+    this->reparable = true;
 }
 
 Mina::~Mina(){

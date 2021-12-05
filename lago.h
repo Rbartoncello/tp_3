@@ -18,6 +18,12 @@ class Lago : public Casillero_inaccesible {
 
         int devolver_costo();
 
+        int devolver_duenio();
+
+        Edificacion* devolver_edificacion(){return nullptr;};
+
+        virtual void eliminar_edificio(){};
+
         ~Lago();
 
         void mostrar();

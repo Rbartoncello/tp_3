@@ -45,7 +45,14 @@ class Casillero_inaccesible : public Casillero {
          * Pre: -
          * Post: Metodo vacio para la clase casillero_construible
         */
-        string devolver_nombre_edificio(){return nullptr;};
+        string devolver_nombre_edificio(){return "l";};
+
+
+        virtual int devolver_duenio() = 0;
+
+        virtual Edificacion* devolver_edificacion(){return nullptr;};
+        
+        virtual void eliminar_edificio(){};
 
         /*
          * Pre: -

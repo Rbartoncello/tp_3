@@ -3,6 +3,7 @@
 #include <iostream>
 #include "colors.h"
 #include "receta.h"
+#include "jugador.h"
 
 #include <string>
 
@@ -15,6 +16,9 @@ private:
     string emoji;
     int duenio;
     int maxima_cantidad_permitidos;
+
+protected:
+    bool reparable;
 public:
     
     //PRE:necesita el nombre del Edificacion
@@ -34,6 +38,12 @@ public:
     * Post: Me devuelve el emoji.
     */
     string devolver_emoji();
+
+    /*
+    * Pre: -
+    * Post: Me devuelve si el edificio es reparable.
+    */
+    bool devolver_reparable();
 
     /*
      * Pre: -

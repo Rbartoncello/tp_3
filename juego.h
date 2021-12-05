@@ -8,6 +8,7 @@
 #include "diccionario.h"
 #include "jugador.h"
 #include "Grafo.h"
+#include "constructora.h"
 
 class Juego{
     private:
@@ -18,6 +19,7 @@ class Juego{
         Jugador* jugador_1;
         Jugador* jugador_2;
         Jugador* jugador_actual;
+        Constructora* constructora;
     public:
         /*
          * Constructor sin parametros:
@@ -226,6 +228,18 @@ class Juego{
          * Post: Pone en 0 todo los materieles del inventario
          */
         void vaciar_inventario();
+
+        /*
+         * Pre: -
+         * Post: Repara un edificio por input
+         */
+        void reparar_edificio();
+
+        /*
+         * Pre: -
+         * Post: Ataca un edificio por input
+         */
+        void atacar_edificio();
 };
 
 #endif //JUEGO_H

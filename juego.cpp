@@ -11,6 +11,7 @@ Juego::Juego(){
     this->diccionario = new Diccionario<Edificacion>();
     this->jugador_1 = new Jugador(JUGADOR_1, EMOJI_JUGADOR_1);
     this->jugador_2 = new Jugador(JUGADOR_2, EMOJI_JUGADOR_2);
+    this->constructora = new Constructora(diccionario,mapa);
 
 }
 
@@ -254,7 +255,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
 
     switch (opcion){
         case CONSTRUIR_EDIFICIO_NOMBRE:
-            mapa->mostrar();
+            constructora->construir_edificio(jugador_actual);
             break;
         case LISTAR_MIS_EDIFICIOS_CONSTRUIDOS:
             this->mapa->mostrar_edificios_construidos(jugador_actual);
@@ -471,4 +472,82 @@ void Juego::mostrar_coordenada(){
 
     system("clear");
     this->mapa->imprimir_resumen_casillero(fila, columna);    
+}
+
+
+void Juego::reparar_edificio(){
+    Jugador* jugador_actual = devolver_jugador_turno();
+
+    if(jugador_actual->devolver_energia()<=ENERGIA_REPARAR){
+        cout << "No posee la cantidad de energia necesaria para realizar esta accion! Le falta " << ENERGIA_REPARAR - jugador_actual->devolver_energia() << endl;
+    }else{
+        int fila = this->pedir_fila();
+        this->validar_fila(fila);
+
+        int columna = this->pedir_columna();
+        this->validar_columna(columna);
+        
+        if(mapa->devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO
+        && mapa->devolver_casillero(fila, columna)->esta_ocupado()){
+
+            if(!mapa->devolver_casillero(fila, columna)->devolver_duenio() == jugador_actual->devolver_numero()){
+                cout << "No se puede reparar un edificio que no te pertenece" << endl;
+            }else{
+                if(!mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_reparable()){
+                    cout << "El edificio no es ni una mina ni una fabrica asi que no se puede reparar." << endl;
+                }else{
+                    if(!mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_necesita_reparacion()){
+                        cout << "El edificio no necesita reparacion." << endl;
+                    }else{
+                        if(true){//materiales
+                            //mapa->devolver_casillero(fila,columna)->devolver_edificacion()->reparar();
+                            jugador_actual->restar_energia(ENERGIA_REPARAR);
+                        }else{
+                            cout << "No posees los materiales suficientes par reparar este edificio"<< endl;
+                        }
+                    }                    
+                } 
+            }
+        }
+    }
+}
+
+
+void Juego::atacar_edificio(){
+    Jugador* jugador_actual = devolver_jugador_turno();
+
+    if(jugador_actual->devolver_energia()<=ENERGIA_ATACAR
+    && jugador_actual->devolver_inventario()->devolver_material(BOMBA)>=1){
+        cout << "No posee una bomba o la cantidad de energia necesaria para realizar esta accion!" << endl;
+    }else{
+        int fila = this->pedir_fila();
+        this->validar_fila(fila);
+
+        int columna = this->pedir_columna();
+        this->validar_columna(columna);
+        
+        if(mapa->devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO
+        && mapa->devolver_casillero(fila, columna)->esta_ocupado()){
+
+            if(mapa->devolver_casillero(fila, columna)->devolver_duenio() == jugador_actual->devolver_numero()){
+                cout << "No se puede atacar un edificio propio " << ENERGIA_ATACAR - jugador_actual->devolver_energia() << endl;
+            }else{
+                if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_reparable()){
+                    if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_necesita_reparacion()){
+                        mapa->borrar_edificio(fila,columna);
+                    }else{
+                        //mapa->devolver_casillero(fila,columna)->devolver_edificacion()->averiar();
+                    }
+                }else{
+                    mapa->borrar_edificio(fila,columna);
+                }
+                //jugador_actual->devolver_inventario()-> //borrar 1 bomba
+                jugador_actual->restar_energia(ENERGIA_ATACAR);
+            }
+
+        }
+    }
+
+
+
 }

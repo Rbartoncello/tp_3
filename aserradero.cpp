@@ -6,6 +6,7 @@ Aserradero::Aserradero() : Edificacion (EDIFICIO_ASERRADERO, EMOJI_ASERRADERO){
     this->produce_material = true;
     this->cantidad_material_brinda = BRINDA_ASERRADERO;
     this->material_producido = MADERA;
+    this->reparable = false;
 }
 
 Aserradero::Aserradero(int piedra, int madera, int metal, int maxima_cantidad_permitidos) : Edificacion (EDIFICIO_ASERRADERO, EMOJI_ASERRADERO){
@@ -14,6 +15,7 @@ Aserradero::Aserradero(int piedra, int madera, int metal, int maxima_cantidad_pe
     this->material_producido = MADERA;
     this->receta = new Receta(piedra, madera, metal);
     this->maxima_cantidad_permitidos = maxima_cantidad_permitidos;
+    this->reparable = false;
 }
 
 Aserradero::~Aserradero(){

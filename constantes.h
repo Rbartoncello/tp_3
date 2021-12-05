@@ -14,10 +14,10 @@ const string EDIFICIO_PLANTA_ELECTRICA = "planta electrica";
 const string PLANTA = "planta";
 const string ORO = "oro";
 
-const string PATH_EDIFICIO = "archivos/edificios.txt";
-const string PATH_UBICACIONES = "archivos/ubicaciones.txt";
-const string PATH_MAPA = "archivos/mapa.txt";
-const string PATH_MATERIALES = "archivos/materiales.txt";
+const string PATH_EDIFICIO = "../archivos/edificios.txt";
+const string PATH_UBICACIONES = "../archivos/ubicaciones.txt";
+const string PATH_MAPA = "../archivos/mapa.txt";
+const string PATH_MATERIALES = "../archivos/materiales.txt";
 
 const int MIN_OPCION_NUEVA_PARTIDA = 1;
 const int MAX_OPCION_NUEVA_PARTIDA = 5;
@@ -110,6 +110,8 @@ const int JUGADOR_2 = 2;
 
 const int ENERGIA_COMIENZO_PARTIDA = 50;
 const int ENERGIA_NUEVO_TURNO = 20;
+const int ENERGIA_REPARAR = 25;
+const int ENERGIA_ATACAR = 30;
 
 const int POSICION_NO_ENCONTRADA = -1;
 const string NOMBRE_NO_ENCONTRADO = "";

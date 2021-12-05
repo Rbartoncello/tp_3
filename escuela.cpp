@@ -6,6 +6,7 @@ Escuela::Escuela() : Edificacion (EDIFICIO_ESCUELA, EMOJI_ESCUELA){
     this->produce_material = true;
     this->cantidad_material_brinda = BRINDA_ESCUELA;
     this->material_producido = ANDYCOINS;
+    this->reparable = false;
 }
 
 Escuela::Escuela(int piedra, int madera, int metal, int maxima_cantidad_permitidos) : Edificacion (EDIFICIO_ESCUELA, EMOJI_ESCUELA){
@@ -14,6 +15,7 @@ Escuela::Escuela(int piedra, int madera, int metal, int maxima_cantidad_permitid
     this->produce_material = true;
     this->cantidad_material_brinda = BRINDA_ESCUELA;
     this->material_producido = ANDYCOINS;
+    this->reparable = false;
 }
 
 Escuela::~Escuela(){
