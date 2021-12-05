@@ -1,19 +1,16 @@
 #include "edad_piedra.h"
 
-Edad_piedra::Edad_piedra(Inventario*& inventario_jugador) : Objetivos("Comprar Andypolis") {
+Edad_piedra::Edad_piedra(Lista<Material>*& inventario_jugador) : Objetivos("Comprar Andypolis") {
 
   descripcion_objetivo = "Debes tener en el inventario 50000 Piedras";
-  this->inventario_jugador = inventario_jugador->devolver_acceso_materiales();
+  
+  this->inventario_jugador = inventario_jugador;
 
 }
 
 void Edad_piedra::mostrar_descripcion(){
     cout << descripcion_objetivo << endl;
-//    cout << "Actualmente tienes " << inventario_jugador-< << " piedras" << endl;
-
-    
-    
-   
+//    cout << "Actualmente tienes " << inventario_jugador-< << " piedras" << endl;   
 }
 
 void Edad_piedra::verificar_estado_objetivo(){

@@ -8,6 +8,7 @@ using namespace std;
 class Objetivos
 {
 protected:
+
     bool objetivo_realizado;
     string descripcion_objetivo;
 
@@ -35,7 +36,7 @@ public:
 
     //Pre:
     //Post:Agrega datos al conteo para alcanzar el objetivo
-    virtual void agregar_datos() = 0;
+    virtual void agregar_datos();
 
     //Pre:
     //Post:valida si el objetivo se ha realizado.

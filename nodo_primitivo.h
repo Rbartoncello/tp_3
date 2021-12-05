@@ -79,9 +79,7 @@ void Nodo_primitivo<T>::cambiar_siguiente(Nodo_primitivo<T>* nuevo_siguiente){
 }
 
 template<typename T>
-Nodo_primitivo<T>::~Nodo_primitivo(){
-    delete contenido;
-}
+Nodo_primitivo<T>::~Nodo_primitivo(){}
 
 
 #endif

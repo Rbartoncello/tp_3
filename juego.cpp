@@ -269,7 +269,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             imprimir_mensaje_enter_continuar();
             break;
         case MOSTRAR_OBJETIVOS:
-            jugador_actual->crear_objetivo(1);
+            jugador_actual->generar_objetivos_secundarios();
             imprimir_mensaje_enter_continuar();
             break;
         case RECOLECTAR_RECURSOS:

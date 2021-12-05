@@ -54,6 +54,12 @@ class Lista_primitiva{
          * Post: elimina el elemento de la Lista_primitivas
          */
         void remover_elemento(int posicion);
+
+        /*
+         * Pre: la posicion del elemento a eliminar
+         * Post: elimina el elemento de la Lista_primitivas
+         */
+        T devolver_elemento_en_posicion(int posicion);
         
         /*
          * Destructor:
@@ -145,6 +151,15 @@ Nodo_primitivo<T>* Lista_primitiva<T>::obtener_direccion_nodo(int posicion){
         auxiliar = auxiliar->direccion_siguiente();
     }
     return (auxiliar);
+}
+
+template<typename T>
+T Lista_primitiva<T>::devolver_elemento_en_posicion(int posicion){
+    Nodo_primitivo<T>* auxiliar = nullptr;
+   
+    auxiliar = obtener_direccion_nodo(posicion);
+
+    return(auxiliar->devolver_dato());
 }
 
 template<typename T>

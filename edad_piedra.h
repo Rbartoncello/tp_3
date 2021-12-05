@@ -1,7 +1,7 @@
 #ifndef EDAD_PIEDRA_H
 #define EDAD_PIEDRA_H
 #include "objetivos.h"
-#include "inventario.h"
+#include "lista.h"
 
 
 const int OBJETIVO_EDAD_PIEDRA = 50000;
@@ -10,13 +10,13 @@ class Edad_piedra : public Objetivos
 {
 private:
 
-    Material** inventario_jugador;
+    Lista<Material>* inventario_jugador;
 
 public:
 
     //Pre:
     //Post: inicializa su nombre y coloca la cantidad de andycoins en cero
-    Edad_piedra(Inventario*& inventario_jugador);
+    Edad_piedra(Lista<Material>*& inventario_jugador);
 
     //Pre:
     //Post:Agrega datos al conteo para alcanzar el objetivo

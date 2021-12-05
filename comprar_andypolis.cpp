@@ -7,12 +7,11 @@ Comprar_andypolis::Comprar_andypolis() : Objetivos("Comprar Andypolis") {
 }
 
 
-void Comprar_andypolis::agregar_datos(int sumar_andycoins){
-
+void Comprar_andypolis::agregar_datos(int sumar_andycoins){}
     //cantidad_obelisco =+ sumar_andycoins
 
     //llamar a verificar_estado_objetivo
-}
+
 
 void Comprar_andypolis::mostrar_descripcion(){
     cout << descripcion_objetivo << endl;

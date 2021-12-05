@@ -5,39 +5,73 @@
 Jugador::Jugador(int numero, string emoji){
     this->numero = numero;
     this->emoji = emoji;
-    this -> energia = 0;
-    this -> inventario = new Lista<Material>();
+    energia = 0;
+    inventario = new Lista<Material>();
+    objetivos_secundarios = new Lista<Objetivos>();
     //objetivo_primario = new Mas_alto_que_las_nubes();
     //generar_objetivos_secundarios();
 }
 
 Jugador::~Jugador(){
     delete this->inventario;
-    //delete this->objetivos_secundarios
+    delete this->objetivos_secundarios;
 }
 
-void Jugador::crear_objetivo(int posicion){
+void Jugador::crear_lista(Lista_primitiva<string>* &objetivos){
      
-    Lista<string>* objetivos = new Lista<string>();
-
     objetivos->agregar(COMPRAR_ANDYPOLIS);
-
-    cout << objetivos->obtener_direccion_nodo(1)->devolver_dato() << endl;
-
-    //char objetivos[] = {'objetivo 1','objetivo 2','objetivo 3', 'objetivo 4','objetivo 5',
-    //'objetivo 6','objetivo 7','objetivo 8','objetivo 9','objetivo 10'};
-    
+    objetivos->agregar(EDAD_PIEDRA);
+    objetivos->agregar(BOMBARDERO);
+    //objetivos->agregar(ENERGETICO);
+    //objetivos->agregar(LETRADO);
+    //objetivos->agregar(MINERO);
+    //objetivos->agregar(CANSADO);
+    //objetivos->agregar(ARMADO);
+    //objetivos->agregar(EXTREMISTA);    
     
 }
 
 void Jugador::generar_objetivos_secundarios(){
-    int objetivo = 0;
+    Lista_primitiva<string>* objetivos = new Lista_primitiva<string>();
+    string nombre_objetivo;
+    int posicion = 0;
+
+    crear_lista(objetivos);
 
     for (int i = 0; i < 3; i++)
     {
-        objetivo = numero_aleatorio(0,9);
-        crear_objetivo(objetivo);
+        posicion = numero_aleatorio(1,3);
+        nombre_objetivo = objetivos->devolver_elemento_en_posicion(posicion);
+        agregar_objetivo(nombre_objetivo);
     }    
+
+    delete objetivos;
+
+    posicion =  objetivos_secundarios->devolver_cantidad_en_lista();
+    Nodo_lista<Objetivos>* auxiliar = objetivos_secundarios->retornar_primero();
+    
+
+    for (int i = 0; i < posicion; i++)
+    {
+        auxiliar->devolver_dato()->mostrar_descripcion();
+        auxiliar = auxiliar->direccion_siguiente();
+    }
+    
+
+}
+
+void Jugador::agregar_objetivo(string nombre_objetivo){
+
+    Objetivos* objetivo;
+
+    if (nombre_objetivo == COMPRAR_ANDYPOLIS)
+       objetivo = new Comprar_andypolis();
+    else if (nombre_objetivo == BOMBARDERO)
+       objetivo = new Bombardero();
+    else if (nombre_objetivo == EDAD_PIEDRA)
+       objetivo = new Edad_piedra(inventario);
+    
+    objetivos_secundarios->agregar_elemento(objetivo,1);
 }
 
 int Jugador::numero_aleatorio(int desde, int hasta){

@@ -6,10 +6,10 @@ Objetivos::Objetivos(string nombre_de_objetivo){
     nombre_objetivo = nombre_de_objetivo;
 }
 
-//void Objetivos::sumar_datos(){
+void Objetivos::sumar_datos(){
 
 //Meter los datos de cada objetivo
-//}
+}
 
 string Objetivos::devolver_tipo_objetivo()
 {
@@ -22,5 +22,7 @@ bool Objetivos::devolver_estado_objetivo()
 
     return (objetivo_realizado);
 }
+
+void Objetivos::agregar_datos(){}
 
 Objetivos::~Objetivos(){};

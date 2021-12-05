@@ -4,6 +4,10 @@
 #include "lista.h"
 #include "objetivos.h"
 #include "constantes.h"
+#include "lista_primitiva.h"
+#include "comprar_andypolis.h"
+#include "bombardero.h"
+#include "edad_piedra.h"
 //#include "mas_alto_que_las_nubes.h"
 
 class Jugador{
@@ -12,7 +16,7 @@ class Jugador{
         string emoji;
         int energia, numero, fila, columna;
         Lista<Material>* inventario;
-        Objetivos** objetivos_secundarios;
+        Lista<Objetivos>* objetivos_secundarios;
         //Mas_alto_que_las_nubes* objetivo_primario;
         
 
@@ -26,9 +30,11 @@ class Jugador{
         
         int numero_aleatorio(int desde, int hasta);
 
-        void crear_objetivo(int posicion);
+        void crear_lista(Lista_primitiva<string>* &objetivos);
 
         int devolver_numero();
+
+        void agregar_objetivo(string nombre_objetivo);
 
         void generar_objetivos_secundarios();
 
