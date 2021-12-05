@@ -8,11 +8,44 @@ Jugador::Jugador(int numero, string emoji){
     this -> energia = 0;
     this -> inventario = new Lista<Material>();
     //objetivo_primario = new Mas_alto_que_las_nubes();
+    //generar_objetivos_secundarios();
 }
 
 Jugador::~Jugador(){
     delete this->inventario;
     //delete this->objetivos_secundarios
+}
+
+void Jugador::crear_objetivo(int posicion){
+     
+    Lista<string>* objetivos = new Lista<string>();
+
+    objetivos->agregar(COMPRAR_ANDYPOLIS);
+
+    cout << objetivos->obtener_direccion_nodo(1)->devolver_dato() << endl;
+
+    //char objetivos[] = {'objetivo 1','objetivo 2','objetivo 3', 'objetivo 4','objetivo 5',
+    //'objetivo 6','objetivo 7','objetivo 8','objetivo 9','objetivo 10'};
+    
+    
+}
+
+void Jugador::generar_objetivos_secundarios(){
+    int objetivo = 0;
+
+    for (int i = 0; i < 3; i++)
+    {
+        objetivo = numero_aleatorio(0,9);
+        crear_objetivo(objetivo);
+    }    
+}
+
+int Jugador::numero_aleatorio(int desde, int hasta){
+    int numero = ( desde + rand() % hasta );
+    
+    while (numero > hasta)
+        numero = ( desde + rand() % hasta );
+    return numero;
 }
 
 void Jugador::aumentar_material(Material* material){

@@ -2,7 +2,8 @@
 #define JUEGADOR_H
 #include "materiales.h"
 #include "lista.h"
-//#include "objetivos.h"
+#include "objetivos.h"
+#include "constantes.h"
 //#include "mas_alto_que_las_nubes.h"
 
 class Jugador{
@@ -11,7 +12,7 @@ class Jugador{
         string emoji;
         int energia, numero, fila, columna;
         Lista<Material>* inventario;
-        //Objetivos** objetivos_secundarios;
+        Objetivos** objetivos_secundarios;
         //Mas_alto_que_las_nubes* objetivo_primario;
         
 
@@ -23,9 +24,13 @@ class Jugador{
          */
         Jugador(int numero, string emoji);
         
+        int numero_aleatorio(int desde, int hasta);
 
+        void crear_objetivo(int posicion);
 
         int devolver_numero();
+
+        void generar_objetivos_secundarios();
 
         int devolver_energia();
         /*

@@ -19,6 +19,17 @@ const string PATH_UBICACIONES = "archivos/ubicaciones.txt";
 const string PATH_MAPA = "archivos/mapa.txt";
 const string PATH_MATERIALES = "archivos/materiales.txt";
 
+const string COMPRAR_ANDYPOLIS = "objetivo 1";
+const string EDAD_PIEDRA = "objetivo 2";
+const string BOMBARDERO = "objetivo 3";
+const string ENERGETICO = "objetivo 4";
+const string LETRADO = "objetivo 5";
+const string MINERO = "objetivo 6";
+const string CANSADO = "objetivo 7";
+const string CONSTRUCTOR = "objetivo 8";
+const string ARMADO = "objetivo 9";
+const string EXTREMISTA = "objetivo 10";
+
 const int MIN_OPCION_NUEVA_PARTIDA = 1;
 const int MAX_OPCION_NUEVA_PARTIDA = 5;
 

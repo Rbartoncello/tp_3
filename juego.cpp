@@ -2,7 +2,6 @@
 #include <unistd.h>
 #include "juego.h"
 #include "interface.h"
-#include <time.h>
 
 Juego::Juego(){
     this->mapa = new Mapa();
@@ -210,7 +209,6 @@ void Juego::agregar_energia_comienza_partida(){
 }
 
 int Juego::numero_aleatorio(int desde, int hasta){
-    srand (( unsigned)time(NULL));
     int numero = ( desde + rand() % hasta );
     
     while (numero > hasta)
@@ -271,6 +269,8 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             imprimir_mensaje_enter_continuar();
             break;
         case MOSTRAR_OBJETIVOS:
+            jugador_actual->crear_objetivo(1);
+            imprimir_mensaje_enter_continuar();
             break;
         case RECOLECTAR_RECURSOS:
 
