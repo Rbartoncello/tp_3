@@ -264,8 +264,10 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
         case DEMOLER_EDIFICIO_COORDENADA:
             break;
         case ATARCAR_EDIFICIO_COORDENADA:
+            this->atacar_edificio();
             break;
         case REPARAR_EDIFICIO_COORDENADA:
+            this->reparar_edificio();
             break;
         case COMPRAR_BOMBA:
             break;
@@ -536,7 +538,7 @@ void Juego::atacar_edificio(){
                     if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_necesita_reparacion()){
                         mapa->borrar_edificio(fila,columna);
                     }else{
-                        mapa->devolver_casillero(fila,columna)->devolver_edificacion()->averiar();
+                        mapa->devolver_casillero(fila,columna)->devolver_edificacion()->atacar();
                     }
                 }else{
                     mapa->borrar_edificio(fila,columna);
