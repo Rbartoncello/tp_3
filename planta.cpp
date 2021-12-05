@@ -47,3 +47,11 @@ string Planta::devolver_material_producido(){
 void Planta::hablar_sobre_mi(){
     cout << "SOY UN " + devolver_nombre_edificio() + " Y ME ENCUENTRO EN EL CASILLERO CONSULTADO" << endl;
 }
+
+void Planta::atacar(){
+    this->necesita_reparacion = true;
+}
+
+void Planta::reparar(){
+    this->necesita_reparacion = false;
+}

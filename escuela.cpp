@@ -50,3 +50,11 @@ void Escuela::hablar_sobre_mi(){
 int Escuela::devolver_maxima_cantidad_permitidos(){
     return this->maxima_cantidad_permitidos;
 }
+
+void Escuela::atacar(){
+    this->necesita_reparacion = true;
+}
+
+void Escuela::reparar(){
+    this->necesita_reparacion = false;
+}

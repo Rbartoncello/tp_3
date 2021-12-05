@@ -50,3 +50,10 @@ void Obelisco::hablar_sobre_mi(){
     cout << "SOY UN " + devolver_nombre_edificio() + " Y ME ENCUENTRO EN EL CASILLERO CONSULTADO" << endl;
 }
 
+void Obelisco::atacar(){
+    this->necesita_reparacion = true;
+}
+
+void Obelisco::reparar(){
+    this->necesita_reparacion = false;
+}

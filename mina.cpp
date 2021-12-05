@@ -51,3 +51,11 @@ string Mina::devolver_material_producido(){
 void Mina::hablar_sobre_mi(){
     cout << "SOY UN " + devolver_nombre_edificio() + " Y ME ENCUENTRO EN EL CASILLERO CONSULTADO" << endl;
 }
+
+void Mina::atacar(){
+    this->necesita_reparacion = true;
+}
+
+void Mina::reparar(){
+    this->necesita_reparacion = false;
+}

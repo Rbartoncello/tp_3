@@ -64,6 +64,10 @@ class Planta : public Edificacion{
          */
         bool devolver_necesita_reparacion();
 
+        void atacar(); 
+
+        void reparar();
+
         /*
          * Pre: -
          * Post: Me devuelve la maxima cantidad pemitida para construir.

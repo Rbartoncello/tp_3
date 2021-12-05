@@ -499,8 +499,8 @@ void Juego::reparar_edificio(){
                     if(!mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_necesita_reparacion()){
                         cout << "El edificio no necesita reparacion." << endl;
                     }else{
-                        if(true){//materiales
-                            //mapa->devolver_casillero(fila,columna)->devolver_edificacion()->reparar();
+                        if(true){//materiales 1/4
+                            mapa->devolver_casillero(fila,columna)->devolver_edificacion()->reparar();
                             jugador_actual->restar_energia(ENERGIA_REPARAR);
                         }else{
                             cout << "No posees los materiales suficientes par reparar este edificio"<< endl;
@@ -536,7 +536,7 @@ void Juego::atacar_edificio(){
                     if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_necesita_reparacion()){
                         mapa->borrar_edificio(fila,columna);
                     }else{
-                        //mapa->devolver_casillero(fila,columna)->devolver_edificacion()->averiar();
+                        mapa->devolver_casillero(fila,columna)->devolver_edificacion()->averiar();
                     }
                 }else{
                     mapa->borrar_edificio(fila,columna);

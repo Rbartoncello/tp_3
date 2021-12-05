@@ -49,3 +49,11 @@ void Mina_oro::hablar_sobre_mi(){
 int Mina_oro::devolver_maxima_cantidad_permitidos(){
     return this->maxima_cantidad_permitidos;
 }
+
+void Mina_oro::atacar(){
+    this->necesita_reparacion = true;
+}
+
+void Mina_oro::reparar(){
+    this->necesita_reparacion = false;
+}

@@ -51,6 +51,10 @@ public:
      */
     virtual bool devolver_necesita_reparacion() = 0;
 
+    virtual void reparar() = 0;
+
+    virtual void atacar() = 0;    
+
     virtual int devolver_maxima_cantidad_permitidos() = 0;
 
     virtual Receta* devolver_receta() = 0;

@@ -50,3 +50,11 @@ void Aserradero::hablar_sobre_mi(){
     cout << "SOY UN " + devolver_nombre_edificio() + " Y ME ENCUENTRO EN EL CASILLERO CONSULTADO" << endl;
 }
 
+void Aserradero::atacar(){
+    this->necesita_reparacion = true;
+}
+
+void Aserradero::reparar(){
+    this->necesita_reparacion = false;
+}
+
