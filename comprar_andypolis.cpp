@@ -1,16 +1,17 @@
 #include "comprar_andypolis.h"
 
-Comprar_andypolis::Comprar_andypolis() : Objetivos("Comprar Andypolis") {
+Comprar_andypolis::Comprar_andypolis(Lista<Material>* inventario) : Objetivos("Comprar Andypolis") {
 
     andycoins_recolectados = 0;
     descripcion_objetivo = "Debes haber juntado 100.000 andycoins a lo largo de la partida (las monedas gastadas también cuentan para este objetivo)";
+    this->inventario = inventario;
 }
 
 
-void Comprar_andypolis::agregar_datos(int sumar_andycoins){}
-    //cantidad_obelisco =+ sumar_andycoins
-
-    //llamar a verificar_estado_objetivo
+void Comprar_andypolis::agregar_datos(int sumar_andycoins){
+    //andycoins_recolectados = inventario->devolver_cantidad_en_lista();
+    verificar_estado_objetivo();
+}
 
 
 void Comprar_andypolis::mostrar_descripcion(){

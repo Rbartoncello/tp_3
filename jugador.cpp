@@ -34,15 +34,17 @@ void Jugador::crear_lista(Lista_primitiva<string>* &objetivos){
 void Jugador::generar_objetivos_secundarios(){
     Lista_primitiva<string>* objetivos = new Lista_primitiva<string>();
     string nombre_objetivo;
-    int posicion = 0;
+    int posicion = 0, hasta = 3;
 
     crear_lista(objetivos);
 
     for (int i = 0; i < 3; i++)
     {
-        posicion = numero_aleatorio(1,3);
+        posicion = numero_aleatorio(1,hasta);
         nombre_objetivo = objetivos->devolver_elemento_en_posicion(posicion);
         agregar_objetivo(nombre_objetivo);
+        objetivos->remover_elemento(posicion);
+        hasta--;
     }    
 
     delete objetivos;
@@ -53,7 +55,9 @@ void Jugador::generar_objetivos_secundarios(){
 
     for (int i = 0; i < posicion; i++)
     {
+        cout << i+1 << ": ";
         auxiliar->devolver_dato()->mostrar_descripcion();
+        cout << "\n";
         auxiliar = auxiliar->direccion_siguiente();
     }
     
@@ -65,7 +69,7 @@ void Jugador::agregar_objetivo(string nombre_objetivo){
     Objetivos* objetivo;
 
     if (nombre_objetivo == COMPRAR_ANDYPOLIS)
-       objetivo = new Comprar_andypolis();
+       objetivo = new Comprar_andypolis(inventario);
     else if (nombre_objetivo == BOMBARDERO)
        objetivo = new Bombardero();
     else if (nombre_objetivo == EDAD_PIEDRA)
