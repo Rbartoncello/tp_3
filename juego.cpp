@@ -265,9 +265,11 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             break;
         case ATARCAR_EDIFICIO_COORDENADA:
             this->atacar_edificio();
+            imprimir_mensaje_enter_continuar();
             break;
         case REPARAR_EDIFICIO_COORDENADA:
             this->reparar_edificio();
+            imprimir_mensaje_enter_continuar();
             break;
         case COMPRAR_BOMBA:
             break;
@@ -552,7 +554,7 @@ bool Juego::validar_reparar_edificio(int fila, int columna){
 
     if(mapa->devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO
     && mapa->devolver_casillero(fila, columna)->esta_ocupado()){
-        if(!mapa->devolver_casillero(fila, columna)->devolver_duenio() == jugador_actual->devolver_numero()){
+        if(!(mapa->devolver_casillero(fila, columna)->devolver_duenio() == jugador_actual->devolver_numero())){
             cout << "No se puede reparar un edificio que no te pertenece" << endl;
         }else{
             if(!mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_reparable()){
@@ -563,7 +565,7 @@ bool Juego::validar_reparar_edificio(int fila, int columna){
                 }else{
                     if(cantidad_piedra>= piedra_necesaria 
                     && cantidad_metal >= metal_necesario
-                    && cantidad_madera >= metal_necesario){
+                    && cantidad_madera >= madera_necesaria){
                         se_puede = true;
                     }else{
                         cout << "No posees los materiales suficientes par reparar este edificio"<< endl;

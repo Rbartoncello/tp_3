@@ -32,7 +32,8 @@ void Constructora::construir_edificio(Jugador* jugador)
 
 void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio, Jugador* jugador){
 
-    bool coordenadas_validas = false, materiales_validos = false, validar_terreno_vacio = false, cantidad_construida = false;
+    //bool coordenadas_validas = false, validar_terreno_vacio = false;
+    bool materiales_validos = false, cantidad_construida = false;
     string edificio;
 
     cantidad_construida = validar_maximo_edificio(nombre_nuevo_edifcio, jugador); //FUNCIONA, falta que los edificios sepan de quien son para validar cuantos hay de un juegador en particualar

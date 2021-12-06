@@ -54,3 +54,11 @@ void Fabrica::hablar_sobre_mi(){
 
     cout << "SOY UN " + devolver_nombre_edificio() + " Y ME ENCUENTRO EN EL CASILLERO CONSULTADO" << endl;
 }
+
+void Fabrica::atacar(){
+    this->necesita_reparacion = true;
+}
+
+void Fabrica::reparar(){
+    this->necesita_reparacion = false;
+}

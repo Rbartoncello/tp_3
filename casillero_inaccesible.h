@@ -48,7 +48,7 @@ class Casillero_inaccesible : public Casillero {
         string devolver_nombre_edificio(){return "l";};
 
 
-        virtual int devolver_duenio() = 0;
+        virtual int devolver_duenio(){return 0;};
 
         virtual Edificacion* devolver_edificacion(){return nullptr;};
         

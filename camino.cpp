@@ -21,8 +21,6 @@ void Camino::modificar_costo(int costo) {
     this->costo = costo;
 }
 
-int Camino::devolver_duenio() {}
-
 int Camino::devolver_costo() {
     return this->costo;
 }

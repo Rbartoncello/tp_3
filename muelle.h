@@ -28,8 +28,6 @@ class Muelle : public  Casillero_transitable{
          */
         void modificar_terreno(string elemento,int accion);
 
-        int devolver_duenio();
-
         Edificacion* devolver_edificacion(){return nullptr;};
 
         virtual void eliminar_edificio(){};

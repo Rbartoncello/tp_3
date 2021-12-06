@@ -54,7 +54,7 @@ class Casillero_transitable : public Casillero{
         */
         virtual void imprimir_resumen() = 0;
 
-        virtual int devolver_duenio() = 0;
+        virtual int devolver_duenio(){{return 0;}};
 
         virtual Edificacion* devolver_edificacion(){return nullptr;};
 
