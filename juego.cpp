@@ -480,7 +480,6 @@ void Juego::mostrar_coordenada(){
 
 
 void Juego::reparar_edificio(){
-    Jugador* jugador_actual = devolver_jugador_turno();
 
     if(jugador_actual->devolver_energia()<=ENERGIA_REPARAR){
         cout << "No posee la cantidad de energia necesaria para realizar esta accion! Le falta " << ENERGIA_REPARAR - jugador_actual->devolver_energia() << endl;
@@ -500,7 +499,6 @@ void Juego::reparar_edificio(){
 
 
 void Juego::atacar_edificio(){
-    Jugador* jugador_actual = devolver_jugador_turno();
 
     if(jugador_actual->devolver_energia()<=ENERGIA_ATACAR
     && jugador_actual->devolver_inventario()->devolver_material(BOMBA)>=1){
