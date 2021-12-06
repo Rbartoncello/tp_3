@@ -12,6 +12,7 @@ class Mapa{
         int cantidad_columnas;
         Casillero*** casilleros;
 
+
     public:
         /*
          * Constructor sin parametros:
@@ -33,6 +34,10 @@ class Mapa{
          */
         Casillero* devolver_casillero(int fila, int columna);
 
+        void construir_edifcio(Jugador* jugador);
+
+        int cantidad_edificio_construido(string nombre);
+
         /*
          * Pre: la fila y la columna tiene que estar dentro de los parametro del mapa.
          * Post: Me devolvera TRUE si el casillero esta ocupado FALSE en caso contrario.
@@ -45,6 +50,14 @@ class Mapa{
          * Post: Me va a destruir el objeto Mapa.
          */
         ~Mapa();
+
+        /*
+         * Pre: recibe un nombre.
+         * Post: devuelve la cantidad de ese nombre en el mapa.
+        */
+        int devolver_cantidad_edificio(string nombre_edificio_nuevo, Jugador* jugador);
+
+        int devolver_cantidad_edificio(string nombre_edificio_nuevo);
 
         /*
          * Pre: -
@@ -73,12 +86,6 @@ class Mapa{
         void agregar_edificacion(Edificacion* edificacion, int fila, int columna, int duenio);
 
         /*
-         * Pre: recibe un nombre.
-         * Post: devuelve la cantidad de ese nombre en el mapa.
-        */
-        int cantidad_edificio_construido(string nombre);
-
-        /*
          * Pre: -
          * Post: Devuelve la cantidad de filas que tiene la matriz de casilleros
         */
@@ -101,6 +108,13 @@ class Mapa{
          * Post: Me muestra por pantalla los edificios contruidos del jugador actual.
          */
         void mostrar_edificios_construidos(Jugador* jugador_actual);
+        
+        /*
+         * Pre: el casillero tiene un edificio
+         * Post: Elimina el edificio del casillero
+         */
+        void borrar_edificio(int fila, int columna);
+
     private:
         /*
          * Pre: El archivo tiene que estar abierto y de formato correcto.

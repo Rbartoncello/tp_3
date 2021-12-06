@@ -10,6 +10,7 @@ Juego::Juego(){
     this->diccionario = new Diccionario<Edificacion>();
     this->jugador_1 = new Jugador(JUGADOR_1, EMOJI_JUGADOR_1);
     this->jugador_2 = new Jugador(JUGADOR_2, EMOJI_JUGADOR_2);
+    //this->constructora = new Constructora(diccionario,mapa);
 
 }
 
@@ -247,7 +248,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
 
     switch (opcion){
         case CONSTRUIR_EDIFICIO_NOMBRE:
-            mapa->mostrar();
+            constructora->construir_edificio(jugador_actual);
             break;
         case LISTAR_MIS_EDIFICIOS_CONSTRUIDOS:
             this->mapa->mostrar_edificios_construidos(jugador_actual);
@@ -256,9 +257,12 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
         case DEMOLER_EDIFICIO_COORDENADA:
             break;
         case ATARCAR_EDIFICIO_COORDENADA:
-            jugador_actual->sumar_a_objetivo(100,BOMBARDERO);//considerar al hacer metodo
+            this->atacar_edificio();
+            imprimir_mensaje_enter_continuar();
             break;
         case REPARAR_EDIFICIO_COORDENADA:
+            this->reparar_edificio();
+            imprimir_mensaje_enter_continuar();
             break;
         case COMPRAR_BOMBA:
             jugador_actual->comprar_bombas();
@@ -475,4 +479,101 @@ void Juego::mostrar_coordenada(){
 
     system("clear");
     this->mapa->imprimir_resumen_casillero(fila, columna);    
+}
+
+
+void Juego::reparar_edificio(){
+
+    if(jugador_actual->devolver_energia()<=ENERGIA_REPARAR){
+        cout << "No posee la cantidad de energia necesaria para realizar esta accion! Le falta " << ENERGIA_REPARAR - jugador_actual->devolver_energia() << endl;
+    }else{
+        int fila = this->pedir_fila();
+        this->validar_fila(fila);
+
+        int columna = this->pedir_columna();
+        this->validar_columna(columna);
+
+        if(validar_reparar_edificio(fila, columna)){
+            mapa->devolver_casillero(fila,columna)->devolver_edificacion()->reparar();
+            jugador_actual->restar_energia(ENERGIA_REPARAR);
+        }
+    }
+}
+
+
+void Juego::atacar_edificio(){
+
+    if(jugador_actual->devolver_energia()<=ENERGIA_ATACAR
+    && jugador_actual->devolver_inventario()->devolver_material(BOMBA)>=1){
+        cout << "No posee una bomba o la cantidad de energia necesaria para realizar esta accion!" << endl;
+    }else{
+        int fila = this->pedir_fila();
+        this->validar_fila(fila);
+
+        int columna = this->pedir_columna();
+        this->validar_columna(columna);
+        
+        if(mapa->devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO
+        && mapa->devolver_casillero(fila, columna)->esta_ocupado()){
+
+            if(mapa->devolver_casillero(fila, columna)->devolver_duenio() == jugador_actual->devolver_numero()){
+                cout << "No se puede atacar un edificio propio " << ENERGIA_ATACAR - jugador_actual->devolver_energia() << endl;
+            }else{
+                if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_reparable()){
+                    if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_necesita_reparacion()){
+                        mapa->borrar_edificio(fila,columna);
+                    }else{
+                        mapa->devolver_casillero(fila,columna)->devolver_edificacion()->atacar();
+                    }
+                }else{
+                    mapa->borrar_edificio(fila,columna);
+                }
+                //jugador_actual->devolver_inventario()-> //borrar 1 bomba
+                jugador_actual->restar_energia(ENERGIA_ATACAR);
+            }
+
+        }
+    }
+
+
+    jugador_actual->sumar_a_objetivo(100,BOMBARDERO);
+}
+
+bool Juego::validar_reparar_edificio(int fila, int columna){
+    bool se_puede = false;
+
+    int cantidad_piedra = 0, cantidad_madera = 0, cantidad_metal = 0, piedra_necesaria = 0, madera_necesaria = 0, metal_necesario = 0;
+
+    string nombre_edificio = mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_nombre_edificio();
+
+    cantidad_piedra = jugador_actual->devolver_inventario()->devolver_material(PIEDRA);
+    cantidad_madera = jugador_actual->devolver_inventario()->devolver_material(MADERA);
+    cantidad_metal = jugador_actual->devolver_inventario()->devolver_material(METAL);
+    piedra_necesaria = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_piedra()/4;
+    madera_necesaria = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_madera()/4;
+    metal_necesario  = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_metal()/4;
+
+    if(mapa->devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO
+    && mapa->devolver_casillero(fila, columna)->esta_ocupado()){
+        if(!(mapa->devolver_casillero(fila, columna)->devolver_duenio() == jugador_actual->devolver_numero())){
+            cout << "No se puede reparar un edificio que no te pertenece" << endl;
+        }else{
+            if(!mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_reparable()){
+                cout << "El edificio no es ni una mina ni una fabrica asi que no se puede reparar." << endl;
+            }else{
+                if(!mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_necesita_reparacion()){
+                    cout << "El edificio no necesita reparacion." << endl;
+                }else{
+                    if(cantidad_piedra>= piedra_necesaria 
+                    && cantidad_metal >= metal_necesario
+                    && cantidad_madera >= madera_necesaria){
+                        se_puede = true;
+                    }else{
+                        cout << "No posees los materiales suficientes par reparar este edificio"<< endl;
+                    }
+                }                    
+            } 
+        }
+    }
+    return se_puede;
 }

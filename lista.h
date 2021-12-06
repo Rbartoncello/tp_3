@@ -43,11 +43,16 @@ class Lista{
          */
         int devolver_cantidad_en_lista();
 
+
+        int obtener_cantidad(int posicion);
+
         /*
          * Pre: -.
          * Post: Me devuelve la posicion en la que se encuentra el nombre que recibe o -1 si no lo encuentra.
          */
         int obtener_posicion(string nombre);
+
+        int devolver_material(string material);
 
         /*
          * Pre: -.
@@ -179,6 +184,32 @@ int Lista<T>::obtener_posicion(string nombre) {
         return -1;
     
     return i - 1;
+}
+template<typename T>
+int Lista<T>::devolver_material(string material){
+    for (int i = 0; i < cantidad_en_lista; ++i) {
+        if(this->obtener_nombre(i+1) == material)
+        {
+            return this->obtener_direccion_nodo(i)->obtener_cantidad();
+        }
+    }
+    return ERROR;
+}
+
+template<typename T>
+int Lista<T>::obtener_cantidad(int posicion) {
+    int i = 0;
+    Nodo_lista<T>* auxiliar = primero;
+
+    if(posicion > cantidad_en_lista){
+        return ERROR;
+    }
+
+    while(i != posicion - 1){
+        auxiliar = auxiliar -> direccion_siguiente();
+        i++;
+    }
+    return auxiliar -> obtener_cantidad();
 }
 
 template<typename T>

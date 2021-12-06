@@ -7,6 +7,7 @@ Fabrica::Fabrica() : Edificacion (EDIFICIO_FABRICA, EMOJI_FABRICA){
     this->necesita_reparacion = false;
     this->cantidad_material_brinda = BRINDA_ESCUELA;
     this->material_producido = METAL;
+    this->reparable = true;
 }
 
 Fabrica::Fabrica(int piedra, int madera, int metal, int maxima_cantidad_permitidos) : Edificacion (EDIFICIO_FABRICA, EMOJI_FABRICA){
@@ -16,6 +17,7 @@ Fabrica::Fabrica(int piedra, int madera, int metal, int maxima_cantidad_permitid
     this->material_producido = METAL;
     this->receta = new Receta(piedra, madera, metal);
     this->maxima_cantidad_permitidos = maxima_cantidad_permitidos;
+    this->reparable = true;
 }
 
 Fabrica::~Fabrica(){
@@ -53,3 +55,10 @@ void Fabrica::hablar_sobre_mi(){
     cout << "SOY UN " + devolver_nombre_edificio() + " Y ME ENCUENTRO EN EL CASILLERO CONSULTADO" << endl;
 }
 
+void Fabrica::atacar(){
+    this->necesita_reparacion = true;
+}
+
+void Fabrica::reparar(){
+    this->necesita_reparacion = false;
+}

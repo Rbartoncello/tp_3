@@ -22,6 +22,10 @@ class Camino : public Casillero_transitable{
          */
         Camino(char tipo_terreno, int pos_x, int pos_y);
 
+        Edificacion* devolver_edificacion(){return nullptr;};
+
+        virtual void eliminar_edificio(){};
+
         /*
          * 
          * Pre:Recibe lo que va agregar

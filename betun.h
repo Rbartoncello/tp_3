@@ -14,6 +14,10 @@ class Betun : public Casillero_transitable{
          */
         Betun();
 
+        virtual Edificacion* devolver_edificacion(){return nullptr;};
+
+        virtual void eliminar_edificio(){};
+
         /*
          * Constructor:
          * Pre: -.

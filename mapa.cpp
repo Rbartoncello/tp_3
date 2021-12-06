@@ -44,6 +44,38 @@ void Mapa::crear_matriz_casilleros()
     }
 }
 
+int Mapa::devolver_cantidad_edificio(string nombre_edificio_nuevo){
+    int cantidad = 0;
+    for (int i = 0; i < this->cantidad_filas; i++)
+    {
+        for (int j = 0; j < this->cantidad_columnas; j++)
+        {
+            if (this->casilleros[i][j]->devolver_tipo_terreno() == TERRENO && this->casilleros[i][j]->esta_ocupado() && this->casilleros[i][j]->devolver_nombre_edificio() == nombre_edificio_nuevo )
+            {
+                    cantidad++;
+            }
+        }
+    }
+    return cantidad;
+}
+
+int Mapa::devolver_cantidad_edificio(string nombre_edificio_nuevo,Jugador* jugador){
+    int cantidad = 0;
+    for (int i = 0; i < this->cantidad_filas; i++)
+    {
+        for (int j = 0; j < this->cantidad_columnas; j++)
+        {
+            if (this->casilleros[i][j]->devolver_tipo_terreno() == TERRENO && this->casilleros[i][j]->esta_ocupado() && this->casilleros[i][j]->devolver_nombre_edificio() == nombre_edificio_nuevo )
+            {
+                if(jugador->devolver_numero() == this->devolver_casillero(i,j)->devolver_duenio()){
+                    cantidad++;
+                }
+            }
+        }
+    }
+    return cantidad;
+}
+
 void Mapa::agregar_casillero(ifstream &archivo)
 {
     char tipo_terreno;
@@ -255,7 +287,7 @@ void Mapa::mostrar_edificios_construidos(Jugador* jugador_actual){
             if ( ( this->casilleros[i][j]->devolver_tipo_terreno() == TERRENO ) && ( this->casilleros[i][j]->esta_ocupado() ) ){
                 hay_edificios = true;
 
-                this->casilleros[i][j]->mostrar_casillero(jugador_actual, this->cantidad_edificio_construido(this->casilleros[i][j]->devolver_nombre_edificio()));
+                this->casilleros[i][j]->mostrar_casillero(jugador_actual, this->devolver_cantidad_edificio(this->casilleros[i][j]->devolver_nombre_edificio(),jugador_actual));
                 if( ( i == this->cantidad_filas - 1 ) && ( j == this->cantidad_columnas - 1 ) )
                     cout << "\t\t╚═══════════════════════╩══════╩═════════╩══════════════════════╩═════════════════════╝" << endl;
             }
@@ -268,4 +300,8 @@ void Mapa::mostrar_edificios_construidos(Jugador* jugador_actual){
         cout << "\t\t╚═══════════════════════════════════════════════════════════════╝" << endl;
     }
     
+}
+
+void Mapa::borrar_edificio(int fila, int columna){
+    casilleros[fila][columna]->eliminar_edificio();
 }

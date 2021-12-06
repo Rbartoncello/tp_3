@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 madera 1 0
 piedra 0 2
 metal 3 0
 andycoins 100 100
 bombas 0 1
+=======
+madera 0 0
+piedra 0 0
+metal 0 0
+andycoins 0 4
+bomba 0 1
+>>>>>>> main

@@ -8,6 +8,7 @@
 #include "diccionario.h"
 #include "jugador.h"
 #include "Grafo.h"
+#include "constructora.h"
 
 class Juego{
     private:
@@ -18,6 +19,7 @@ class Juego{
         Jugador* jugador_1;
         Jugador* jugador_2;
         Jugador* jugador_actual;
+        Constructora* constructora;
     public:
         /*
          * Constructor sin parametros:
@@ -227,6 +229,24 @@ class Juego{
         * Post: Me creara el grafo 
         */
         void cargar_grafo();
+
+        /*
+         * Pre: -
+         * Post: Repara un edificio por input
+         */
+        void reparar_edificio();
+
+        /*
+         * Pre: -
+         * Post: Ataca un edificio por input
+         */
+        void atacar_edificio();
+
+        /*
+         * Pre: -
+         * Post: valida si se puede reparar una coordenada
+         */
+        bool validar_reparar_edificio(int fila, int columna);
 
 };
 

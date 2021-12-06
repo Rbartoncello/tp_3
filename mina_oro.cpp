@@ -6,6 +6,7 @@ Mina_oro::Mina_oro() : Edificacion (EDIFICIO_MINA_ORO, EMOJI_MINA_ORO){
     this->produce_material = true;
     this->cantidad_material_brinda = BRINDA_MINA_ORO;
     this->material_producido = ANDYCOINS;
+    this->reparable = false;
 }
 
 Mina_oro::Mina_oro(int piedra, int madera, int metal, int maxima_cantidad_permitidos) : Edificacion (EDIFICIO_MINA_ORO, EMOJI_MINA_ORO){
@@ -14,6 +15,7 @@ Mina_oro::Mina_oro(int piedra, int madera, int metal, int maxima_cantidad_permit
     this->produce_material = true;
     this->cantidad_material_brinda = BRINDA_MINA_ORO;
     this->material_producido = ANDYCOINS;
+    this->reparable = false;
 }
 
 Mina_oro::~Mina_oro(){
@@ -46,4 +48,12 @@ void Mina_oro::hablar_sobre_mi(){
 
 int Mina_oro::devolver_maxima_cantidad_permitidos(){
     return this->maxima_cantidad_permitidos;
+}
+
+void Mina_oro::atacar(){
+    this->necesita_reparacion = true;
+}
+
+void Mina_oro::reparar(){
+    this->necesita_reparacion = false;
 }

@@ -100,7 +100,15 @@ class Casillero{
          * Pre: -
          * Post: Metodo virtual vacio para la clase casillero_construible
         */
-        virtual string devolver_nombre_edificio(){return nullptr;};
+        virtual string devolver_nombre_edificio() = 0;
+
+
+
+        virtual int devolver_duenio() = 0;
+
+        virtual Edificacion* devolver_edificacion(){return nullptr;};
+
+        virtual void eliminar_edificio(){};
 
         /*
          * Pre: -

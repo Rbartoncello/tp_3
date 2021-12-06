@@ -6,6 +6,7 @@ Obelisco::Obelisco() : Edificacion (EDIFICIO_OBELISCO, EMOJI_OBELISCO){
     this->produce_material = false;
     this->cantidad_material_brinda = 0;
     this->material_producido = "niguno";
+    this->reparable = false;
 }
 
 Obelisco::Obelisco(int piedra, int madera, int metal, int maxima_cantidad_permitidos) : Edificacion (EDIFICIO_OBELISCO, EMOJI_OBELISCO){
@@ -14,6 +15,7 @@ Obelisco::Obelisco(int piedra, int madera, int metal, int maxima_cantidad_permit
     this->material_producido = "niguno";
     this->receta = new Receta(piedra, madera, metal);
     this->maxima_cantidad_permitidos = maxima_cantidad_permitidos;
+    this->reparable = false;
 }
 
 Obelisco::~Obelisco(){
@@ -48,3 +50,10 @@ void Obelisco::hablar_sobre_mi(){
     cout << "SOY UN " + devolver_nombre_edificio() + " Y ME ENCUENTRO EN EL CASILLERO CONSULTADO" << endl;
 }
 
+void Obelisco::atacar(){
+    this->necesita_reparacion = true;
+}
+
+void Obelisco::reparar(){
+    this->necesita_reparacion = false;
+}

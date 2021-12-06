@@ -4,6 +4,7 @@ Planta::Planta() : Edificacion (EDIFICIO_PLANTA_ELECTRICA, EMOJI_PLANTA_ENERGIA)
     this->produce_material = true;
     this->cantidad_material_brinda = BRINDA_PLANTA_ELECTRICA;
     this->material_producido = ENERGIA;
+    this->reparable = false;
 }
 
 Planta::Planta(int piedra, int madera, int metal, int maxima_cantidad_permitidos) : Edificacion (EDIFICIO_PLANTA_ELECTRICA, EMOJI_PLANTA_ENERGIA){
@@ -12,6 +13,7 @@ Planta::Planta(int piedra, int madera, int metal, int maxima_cantidad_permitidos
     this->material_producido = ENERGIA;
     this->receta = new Receta(piedra, madera, metal);
     this->maxima_cantidad_permitidos = maxima_cantidad_permitidos;
+    this->reparable = false;
 }
 
 Planta::~Planta(){
@@ -44,4 +46,12 @@ string Planta::devolver_material_producido(){
 
 void Planta::hablar_sobre_mi(){
     cout << "SOY UN " + devolver_nombre_edificio() + " Y ME ENCUENTRO EN EL CASILLERO CONSULTADO" << endl;
+}
+
+void Planta::atacar(){
+    this->necesita_reparacion = true;
+}
+
+void Planta::reparar(){
+    this->necesita_reparacion = false;
 }

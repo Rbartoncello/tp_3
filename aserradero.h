@@ -46,6 +46,7 @@ class Aserradero : public Edificacion{
          */
         bool brinda_material();
 
+
         /*
          * PRE: -
          * POST: Devolver el material que produce.
@@ -64,6 +65,9 @@ class Aserradero : public Edificacion{
          */
         bool devolver_necesita_reparacion();
 
+        void atacar(); 
+
+        void reparar();
         /*
          * Pre: -
          * Post: Me devuelve la maxima cantidad pemitida para construir.
