@@ -240,6 +240,12 @@ class Juego{
          * Post: Ataca un edificio por input
          */
         void atacar_edificio();
+
+        /*
+         * Pre: -
+         * Post: valida si se puede reparar una coordenada
+         */
+        bool validar_reparar_edificio(int fila, int columna);
 };
 
 #endif //JUEGO_H

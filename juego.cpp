@@ -488,28 +488,10 @@ void Juego::reparar_edificio(){
 
         int columna = this->pedir_columna();
         this->validar_columna(columna);
-        
-        if(mapa->devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO
-        && mapa->devolver_casillero(fila, columna)->esta_ocupado()){
 
-            if(!mapa->devolver_casillero(fila, columna)->devolver_duenio() == jugador_actual->devolver_numero()){
-                cout << "No se puede reparar un edificio que no te pertenece" << endl;
-            }else{
-                if(!mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_reparable()){
-                    cout << "El edificio no es ni una mina ni una fabrica asi que no se puede reparar." << endl;
-                }else{
-                    if(!mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_necesita_reparacion()){
-                        cout << "El edificio no necesita reparacion." << endl;
-                    }else{
-                        if(true){//materiales 1/4
-                            mapa->devolver_casillero(fila,columna)->devolver_edificacion()->reparar();
-                            jugador_actual->restar_energia(ENERGIA_REPARAR);
-                        }else{
-                            cout << "No posees los materiales suficientes par reparar este edificio"<< endl;
-                        }
-                    }                    
-                } 
-            }
+        if(validar_reparar_edificio(fila, columna)){
+            mapa->devolver_casillero(fila,columna)->devolver_edificacion()->reparar();
+            jugador_actual->restar_energia(ENERGIA_REPARAR);
         }
     }
 }
@@ -552,4 +534,43 @@ void Juego::atacar_edificio(){
 
 
 
+}
+
+bool Juego::validar_reparar_edificio(int fila, int columna){
+    bool se_puede = false;
+
+    int cantidad_piedra = 0, cantidad_madera = 0, cantidad_metal = 0, piedra_necesaria = 0, madera_necesaria = 0, metal_necesario = 0;
+
+    string nombre_edificio = mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_nombre_edificio();
+
+    cantidad_piedra = jugador_actual->devolver_inventario()->devolver_material(PIEDRA);
+    cantidad_madera = jugador_actual->devolver_inventario()->devolver_material(MADERA);
+    cantidad_metal = jugador_actual->devolver_inventario()->devolver_material(METAL);
+    piedra_necesaria = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_piedra()/4;
+    madera_necesaria = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_madera()/4;
+    metal_necesario  = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_metal()/4;
+
+    if(mapa->devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO
+    && mapa->devolver_casillero(fila, columna)->esta_ocupado()){
+        if(!mapa->devolver_casillero(fila, columna)->devolver_duenio() == jugador_actual->devolver_numero()){
+            cout << "No se puede reparar un edificio que no te pertenece" << endl;
+        }else{
+            if(!mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_reparable()){
+                cout << "El edificio no es ni una mina ni una fabrica asi que no se puede reparar." << endl;
+            }else{
+                if(!mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_necesita_reparacion()){
+                    cout << "El edificio no necesita reparacion." << endl;
+                }else{
+                    if(cantidad_piedra>= piedra_necesaria 
+                    && cantidad_metal >= metal_necesario
+                    && cantidad_madera >= metal_necesario){
+                        se_puede = true;
+                    }else{
+                        cout << "No posees los materiales suficientes par reparar este edificio"<< endl;
+                    }
+                }                    
+            } 
+        }
+    }
+    return se_puede;
 }
