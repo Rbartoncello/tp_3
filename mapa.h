@@ -98,6 +98,8 @@ class Mapa{
          */
         void mostrar_edificios_construidos(Jugador* jugador_actual);
 
+        bool hay_edificio(int fila, int columna);
+
         /*
       * Pre: -
       * Post: valida que una coordenada es de tipo construible

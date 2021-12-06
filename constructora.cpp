@@ -33,7 +33,7 @@ void Constructora::construir_edificio(Jugador* jugador)
 void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio, Jugador* jugador){
 
     bool coordenadas_validas = false, materiales_validos = false, validar_terreno_vacio = false, cantidad_construida = false;
-    string edificio;
+    bool ocupado;
 
     cantidad_construida = validar_maximo_edificio(nombre_nuevo_edifcio, jugador); //FUNCIONA, falta que los edificios sepan de quien son para validar cuantos hay de un juegador en particualar
 
@@ -45,17 +45,14 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio, Jugador
 
     if(materiales_validos)
         coordenadas_validas = ingreso_de_coordenadas();
-    if(coordenadas_validas){
-       cout<<"UwU"<<endl;
-    }
 
+    if(coordenadas_validas){
+        ocupado = mapa->hay_edificio(fila_nueva,columna_nueva);
+    }
+    if(!ocupado)
+        cout<<"AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"<<endl;
 /*
-    if(coordenadas_validas){
-        edificio = mapa->devolverTipoEdificio(fila_para_trabajar,columna_para_trabajar);
-        validar_terreno_vacio = terreno_vacio(edificio);
-    }
-
-    if (validar_terreno_vacio){
+    if (!ocupado){
         mapa->construirEdificio(filaParaTrabajar,columnaParaTrabajar,nombreNuevoEdificio);
         restarMateriales(nombreNuevoEdificio);
         cout << "\n EL EDIFICIO SE HA CONSTRUIDO\n" << endl;

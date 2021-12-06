@@ -225,7 +225,9 @@ bool Mapa::validar_tipo_transitable(int fila, int columna){
     return ( ( devolver_tipo_terreno(fila, columna) == CAMINO ) );
 }
 
-
+bool Mapa::hay_edificio(int fila, int columna) {
+    return ( devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO && devolver_casillero(fila, columna)->esta_ocupado() );
+}
 
 char Mapa::devolver_tipo_terreno(int fila, int columna){
     return casilleros[fila][columna]->devolver_tipo_terreno();
