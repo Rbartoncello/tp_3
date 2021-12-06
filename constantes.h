@@ -14,10 +14,10 @@ const string EDIFICIO_PLANTA_ELECTRICA = "planta electrica";
 const string PLANTA = "planta";
 const string ORO = "oro";
 
-const string PATH_EDIFICIO = "archivos/edificios.txt";
-const string PATH_UBICACIONES = "archivos/ubicaciones.txt";
-const string PATH_MAPA = "archivos/mapa.txt";
-const string PATH_MATERIALES = "archivos/materiales.txt";
+const string PATH_EDIFICIO = "../archivos/edificios.txt";
+const string PATH_UBICACIONES = "../archivos/ubicaciones.txt";
+const string PATH_MAPA = "../archivos/mapa.txt";
+const string PATH_MATERIALES = "../archivos/materiales.txt";
 
 const int MIN_OPCION_NUEVA_PARTIDA = 1;
 const int MAX_OPCION_NUEVA_PARTIDA = 5;

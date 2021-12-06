@@ -122,7 +122,7 @@ void Terreno::mover_jugador(Jugador* jugador) {
 }
 
 void Terreno::eliminar_edificio(){
-    Edificacion* edificio = this->edificacion;
-    this->edificacion = nullptr;
-    delete [] edificio;
+    delete edificacion;
+    edificacion = nullptr;
+    modificar_ocupado(false);
 }
