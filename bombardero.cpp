@@ -1,22 +1,21 @@
 #include "bombardero.h"
 
-Bombardero::Bombardero() : Objetivos("Bombardero") {
+Bombardero::Bombardero() : Objetivos(BOMBARDERO) {
 
     bombas_usadas = 0;
-    descripcion_objetivo = "Debes haber utilizado 5 bombas durante la partida";
+    descripcion_objetivo = "Debes haber utilizado " + to_string(OBJETIVO_BOMBARDERO) + " bombas durante la partida";
 }
 
 
-void Bombardero::agregar_datos(int sumar_andycoins){
+void Bombardero::agregar_datos(int sumar_bombas){
 
-    //cantidad_obelisco =+ sumar_andycoins
-
-    //llamar a verificar_estado_objetivo
+    bombas_usadas = bombas_usadas + sumar_bombas;
+    verificar_estado_objetivo();
 }
 
 void Bombardero::verificar_estado_objetivo(){
 
-    if (bombas_usadas == OBJETIVO_BOMBARDERO)
+    if (bombas_usadas >= OBJETIVO_BOMBARDERO)
         objetivo_realizado = true;
 }
 

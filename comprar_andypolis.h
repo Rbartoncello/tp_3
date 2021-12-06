@@ -1,8 +1,8 @@
 #ifndef COMPRAR_ANDYPOLIS_H
 #define COMPRAR_ANDYPOLIS_H
 #include "objetivos.h"
-
-const int OBJETIVO_COMPRAR_ANDYCOINS = 100000;
+#include "material.h"
+#include "lista.h"
 
 class Comprar_andypolis : public Objetivos
 {
@@ -16,7 +16,7 @@ public:
 
     //Pre:
     //Post: inicializa su nombre y coloca la cantidad de andycoins en cero
-    Comprar_andypolis();
+    Comprar_andypolis(int andycoins_iniciales);
 
     //Pre:
     //Post:Agrega datos al conteo para alcanzar el objetivo

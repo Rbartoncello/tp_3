@@ -14,10 +14,27 @@ const string EDIFICIO_PLANTA_ELECTRICA = "planta electrica";
 const string PLANTA = "planta";
 const string ORO = "oro";
 
-const string PATH_EDIFICIO = "../archivos/edificios.txt";
-const string PATH_UBICACIONES = "../archivos/ubicaciones.txt";
-const string PATH_MAPA = "../archivos/mapa.txt";
-const string PATH_MATERIALES = "../archivos/materiales.txt";
+const string PATH_EDIFICIO = "archivos/edificios.txt";
+const string PATH_UBICACIONES = "archivos/ubicaciones.txt";
+const string PATH_MAPA = "archivos/mapa.txt";
+const string PATH_MATERIALES = "archivos/materiales.txt";
+
+const int OBJETIVOS_SECUNDARIOS_CUMPLIDOS = 3;
+const int OBJETIVO_COMPRAR_ANDYCOINS = 100;
+const int OBJETIVO_EDAD_PIEDRA = 50000;
+const int OBJETIVO_BOMBARDERO = 5;
+
+const string MAS_ALTO_NUBES = "Mas alta que las nubes";
+const string COMPRAR_ANDYPOLIS = "Comprar Andypolis";
+const string EDAD_PIEDRA = "Edad de piedra";
+const string BOMBARDERO = "Bombardero";
+const string ENERGETICO = "Energetico";
+const string LETRADO = "Letrado";
+const string MINERO = "Minero";
+const string CANSADO = "Cansado";
+const string CONSTRUCTOR = "Constructor";
+const string ARMADO = "Armado";
+const string EXTREMISTA = "Extremista";
 
 const int MIN_OPCION_NUEVA_PARTIDA = 1;
 const int MAX_OPCION_NUEVA_PARTIDA = 5;
@@ -59,7 +76,7 @@ const char TERRENO = 'T';
 const string PIEDRA = "piedra";
 const string MADERA = "madera";
 const string METAL = "metal";
-const string BOMBA = "bomba";
+const string BOMBA = "bombas";
 const string ANDYCOINS = "andycoins";
 const string ENERGIA = "energia";
 
@@ -115,5 +132,8 @@ const int ENERGIA_ATACAR = 30;
 
 const int POSICION_NO_ENCONTRADA = -1;
 const string NOMBRE_NO_ENCONTRADO = "";
+
+const int COSTO_POR_BOMBA = 100;
+const int ENERGIA_COMPRAR_BOMBAS = 5;
 
 #endif

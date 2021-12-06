@@ -40,8 +40,6 @@ class Nodo_lista{
          */
         string obtener_nombre();
 
-        int obtener_cantidad();
-
         /*
          * Pre: -.
          * Post: Devuelve el nodo siguiente.
@@ -53,6 +51,8 @@ class Nodo_lista{
          * Post: Le asigna como siguiente el nodo recibido.
          */
         void cambiar_siguiente(Nodo_lista<T>* nuevo_siguiente);
+
+        int obtener_cantidad();
 
         /*
          * Destructor:

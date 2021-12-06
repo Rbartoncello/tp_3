@@ -6,9 +6,11 @@
 #include "edificio.h"
 #include "juego.h"
 #include "archivo.h"
+#include <time.h>
 
 int main() {
     Juego* juego = new Juego();
+    srand (( unsigned)time(NULL));
 
 
     if (juego->cargar() != ERROR){

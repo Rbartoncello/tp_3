@@ -38,6 +38,11 @@ void Material::aumentar_cantidad(int cantidad) {
     this->cantidad +=cantidad;
 }
 
+void Material::reducir_cantidad(int cantidad) {
+    this->cantidad -=cantidad;
+}
+
+
 void Material::imprimir_resumen(){
     cout <<"\tSoy un material de nombre " << nombre << " ( " << emoji << " ) y me encuentro en el casillero consultado."<< endl;
 }

@@ -1,17 +1,16 @@
 #include "comprar_andypolis.h"
 
-Comprar_andypolis::Comprar_andypolis() : Objetivos("Comprar Andypolis") {
+Comprar_andypolis::Comprar_andypolis(int andycoins_iniciales) : Objetivos(COMPRAR_ANDYPOLIS) {
 
     andycoins_recolectados = 0;
-    descripcion_objetivo = "Debes haber juntado 100.000 andycoins a lo largo de la partida (las monedas gastadas también cuentan para este objetivo)";
+    descripcion_objetivo = "Debes haber juntado " + to_string(OBJETIVO_COMPRAR_ANDYCOINS) + " andycoins a lo largo de la partida";
+    andycoins_recolectados = andycoins_iniciales;
 }
 
 
 void Comprar_andypolis::agregar_datos(int sumar_andycoins){
-
-    //cantidad_obelisco =+ sumar_andycoins
-
-    //llamar a verificar_estado_objetivo
+    andycoins_recolectados = andycoins_recolectados + sumar_andycoins;
+    verificar_estado_objetivo();
 }
 
 void Comprar_andypolis::mostrar_descripcion(){
@@ -21,7 +20,7 @@ void Comprar_andypolis::mostrar_descripcion(){
 
 void Comprar_andypolis::verificar_estado_objetivo(){
 
-    if (andycoins_recolectados == OBJETIVO_COMPRAR_ANDYCOINS)
+    if (andycoins_recolectados >= OBJETIVO_COMPRAR_ANDYCOINS)
         objetivo_realizado = true;
 }
 

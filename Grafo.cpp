@@ -16,27 +16,16 @@ void Grafo::agregar_camino(string origen, string destino, int peso) {
     int posicionOrigen = vertices ->obtener_posicion(origen);
     int posicionDestino = vertices ->obtener_posicion(destino);
 
-    if(posicionOrigen == POSICION_NO_ENCONTRADA){
-        cout << "El vertice " << origen << " no existe en el grafo" << endl;
-    }
-    if(posicionDestino == POSICION_NO_ENCONTRADA){
-        cout << "El vertice " << destino << " no existe en el grafo" << endl;
-    }
-
-    if(!(posicionDestino == POSICION_NO_ENCONTRADA || posicionOrigen == POSICION_NO_ENCONTRADA)) {
+    if(!(posicionDestino == POSICION_NO_ENCONTRADA || posicionOrigen == POSICION_NO_ENCONTRADA))
         matriz_adyacencia[posicionOrigen][posicionDestino] = peso;
-    }
+    
 }
 
 void Grafo::camino_minimo(string origen, string destino, Mapa* &mapa, Jugador* &jugador) {
     int posicionOrigen = vertices ->obtener_posicion(origen);
     int posicionDestino = vertices ->obtener_posicion(destino);
 
-    if(posicionOrigen == POSICION_NO_ENCONTRADA){
-        cout << "El vertice " << origen << " no existe en el grafo" << endl;
-    } else if(posicionDestino == POSICION_NO_ENCONTRADA){
-        cout << "El vertice " << destino << " no existe en el grafo" << endl;
-    } else
+    if(!(posicionDestino == POSICION_NO_ENCONTRADA || posicionOrigen == POSICION_NO_ENCONTRADA))
         camino_minimo(posicionOrigen, posicionDestino, mapa, jugador);
 }
 
