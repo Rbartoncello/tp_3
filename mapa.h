@@ -97,7 +97,14 @@ class Mapa{
          * Post: Me muestra por pantalla los edificios contruidos del jugador actual.
          */
         void mostrar_edificios_construidos(Jugador* jugador_actual);
-    private:
+
+        /*
+      * Pre: -
+      * Post: valida que una coordenada es de tipo construible
+      */
+        bool validar_tipo_construible(int fila, int columna);
+
+private:
         /*
          * Pre: El archivo tiene que estar abierto y de formato correcto.
          * Post: Me va agregar los datos de encuentra en el archivo en un determinado objeto dependiendo lo que lea del archivo.
@@ -110,11 +117,6 @@ class Mapa{
          */
         void crear_matriz_casilleros();
 
-        /*
-         * Pre: -
-         * Post: valida que una coordenada es de tipo construible
-         */
-        bool validar_tipo_construible(int fila, int columna);
 
         /*
          * Pre: -

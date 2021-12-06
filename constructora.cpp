@@ -42,13 +42,14 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio, Jugador
     else{
         cout << "\nOh, lamento traer malas noticias pero ya has alcanzo el maximo de construidos para este edificio: ";
     }
-    if(materiales_validos){
-        cout<<"Funciona"<< endl;
-    }
-/*
+
     if(materiales_validos)
         coordenadas_validas = ingreso_de_coordenadas();
+    if(coordenadas_validas){
+       cout<<"UwU"<<endl;
+    }
 
+/*
     if(coordenadas_validas){
         edificio = mapa->devolverTipoEdificio(fila_para_trabajar,columna_para_trabajar);
         validar_terreno_vacio = terreno_vacio(edificio);
@@ -102,4 +103,55 @@ void Constructora::mostrar_materiales_faltantes(int cantidad_piedra, int cantida
 
 void Constructora::mostrar_aviso(){
     cout << "\n EL edificio que intenta crear no existe, para salir presione 1" << endl;
+}
+
+bool Constructora::ingreso_de_coordenadas()
+{
+    bool salida_sin_coordenadas = false, coord_ok = false;
+    mapa->mostrar();
+    do
+    {
+        cout << "Ingrese la coordenada fila: ";
+        cin >> fila_nueva;
+
+        if(fila_nueva == -2){
+            salida_sin_coordenadas =  true;
+            cout << "\nFinalizando Construccion" << endl;
+        }
+        else{
+            cout << "Ingrese la coordenada columna: ";
+            cin >> columna_nueva;
+            coord_ok = validar_coords(fila_nueva,columna_nueva);
+        }
+
+        if(coord_ok){
+            coord_ok = mapa->validar_tipo_construible(fila_nueva,columna_nueva);
+            mostrar_aviso_terreno(coord_ok);
+        }
+
+    } while (!coord_ok && !salida_sin_coordenadas);
+
+    return (coord_ok);
+}
+
+bool Constructora::validar_coords(int coord1, int coord2)
+{
+    bool coords_ok = false;
+
+    if(coord1 < mapa->devolver_cantidad_filas() && coord2 < mapa->devolver_cantidad_columnas() && coord1 >= 0 && coord2 >= 0)
+    {
+        coords_ok = true;
+    }
+    else{
+        cout << "\nEsa no es una coordenada valida - Intentalo de nuevo o sal con un -1 :)" << endl;
+        cout << "Filas disponibles: -> (1, " <<  mapa->devolver_cantidad_filas() << ") \nColumnas disponibles: -> (1, " << mapa->devolver_cantidad_columnas() << ")" << endl;
+    }
+
+    return coords_ok;
+}
+
+void Constructora::mostrar_aviso_terreno(bool aviso) {
+
+    if(!aviso)
+        cout << "\nEste no es un casillero construible,  para salir presione -1" << endl;
 }
