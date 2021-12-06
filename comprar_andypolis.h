@@ -4,8 +4,6 @@
 #include "material.h"
 #include "lista.h"
 
-const int OBJETIVO_COMPRAR_ANDYCOINS = 100000;
-
 class Comprar_andypolis : public Objetivos
 {
 
@@ -13,13 +11,12 @@ private:
 
     int andycoins_recolectados;
     string descripcion_objetivo;
-    Lista<Material>* inventario;
 
 public:
 
     //Pre:
     //Post: inicializa su nombre y coloca la cantidad de andycoins en cero
-    Comprar_andypolis(Lista<Material>* inventario);
+    Comprar_andypolis(int andycoins_iniciales);
 
     //Pre:
     //Post:Agrega datos al conteo para alcanzar el objetivo

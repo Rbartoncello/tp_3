@@ -66,6 +66,8 @@ class Lista{
          * Post: elimina el elemento de la listas
          */
         void remover_elemento(int posicion);
+
+        int devolver_material(string material);
         
         /*
          * Destructor:
@@ -194,6 +196,17 @@ Lista<T>::~Lista(){
                 auxiliar = primero->direccion_siguiente();
         }
     }
+}
+
+template<typename T>
+int Lista<T>::devolver_material(string material){
+    for (int i = 0; i < cantidad_en_lista; ++i) {
+        if(this->obtener_nombre(i+1) == material)
+        {
+            return this->obtener_direccion_nodo(i)->obtener_cantidad();
+        }
+    }
+    return ERROR;
 }
 
 template<typename T>

@@ -52,6 +52,8 @@ class Nodo_lista{
          */
         void cambiar_siguiente(Nodo_lista<T>* nuevo_siguiente);
 
+        int obtener_cantidad();
+
         /*
          * Destructor:
          * Pre: -.
@@ -95,6 +97,12 @@ Nodo_lista<T>*& Nodo_lista<T>::direccion_siguiente(){
 template<typename T>
 void Nodo_lista<T>::cambiar_siguiente(Nodo_lista<T>* nuevo_siguiente){
     siguiente = nuevo_siguiente;
+}
+
+
+template<typename T>
+int Nodo_lista<T>::obtener_cantidad() {
+    return contenido -> devolver_cantidad();
 }
 
 template<typename T>

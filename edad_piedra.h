@@ -3,9 +3,6 @@
 #include "objetivos.h"
 #include "lista.h"
 
-
-const int OBJETIVO_EDAD_PIEDRA = 50000;
-
 class Edad_piedra : public Objetivos
 {
 private:
@@ -20,7 +17,7 @@ public:
 
     //Pre:
     //Post:Agrega datos al conteo para alcanzar el objetivo
-    void agregar_datos();
+    void agregar_datos(int cantidad);
 
     //Pre:
     //Post:Muestra por pantalla la descripcion

@@ -2,8 +2,6 @@
 #define BOMBARDERO_H
 #include "objetivos.h"
 
-const int OBJETIVO_BOMBARDERO = 5;
-
 class Bombardero : public Objetivos
 {
 

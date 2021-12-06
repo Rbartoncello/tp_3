@@ -172,23 +172,16 @@ void Juego::posicionar_jugador_mapa(Jugador *&jugador){
 }
 
 void Juego::partida_empezada(){
-    agregar_energia_comienza_partida();
 
-    int primer_jugador = numero_aleatorio(JUGADOR_1,JUGADOR_2);
+    int primer_jugador = numero_aleatorio(JUGADOR_1,JUGADOR_2), opcion_elegida;
+    agregar_energia_comienza_partida();
 
     if(primer_jugador == 1)
         jugador_actual = jugador_1;
     else
-        jugador_actual = jugador_2;
+        jugador_actual = jugador_2;    
 
-    imprimir_menu_juego(this->mapa, this->jugador_actual);
-
-    int opcion_elegida = pedir_opcion(29, 60);
-
-    validar_opcion_ingresada(opcion_elegida, MAX_OPCION_JUEGO, MIN_OPCION_JUEGO);
-
-    while(opcion_elegida != GUARDA_SALIR){
-        procesar_opcion_partida_empezada(opcion_elegida);
+    do{
         if (jugador_actual->devolver_energia() == 0) {
             imprimir_mensaje_finalizacion_turno_automatico(jugador_actual);
             opcion_elegida = FINALIZAR_TURNO;
@@ -198,7 +191,16 @@ void Juego::partida_empezada(){
             opcion_elegida = pedir_opcion(29, 60);
             validar_opcion_ingresada(opcion_elegida, MAX_OPCION_JUEGO, MIN_OPCION_JUEGO);
         }
-    }
+        procesar_opcion_partida_empezada(opcion_elegida);
+        
+        if(opcion_elegida!=GUARDA_SALIR && opcion_elegida!=FINALIZAR_TURNO && jugador_actual->validar_objetivos()){
+            opcion_elegida = GUARDA_SALIR;
+            cout << "\n EL JUGADOR " << jugador_actual->devolver_numero() << " HA GANADO EL JUEGO" << endl;
+            imprimir_mensaje_enter_continuar();
+        }
+
+    }while(opcion_elegida != GUARDA_SALIR);
+
     this->diccionario->guardar_pre_orden();
     imprimir_mensaje_guardado();
 }
@@ -254,11 +256,13 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
         case DEMOLER_EDIFICIO_COORDENADA:
             break;
         case ATARCAR_EDIFICIO_COORDENADA:
+            jugador_actual->sumar_a_objetivo(100,BOMBARDERO);//considerar al hacer metodo
             break;
         case REPARAR_EDIFICIO_COORDENADA:
             break;
         case COMPRAR_BOMBA:
             jugador_actual->comprar_bombas();
+            jugador_actual->sumar_a_objetivo(100,EXTREMISTA);//considerar al hacer metodo
             break;
         case CONSULTAR_COORDENADA:
             this->mostrar_coordenada();
@@ -269,11 +273,11 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             imprimir_mensaje_enter_continuar();
             break;
         case MOSTRAR_OBJETIVOS:
-            jugador_actual->generar_objetivos_secundarios();
+            jugador_actual->mostrar_objetivos();
             imprimir_mensaje_enter_continuar();
             break;
         case RECOLECTAR_RECURSOS:
-
+            jugador_actual->sumar_a_objetivo(100,COMPRAR_ANDYPOLIS);//considerar al hacer metodo
             break;
         case MOVERSE_COORDENADA:
             moverse_coordenada();
@@ -286,6 +290,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             }
             break;
     }
+
 }
 
 void Juego::mostrar_inventario(Jugador* jugador_turno) {

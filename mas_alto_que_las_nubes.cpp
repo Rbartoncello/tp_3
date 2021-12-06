@@ -1,6 +1,6 @@
 #include "mas_alto_que_las_nubes.h"
 
-Mas_alto_que_las_nubes::Mas_alto_que_las_nubes(Edificacion* &edificios_jugador) : Objetivos("Mas alta que las nubes") {
+Mas_alto_que_las_nubes::Mas_alto_que_las_nubes(Edificacion* &edificios_jugador) : Objetivos(MAS_ALTO_NUBES) {
 
     cantidad_obelisco = 0;
     descripcion_objetivo = "Debes construir un obelisco";

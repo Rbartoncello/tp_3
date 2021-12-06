@@ -19,16 +19,22 @@ const string PATH_UBICACIONES = "archivos/ubicaciones.txt";
 const string PATH_MAPA = "archivos/mapa.txt";
 const string PATH_MATERIALES = "archivos/materiales.txt";
 
-const string COMPRAR_ANDYPOLIS = "objetivo 1";
-const string EDAD_PIEDRA = "objetivo 2";
-const string BOMBARDERO = "objetivo 3";
-const string ENERGETICO = "objetivo 4";
-const string LETRADO = "objetivo 5";
-const string MINERO = "objetivo 6";
-const string CANSADO = "objetivo 7";
-const string CONSTRUCTOR = "objetivo 8";
-const string ARMADO = "objetivo 9";
-const string EXTREMISTA = "objetivo 10";
+const int OBJETIVOS_SECUNDARIOS_CUMPLIDOS = 1;
+const int OBJETIVO_COMPRAR_ANDYCOINS = 100;
+const int OBJETIVO_EDAD_PIEDRA = 50000;
+const int OBJETIVO_BOMBARDERO = 5;
+
+const string MAS_ALTO_NUBES = "Mas alta que las nubes";
+const string COMPRAR_ANDYPOLIS = "Comprar Andypolis";
+const string EDAD_PIEDRA = "Edad de piedra";
+const string BOMBARDERO = "Bombardero";
+const string ENERGETICO = "Energetico";
+const string LETRADO = "Letrado";
+const string MINERO = "Minero";
+const string CANSADO = "Cansado";
+const string CONSTRUCTOR = "Constructor";
+const string ARMADO = "Armado";
+const string EXTREMISTA = "Extremista";
 
 const int MIN_OPCION_NUEVA_PARTIDA = 1;
 const int MAX_OPCION_NUEVA_PARTIDA = 5;
