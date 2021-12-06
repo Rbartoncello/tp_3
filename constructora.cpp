@@ -49,17 +49,15 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio, Jugador
     if(coordenadas_validas){
         ocupado = mapa->hay_edificio(fila_nueva,columna_nueva);
     }
-    if(!ocupado)
-        cout<<"AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"<<endl;
-/*
+
     if (!ocupado){
-        mapa->construirEdificio(filaParaTrabajar,columnaParaTrabajar,nombreNuevoEdificio);
-        restarMateriales(nombreNuevoEdificio);
+        //mapa->construir_edifcio(fila_nueva,columna_nueva,nombre_nuevo_edifcio);
+        //restar_materiales(nombre_nuevo_edifcio);
         cout << "\n EL EDIFICIO SE HA CONSTRUIDO\n" << endl;
     }
     else if (materiales_validos && (!validar_terreno_vacio)){
         cout << "\nAcaso has perdido la cabeza?, aqui ya hay un edificio: ";
-    }*/
+    }
 }
 
 bool Constructora::validar_maximo_edificio(string nombre_nuevo_edificio, Jugador* jugador){

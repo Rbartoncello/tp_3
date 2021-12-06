@@ -240,6 +240,10 @@ void Mapa::agregar_edificacion(Edificacion* edificacion, int fila, int columna, 
     }
 }
 
+void Mapa::construir_edifcio(Jugador *jugador) {
+
+}
+
 int Mapa::devolver_cantidad_columnas()
 {
     return this->cantidad_columnas;
