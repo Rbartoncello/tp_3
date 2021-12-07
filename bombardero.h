@@ -6,7 +6,7 @@ class Bombardero : public Objetivos
 {
 
 private:
-
+    string nombre;
     int bombas_usadas;
 
 public:

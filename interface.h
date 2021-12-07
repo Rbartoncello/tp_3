@@ -218,5 +218,11 @@ void imprimir_mensaje_sin_andycoins_suficientes(int costo);
  */
 void imprimir_mensaje_bombas_compradas(Lista<Material>* &inventario, int cantidad);
 
+/*
+ * Pre: -
+ * Post: Me muestra por pantalla el encabezado de los objetivos secundarios.
+ */
+void encabezado_objetivos_secuncarios();
+
 
 #endif

@@ -8,7 +8,7 @@ class Comprar_andypolis : public Objetivos
 {
 
 private:
-
+    string nombre;
     int andycoins_recolectados;
     string descripcion_objetivo;
 

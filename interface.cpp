@@ -415,3 +415,12 @@ void imprimir_mensaje_bombas_compradas(Lista<Material>* &inventario, int cantida
 
     imprimir_mensaje_esperar(3);
 }
+
+void encabezado_objetivos_secuncarios() {
+    system("clear");
+    cout << TXT_BOLD;
+    cout << "\t╔════════════════════╦═══════════════════════════════════════════════════════════════╦══════════════════════════╦════════════╗" << endl;
+    cout << "\t║ Nombre de objetivo ║                          Descripcion                          ║ Porcentaje de completado ║ Completado ║" << endl;
+    cout << "\t╠════════════════════╬═══════════════════════════════════════════════════════════════╬══════════════════════════╬════════════╣" << endl;
+    cout << END_COLOR;
+}
