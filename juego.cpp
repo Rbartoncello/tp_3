@@ -21,6 +21,7 @@ Juego::~Juego(){
     delete this->diccionario;
     delete this->jugador_1;
     delete this->jugador_2;
+    delete this->constructora;
 }
 
 int Juego::cargar() {
@@ -266,7 +267,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             break;
         case COMPRAR_BOMBA:
             jugador_actual->comprar_bombas();
-            jugador_actual->sumar_a_objetivo(100,EXTREMISTA);//considerar al hacer metodo
+            //jugador_actual->sumar_a_objetivo(100,EXTREMISTA);//considerar al hacer metodo
             break;
         case CONSULTAR_COORDENADA:
             this->mostrar_coordenada();
@@ -281,7 +282,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             imprimir_mensaje_enter_continuar();
             break;
         case RECOLECTAR_RECURSOS:
-            jugador_actual->sumar_a_objetivo(100,COMPRAR_ANDYPOLIS);//considerar al hacer metodo
+            //jugador_actual->sumar_a_objetivo(100,COMPRAR_ANDYPOLIS);//considerar al hacer metodo
             break;
         case MOVERSE_COORDENADA:
             moverse_coordenada();
@@ -536,7 +537,7 @@ void Juego::atacar_edificio(){
     }
 
 
-    jugador_actual->sumar_a_objetivo(100,BOMBARDERO);
+    //jugador_actual->sumar_a_objetivo(100,BOMBARDERO);
 }
 
 bool Juego::validar_reparar_edificio(int fila, int columna){

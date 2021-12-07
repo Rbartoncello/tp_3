@@ -2,4 +2,4 @@ madera 1000 1000
 piedra 1000 1000
 metal 1000 1000
 andycoins 0 4
-bomba 0 1
+bombas 0 1

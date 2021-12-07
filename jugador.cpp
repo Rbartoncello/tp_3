@@ -9,7 +9,7 @@ Jugador::Jugador(int numero, string emoji){
     inventario = new Lista<Material>();
     objetivos_secundarios = new Lista<Objetivos>();
     //objetivo_primario = new Mas_alto_que_las_nubes();
-    generar_objetivos_secundarios();
+    //generar_objetivos_secundarios();
 }
 
 Jugador::~Jugador(){
@@ -191,7 +191,7 @@ void Jugador::gastar_andycoins(int precio){
 void Jugador::mostrar_objetivos(){
     int cantidad_lista =  objetivos_secundarios->devolver_cantidad_en_lista();
     Nodo_lista<Objetivos>* auxiliar = objetivos_secundarios->retornar_primero();
-    
+
 
     for (int i = 0; i < cantidad_lista; i++)
     {
@@ -225,20 +225,20 @@ void Jugador::sumar_a_objetivo(int cantidad, string nombre_objetivo){
 
 bool Jugador::validar_objetivos(){
 
-    return(contar_objetivos_completados(1) == OBJETIVOS_SECUNDARIOS_CUMPLIDOS);
+    return(false);
 }
 
 int Jugador::contar_objetivos_completados(int contador){
 
-    int objetivos_realizados = 0;
-    Nodo_lista<Objetivos>* objetivo_verificacion;
-    objetivo_verificacion = objetivos_secundarios->obtener_direccion_nodo(contador);
+    //int objetivos_realizados = 0;
+    //Nodo_lista<Objetivos>* objetivo_verificacion;
+    //objetivo_verificacion = objetivos_secundarios->obtener_direccion_nodo(contador);
 
-    if (objetivo_verificacion->devolver_dato()->devolver_estado_objetivo())
+   /* if (objetivo_verificacion->devolver_dato()->devolver_estado_objetivo())
         objetivos_realizados++;
 
     if (contador < 3)
-        objetivos_realizados = objetivos_realizados + contar_objetivos_completados(contador+1);
+        objetivos_realizados = objetivos_realizados + contar_objetivos_completados(contador+1);*/
 
-    return objetivos_realizados;
+    return 0;
 }
