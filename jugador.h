@@ -138,10 +138,15 @@ public:
          * Pre: Precio tiene que ser mayor a 0
          * Post:Me restara el cantidad (precio) de andycoins del inventario.
          */
-    void gastar_andycoins(int precio);
+     void gastar_andycoins(int precio);
 
-    bool validar_objetivos();
+     bool validar_objetivos();
 
+     /*
+         * Pre: 
+         * Post:termina con 3 objetivos en la lista objetivos secundarios
+         */
+    void generar_objetivos_secundarios();
 private:
 
     /*
@@ -156,11 +161,7 @@ private:
          */
     void agregar_objetivo(string nombre_objetivo);
 
-    /*
-         * Pre: 
-         * Post:termina con 3 objetivos en la lista objetivos secundarios
-         */
-    void generar_objetivos_secundarios();
+    
 
     int contar_objetivos_completados(int contador);
 };

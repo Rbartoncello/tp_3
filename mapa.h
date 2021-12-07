@@ -115,6 +115,12 @@ class Mapa{
          */
         void borrar_edificio(int fila, int columna);
 
+        /*
+         * Pre: Fila y columna dentro de los parametros del mapa
+         * Post: Me devuelve TRUE si en esa posicion exite un edificio
+         */
+        bool hay_edicicio(int fila, int columna);
+
     private:
         /*
          * Pre: El archivo tiene que estar abierto y de formato correcto.
