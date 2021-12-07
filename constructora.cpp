@@ -32,8 +32,8 @@ void Constructora::construir_edificio(Jugador* jugador)
 
 void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio, Jugador* jugador){
 
-    bool coordenadas_validas = false, materiales_validos = false, validar_terreno_vacio = false, cantidad_construida = false;
-    bool ocupado;
+    bool coordenadas_validas = false, materiales_validos = false, cantidad_construida = false;
+    bool ocupado = false;
 
     cantidad_construida = validar_maximo_edificio(nombre_nuevo_edifcio, jugador); //FUNCIONA, falta que los edificios sepan de quien son para validar cuantos hay de un juegador en particualar
 
@@ -43,7 +43,7 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio, Jugador
         cout << "\nOh, lamento traer malas noticias pero ya has alcanzo el maximo de construidos para este edificio: ";
     }
     if(materiales_validos)
-        coordenadas_validas = ingreso_de_coordenadas();
+        coordenadas_validas = this->ingreso_de_coordenadas();
 
     if(coordenadas_validas){
         ocupado = mapa->hay_edificio(fila_nueva,columna_nueva);
@@ -51,10 +51,10 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio, Jugador
 
     if (!ocupado){
         //mapa->construir_edifcio(fila_nueva,columna_nueva,nombre_nuevo_edifcio);
-        //restar_materiales(nombre_nuevo_edifcio);
+        this->restar_materiales(nombre_nuevo_edifcio,jugador);
         cout << "\n EL EDIFICIO SE HA CONSTRUIDO\n" << endl;
     }
-    else if (materiales_validos && (!validar_terreno_vacio)){
+    else if (materiales_validos){
         cout << "\nAcaso has perdido la cabeza?, aqui ya hay un edificio: ";
     }
 }
@@ -128,20 +128,29 @@ bool Constructora::ingreso_de_coordenadas()
     return (coord_ok);
 }
 
-bool Constructora::validar_coords(int coord1, int coord2)
-{
+bool Constructora::validar_coords(int coord1, int coord2) {
     bool coords_ok = false;
 
-    if(coord1 < mapa->devolver_cantidad_filas() && coord2 < mapa->devolver_cantidad_columnas() && coord1 >= 0 && coord2 >= 0)
-    {
+    if (coord1 < mapa->devolver_cantidad_filas() && coord2 < mapa->devolver_cantidad_columnas() && coord1 >= 0 &&
+        coord2 >= 0) {
         coords_ok = true;
-    }
-    else{
+    } else {
         cout << "\nEsa no es una coordenada valida - Intentalo de nuevo o sal con un -1 :)" << endl;
-        cout << "Filas disponibles: -> (1, " <<  mapa->devolver_cantidad_filas() << ") \nColumnas disponibles: -> (1, " << mapa->devolver_cantidad_columnas() << ")" << endl;
+        cout << "Filas disponibles: -> (1, " << mapa->devolver_cantidad_filas() << ") \nColumnas disponibles: -> (1, "
+             << mapa->devolver_cantidad_columnas() << ")" << endl;
     }
 
     return coords_ok;
+}
+
+
+void Constructora::restar_materiales(string nombre_nuevo_edificio, Jugador *jugador){
+
+    Edificacion* edificio = dict_edificios->buscar(nombre_nuevo_edificio);
+
+    jugador->restar_piedra(edificio->devolver_receta()->devoler_piedra());
+    jugador->restar_madera(edificio->devolver_receta()->devoler_madera());
+    jugador->restar_metal(edificio->devolver_receta()->devoler_metal());
 }
 
 void Constructora::mostrar_aviso_terreno(bool aviso) {

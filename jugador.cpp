@@ -98,6 +98,21 @@ void Jugador::restar_energia(int cantidad){
     this -> energia -= cantidad;
 }
 
+void Jugador::restar_piedra(int cantidad){
+    int posicion = devolver_inventario()->obtener_posicion(PIEDRA);
+    devolver_inventario()->obtener_direccion_nodo(posicion)->devolver_dato()->reducir_cantidad(cantidad);
+}
+
+void Jugador::restar_madera(int cantidad){
+    int posicion = devolver_inventario()->obtener_posicion(MADERA);
+    devolver_inventario()->obtener_direccion_nodo(posicion)->devolver_dato()->reducir_cantidad(cantidad);
+}
+
+void Jugador::restar_metal(int cantidad){
+    int posicion = devolver_inventario()->obtener_posicion(METAL);
+    devolver_inventario()->obtener_direccion_nodo(posicion)->devolver_dato()->reducir_cantidad(cantidad);
+}
+
 void Jugador::sumar_energia(int cantidad){
     this -> energia += cantidad;
 }

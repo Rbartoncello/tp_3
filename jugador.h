@@ -142,6 +142,12 @@ public:
 
     bool validar_objetivos();
 
+    void restar_piedra(int cantidad);
+
+    void restar_madera(int cantidad);
+
+    void restar_metal(int cantidad);
+
 private:
 
     /*

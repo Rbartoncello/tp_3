@@ -30,6 +30,8 @@ private:
 
     void mostrar_aviso_terreno(bool aviso);
 
+    void restar_materiales(string nombre_nuevo_edificio,Jugador* jugador);
+
 public:
     Constructora(Diccionario<Edificacion>* dict_edifcios, Mapa* mapa);
 
