@@ -314,7 +314,7 @@ void encabezado_materiale_jugador(){
     cout << "\t║                      ║             ║" << endl;
     cout << "\t║  Nombre de material  ║ Disponibles ║" << endl;
     cout << "\t║                      ║             ║" << endl;
-    cout << "\t╠══════════════════════╬═════════════╬" << endl;
+    cout << "\t╠══════════════════════╬═════════════╣" << endl;
     cout << END_COLOR;
 }
 
@@ -359,4 +359,59 @@ void imprimir_edificio(Edificacion *edificacion, Jugador* jugador, int fila, int
 
 void imprimir_mensaje_no_energia_sufuciente(int energia){
     cout << "No cuentas con la energia necesaria: " << energia << endl;
+}
+
+void imprimir_mensaje_posicion_no_permitida(){
+    imprimir_mensaje_error();
+    cout << "No es posible ir a la posicion ingresada" << endl;
+    imprimir_mensaje_esperar(2);
+}
+
+void imprimir_mensaje_finalizacion_turno_automatico(Jugador* &jugador) {
+    system("clear");
+    cout << "\t El jugador " << jugador->devolver_numero() << " se a quedado con energia " << jugador->devolver_energia() << " se finalizara la partida automaticamente" << endl;
+    sleep(2);
+}
+
+void imprimir_mensaje_casillero_ocupado() {
+    cout << "La posicion elegida se encuentra ocupada" << endl;
+}
+
+void imprimir_tienda_bombas(){
+    system("clear");
+
+    cout << TXT_BOLD;
+    cout << "\t╔═════════════════════════════════╗" << endl;
+    cout << "\t║   Bienvenido al mercado negro   ║" << endl;
+    cout << "\t╠═══════════════════════╦═════════╣" << endl;
+    cout << END_COLOR;
+    cout << "\t║          " << EMOJI_BOMBA << "           ║ " << COSTO_POR_BOMBA << " c/u ║" << endl;
+    cout << "\t╚═══════════════════════╩═════════╝" << endl << endl;
+
+        cout << "\t Ingrese la cantidad de bombas que desee comprar: " ;
+}
+
+void imprimir_mensaje_sin_andycoins_suficientes(int costo) {
+    system("clear");
+    imprimir_mensaje_error();
+    cout << "\tNo cuenta con los suficientes " << ANDYCOINS << " = " << costo << " " << EMOJI_ANDYCOINS << " para realizar la compra" << endl;
+    imprimir_mensaje_esperar(2);
+}
+
+void imprimir_mensaje_bombas_compradas(Lista<Material>* &inventario, int cantidad) {
+    system("clear");
+    cout << "\tComprando bombas ... " << EMOJI_BOMBA << EMOJI_COMPRANDO << endl;
+
+    sleep(2);
+    system("clear");
+
+    cout << "\tHa comprado " << cantidad << "  " << EMOJI_BOMBA << endl;
+
+    int posicion = inventario->obtener_posicion(ANDYCOINS);
+
+    int andycoins = inventario->obtener_direccion_nodo(posicion)->devolver_dato()->devolver_cantidad();
+
+    cout << "\tLe quedan en el inventario " << andycoins << "  " << ANDYCOINS << endl;
+
+    imprimir_mensaje_esperar(3);
 }

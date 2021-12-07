@@ -212,9 +212,27 @@ void Mapa::mover_jugador(Jugador* jugador, int fila , int columna){
     casilleros[fila][columna]->mover_jugador(jugador);
 }
 
-Casillero* Mapa::devolver_casillero(int fila, int columna)
-{
+Casillero* Mapa::devolver_casillero(int fila, int columna){
     return casilleros[fila][columna];
+}
+
+bool Mapa::casillero_ocupado(int fila, int columna){
+    return casilleros[fila][columna]->esta_ocupado();
+}
+
+int Mapa::cantidad_edificio_construido(string nombre){
+    int cantidad = 0;
+    for (int i = 0; i < this->cantidad_filas; i++)
+    {
+        for (int j = 0; j < this->cantidad_columnas; j++)
+        {
+            if (this->casilleros[i][j]->devolver_tipo_terreno() == TERRENO && this->casilleros[i][j]->esta_ocupado() && this->casilleros[i][j]->devolver_nombre_edificio() == nombre)
+            {
+                cantidad++;
+            }
+        }
+    }
+    return cantidad;
 }
 
 bool Mapa::validar_tipo_construible(int fila, int columna){
@@ -288,4 +306,8 @@ void Mapa::mostrar_edificios_construidos(Jugador* jugador_actual){
         cout << "\t\t╚═══════════════════════════════════════════════════════════════╝" << endl;
     }
     
+}
+
+void Mapa::borrar_edificio(int fila, int columna){
+    casilleros[fila][columna]->eliminar_edificio();
 }

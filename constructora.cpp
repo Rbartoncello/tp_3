@@ -42,7 +42,6 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio, Jugador
     else{
         cout << "\nOh, lamento traer malas noticias pero ya has alcanzo el maximo de construidos para este edificio: ";
     }
-
     if(materiales_validos)
         coordenadas_validas = ingreso_de_coordenadas();
 

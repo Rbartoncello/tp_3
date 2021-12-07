@@ -28,10 +28,21 @@ class Mapa{
          */
         Mapa(int filas, int columnas);
 
+        /*
+         * Pre: la fila y la columna tiene que estar dentro de los parametro del mapa.
+         * Post: Me devolvera el casillero.
+         */
+        Casillero* devolver_casillero(int fila, int columna);
 
         void construir_edifcio(Jugador* jugador);
 
-        Casillero* devolver_casillero(int fila, int columna);
+        int cantidad_edificio_construido(string nombre);
+
+        /*
+         * Pre: la fila y la columna tiene que estar dentro de los parametro del mapa.
+         * Post: Me devolvera TRUE si el casillero esta ocupado FALSE en caso contrario.
+         */
+        bool casillero_ocupado(int fila, int columna);
 
         /*
          * Destructor:
@@ -105,8 +116,14 @@ class Mapa{
       * Post: valida que una coordenada es de tipo construible
       */
         bool validar_tipo_construible(int fila, int columna);
+        
+        /*
+         * Pre: el casillero tiene un edificio
+         * Post: Elimina el edificio del casillero
+         */
+        void borrar_edificio(int fila, int columna);
 
-private:
+    private:
         /*
          * Pre: El archivo tiene que estar abierto y de formato correcto.
          * Post: Me va agregar los datos de encuentra en el archivo en un determinado objeto dependiendo lo que lea del archivo.

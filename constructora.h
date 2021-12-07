@@ -3,8 +3,7 @@
 
 #include "diccionario.h"
 #include "mapa.h"
-
-const int OBJETIVO_COMPRAR_ANDYCOINS = 100000;
+#include "constantes.h"
 
 class Constructora
 {

@@ -16,6 +16,9 @@ private:
     string emoji;
     int duenio;
     int maxima_cantidad_permitidos;
+
+protected:
+    bool reparable;
 public:
     
     //PRE:necesita el nombre del Edificacion
@@ -37,10 +40,20 @@ public:
     string devolver_emoji();
 
     /*
+    * Pre: -
+    * Post: Me devuelve si el edificio es reparable.
+    */
+    bool devolver_reparable();
+
+    /*
      * Pre: -
      * Post: Me devuelve TRUE si la Fabrica necesita reparacion o FALSE en caso contrario.
      */
     virtual bool devolver_necesita_reparacion() = 0;
+
+    virtual void reparar() = 0;
+
+    virtual void atacar() = 0;    
 
     virtual int devolver_maxima_cantidad_permitidos() = 0;
 

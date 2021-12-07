@@ -47,7 +47,6 @@ add_executable(tp_3 constantes.h main.cpp
         objetivos.cpp objetivos.h
         lista.h
         Grafo.cpp Grafo.h
-        Lista.h
         nodo.h
         nodo_lista.h
         Vertice.cpp Vertice.h

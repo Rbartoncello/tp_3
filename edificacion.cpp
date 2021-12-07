@@ -25,6 +25,10 @@ int Edificacion::devolver_maxima_cantidad_permitidos(){
     return this->maxima_cantidad_permitidos;
 }
 
+bool Edificacion::devolver_reparable(){
+    return this->reparable;
+}
+
 Edificacion::~Edificacion(){}
 
 void Edificacion::imprimir_resumen(){

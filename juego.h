@@ -58,11 +58,6 @@ class Juego{
         * Post: Mostra un menu con las opciones de partida_empezada y cada opcion con si respectiva funcionalidad 
         */
         void partida_empezada();
-        
-        void mostrar();
-
-        void cargar_grafo();
-
     private:
 
         
@@ -221,13 +216,38 @@ class Juego{
          * Pre: -
          * Post: Le preguntara a usuario que si decea moverse a otra coordenada
          */
-        void sin_energia_desplazarce(int costo);
+        void sin_energia_desplazarse(int costo);
 
         /*
          * Pre: -
          * Post: Pone en 0 todo los materieles del inventario
          */
         void vaciar_inventario();
+
+        /*
+        * Pre: -
+        * Post: Me creara el grafo 
+        */
+        void cargar_grafo();
+
+        /*
+         * Pre: -
+         * Post: Repara un edificio por input
+         */
+        void reparar_edificio();
+
+        /*
+         * Pre: -
+         * Post: Ataca un edificio por input
+         */
+        void atacar_edificio();
+
+        /*
+         * Pre: -
+         * Post: valida si se puede reparar una coordenada
+         */
+        bool validar_reparar_edificio(int fila, int columna);
+
 };
 
 #endif //JUEGO_H

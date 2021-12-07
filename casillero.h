@@ -106,6 +106,10 @@ class Casillero{
 
         virtual int devolver_duenio() = 0;
 
+        virtual Edificacion* devolver_edificacion(){return nullptr;};
+
+        virtual void eliminar_edificio(){};
+
         /*
          * Pre: -
          * Post: Metodo virtual vacio para las clases hijas

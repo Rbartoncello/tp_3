@@ -80,6 +80,11 @@ class Terreno : public Casillero_construible{
 
         int devolver_duenio();
 
+        Edificacion* devolver_edificacion();
+
+
+        virtual void eliminar_edificio();
+
         /*
          * PRE: -
          * POST: Metodo virtual vacio para la clase casillero_construible

@@ -37,6 +37,10 @@ class Casillero_construible : public Casillero{
 
         virtual int devolver_duenio() = 0;
 
+        virtual Edificacion* devolver_edificacion(){return nullptr;};
+
+        virtual void eliminar_edificio(){};
+
         /*
          * Pre: -
          * Post: Me muestra por pantalla.

@@ -82,6 +82,10 @@ int Terreno::devolver_duenio() {
     return this->edificacion->devolver_duenio();
 }
 
+Edificacion* Terreno::devolver_edificacion(){
+    return this->edificacion;
+}
+
 void Terreno::agregar_edificio(Edificacion *edificio){
     this->edificacion = edificio;
     modificar_ocupado(true);
@@ -115,4 +119,10 @@ void Terreno::eliminar_jugador() {
 void Terreno::mover_jugador(Jugador* jugador) {
     modificar_jugador(jugador);
     modificar_ocupado(true);
+}
+
+void Terreno::eliminar_edificio(){
+    delete edificacion;
+    edificacion = nullptr;
+    modificar_ocupado(false);
 }

@@ -58,6 +58,10 @@ class Fabrica : public Edificacion{
          */
         Receta* devolver_receta();
 
+        void atacar(); 
+
+        void reparar();
+
         /*
          * Pre: -
          * Post: Me devuelve TRUE si la Fabrica necesita reparacion o FALSE en caso contrario.

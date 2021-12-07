@@ -65,6 +65,12 @@ class Lista{
          * Post: Me devuelve la direccion del nodo de esa posicion.
          */
         Nodo_lista<T>* obtener_direccion_nodo(int posicion);
+
+        /*
+         * Pre: la posicion del elemento a eliminar
+         * Post: elimina el elemento de la listas
+         */
+        void remover_elemento(int posicion);
         
         /*
          * Destructor:
@@ -84,20 +90,44 @@ Lista<T>::Lista(){
 template<typename T>
 void Lista<T>::agregar_elemento(T* elemento, int posicion){
     Nodo_lista<T>* nuevo = new Nodo_lista<T>(elemento);
-    Nodo_lista<T>* posicion_siguiente_nodo;
+    Nodo_lista<T>* auxiliar;
 
     if (posicion==1){
-        posicion_siguiente_nodo = primero;
+        auxiliar = primero;
         primero = nuevo;
     }
     else{
         Nodo_lista<T>* nodo_anterior_a_posicion;
-        nodo_anterior_a_posicion = obtener_direccion_nodo(posicion-2);
-        posicion_siguiente_nodo = nodo_anterior_a_posicion->direccion_siguiente();
+        nodo_anterior_a_posicion = obtener_direccion_nodo(posicion-1);
+        auxiliar = nodo_anterior_a_posicion->direccion_siguiente();
         nodo_anterior_a_posicion->cambiar_siguiente(nuevo);
     }
-    nuevo->cambiar_siguiente(posicion_siguiente_nodo);
+    nuevo->cambiar_siguiente(auxiliar);
     cantidad_en_lista++;
+}
+
+template <typename T>
+void Lista<T>::remover_elemento(int posicion){
+    
+    Nodo_lista<T> *posicion_siguiente_nodo;
+
+    if (posicion == 1)
+    {
+        posicion_siguiente_nodo = primero->direccion_siguiente();
+        delete primero;
+        primero = posicion_siguiente_nodo;
+    }
+    else
+    {
+        Nodo_lista<T> *nodo_anterior_a_posicion;
+        Nodo_lista<T> *posicion_nodo_a_eliminar;
+        nodo_anterior_a_posicion = obtener_direccion_nodo(posicion-1);
+        posicion_nodo_a_eliminar = nodo_anterior_a_posicion->direccion_siguiente();
+        posicion_siguiente_nodo = posicion_nodo_a_eliminar->direccion_siguiente();
+        delete posicion_nodo_a_eliminar;
+        nodo_anterior_a_posicion->cambiar_siguiente(posicion_siguiente_nodo);
+    }
+    cantidad_en_lista--;
 }
 
 template < typename T >
@@ -116,8 +146,8 @@ void Lista<T>::agregar(string nuevo_elemento) {
 template<typename T>
 Nodo_lista<T>* Lista<T>::obtener_direccion_nodo(int posicion){
     Nodo_lista<T>* auxiliar = primero;
-
-    for (int i = 0; i < posicion; i++)
+   
+    for (int i = 1; i != posicion; i++)
     {
         auxiliar = auxiliar->direccion_siguiente();
     }

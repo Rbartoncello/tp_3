@@ -2,7 +2,6 @@
 #include <unistd.h>
 #include "juego.h"
 #include "interface.h"
-#include <time.h>
 
 Juego::Juego(){
     this->mapa = new Mapa();
@@ -39,7 +38,7 @@ int Juego::archivo_ubicaciones(){
 
 void Juego::nueva_partida(){
     vaciar_inventario();
-    
+
     imprimir_menu_nueva_partida();
 
     bool empezo_juego = false;
@@ -84,11 +83,6 @@ void Juego::procesar_opcion_nueva_partida(int opcion){
             comenzar_partida();
             break;
     }
-}
-
-void Juego::mostrar() {
-    imprimir_menu_juego(mapa, jugador_actual); //Aca hubo cambio
-    imprimir_objetos_mapa();
 }
 
 void Juego::modificar_receta(Diccionario<Edificacion>*&diccionario, string nombre_edificio, string material){
@@ -169,45 +163,45 @@ void Juego::ingresar_primer_jugador(){
 }
 
 void Juego::posicionar_jugador_mapa(Jugador *&jugador){
-    int fila, columna;
-    imprimir_mensaje_ingrese_fila_jugador();
-    cin >> fila;
-    validar_opcion_ingresada(fila, this->mapa->devolver_cantidad_filas(), 0);
-    imprimir_mensaje_ingrese_columna_jugador();
-    cin >> columna;
-    validar_opcion_ingresada(columna, this->mapa->devolver_cantidad_columnas(), 0);
-    /*
-    *
-    * VALIDAD SI SE PUEDE METER EN EL MAPA
-    *
-    */
+    int fila = pedir_fila();
+    int columna = pedir_columna();
+
     jugador->modificar_fila(fila);
     jugador->modificar_columna(columna);
+
+    mapa->agregar_jugador(jugador);
 }
 
 void Juego::partida_empezada(){
-    agregar_energia_comienza_partida();
 
-    int primer_jugador = numero_aleatorio(JUGADOR_1,JUGADOR_2);
+    int primer_jugador = numero_aleatorio(JUGADOR_1,JUGADOR_2), opcion_elegida;
+    agregar_energia_comienza_partida();
 
     if(primer_jugador == 1)
         jugador_actual = jugador_1;
     else
-        jugador_actual = jugador_2;
+        jugador_actual = jugador_2;    
 
-    imprimir_menu_juego(this->mapa, this->jugador_actual);
+    do{
+        if (jugador_actual->devolver_energia() == 0) {
+            imprimir_mensaje_finalizacion_turno_automatico(jugador_actual);
+            opcion_elegida = FINALIZAR_TURNO;
+        } else {
+            imprimir_menu_juego(mapa, jugador_actual);
 
-    int opcion_elegida = pedir_opcion(29, 60);
-
-    validar_opcion_ingresada(opcion_elegida, MAX_OPCION_JUEGO, MIN_OPCION_JUEGO);
-
-    while(opcion_elegida != GUARDA_SALIR){
+            opcion_elegida = pedir_opcion(29, 60);
+            validar_opcion_ingresada(opcion_elegida, MAX_OPCION_JUEGO, MIN_OPCION_JUEGO);
+        }
         procesar_opcion_partida_empezada(opcion_elegida);
-        imprimir_menu_juego(mapa, jugador_actual);
+        
+        if(opcion_elegida!=GUARDA_SALIR && opcion_elegida!=FINALIZAR_TURNO && jugador_actual->validar_objetivos()){
+            opcion_elegida = GUARDA_SALIR;
+            cout << "\n EL JUGADOR " << jugador_actual->devolver_numero() << " HA GANADO EL JUEGO" << endl;
+            imprimir_mensaje_enter_continuar();
+        }
 
-        opcion_elegida = pedir_opcion(29, 60);
-        validar_opcion_ingresada(opcion_elegida, MAX_OPCION_JUEGO, MIN_OPCION_JUEGO);
-    }
+    }while(opcion_elegida != GUARDA_SALIR);
+
     this->diccionario->guardar_pre_orden();
     imprimir_mensaje_guardado();
 }
@@ -218,7 +212,6 @@ void Juego::agregar_energia_comienza_partida(){
 }
 
 int Juego::numero_aleatorio(int desde, int hasta){
-    srand (( unsigned)time(NULL));
     int numero = ( desde + rand() % hasta );
     
     while (numero > hasta)
@@ -264,10 +257,16 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
         case DEMOLER_EDIFICIO_COORDENADA:
             break;
         case ATARCAR_EDIFICIO_COORDENADA:
+            this->atacar_edificio();
+            imprimir_mensaje_enter_continuar();
             break;
         case REPARAR_EDIFICIO_COORDENADA:
+            this->reparar_edificio();
+            imprimir_mensaje_enter_continuar();
             break;
         case COMPRAR_BOMBA:
+            jugador_actual->comprar_bombas();
+            jugador_actual->sumar_a_objetivo(100,EXTREMISTA);//considerar al hacer metodo
             break;
         case CONSULTAR_COORDENADA:
             this->mostrar_coordenada();
@@ -278,9 +277,11 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             imprimir_mensaje_enter_continuar();
             break;
         case MOSTRAR_OBJETIVOS:
+            jugador_actual->mostrar_objetivos();
+            imprimir_mensaje_enter_continuar();
             break;
         case RECOLECTAR_RECURSOS:
-
+            jugador_actual->sumar_a_objetivo(100,COMPRAR_ANDYPOLIS);//considerar al hacer metodo
             break;
         case MOVERSE_COORDENADA:
             moverse_coordenada();
@@ -293,6 +294,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             }
             break;
     }
+
 }
 
 void Juego::mostrar_inventario(Jugador* jugador_turno) {
@@ -304,31 +306,33 @@ void Juego::moverse_coordenada() {
     int fila = pedir_fila();
     int columna = pedir_columna();
 
+    cargar_grafo();
+
     int fila_actual = jugador_actual->devolver_fila();
     int columna_actual = jugador_actual->devolver_columna();
     
     string posicion_actual = to_string(fila_actual) + " " + to_string(columna_actual);
     string posicion_ingresada = to_string(fila) + " " + to_string(columna);
 
-    cargar_grafo();
-
     int costo = grafo->devolver_costo(posicion_actual, posicion_ingresada);
-
-    if ( jugador_actual->devolver_energia() >= costo ){
-        grafo->camino_minimo(posicion_actual, posicion_ingresada, mapa, jugador_actual);
-        jugador_actual->restar_energia(costo);
+    if(costo != POSICION_NO_ENCONTRADA) {
+        if (jugador_actual->devolver_energia() >= costo) {
+            grafo->camino_minimo(posicion_actual, posicion_ingresada, mapa, jugador_actual);
+            jugador_actual->restar_energia(costo);
+        } else
+            sin_energia_desplazarse(costo);
     } else
-        sin_energia_desplazarce(costo);
+        imprimir_mensaje_posicion_no_permitida();
 }
 
-void Juego::sin_energia_desplazarce(int costo){
+void Juego::sin_energia_desplazarse(int costo){
     system("clear");
     imprimir_mensaje_no_energia_sufuciente(costo);
     cout << "\tDesea ingresar una nueva posicion: " << endl;
     int opcion;
     imprimir_mensaje_afirmativo_negativo();
     cin >> opcion;
-    
+
     while ( !ingreso_afirmativo_negativo_valido(opcion) ){
         imprimir_mensaje_error_ingreso();
         cin >> opcion;
@@ -338,15 +342,15 @@ void Juego::sin_energia_desplazarce(int costo){
 }
 
 void Juego::cargar_grafo() {
-    //Jugador* jugador_sig = devolver_jugador_siguiente_turno();
+    Jugador* jugador_sig = devolver_jugador_turno();
 
     for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
         for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
             Casillero* casillero = mapa->devolver_casillero(i, j);
             if ( ! ( casillero->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero->esta_ocupado() ) ) ){
-                //if ( ( i != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) ){
+                if ( ( i != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) ){
                     this->grafo->agregarVertice(casillero->devolver_posicion());
-                //}
+                }
             }
         }
     }
@@ -374,6 +378,8 @@ void Juego::modificar_costo_casillero(Casillero* &casillero){
 }
 
 void Juego::cargar_costos_filas(){
+    Jugador* jugador_sig = devolver_jugador_turno();
+
     for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
         for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
             if (j < mapa->devolver_cantidad_columnas() - 1){
@@ -382,15 +388,14 @@ void Juego::cargar_costos_filas(){
                 modificar_costo_casillero(casillero_1);
                 modificar_costo_casillero(casillero_2);
                 if ( ! ( casillero_1->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_1->esta_ocupado() ) ) ){
-
-                    //if ( ( i != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) ){
+                    if ( ( i != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) ){
                         if ( ! ( casillero_2->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_2->esta_ocupado() ) ) ){
-                            //if ( ( i != jugador_sig->devolver_fila() ) || ( j+1 != jugador_sig->devolver_columna() ) ){
+                            if ( ( i != jugador_sig->devolver_fila() ) || ( j+1 != jugador_sig->devolver_columna() ) ){
                                 this->grafo->agregar_camino(casillero_1->devolver_posicion(), casillero_2->devolver_posicion(), casillero_2->devolver_costo());
                                 this->grafo->agregar_camino(casillero_2->devolver_posicion(), casillero_1->devolver_posicion(), casillero_1->devolver_costo());
-                            //}
+                            }
                         }
-                    //}
+                    }
                 }
             }
         }
@@ -398,6 +403,8 @@ void Juego::cargar_costos_filas(){
 }
 
 void Juego::cargar_costos_columnas(){
+    Jugador* jugador_sig = devolver_jugador_turno();
+
     for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
         for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
             if (i < mapa->devolver_cantidad_filas() - 1){
@@ -406,15 +413,15 @@ void Juego::cargar_costos_columnas(){
                 modificar_costo_casillero(casillero_1);
                 modificar_costo_casillero(casillero_2);
                 if ( ! ( casillero_1->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_1->esta_ocupado() ) ) ){
-                    //if ( ( i != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) ){
+                    if ( ( i != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) ){
                         if ( ! ( casillero_2->devolver_tipo_terreno() == TERRENO ) || (  ! ( casillero_2->esta_ocupado() ) ) ){
-                            //if ( ( i+1 != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) ){
+                            if ( ( i+1 != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) ){
                                 this->grafo->agregar_camino(casillero_1->devolver_posicion(), casillero_2->devolver_posicion(), casillero_2->devolver_costo());
                                 this->grafo->agregar_camino(casillero_2->devolver_posicion(), casillero_1->devolver_posicion(), casillero_1->devolver_costo());
-                            //}
+                            }
                             
                         }
-                    //}
+                    }
                 }
             }
         }
@@ -472,4 +479,101 @@ void Juego::mostrar_coordenada(){
 
     system("clear");
     this->mapa->imprimir_resumen_casillero(fila, columna);    
+}
+
+
+void Juego::reparar_edificio(){
+
+    if(jugador_actual->devolver_energia()<=ENERGIA_REPARAR){
+        cout << "No posee la cantidad de energia necesaria para realizar esta accion! Le falta " << ENERGIA_REPARAR - jugador_actual->devolver_energia() << endl;
+    }else{
+        int fila = this->pedir_fila();
+        this->validar_fila(fila);
+
+        int columna = this->pedir_columna();
+        this->validar_columna(columna);
+
+        if(validar_reparar_edificio(fila, columna)){
+            mapa->devolver_casillero(fila,columna)->devolver_edificacion()->reparar();
+            jugador_actual->restar_energia(ENERGIA_REPARAR);
+        }
+    }
+}
+
+
+void Juego::atacar_edificio(){
+
+    if(jugador_actual->devolver_energia()<=ENERGIA_ATACAR
+    && jugador_actual->devolver_inventario()->devolver_material(BOMBA)>=1){
+        cout << "No posee una bomba o la cantidad de energia necesaria para realizar esta accion!" << endl;
+    }else{
+        int fila = this->pedir_fila();
+        this->validar_fila(fila);
+
+        int columna = this->pedir_columna();
+        this->validar_columna(columna);
+        
+        if(mapa->devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO
+        && mapa->devolver_casillero(fila, columna)->esta_ocupado()){
+
+            if(mapa->devolver_casillero(fila, columna)->devolver_duenio() == jugador_actual->devolver_numero()){
+                cout << "No se puede atacar un edificio propio " << ENERGIA_ATACAR - jugador_actual->devolver_energia() << endl;
+            }else{
+                if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_reparable()){
+                    if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_necesita_reparacion()){
+                        mapa->borrar_edificio(fila,columna);
+                    }else{
+                        mapa->devolver_casillero(fila,columna)->devolver_edificacion()->atacar();
+                    }
+                }else{
+                    mapa->borrar_edificio(fila,columna);
+                }
+                //jugador_actual->devolver_inventario()-> //borrar 1 bomba
+                jugador_actual->restar_energia(ENERGIA_ATACAR);
+            }
+
+        }
+    }
+
+
+    jugador_actual->sumar_a_objetivo(100,BOMBARDERO);
+}
+
+bool Juego::validar_reparar_edificio(int fila, int columna){
+    bool se_puede = false;
+
+    int cantidad_piedra = 0, cantidad_madera = 0, cantidad_metal = 0, piedra_necesaria = 0, madera_necesaria = 0, metal_necesario = 0;
+
+    string nombre_edificio = mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_nombre_edificio();
+
+    cantidad_piedra = jugador_actual->devolver_inventario()->devolver_material(PIEDRA);
+    cantidad_madera = jugador_actual->devolver_inventario()->devolver_material(MADERA);
+    cantidad_metal = jugador_actual->devolver_inventario()->devolver_material(METAL);
+    piedra_necesaria = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_piedra()/4;
+    madera_necesaria = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_madera()/4;
+    metal_necesario  = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_metal()/4;
+
+    if(mapa->devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO
+    && mapa->devolver_casillero(fila, columna)->esta_ocupado()){
+        if(!(mapa->devolver_casillero(fila, columna)->devolver_duenio() == jugador_actual->devolver_numero())){
+            cout << "No se puede reparar un edificio que no te pertenece" << endl;
+        }else{
+            if(!mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_reparable()){
+                cout << "El edificio no es ni una mina ni una fabrica asi que no se puede reparar." << endl;
+            }else{
+                if(!mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_necesita_reparacion()){
+                    cout << "El edificio no necesita reparacion." << endl;
+                }else{
+                    if(cantidad_piedra>= piedra_necesaria 
+                    && cantidad_metal >= metal_necesario
+                    && cantidad_madera >= madera_necesaria){
+                        se_puede = true;
+                    }else{
+                        cout << "No posees los materiales suficientes par reparar este edificio"<< endl;
+                    }
+                }                    
+            } 
+        }
+    }
+    return se_puede;
 }
