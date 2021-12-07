@@ -11,6 +11,8 @@ class Constructora
 private:
     Mapa*   mapa;
     Diccionario<Edificacion>* dict_edificios;
+    int fila_nueva;
+    int columna_nueva;
 
     void mostrar_aviso();
 
@@ -21,6 +23,12 @@ private:
     bool validar_materiales(string nombre_nuevo_edificio, Jugador* &jugador);
 
     void mostrar_materiales_faltantes(int cantidad_piedra, int cantidad_madera, int cantidad_metal, int piedra_necesaria, int madera_necesaria, int metal_necesario);
+
+    bool ingreso_de_coordenadas();
+
+    bool validar_coords(int coord1, int coord2);
+
+    void mostrar_aviso_terreno(bool aviso);
 
 public:
     Constructora(Diccionario<Edificacion>* dict_edifcios, Mapa* mapa);

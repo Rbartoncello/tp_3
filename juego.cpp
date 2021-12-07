@@ -10,7 +10,7 @@ Juego::Juego(){
     this->diccionario = new Diccionario<Edificacion>();
     this->jugador_1 = new Jugador(JUGADOR_1, EMOJI_JUGADOR_1);
     this->jugador_2 = new Jugador(JUGADOR_2, EMOJI_JUGADOR_2);
-    //this->constructora = new Constructora(diccionario,mapa);
+    this->constructora = new Constructora(diccionario,mapa);
 
 }
 

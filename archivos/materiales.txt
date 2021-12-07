@@ -1,5 +1,5 @@
-madera 10000 10000
-piedra 10000 10000
-metal 10000 10000
-andycoins 100 100
-bombas 0 1
+madera 1000 1000
+piedra 1000 1000
+metal 1000 1000
+andycoins 0 4
+bomba 0 1
