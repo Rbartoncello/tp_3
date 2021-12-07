@@ -311,3 +311,7 @@ void Mapa::mostrar_edificios_construidos(Jugador* jugador_actual){
 void Mapa::borrar_edificio(int fila, int columna){
     casilleros[fila][columna]->eliminar_edificio();
 }
+
+bool Mapa::hay_edicicio(int fila, int columna) {
+    return ( devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO && devolver_casillero(fila, columna)->esta_ocupado() );
+}

@@ -146,7 +146,7 @@ void Lista<T>::agregar(string nuevo_elemento) {
 template<typename T>
 Nodo_lista<T>* Lista<T>::obtener_direccion_nodo(int posicion){
     Nodo_lista<T>* auxiliar = primero;
-
+   
     for (int i = 0; i < posicion; i++)
     {
         auxiliar = auxiliar->direccion_siguiente();

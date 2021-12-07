@@ -20,7 +20,7 @@ const string PATH_MAPA = "../archivos/mapa.txt";
 const string PATH_MATERIALES = "../archivos/materiales.txt";
 
 const int OBJETIVOS_SECUNDARIOS_CUMPLIDOS = 3;
-const int OBJETIVO_COMPRAR_ANDYCOINS = 100;
+const int OBJETIVO_COMPRAR_ANDYCOINS = 100000;
 const int OBJETIVO_EDAD_PIEDRA = 50000;
 const int OBJETIVO_BOMBARDERO = 5;
 

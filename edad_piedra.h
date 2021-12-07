@@ -6,7 +6,7 @@
 class Edad_piedra : public Objetivos
 {
 private:
-
+    string nombre;
     Lista<Material>* inventario_jugador;
 
 public:
