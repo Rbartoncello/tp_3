@@ -10,7 +10,7 @@ Juego::Juego(){
     this->diccionario = new Diccionario<Edificacion>();
     this->jugador_1 = new Jugador(JUGADOR_1, EMOJI_JUGADOR_1);
     this->jugador_2 = new Jugador(JUGADOR_2, EMOJI_JUGADOR_2);
-    //this->constructora = new Constructora(diccionario,mapa);
+    this->constructora = new Constructora(diccionario,mapa);
 
 }
 
@@ -21,6 +21,7 @@ Juego::~Juego(){
     delete this->diccionario;
     delete this->jugador_1;
     delete this->jugador_2;
+    delete this->constructora;
 }
 
 int Juego::cargar() {
@@ -282,7 +283,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             imprimir_mensaje_enter_continuar();
             break;
         case RECOLECTAR_RECURSOS:
-            jugador_actual->sumar_a_objetivo(100,COMPRAR_ANDYPOLIS);//considerar al hacer metodo
+            //jugador_actual->sumar_a_objetivo(100,COMPRAR_ANDYPOLIS);//considerar al hacer metodo
             break;
         case MOVERSE_COORDENADA:
             moverse_coordenada();

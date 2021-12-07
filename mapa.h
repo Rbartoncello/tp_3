@@ -108,6 +108,14 @@ class Mapa{
          * Post: Me muestra por pantalla los edificios contruidos del jugador actual.
          */
         void mostrar_edificios_construidos(Jugador* jugador_actual);
+
+        bool hay_edificio(int fila, int columna);
+
+        /*
+      * Pre: -
+      * Post: valida que una coordenada es de tipo construible
+      */
+        bool validar_tipo_construible(int fila, int columna);
         
         /*
          * Pre: el casillero tiene un edificio
@@ -134,11 +142,6 @@ class Mapa{
          */
         void crear_matriz_casilleros();
 
-        /*
-         * Pre: -
-         * Post: valida que una coordenada es de tipo construible
-         */
-        bool validar_tipo_construible(int fila, int columna);
 
         /*
          * Pre: -

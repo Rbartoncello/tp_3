@@ -240,5 +240,5 @@ int Jugador::contar_objetivos_completados(int contador){
     if (contador < 2)
         objetivos_realizados = objetivos_realizados + contar_objetivos_completados(contador+1);
 
-    return objetivos_realizados;
+    return 0;
 }
