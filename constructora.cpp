@@ -145,12 +145,11 @@ bool Constructora::validar_coords(int coord1, int coord2) {
 
 
 void Constructora::restar_materiales(string nombre_nuevo_edificio, Jugador *jugador){
-
     Edificacion* edificio = dict_edificios->buscar(nombre_nuevo_edificio);
 
-    jugador->restar_piedra(edificio->devolver_receta()->devoler_piedra());
-    jugador->restar_madera(edificio->devolver_receta()->devoler_madera());
-    jugador->restar_metal(edificio->devolver_receta()->devoler_metal());
+    jugador->restar_material(edificio->devolver_receta()->devoler_piedra(), PIEDRA);
+    jugador->restar_material(edificio->devolver_receta()->devoler_piedra(), MADERA);
+    jugador->restar_material(edificio->devolver_receta()->devoler_piedra(), METAL);
 }
 
 void Constructora::mostrar_aviso_terreno(bool aviso) {

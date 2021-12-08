@@ -97,18 +97,8 @@ void Jugador::restar_energia(int cantidad){
     this -> energia -= cantidad;
 }
 
-void Jugador::restar_piedra(int cantidad){
-    int posicion = devolver_inventario()->obtener_posicion(PIEDRA);
-    devolver_inventario()->obtener_direccion_nodo(posicion)->devolver_dato()->reducir_cantidad(cantidad);
-}
-
-void Jugador::restar_madera(int cantidad){
-    int posicion = devolver_inventario()->obtener_posicion(MADERA);
-    devolver_inventario()->obtener_direccion_nodo(posicion)->devolver_dato()->reducir_cantidad(cantidad);
-}
-
-void Jugador::restar_metal(int cantidad){
-    int posicion = devolver_inventario()->obtener_posicion(METAL);
+void Jugador::restar_material(int cantidad, string material){
+    int posicion = devolver_inventario()->obtener_posicion(material);
     devolver_inventario()->obtener_direccion_nodo(posicion)->devolver_dato()->reducir_cantidad(cantidad);
 }
 
@@ -191,16 +181,11 @@ bool Jugador::andycoins_sufuciente(int costo){
 }
 
 void Jugador::comprar_bombas(int cantidad){
-    gastar_andycoins( cantidad * COSTO_POR_BOMBA );
+    restar_material( ( cantidad * COSTO_POR_BOMBA ), ANDYCOINS);
 
     int posicion = devolver_inventario()->obtener_posicion(BOMBA);
 
     devolver_inventario()->obtener_direccion_nodo(posicion)->devolver_dato()->aumentar_cantidad(cantidad);
-}
-
-void Jugador::gastar_andycoins(int precio){
-    int posicion = devolver_inventario()->obtener_posicion(ANDYCOINS);
-    devolver_inventario()->obtener_direccion_nodo(posicion)->devolver_dato()->reducir_cantidad(precio);
 }
 
 void Jugador::mostrar_objetivos(){
@@ -239,7 +224,6 @@ void Jugador::sumar_a_objetivo(int cantidad, string nombre_objetivo){
 }
 
 bool Jugador::validar_objetivos(){
-
     return(contar_objetivos_completados(0) == OBJETIVOS_SECUNDARIOS_CUMPLIDOS);
 }
 

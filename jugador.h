@@ -10,164 +10,198 @@
 #include "edad_piedra.h"
 //#include "mas_alto_que_las_nubes.h"
 
-class Jugador
-{
-private:
-    string nombre;
-    string emoji;
-    int energia, numero, fila, columna, objetivos_completados;
-    Lista<Material> *inventario;
-    Lista<Objetivos> *objetivos_secundarios;
-    //Mas_alto_que_las_nubes* objetivo_primario;
+class Jugador{
+     private:
+          string nombre;
+          string emoji;
+          int energia, numero, fila, columna, objetivos_completados;
+          Lista<Material> *inventario;
+          Lista<Objetivos> *objetivos_secundarios;
+         //Mas_alto_que_las_nubes* objetivo_primario;
 
-public:
-    /*
-         * Constructor sin parametros:
-         * Pre: -.
-         * Post: Me va a crear el Jugador vacio
-         */
-    Jugador(int numero, string emoji);
+     public:
+          /*
+           * Pre: -.
+           * Post: Me va a crear el Jugador vacio
+           */
+          Jugador(int numero, string emoji);
 
-    /*
-         * Pre: Necesita un punto de inicio y uno de final
-         * Post: Va a generar un numero random.
-         */
-    int numero_aleatorio(int desde, int hasta);
+          /*
+           * Pre: Necesita un punto de inicio y uno de final
+           * Post: Va a generar un numero random.
+           */
+          int numero_aleatorio(int desde, int hasta);
 
-    /*
-         * Pre: 
-         * Post: Devuelve el numero asignado al jugador.
-         */
-    int devolver_numero();
+          /*
+           * Pre: 
+           * Post: Devuelve el numero asignado al jugador.
+           */
+          int devolver_numero();
 
-    /*
-         * Pre: 
-         * Post: muestra por pantalla los objetivos del jugador
-         */
-    void mostrar_objetivos();
+          /*
+           * Pre: 
+           * Post: muestra por pantalla los objetivos del jugador
+           */
+          void mostrar_objetivos();
 
-    /*
-         * Pre: necesita un valor a sumar y el nombre del objetivo
-         * Post: si el objetivo es del usuario suma
-         */
-    void sumar_a_objetivo(int cantidad, string nombre_objetivo);
+          /*
+           * Pre: necesita un valor a sumar y el nombre del objetivo
+           * Post: si el objetivo es del usuario suma
+           */
+          void sumar_a_objetivo(int cantidad, string nombre_objetivo);
 
-    int devolver_energia();
-    /*
-         * Destructor:
-         * Pre: -.
-         * Post: Me va a destruir el arreglo de objetivos
-         */
-    ~Jugador();
+          /*
+           * Pre: -
+           * Post: Me devuelve la energia del jugador
+           */
+          int devolver_energia();
+          
+          /*
+           * Destructor:
+           * Pre: -.
+           * Post: Me va a destruir el arreglo de objetivos
+           */
+          ~Jugador();
 
-    /*
-         * Destructor:
-         * Pre: -.
-         * Post: Me va a definir como nombre el string ingresado por input (con ese nombre se va a referir al jugador por el resto del juego)
-         */
-    void pedir_nombre();
+          /*
+           * Pre: -.
+           * Post: Me va a definir como nombre el string ingresado por input (con ese nombre se va a  referir al jugador por el resto del juego)
+           */    
+          void pedir_nombre(); 
 
-    void restar_piedra(int cantidad);
-    void restar_madera(int cantidad);
-    void restar_metal(int cantidad);
+          /*
+           * Pre: cantidad tiene que ser mayor a 0
+           * Post: Me restara el cantidad del material del inventario.
+           */
+          void restar_material(int cantidad, string material);
 
-    /*
-         * Pre: Recibe un nombre de un material que exita.
-         * Post: Ingresa el objeto en un vector dinámico.
-         */
-    void aumentar_material(Material *material);
+          /*
+           * Pre: Recibe un nombre de un material que exita.
+           * Post: Ingresa el objeto en un vector dinámico.
+           */
+          void aumentar_material(Material *material);
 
-    /*
-         * Destructor:
-         * Pre: es un numero entero positivo
-         * Post: Me va a restar la cantidad de energia pasada por parametro
-         */
-    void restar_energia(int cantidad);
+          /*
+           * Pre: cantidad tiene que ser mayor a 0
+           * Post: Me restara el cantidad de energia.
+           */
+          void restar_energia(int cantidad);
 
-    /*
-         * Destructor:
-         * Pre: es un numero entero positivo
-         * Post: Me va a sumar la cantidad de energia pasada por parametro
-         */
-    void sumar_energia(int cantidad);
+          /*
+           * Pre: cantidad tiene que ser mayor a 0
+           * Post: Me sumara el cantidad de energia.
+           */
+          void sumar_energia(int cantidad);
 
-    /*
-         * Destructor:
-         * Pre: recibe un material bien creado
-         * Post: Suma ese material a su contraparte en el inventario
-         */
-    void recoger_recurso(Material *recurso);
+          /*
+           * Pre: recibe un material bien creado
+           * Post: Suma ese material a su contraparte en el inventario
+           */
+          void recoger_recurso(Material *recurso);
+          
+          /*
+           * Pre: -
+           * Post: Me devuelve el inventario del jugador
+           */
+          Lista<Material> *&devolver_inventario();
 
-    Lista<Material> *&devolver_inventario();
+          /*
+           * Pre: -
+           * Post: Me modificara el numero del jugador
+           */
+          void modificar_numero(int numero);
 
-    void modificar_numero(int numero);
+          /*
+           * Pre: Fila tiene que estar dentro del mapa
+           * Post: Me modifca la fila del jugador
+           */
+          void modificar_fila(int fila);
 
-    void modificar_fila(int fila);
+          /*
+           * Pre: Columna tiene que estar dentro del mapa
+           * Post: Me modifca la columna del jugador
+           */
+          void modificar_columna(int columna);
 
-    void modificar_columna(int columna);
+          /*
+           * Pre: -
+           * Post: Me muestra lista por pantalla el inventario.
+           */
+          void mostrar_inventario();
 
-    /*
-         * Pre: -
-         * Post: Me muestra lista por pantalla el inventario.
-         */
-    void mostrar_inventario();
+          /*
+           * Pre: -
+           * Post: Me devuelve la fila del jugador
+           */
+          int devolver_fila();
 
-    int devolver_fila();
+          /*
+           * Pre: -
+           * Post: Me devuelve la columna del jugador
+           */
+          int devolver_columna();
 
-    int devolver_columna();
+          /*
+           * Pre: -
+           * Post: Me devuelve el emoji del jugador
+           */
+          string devolver_emoji();
 
-    string devolver_emoji();
+          /*
+           * Pre: -
+           * Post: Me pone en 0 todos los materiales del inventario del jugador
+           */
+          void vaciar_inventario();
 
-    void vaciar_inventario();
+          /*
+           * Pre: -
+           * Post: Realizara el procedimiento de compra de bombas.
+           */
+          void comprar_bombas();
 
-    /*
-         * Pre: -
-         * Post: Realizara el procedimiento de compra de bombas.
-         */
-    void comprar_bombas();
+          /*
+           * Pre: -
+           * Post: Me va a devovler TRUE si se completarios los tres objetivos secundarios o FALSE en caso contrario.
+           */
+          bool validar_objetivos();
 
-    /*
-         * Pre: costo tiene que ser mayor a 0
-         * Post: Me devuelve TRUE si costo >= andycoins y FALSE en caso contrario.
-         */
-    bool andycoins_sufuciente(int costo);
+          /*
+           * Pre: 
+           * Post:termina con 3 objetivos en la lista objetivos secundarios
+           */
+          void generar_objetivos_secundarios();
 
-    /*
-         * Pre: Cantidad tiene que ser mayor a 0
-         * Post: Comprar la cantidad de bombas ingresadas.
-         */
-    void comprar_bombas(int cantidad);
+     private:
 
-    /*
-         * Pre: Precio tiene que ser mayor a 0
-         * Post:Me restara el cantidad (precio) de andycoins del inventario.
-         */
-     void gastar_andycoins(int precio);
+          /*
+           * Pre: Necesita una lista de objetivos de tipo string
+           * Post: Agrega el nombre de los objetivos a esta lista
+           */
+         void crear_lista(Lista_primitiva<string> *&objetivos);
 
-     bool validar_objetivos();
-     /*
-         * Pre: 
-         * Post:termina con 3 objetivos en la lista objetivos secundarios
-         */
-    void generar_objetivos_secundarios();
+          /*
+           * Pre: Necesita el nombre del objetivo a crear
+           * Post: Agrega a la lista de objetivos secundarios un nuevo objetivo
+           */
+          void agregar_objetivo(string nombre_objetivo);
 
-private:
+          /*
+           * Pre:
+           * Post: Me contarar la cantidad de objetivos completados y los devolvera.
+           */
+          int contar_objetivos_completados(int contador);
 
-    /*
-         * Pre: Necesita una lista de objetivos de tipo string
-         * Post: Agrega el nombre de los objetivos a esta lista
-         */
-    void crear_lista(Lista_primitiva<string> *&objetivos);
+          /*
+           * Pre: costo tiene que ser mayor a 0
+           * Post: Me devuelve TRUE si costo >= andycoins y FALSE en caso contrario.
+           */
+          bool andycoins_sufuciente(int costo);
 
-    /*
-         * Pre: Necesita el nombre del objetivo a crear
-         * Post: Agrega a la lista de objetivos secundarios un nuevo objetivo
-         */
-    void agregar_objetivo(string nombre_objetivo);
-
-    
-
-    int contar_objetivos_completados(int contador);
+          /*
+           * Pre: Cantidad tiene que ser mayor a 0
+           * Post: Comprar la cantidad de bombas ingresadas.
+           */
+          void comprar_bombas(int cantidad);
 };
 
 #endif //JUEGADOR_H
