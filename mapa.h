@@ -83,7 +83,9 @@ class Mapa{
 
         char devolver_tipo_terreno(int coord1, int columna);
 
-        void agregar_edificacion(Edificacion* edificacion, int fila, int columna, int duenio);
+        void agregar_edificacion(string nombre, int fila, int columna, int duenio, Lista_edificios<Edificacion> *&edificios_jugador);
+
+        Edificacion* crear_edificio(string nombre, int piedra, int madera, int metal, int max_cant_permitidos);
 
         /*
          * Pre: -

@@ -9,6 +9,8 @@
 #include "bombardero.h"
 #include "edad_piedra.h"
 //#include "mas_alto_que_las_nubes.h"
+#include "lista_edificios.h"
+#include "edificacion.h"
 
 class Jugador {
      private:
@@ -18,6 +20,7 @@ class Jugador {
           Lista<Material> *inventario;
           Lista<Material> *recursos_acumulados;
           Lista<Objetivos> *objetivos_secundarios;
+          Lista_edificios<Edificacion>* edificios_jugador;
           int energia_acumulada;
 
      public:
@@ -77,6 +80,8 @@ class Jugador {
           void agregar_inventario(Material *elemento);
 
           Material* generar_material(string nombre);
+
+          Lista_edificios<Edificacion>*& devolver_mis_edificios();
 
           /*
            * Pre: cantidad tiene que ser mayor a 0

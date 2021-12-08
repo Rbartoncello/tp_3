@@ -10,6 +10,7 @@ Jugador::Jugador(int numero, string emoji){
     inventario = new Lista<Material>();
     recursos_acumulados = new Lista<Material>();
     objetivos_secundarios = new Lista<Objetivos>();
+    edificios_jugador = new Lista_edificios<Edificacion>();
     energia_acumulada = 0;
     //objetivo_primario = new Mas_alto_que_las_nubes();
 }
@@ -18,6 +19,7 @@ Jugador::~Jugador(){
     delete this->inventario;
     delete this->recursos_acumulados;
     delete this->objetivos_secundarios;
+    delete this->edificios_jugador;
 }
 
 void Jugador::crear_lista(Lista_primitiva<string>* &objetivos){
@@ -303,4 +305,8 @@ void Jugador::vaciar_energia_acumulada(){
 
 void Jugador::sumar_energia_acumulada(int cantidad){
     energia_acumulada += cantidad;
+}
+
+Lista_edificios<Edificacion>*& Jugador::devolver_mis_edificios(){
+    return edificios_jugador;
 }
