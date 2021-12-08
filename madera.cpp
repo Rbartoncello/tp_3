@@ -2,7 +2,7 @@
 #include "emojis.h"
 #include "constantes.h"
 
-Madera::Madera() : Material(MADERA, EMOJI_MADERA, 1){
+Madera::Madera() : Material(MADERA, EMOJI_MADERA, 0){
     
 }
 

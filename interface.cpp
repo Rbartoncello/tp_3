@@ -180,22 +180,6 @@ void imprimir_mensaje_guardado()
     cout << "\t»Adios«" << endl;
 }
 
-void imprimir_mensaje_recolectando_recursos_producidos()
-{
-    system("clear");
-    cout << "\tRecolectando recursos producidos... " << EMOJI_BUSQUEDA << endl;
-
-    sleep(2);
-    system("clear");
-
-    cout << TXT_BOLD;
-    cout << "\t»Se han recolectado los recursos producidos con exito" << EMOJI_HECHO << endl;
-    cout << END_COLOR;
-
-    sleep(2);
-    system("clear");
-}
-
 int pedir_opcion(int fila, int columna)
 {
     Gotoxy gotoxy;
@@ -358,7 +342,10 @@ void imprimir_edificio(Edificacion *edificacion, Jugador* jugador, int fila, int
 }
 
 void imprimir_mensaje_no_energia_sufuciente(int energia){
-    cout << "No cuentas con la energia necesaria: " << energia << endl;
+    system("clear");
+    imprimir_mensaje_error();
+    cout << "\tNo cuentas con la energia necesaria: " << energia << endl;
+    imprimir_mensaje_esperar(2);
 }
 
 void imprimir_mensaje_posicion_no_permitida(){
@@ -423,4 +410,19 @@ void encabezado_objetivos_secuncarios() {
     cout << "\t║ Nombre de objetivo ║                          Descripcion                          ║ Porcentaje de completado ║ Completado ║" << endl;
     cout << "\t╠════════════════════╬═══════════════════════════════════════════════════════════════╬══════════════════════════╬════════════╣" << endl;
     cout << END_COLOR;
+}
+
+void imprimir_mensaje_recolectando_recursos_producidos() {
+    system("clear");
+    cout << "\tRecolectando recursos producidos... " << EMOJI_BUSQUEDA << endl;
+
+    sleep(2);
+    system("clear");
+
+    cout << TXT_BOLD;
+    cout << "\t»Se han recolectado los recursos producidos con exito" << EMOJI_HECHO <<endl;
+    cout << END_COLOR;
+    
+    sleep(2);
+    system("clear");
 }

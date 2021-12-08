@@ -64,12 +64,6 @@ void imprimir_mensaje_guardado();
 
 /*
  * Pre: -
- * Post: Imprimira un mensaje por pantalla
- */
-void imprimir_mensaje_recolectando_recursos_producidos();
-
-/*
- * Pre: -
  * Post: Devuelve el entero ingresado por pantalla.
  */
 int pedir_opcion(int fila, int columna);
@@ -223,6 +217,12 @@ void imprimir_mensaje_bombas_compradas(Lista<Material>* &inventario, int cantida
  * Post: Me muestra por pantalla el encabezado de los objetivos secundarios.
  */
 void encabezado_objetivos_secuncarios();
+
+/*
+ * Pre: -
+ * Post: Me muestra por pantalla el mensaje que se recolecto recurso con exito.
+ */
+void imprimir_mensaje_recolectando_recursos_producidos();
 
 
 #endif

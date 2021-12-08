@@ -67,7 +67,7 @@ Edificacion* Archivo::buscar_edificacion(string nombre, int piedra, int madera, 
     return edificio;
 }
 
-int Archivo::leer_archivos_materiales(Lista<Material> *&inventario_jugador_1, Lista<Material> *&inventario_jugador_2){
+int Archivo::leer_archivos_materiales(Jugador *&jugador_1, Jugador *&jugador_2){
     int ejecucion = 1;
 
     ifstream archivo(PATH_MATERIALES);
@@ -83,9 +83,9 @@ int Archivo::leer_archivos_materiales(Lista<Material> *&inventario_jugador_1, Li
             archivo >> cantidad_jugador_1;
             archivo >> cantidad_jugador_2;
             material = generar_material(nombre,stoi(cantidad_jugador_1));
-            inventario_jugador_1->agregar_elemento(material,1);
+            jugador_1->agregar_inventario(material);
             material = generar_material(nombre, stoi(cantidad_jugador_2));
-            inventario_jugador_2->agregar_elemento(material, 1);   
+            jugador_2->agregar_inventario(material); 
         }
     }
 

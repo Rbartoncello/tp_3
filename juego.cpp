@@ -27,7 +27,7 @@ Juego::~Juego(){
 int Juego::cargar() {
     int ejecucion = 0;
 
-    if( lector_archivos->leer_archivos_materiales(jugador_1->devolver_inventario(),jugador_2->devolver_inventario())== ERROR || this->mapa->leer_archivo() == ERROR || lector_archivos->leer_archivos_edificios( this->diccionario) == ERROR )
+    if( lector_archivos->leer_archivos_materiales(jugador_1, jugador_2)== ERROR || this->mapa->leer_archivo() == ERROR || lector_archivos->leer_archivos_edificios( this->diccionario) == ERROR )
         ejecucion = ERROR;
 
     return ejecucion;
@@ -283,12 +283,13 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             imprimir_mensaje_enter_continuar();
             break;
         case RECOLECTAR_RECURSOS:
-            //jugador_actual->sumar_a_objetivo(100,COMPRAR_ANDYPOLIS);//considerar al hacer metodo
+            jugador_actual->recoger_recurso();
             break;
         case MOVERSE_COORDENADA:
             moverse_coordenada();
             break;
         case FINALIZAR_TURNO:
+            acumular_recursos();
             jugador_actual->sumar_energia(ENERGIA_NUEVO_TURNO);
             jugador_actual = devolver_jugador_turno();
             if (jugador_actual->devolver_energia() <= 0){
@@ -534,4 +535,18 @@ bool Juego::validar_reparar_edificio(int fila, int columna){
         }
     }
     return se_puede;
+}
+
+void Juego::acumular_recursos(){
+    for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
+        for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
+            if (mapa->hay_edicicio(i , j)){
+                if(mapa->devolver_casillero(i, j)->devolver_duenio() == jugador_actual->devolver_numero()){
+                    if( mapa->devolver_casillero(i, j)->devolver_edificacion()->brinda_material() ){
+                        jugador_actual->acumular_recursos( mapa->devolver_casillero(i, j)->devolver_edificacion()->devolver_material_producido(),  mapa->devolver_casillero(i, j)->devolver_edificacion()->devolver_cantidad_material_brinda());
+                    }
+                }
+            }
+        }
+    }
 }

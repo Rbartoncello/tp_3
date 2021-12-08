@@ -1,23 +1,26 @@
 #include <iostream>
 #include "jugador.h"
 #include "interface.h"
+#include "bomba.h"
 
 Jugador::Jugador(int numero, string emoji){
     this->numero = numero;
     this->emoji = emoji;
     energia = 0;
     inventario = new Lista<Material>();
+    recursos_acumulados = new Lista<Material>();
     objetivos_secundarios = new Lista<Objetivos>();
+    energia_acumulada = 0;
     //objetivo_primario = new Mas_alto_que_las_nubes();
 }
 
 Jugador::~Jugador(){
     delete this->inventario;
+    delete this->recursos_acumulados;
     delete this->objetivos_secundarios;
 }
 
 void Jugador::crear_lista(Lista_primitiva<string>* &objetivos){
-     
     objetivos->agregar(COMPRAR_ANDYPOLIS);
     objetivos->agregar(EDAD_PIEDRA);
     objetivos->agregar(BOMBARDERO);
@@ -49,6 +52,27 @@ void Jugador::generar_objetivos_secundarios(){
     delete objetivos;
 }
 
+void Jugador::agregar_inventario(Material *material){
+    inventario->agregar_elemento(material,1);
+    if (material->devolver_nombre() != BOMBA)
+        recursos_acumulados->agregar_elemento(generar_material(material->devolver_nombre()),1);
+}
+
+Material* Jugador::generar_material(string nombre){
+    Material *material;
+
+    if (nombre == PIEDRA)
+        material = new Piedra;
+    else if (nombre == MADERA)
+        material = new Madera;
+    else if (nombre == METAL)
+        material = new Metal;
+    else if (nombre == ANDYCOINS)
+        material = new Andycoins;
+
+    return material;
+}
+
 void Jugador::agregar_objetivo(string nombre_objetivo){
 
     Objetivos* objetivo;
@@ -72,7 +96,7 @@ int Jugador::numero_aleatorio(int desde, int hasta){
 }
 
 void Jugador::aumentar_material(Material* material){
-    inventario->obtener_direccion_nodo(inventario->obtener_posicion(material->devolver_nombre()))->devolver_dato()->aumentar_cantidad(material->devolver_cantidad());
+    inventario->obtener_direccion_nodo(inventario->obtener_posicion(material->devolver_nombre()))->devolver_dato()->aumentar_cantidad(material->devolver_cantidad());    
 }
 
 void Jugador::vaciar_inventario(){
@@ -98,16 +122,35 @@ void Jugador::restar_energia(int cantidad){
 }
 
 void Jugador::restar_material(int cantidad, string material){
-    int posicion = devolver_inventario()->obtener_posicion(material);
-    devolver_inventario()->obtener_direccion_nodo(posicion)->devolver_dato()->reducir_cantidad(cantidad);
+    int posicion = inventario->obtener_posicion(material);
+    inventario->obtener_direccion_nodo(posicion)->devolver_dato()->reducir_cantidad(cantidad);
 }
 
 void Jugador::sumar_energia(int cantidad){
     this -> energia += cantidad;
 }
 
-void Jugador::recoger_recurso(Material* recurso){
-    //this->inventario->sumar_material(recurso)    (me falta hacer el metodo en materiales en el que sume un material al array al recibir un Material*)
+void Jugador::recoger_recurso(){
+    if (energia >= ENERGIA_RECOLECTAR_RECURSOS){
+        sumar_energia(energia_acumulada);
+        vaciar_energia_acumulada();
+        int cantidad_material = 0;
+        int posicion;
+        Nodo_lista<Material>* aux = recursos_acumulados->retornar_primero();
+
+        for (int i = 0; i < recursos_acumulados->devolver_cantidad_en_lista(); i++){
+            cantidad_material = aux->devolver_dato()->devolver_cantidad();
+
+            posicion = inventario->obtener_posicion(aux->devolver_dato()->devolver_nombre());
+            inventario->obtener_direccion_nodo(posicion)->devolver_dato()->aumentar_cantidad(cantidad_material);
+
+            aux->devolver_dato()->modificar_cantidad(0);
+            aux = aux->direccion_siguiente();
+            }
+        imprimir_mensaje_recolectando_recursos_producidos();
+        restar_energia(ENERGIA_RECOLECTAR_RECURSOS);
+    } else
+        imprimir_mensaje_no_energia_sufuciente(ENERGIA_RECOLECTAR_RECURSOS);
 }
 
 Lista<Material>*& Jugador::devolver_inventario(){
@@ -240,4 +283,24 @@ int Jugador::contar_objetivos_completados(int contador){
         objetivos_realizados = objetivos_realizados + contar_objetivos_completados(contador+1);
 
     return 0;
+}
+
+void Jugador::acumular_recursos(string material, int cantidad){
+    if(material != ENERGIA){
+        int posicion = recursos_acumulados->obtener_posicion(material);
+        recursos_acumulados->obtener_direccion_nodo(posicion)->devolver_dato()->aumentar_cantidad(cantidad);
+    } else
+        sumar_energia_acumulada(cantidad);
+}
+
+int Jugador::devolver_energia_acumulada(){
+    return energia_acumulada;
+}
+
+void Jugador::vaciar_energia_acumulada(){
+    energia_acumulada = 0;
+}
+
+void Jugador::sumar_energia_acumulada(int cantidad){
+    energia_acumulada += cantidad;
 }

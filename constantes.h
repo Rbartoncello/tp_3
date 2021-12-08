@@ -135,5 +135,6 @@ const string NOMBRE_NO_ENCONTRADO = "";
 
 const int COSTO_POR_BOMBA = 100;
 const int ENERGIA_COMPRAR_BOMBAS = 5;
+const int ENERGIA_RECOLECTAR_RECURSOS = 20;
 
 #endif

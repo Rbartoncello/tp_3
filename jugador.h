@@ -1,5 +1,5 @@
-#ifndef JUEGADOR_H
-#define JUEGADOR_H
+#ifndef JUGADOR_H
+#define JUGADOR_H
 #include "materiales.h"
 #include "lista.h"
 #include "objetivos.h"
@@ -10,14 +10,15 @@
 #include "edad_piedra.h"
 //#include "mas_alto_que_las_nubes.h"
 
-class Jugador{
+class Jugador {
      private:
           string nombre;
           string emoji;
           int energia, numero, fila, columna, objetivos_completados;
           Lista<Material> *inventario;
+          Lista<Material> *recursos_acumulados;
           Lista<Objetivos> *objetivos_secundarios;
-         //Mas_alto_que_las_nubes* objetivo_primario;
+          int energia_acumulada;
 
      public:
           /*
@@ -70,6 +71,14 @@ class Jugador{
           void pedir_nombre(); 
 
           /*
+           * Pre:
+           * Post: Agrega a la lista de inventario un nuevo material
+           */
+          void agregar_inventario(Material *elemento);
+
+          Material* generar_material(string nombre);
+
+          /*
            * Pre: cantidad tiene que ser mayor a 0
            * Post: Me restara el cantidad del material del inventario.
            */
@@ -94,10 +103,10 @@ class Jugador{
           void sumar_energia(int cantidad);
 
           /*
-           * Pre: recibe un material bien creado
-           * Post: Suma ese material a su contraparte en el inventario
+           * Pre:
+           * Post: Me suma los materiales recolectados en el inventario
            */
-          void recoger_recurso(Material *recurso);
+          void recoger_recurso();
           
           /*
            * Pre: -
@@ -171,6 +180,11 @@ class Jugador{
            */
           void generar_objetivos_secundarios();
 
+          /*
+           * Pre: 
+           * Post: Me ira acumulando los recursos de los edificios que encuentre en el mapa.
+           */
+          void acumular_recursos(string material, int cantidad);
      private:
 
           /*
@@ -184,6 +198,7 @@ class Jugador{
            * Post: Agrega a la lista de objetivos secundarios un nuevo objetivo
            */
           void agregar_objetivo(string nombre_objetivo);
+
 
           /*
            * Pre:
@@ -202,6 +217,24 @@ class Jugador{
            * Post: Comprar la cantidad de bombas ingresadas.
            */
           void comprar_bombas(int cantidad);
+
+          /*
+           * Pre: -
+           * Post: Me devuelve la energia_acumulada del jugador
+           */
+          int devolver_energia_acumulada();
+
+          /*
+           * Pre:
+           * Post: Me pondra en 0 el cantidad de energia_acumulada.
+           */
+          void vaciar_energia_acumulada();
+
+          /*
+           * Pre: cantidad tiene que ser mayor a 0
+           * Post: Me sumara el cantidad de energia_acumulada.
+           */
+          void sumar_energia_acumulada(int cantidad);
 };
 
-#endif //JUEGADOR_H
+#endif //JUGADOR_H

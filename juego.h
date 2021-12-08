@@ -244,6 +244,12 @@ class Juego{
 
         /*
          * Pre: -
+         * Post: Acumula recurso producidos
+         */
+        void acumular_recursos();
+
+        /*
+         * Pre: -
          * Post: valida si se puede reparar una coordenada
          */
         bool validar_reparar_edificio(int fila, int columna);
