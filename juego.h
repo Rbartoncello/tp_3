@@ -254,6 +254,13 @@ class Juego{
          */
         bool validar_reparar_edificio(int fila, int columna);
 
+        /*
+         * Pre: -
+         * Post: restablece todos los atributos fue_atacado a false de los edificios
+         */
+        void restablecer_fue_atacado();
+
+
 };
 
 #endif //JUEGO_H

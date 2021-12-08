@@ -16,6 +16,7 @@ private:
     string emoji;
     int duenio;
     int maxima_cantidad_permitidos;
+    bool fue_atacado;
 
 protected:
     bool reparable;
@@ -60,6 +61,12 @@ public:
     virtual Receta* devolver_receta() = 0;
 
     virtual bool brinda_material() = 0;
+
+    bool devolver_fue_atacado();
+
+    void fue_atacado_true();
+
+    void fue_atacado_false();
 
     //PRE:
     //POST:Va a sumar a la lista de materiales lo que el Edificacion que este custruido otorgue.

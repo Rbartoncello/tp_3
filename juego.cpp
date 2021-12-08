@@ -292,6 +292,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             acumular_recursos();
             jugador_actual->sumar_energia(ENERGIA_NUEVO_TURNO);
             jugador_actual = devolver_jugador_turno();
+            this->restablecer_fue_atacado();
             if (jugador_actual->devolver_energia() <= 0){
                 jugador_actual = devolver_jugador_turno();
             }
@@ -488,16 +489,26 @@ void Juego::atacar_edificio(){
                 cout << "No se puede atacar un edificio propio " << endl;
             } else {
                 if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_reparable()){
-                    if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_necesita_reparacion()){
-                        mapa->borrar_edificio(fila,columna);
-                    } else {
-                        mapa->devolver_casillero(fila,columna)->devolver_edificacion()->atacar();
+                    if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_fue_atacado()){
+                        cout << "Este edificio ya fue atacado en este turno!!!" << endl;
+                    }else{
+                        if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_necesita_reparacion()){
+                            mapa->borrar_edificio(fila,columna);
+                        } else {
+                            mapa->devolver_casillero(fila,columna)->devolver_edificacion()->atacar();
+                            mapa->devolver_casillero(fila,columna)->devolver_edificacion()->fue_atacado_true();
+                        }
+                        jugador_actual->restar_material(1,BOMBA);
+                        jugador_actual->restar_energia(ENERGIA_ATACAR);
+                        jugador_actual->sumar_a_objetivo(1,BOMBARDERO);
                     }
                 } else {
                     mapa->borrar_edificio(fila,columna);
+                    jugador_actual->restar_material(1,BOMBA);
+                    jugador_actual->restar_energia(ENERGIA_ATACAR);
+                    jugador_actual->sumar_a_objetivo(1,BOMBARDERO);
                 }
-                jugador_actual->restar_energia(ENERGIA_ATACAR);
-                jugador_actual->sumar_a_objetivo(1,BOMBARDERO);
+                
             }
         }
     }
@@ -550,3 +561,12 @@ void Juego::acumular_recursos(){
         }
     }
 }
+
+void Juego::restablecer_fue_atacado() {
+    for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
+        for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
+            if ( ( mapa->devolver_casillero(i,j)->devolver_tipo_terreno() == TERRENO ) && ( mapa->devolver_casillero(i,j)->esta_ocupado() ) ){
+                mapa->devolver_casillero(i,j)->devolver_edificacion()->fue_atacado_false();
+            }
+        }
+    }
