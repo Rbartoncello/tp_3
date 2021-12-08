@@ -3,6 +3,7 @@
 Edificacion::Edificacion(string tipoEdificacion, string emoji) {
     this->nombre = tipoEdificacion;
     this->emoji = emoji;
+    this->fue_atacado = false;
 }
 
 void Edificacion::modificar_duenio(int duenio){
@@ -41,4 +42,16 @@ Edificacion::~Edificacion(){}
 
 void Edificacion::imprimir_resumen(){
     cout <<"\tSoy un edificio de nombre " << nombre << " ( " << emoji << " ) y me encuentro en el casillero consultado."<< endl;
+}
+
+bool Edificacion::devolver_fue_atacado(){
+    return this->fue_atacado;
+}
+
+void Edificacion::fue_atacado_true(){
+    this->fue_atacado=true;
+}
+
+void Edificacion::fue_atacado_false(){
+    this->fue_atacado=false;
 }
