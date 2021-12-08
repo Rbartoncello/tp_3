@@ -52,13 +52,13 @@ class Archivo {
 
         int leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa, Jugador* &jugador);
 
-        void agregar_edificio(ifstream &documento,string nombre_edificio,Mapa* &mapa, Diccionario<Edificacion>*&diccionario, int duenio);
+        void agregar_edificio(ifstream &documento,string nombre_edificio,Mapa* &mapa, Diccionario<Edificacion>*&diccionario, int duenio,Lista_edificios<Edificacion>*& edificios_jugador);
 
         void agregar_posicion_jugador(Mapa* &mapa, Jugador* &jugador);
         
-        void leer_edificios_jugador_1(ifstream &documento, Mapa* &mapa, Diccionario<Edificacion>*&diccionario, Jugador* &jugador);
+        void leer_edificios_jugador_1(ifstream &documento, Mapa* &mapa, Diccionario<Edificacion>*&diccionario, Jugador* &jugador,Lista_edificios<Edificacion>*& edificios_jugador);
 
-        void leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Diccionario<Edificacion>*&diccionario);
+        void leer_edificios_jugador_2(ifstream &documento,Mapa* &mapa, Diccionario<Edificacion>*&diccionario,Lista_edificios<Edificacion>*& edificios_jugador);
 
         int arreglarCoordenadaX(string coordX);
 
