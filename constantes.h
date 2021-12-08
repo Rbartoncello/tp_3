@@ -23,6 +23,7 @@ const int OBJETIVOS_SECUNDARIOS_CUMPLIDOS = 3;
 const int OBJETIVO_COMPRAR_ANDYCOINS = 100000;
 const int OBJETIVO_EDAD_PIEDRA = 50000;
 const int OBJETIVO_BOMBARDERO = 5;
+const int OBJETIVO_ARMADO = 10;
 
 const string MAS_ALTO_NUBES = "Mas alta que las nubes";
 const string COMPRAR_ANDYPOLIS = "Comprar Andypolis";

@@ -251,40 +251,11 @@ char Mapa::devolver_tipo_terreno(int fila, int columna){
     return casilleros[fila][columna]->devolver_tipo_terreno();
 }
 
-void Mapa::agregar_edificacion(string nombre, int fila, int columna, int duenio, Lista_edificios<Edificacion> *&edificios_jugador)
-{
-    if (validar_tipo_construible(fila, columna))
-    {
-
-        Edificacion *edificio = crear_edificio(nombre, 0, 0, 0, 0);
-
-        edificio->modificar_duenio(duenio);
-        edificio->agregar_direccion(fila, columna);
-        casilleros[fila][columna]->agregar_edificio(edificio);
-        edificios_jugador->agregar_elemento(edificio, 1);
+void Mapa::agregar_edificacion(Edificacion* edificacion, int fila, int columna, int duenio) {
+    if ( validar_tipo_construible(fila, columna) ){
+        edificacion->modificar_duenio(duenio);
+        this->casilleros[fila][columna]->agregar_edificio(edificacion);
     }
-}
-
-Edificacion *Mapa::crear_edificio(string nombre, int piedra, int madera, int metal, int max_cant_permitidos)
-{
-    Edificacion *edificio;
-
-    if (nombre == EDIFICIO_ASERRADERO)
-        edificio = new Aserradero(piedra, madera, metal, max_cant_permitidos);
-    else if (nombre == EDIFICIO_ESCUELA)
-        edificio = new Escuela(piedra, madera, metal, max_cant_permitidos);
-    else if (nombre == EDIFICIO_FABRICA)
-        edificio = new Fabrica(piedra, madera, metal, max_cant_permitidos);
-    else if (nombre == EDIFICIO_MINA)
-        edificio = new Mina(piedra, madera, metal, max_cant_permitidos);
-    else if (nombre == EDIFICIO_MINA_ORO)
-        edificio = new Mina_oro(piedra, madera, metal, max_cant_permitidos);
-    else if (nombre == EDIFICIO_OBELISCO)
-        edificio = new Obelisco(piedra, madera, metal, max_cant_permitidos);
-    else if (nombre == EDIFICIO_PLANTA_ELECTRICA)
-        edificio = new Planta(piedra, madera, metal, max_cant_permitidos);
-
-    return edificio;
 }
 
 void Mapa::construir_edifcio(Jugador *jugador) {

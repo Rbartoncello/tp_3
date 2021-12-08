@@ -10,7 +10,6 @@ Jugador::Jugador(int numero, string emoji){
     inventario = new Lista<Material>();
     recursos_acumulados = new Lista<Material>();
     objetivos_secundarios = new Lista<Objetivos>();
-    edificios_jugador = new Lista_edificios<Edificacion>();
     energia_acumulada = 0;
     //objetivo_primario = new Mas_alto_que_las_nubes();
 }
@@ -19,7 +18,6 @@ Jugador::~Jugador(){
     delete this->inventario;
     delete this->recursos_acumulados;
     delete this->objetivos_secundarios;
-    delete this->edificios_jugador;
 }
 
 void Jugador::crear_lista(Lista_primitiva<string>* &objetivos){
@@ -30,7 +28,7 @@ void Jugador::crear_lista(Lista_primitiva<string>* &objetivos){
     //objetivos->agregar(LETRADO);
     //objetivos->agregar(MINERO);
     //objetivos->agregar(CANSADO);
-    //objetivos->agregar(ARMADO);
+    objetivos->agregar(ARMADO);
     //objetivos->agregar(EXTREMISTA);    
     
 }
@@ -38,7 +36,7 @@ void Jugador::crear_lista(Lista_primitiva<string>* &objetivos){
 void Jugador::generar_objetivos_secundarios(){
     Lista_primitiva<string>* objetivos = new Lista_primitiva<string>();
     string nombre_objetivo;
-    int posicion = 0, hasta = 3;
+    int posicion = 0, hasta = 4;
 
     crear_lista(objetivos);
 
@@ -80,11 +78,13 @@ void Jugador::agregar_objetivo(string nombre_objetivo){
     Objetivos* objetivo;
 
     if (nombre_objetivo == COMPRAR_ANDYPOLIS)
-       objetivo = new Comprar_andypolis(inventario->devolver_material(ANDYCOINS));
+        objetivo = new Comprar_andypolis(inventario->devolver_material(ANDYCOINS));
     else if (nombre_objetivo == BOMBARDERO)
-       objetivo = new Bombardero();
+        objetivo = new Bombardero();
     else if (nombre_objetivo == EDAD_PIEDRA)
-       objetivo = new Edad_piedra(inventario);
+        objetivo = new Edad_piedra(inventario);
+    else if (nombre_objetivo == ARMADO)
+        objetivo = new Armado(inventario);
     
     objetivos_secundarios->agregar_elemento(objetivo,1);
 }
@@ -146,6 +146,9 @@ void Jugador::recoger_recurso(){
             posicion = inventario->obtener_posicion(aux->devolver_dato()->devolver_nombre());
             inventario->obtener_direccion_nodo(posicion)->devolver_dato()->aumentar_cantidad(cantidad_material);
 
+            if (aux->devolver_dato()->devolver_nombre() == ANDYCOINS)
+                sumar_a_objetivo(cantidad_material,COMPRAR_ANDYPOLIS);
+            
             aux->devolver_dato()->modificar_cantidad(0);
             aux = aux->direccion_siguiente();
             }
@@ -257,7 +260,7 @@ void Jugador::sumar_a_objetivo(int cantidad, string nombre_objetivo){
 
     while (encontrado && contador<3)
     {
-        objetivo = objetivos_secundarios->obtener_direccion_nodo(contador);    
+        objetivo = objetivos_secundarios->obtener_direccion_nodo(contador);
         nombre_objetivo_auxiliar = objetivo->devolver_dato()->devolver_tipo_objetivo();
         contador++;
         if (nombre_objetivo == nombre_objetivo_auxiliar)
@@ -275,8 +278,9 @@ bool Jugador::validar_objetivos(){
 int Jugador::contar_objetivos_completados(int contador){
 
     int objetivos_realizados = 0;
-    Nodo_lista<Objetivos>* objetivo_verificacion;
-    objetivo_verificacion = objetivos_secundarios->obtener_direccion_nodo(contador);
+    Nodo_lista<Objetivos>* objetivo_verificacion = objetivos_secundarios->obtener_direccion_nodo(contador);
+
+    objetivo_verificacion->devolver_dato()->verificar_estado_objetivo();
 
     if (objetivo_verificacion->devolver_dato()->devolver_estado_objetivo())
         objetivos_realizados++;
@@ -284,7 +288,7 @@ int Jugador::contar_objetivos_completados(int contador){
     if (contador < 2)
         objetivos_realizados = objetivos_realizados + contar_objetivos_completados(contador+1);
 
-    return 0;
+    return objetivos_realizados;
 }
 
 void Jugador::acumular_recursos(string material, int cantidad){
@@ -305,8 +309,4 @@ void Jugador::vaciar_energia_acumulada(){
 
 void Jugador::sumar_energia_acumulada(int cantidad){
     energia_acumulada += cantidad;
-}
-
-Lista_edificios<Edificacion>*& Jugador::devolver_mis_edificios(){
-    return edificios_jugador;
 }

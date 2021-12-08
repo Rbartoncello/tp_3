@@ -3,7 +3,6 @@
 #include <iostream>
 #include "nodo_lista.h"
 #include "constantes.h"
-#include "material.h"
 
 
 template<typename T>

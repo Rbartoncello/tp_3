@@ -8,7 +8,7 @@
 template<typename T>
 class Lista_primitiva{
     private:
-        int cantidad_en_Lista_primitiva;
+        int cantidad_en_lista_primitiva;
         Nodo_primitivo<T>* primero;
         Nodo_primitivo<T>* ultimo;    
     public:
@@ -41,7 +41,7 @@ class Lista_primitiva{
          * Pre: -.
          * Post: Me devuelve la cantidad de elementos de la Lista_primitiva.
          */
-        int devolver_cantidad_en_Lista_primitiva();
+        int devolver_cantidad_en_lista_primitiva();
 
         /*
          * Pre: -.
@@ -81,7 +81,7 @@ private:
 
 template<typename T>
 Lista_primitiva<T>::Lista_primitiva(){
-    cantidad_en_Lista_primitiva = 0;
+    cantidad_en_lista_primitiva = 0;
     primero = nullptr;
     ultimo = nullptr;
 }
@@ -102,7 +102,7 @@ void Lista_primitiva<T>::agregar_elemento(T elemento, int posicion){
         nodo_anterior_a_posicion->cambiar_siguiente(nuevo);
     }
     nuevo->cambiar_siguiente(auxiliar);
-    cantidad_en_Lista_primitiva++;
+    cantidad_en_lista_primitiva++;
 }
 
 template <typename T>
@@ -126,7 +126,7 @@ void Lista_primitiva<T>::remover_elemento(int posicion){
         delete posicion_nodo_a_eliminar;
         nodo_anterior_a_posicion->cambiar_siguiente(posicion_siguiente_nodo);
     }
-    cantidad_en_Lista_primitiva--;
+    cantidad_en_lista_primitiva--;
 }
 
 template < typename T >
@@ -139,7 +139,7 @@ void Lista_primitiva<T>::agregar(T nuevo_elemento) {
         ultimo -> cambiar_siguiente(nuevo_nodo);
         ultimo = nuevo_nodo;
     }
-    cantidad_en_Lista_primitiva++;
+    cantidad_en_lista_primitiva++;
 }
 
 template<typename T>
@@ -168,8 +168,8 @@ Nodo_primitivo<T>*& Lista_primitiva<T>::retornar_primero(){
 }
 
 template<typename T>
-int Lista_primitiva<T>::devolver_cantidad_en_Lista_primitiva(){
-    return cantidad_en_Lista_primitiva;
+int Lista_primitiva<T>::devolver_cantidad_en_lista_primitiva(){
+    return cantidad_en_lista_primitiva;
 }
 
 template<typename T>
@@ -178,7 +178,7 @@ int Lista_primitiva<T>::obtener_posicion(T nombre) {
     int i = 0;
     Nodo_primitivo<T>* auxiliar = primero;
 
-    while(!elemento_encontrado && i < cantidad_en_Lista_primitiva){
+    while(!elemento_encontrado && i < cantidad_en_lista_primitiva){
         if(auxiliar->devolver_dato()->devolver_nombre() == nombre){
             elemento_encontrado = true;
         }
@@ -196,10 +196,10 @@ template<typename T>
 Lista_primitiva<T>::~Lista_primitiva(){   
     Nodo_primitivo<T>* auxiliar;
 
-    if (cantidad_en_Lista_primitiva != 0){
+    if (cantidad_en_lista_primitiva != 0){
         auxiliar = primero->direccion_siguiente();
 
-        for (int i = 0; i < cantidad_en_Lista_primitiva; i++)
+        for (int i = 0; i < cantidad_en_lista_primitiva; i++)
         {
             delete primero;
             primero = auxiliar;

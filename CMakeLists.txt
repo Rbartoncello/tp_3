@@ -51,4 +51,5 @@ add_executable(tp_3 constantes.h main.cpp
         nodo_lista.h
         Vertice.cpp Vertice.h
         Floyd.cpp Floyd.h
-        Camino_minimo.cpp Camino_minimo.h constructora.cpp constructora.h)
+        Camino_minimo.cpp Camino_minimo.h constructora.cpp constructora.h
+        armado.cpp armado.h)

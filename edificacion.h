@@ -17,7 +17,6 @@ private:
     int duenio;
     int maxima_cantidad_permitidos;
     bool fue_atacado;
-    string direccion;
 
 protected:
     bool reparable;
@@ -40,10 +39,6 @@ public:
     * Post: Me devuelve el emoji.
     */
     string devolver_emoji();
-
-    string devolver_direccion();
-
-    void agregar_direccion(int fila, int columna);
 
     /*
     * Pre: -

@@ -28,6 +28,9 @@ public:
     //Post:valida si el objetivo se ha realizado.
     void verificar_estado_objetivo();
 
+    //Pre:
+    //Post: Me devuelve el porcentaje de completado.
+    double devolver_porcentaje_completado();
 
     virtual ~Edad_piedra();
 };

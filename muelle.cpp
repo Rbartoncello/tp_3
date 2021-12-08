@@ -1,5 +1,6 @@
 #include <iostream>
 #include "muelle.h"
+#include "constantes.h"
 
 using namespace std;
 
@@ -73,6 +74,9 @@ void Muelle::eliminar_jugador() {
 void Muelle::mover_jugador(Jugador* jugador) {
     if (esta_ocupado()){
         jugador->aumentar_material(material);
+        if ( material->devolver_nombre() == ANDYCOINS )
+            jugador->sumar_a_objetivo(material->devolver_cantidad(),COMPRAR_ANDYPOLIS);
+        
         delete material;
         material = nullptr;
     }
