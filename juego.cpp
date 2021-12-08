@@ -570,3 +570,4 @@ void Juego::restablecer_fue_atacado() {
             }
         }
     }
+}
