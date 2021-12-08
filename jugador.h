@@ -67,6 +67,10 @@ public:
          */
     void pedir_nombre();
 
+    void restar_piedra(int cantidad);
+    void restar_madera(int cantidad);
+    void restar_metal(int cantidad);
+
     /*
          * Pre: Recibe un nombre de un material que exita.
          * Post: Ingresa el objeto en un vector dinámico.
