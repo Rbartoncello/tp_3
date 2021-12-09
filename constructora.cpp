@@ -50,11 +50,15 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio, Jugador
     else{
         cout << "\nOh, lamento traer malas noticias pero ya has alcanzo el maximo de construidos para este edificio: ";
     }
-    if(materiales_validos)
-        coordenadas_validas = this->ingreso_de_coordenadas();
-
-    if(coordenadas_validas){
-        ocupado = mapa->hay_edificio(fila_nueva,columna_nueva);
+    if(materiales_validos) {
+        while (ocupado) {
+            coordenadas_validas = this->ingreso_de_coordenadas();
+            if (coordenadas_validas) {
+                ocupado = mapa->hay_edificio(fila_nueva, columna_nueva);
+            } else {
+                cout << "Ahí ya hay un edificio colocado, ingresa unas coordenadas válidas";
+            }
+        }
     }
 
     if (!ocupado){
