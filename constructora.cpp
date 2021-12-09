@@ -13,7 +13,9 @@ void Constructora::construir_edificio(Jugador* jugador)
     string nombre_nuevo_edifcio;
     bool entrada_valida = false;
 
-    if(jugador->devolver_energia()>15){
+    cout<<jugador->devolver_energia()<<endl;
+
+    if(jugador->devolver_energia()>=15){
         do
         {
             cout << "Ingrese el nombre del nuevo edificio: ";
@@ -39,7 +41,7 @@ void Constructora::construir_edificio(Jugador* jugador)
 void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio, Jugador* jugador){
 
     bool coordenadas_validas = false, materiales_validos = false, cantidad_construida = false;
-    bool ocupado = false;
+    bool ocupado = true;
 
     cantidad_construida = validar_maximo_edificio(nombre_nuevo_edifcio, jugador); //FUNCIONA, falta que los edificios sepan de quien son para validar cuantos hay de un juegador en particualar
 
