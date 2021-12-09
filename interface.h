@@ -50,6 +50,25 @@ void imprimir_mensaje_error();
 */
 void imprimir_mensaje_esperar(int tiempo);
 
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla el encabezado de los edificios del jugador
+ */
+void encabezado_edificios_jugador();
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla la cantidad por edificio del jugador
+ */
+void imprimir_cantidad_edificios_jugador(Lista_primitiva<string> *nombre_edificios,Lista_primitiva<int> *cantidad_por_edificio);
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla los edificios del jugador, uno a uno.
+ */
+void imprimir_edificios_jugador(Lista_edificios<Edificacion>* edificios_jugador);
+
 /*
  * Pre: -
  * Post: Me imprimira por pantalla la action_realizada.

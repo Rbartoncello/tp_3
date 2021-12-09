@@ -3,6 +3,7 @@
 #include <fstream>
 #include "casillero.h"
 #include "andycoins.h"
+#include "constantes.h"
 #include "jugador.h"
 
 using namespace std;
@@ -11,7 +12,6 @@ class Mapa{
         int cantidad_filas;
         int cantidad_columnas;
         Casillero*** casilleros;
-
 
     public:
         /*
@@ -58,6 +58,10 @@ class Mapa{
         int devolver_cantidad_edificio(string nombre_edificio_nuevo, Jugador* jugador);
 
         int devolver_cantidad_edificio(string nombre_edificio_nuevo);
+
+        void crear_lista_auxiliar_edificios(Lista_primitiva<int>* &cantidad_por_edificio);
+
+        void crear_lista(Lista_primitiva<string>* &objetivos);
 
         /*
          * Pre: -
@@ -110,6 +114,8 @@ class Mapa{
          * Post: Me muestra por pantalla los edificios contruidos del jugador actual.
          */
         void mostrar_edificios_construidos(Jugador* jugador_actual);
+
+        void mostrar_edificios_construidos2(Jugador* jugador_actual);
 
         bool hay_edificio(int fila, int columna);
 

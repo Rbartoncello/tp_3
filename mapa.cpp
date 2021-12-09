@@ -1,14 +1,13 @@
 #include <iostream>
-
 #include <iomanip>
 #include "mapa.h"
-#include "interface.h"
 #include "constantes.h"
 #include "camino.h"
 #include "betun.h"
 #include "lago.h"
 #include "muelle.h"
 #include "terreno.h"
+ #include "interface.h"
 
 Mapa::Mapa()
 {
@@ -44,30 +43,33 @@ void Mapa::crear_matriz_casilleros()
     }
 }
 
-int Mapa::devolver_cantidad_edificio(string nombre_edificio_nuevo){
+int Mapa::devolver_cantidad_edificio(string nombre_edificio_nuevo)
+{
     int cantidad = 0;
     for (int i = 0; i < this->cantidad_filas; i++)
     {
         for (int j = 0; j < this->cantidad_columnas; j++)
         {
-            if (this->casilleros[i][j]->devolver_tipo_terreno() == TERRENO && this->casilleros[i][j]->esta_ocupado() && this->casilleros[i][j]->devolver_nombre_edificio() == nombre_edificio_nuevo )
+            if (this->casilleros[i][j]->devolver_tipo_terreno() == TERRENO && this->casilleros[i][j]->esta_ocupado() && this->casilleros[i][j]->devolver_nombre_edificio() == nombre_edificio_nuevo)
             {
-                    cantidad++;
+                cantidad++;
             }
         }
     }
     return cantidad;
 }
 
-int Mapa::devolver_cantidad_edificio(string nombre_edificio_nuevo,Jugador* jugador){
+int Mapa::devolver_cantidad_edificio(string nombre_edificio_nuevo, Jugador *jugador)
+{
     int cantidad = 0;
     for (int i = 0; i < this->cantidad_filas; i++)
     {
         for (int j = 0; j < this->cantidad_columnas; j++)
         {
-            if (this->casilleros[i][j]->devolver_tipo_terreno() == TERRENO && this->casilleros[i][j]->esta_ocupado() && this->casilleros[i][j]->devolver_nombre_edificio() == nombre_edificio_nuevo )
+            if (this->casilleros[i][j]->devolver_tipo_terreno() == TERRENO && this->casilleros[i][j]->esta_ocupado() && this->casilleros[i][j]->devolver_nombre_edificio() == nombre_edificio_nuevo)
             {
-                if(jugador->devolver_numero() == this->devolver_casillero(i,j)->devolver_duenio()){
+                if (jugador->devolver_numero() == this->devolver_casillero(i, j)->devolver_duenio())
+                {
                     cantidad++;
                 }
             }
@@ -182,11 +184,13 @@ void Mapa::mostrar()
     cout << endl;
 }
 
-void Mapa::agregar_material(string nombre, int fila, int columna){
-    this->casilleros[fila][columna]->agregar_material( buscar_material(nombre) );
+void Mapa::agregar_material(string nombre, int fila, int columna)
+{
+    this->casilleros[fila][columna]->agregar_material(buscar_material(nombre));
 }
 
-Material* Mapa::buscar_material(string nombre) {
+Material *Mapa::buscar_material(string nombre)
+{
     Material *material;
 
     if (nombre == PIEDRA)
@@ -201,26 +205,31 @@ Material* Mapa::buscar_material(string nombre) {
     return material;
 }
 
-void Mapa::agregar_jugador(Jugador* jugador){
+void Mapa::agregar_jugador(Jugador *jugador)
+{
     casilleros[jugador->devolver_fila()][jugador->devolver_columna()]->agregar_jugador(jugador);
 }
 
-void Mapa::mover_jugador(Jugador* jugador, int fila , int columna){
+void Mapa::mover_jugador(Jugador *jugador, int fila, int columna)
+{
     casilleros[jugador->devolver_fila()][jugador->devolver_columna()]->eliminar_jugador();
     jugador->modificar_fila(fila);
     jugador->modificar_columna(columna);
     casilleros[fila][columna]->mover_jugador(jugador);
 }
 
-Casillero* Mapa::devolver_casillero(int fila, int columna){
+Casillero *Mapa::devolver_casillero(int fila, int columna)
+{
     return casilleros[fila][columna];
 }
 
-bool Mapa::casillero_ocupado(int fila, int columna){
+bool Mapa::casillero_ocupado(int fila, int columna)
+{
     return casilleros[fila][columna]->esta_ocupado();
 }
 
-int Mapa::cantidad_edificio_construido(string nombre){
+int Mapa::cantidad_edificio_construido(string nombre)
+{
     int cantidad = 0;
     for (int i = 0; i < this->cantidad_filas; i++)
     {
@@ -235,19 +244,23 @@ int Mapa::cantidad_edificio_construido(string nombre){
     return cantidad;
 }
 
-bool Mapa::validar_tipo_construible(int fila, int columna){
-    return ( ( devolver_tipo_terreno(fila, columna) == TERRENO ) );
+bool Mapa::validar_tipo_construible(int fila, int columna)
+{
+    return ((devolver_tipo_terreno(fila, columna) == TERRENO));
 }
 
-bool Mapa::validar_tipo_transitable(int fila, int columna){
-    return ( ( devolver_tipo_terreno(fila, columna) == CAMINO ) );
+bool Mapa::validar_tipo_transitable(int fila, int columna)
+{
+    return ((devolver_tipo_terreno(fila, columna) == CAMINO));
 }
 
-bool Mapa::hay_edificio(int fila, int columna) {
-    return ( devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO && devolver_casillero(fila, columna)->esta_ocupado() );
+bool Mapa::hay_edificio(int fila, int columna)
+{
+    return (devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO && devolver_casillero(fila, columna)->esta_ocupado());
 }
 
-char Mapa::devolver_tipo_terreno(int fila, int columna){
+char Mapa::devolver_tipo_terreno(int fila, int columna)
+{
     return casilleros[fila][columna]->devolver_tipo_terreno();
 }
 
@@ -287,8 +300,8 @@ Edificacion *Mapa::crear_edificio(string nombre, int piedra, int madera, int met
     return edificio;
 }
 
-void Mapa::construir_edifcio(Jugador *jugador) {
-
+void Mapa::construir_edifcio(Jugador *jugador)
+{
 }
 
 int Mapa::devolver_cantidad_columnas()
@@ -306,7 +319,55 @@ void Mapa::imprimir_resumen_casillero(int fila, int columna)
     this->casilleros[fila][columna]->imprimir_resumen();
 }
 
-void Mapa::mostrar_edificios_construidos(Jugador* jugador_actual){
+void Mapa::crear_lista(Lista_primitiva<string> *&nombre_edificios)
+{
+    nombre_edificios->agregar(EDIFICIO_ASERRADERO);
+    nombre_edificios->agregar(EDIFICIO_ESCUELA);
+    nombre_edificios->agregar(EDIFICIO_FABRICA);
+    nombre_edificios->agregar(EDIFICIO_MINA);
+    nombre_edificios->agregar(EDIFICIO_MINA_ORO);
+    nombre_edificios->agregar(EDIFICIO_OBELISCO);
+    nombre_edificios->agregar(EDIFICIO_PLANTA_ELECTRICA);
+}
+
+void Mapa::crear_lista_auxiliar_edificios(Lista_primitiva<int> *&cantidad_por_edificio)
+{
+    for (int i = 0; i < 7; i++)
+        cantidad_por_edificio->agregar(0);
+}
+
+void Mapa::mostrar_edificios_construidos2(Jugador *jugador_actual)
+{
+    system("clear");
+
+    int cantidad, posicion_edificio_en_lista, cantidad_en_lista = jugador_actual->devolver_mis_edificios()->devolver_cantidad_en_Lista_edificios();
+    Nodo_edificios<Edificacion> *primero = jugador_actual->devolver_mis_edificios()->retornar_primero();
+    Lista_primitiva<string> *nombre_edificios = new Lista_primitiva<string>();
+    Lista_primitiva<int> *cantidad_por_edificio = new Lista_primitiva<int>();
+    string nombre_de_edificio;
+
+    crear_lista_auxiliar_edificios(cantidad_por_edificio);
+    crear_lista(nombre_edificios);
+
+    for (int i = 0; i < cantidad_en_lista; i++)
+    {
+        nombre_de_edificio = primero->devolver_dato()->devolver_nombre_edificio();
+        posicion_edificio_en_lista = nombre_edificios->obtener_posicion_con_nombre(nombre_de_edificio);
+        cantidad = cantidad_por_edificio->devolver_elemento_en_posicion(posicion_edificio_en_lista) + 1;
+        cantidad_por_edificio->cambiar_dato(cantidad, posicion_edificio_en_lista);
+        primero = primero->direccion_siguiente();
+    }
+
+    imprimir_cantidad_edificios_jugador(nombre_edificios,cantidad_por_edificio);
+
+    imprimir_edificios_jugador(jugador_actual->devolver_mis_edificios());
+
+    delete nombre_edificios;
+    delete cantidad_por_edificio;
+}
+
+void Mapa::mostrar_edificios_construidos(Jugador *jugador_actual)
+{
     system("clear");
 
     cout << TXT_BOLD;
@@ -317,30 +378,35 @@ void Mapa::mostrar_edificios_construidos(Jugador* jugador_actual){
 
     bool hay_edificios = false;
 
-    for (int i = 0; i < this->cantidad_filas; i++){
-        for (int j = 0; j < this->cantidad_columnas; j++){
-            if ( ( this->casilleros[i][j]->devolver_tipo_terreno() == TERRENO ) && ( this->casilleros[i][j]->esta_ocupado() ) ){
+    for (int i = 0; i < this->cantidad_filas; i++)
+    {
+        for (int j = 0; j < this->cantidad_columnas; j++)
+        {
+            if ((this->casilleros[i][j]->devolver_tipo_terreno() == TERRENO) && (this->casilleros[i][j]->esta_ocupado()))
+            {
                 hay_edificios = true;
 
-                this->casilleros[i][j]->mostrar_casillero(jugador_actual, this->devolver_cantidad_edificio(this->casilleros[i][j]->devolver_nombre_edificio(),jugador_actual));
-                if( ( i == this->cantidad_filas - 1 ) && ( j == this->cantidad_columnas - 1 ) )
+                this->casilleros[i][j]->mostrar_casillero(jugador_actual, this->devolver_cantidad_edificio(this->casilleros[i][j]->devolver_nombre_edificio(), jugador_actual));
+                if ((i == this->cantidad_filas - 1) && (j == this->cantidad_columnas - 1))
                     cout << "\t\t╚═══════════════════════╩══════╩═════════╩══════════════════════╩═════════════════════╝" << endl;
             }
         }
     }
 
-    if (!hay_edificios){
+    if (!hay_edificios)
+    {
         cout << TXT_BOLD;
         cout << "\t\t║ " << TXT_RED_196 << setfill(' ') << setw(49) << "NO HAY NINGUN EDIFICIO CONSTRUIDO" << setfill(' ') << setw(16) << END_COLOR << " ║" << endl;
         cout << "\t\t╚═══════════════════════════════════════════════════════════════╝" << endl;
     }
-    
 }
 
-void Mapa::borrar_edificio(int fila, int columna){
+void Mapa::borrar_edificio(int fila, int columna)
+{
     casilleros[fila][columna]->eliminar_edificio();
 }
 
-bool Mapa::hay_edicicio(int fila, int columna) {
-    return ( devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO && devolver_casillero(fila, columna)->esta_ocupado() );
+bool Mapa::hay_edicicio(int fila, int columna)
+{
+    return (devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO && devolver_casillero(fila, columna)->esta_ocupado());
 }

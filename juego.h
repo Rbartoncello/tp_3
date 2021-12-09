@@ -1,6 +1,5 @@
 #ifndef JUEGO_H
 #define JUEGO_H
-
 #include "edificios.h"
 #include "mapa.h"
 #include "emojis.h"

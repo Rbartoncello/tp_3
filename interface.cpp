@@ -69,15 +69,16 @@ void imprimir_menu_nueva_partida()
     cout << END_COLOR;
 }
 
-void imprimir_cuadro_jugador(Jugador* &jugador_actual){
+void imprimir_cuadro_jugador(Jugador *&jugador_actual)
+{
     Gotoxy gotoxy;
     cout << gotoxy.pos(1, 115) << "╔══════════════════════════════╗" << endl;
-    cout << gotoxy.pos(2, 115) << "║   Jugador: " << jugador_actual->devolver_numero() << " ( " << jugador_actual->devolver_emoji()  << " )          ║" << endl;
+    cout << gotoxy.pos(2, 115) << "║   Jugador: " << jugador_actual->devolver_numero() << " ( " << jugador_actual->devolver_emoji() << " )          ║" << endl;
     cout << gotoxy.pos(3, 115) << "║   Energia disponible " << EMOJI_PLANTA_ENERGIA << " : " << jugador_actual->devolver_energia() << " ║" << endl;
     cout << gotoxy.pos(4, 115) << "╚══════════════════════════════╝" << endl;
 }
 
-void imprimir_menu_juego(Mapa *mapa, Jugador* jugador_actual)
+void imprimir_menu_juego(Mapa *mapa, Jugador *jugador_actual)
 {
     system("clear");
     Gotoxy gotoxy;
@@ -261,7 +262,8 @@ void encabezado_edificios_construidos()
     cout << END_COLOR;
 }
 
-void imprimir_lista_edificios_construidos(Edificacion *edificio, Mapa *mapa){
+void imprimir_lista_edificios_construidos(Edificacion *edificio, Mapa *mapa)
+{
     string brinda = EMOJI_MAL;
     if (edificio->brinda_material())
         brinda = EMOJI_HECHO;
@@ -275,9 +277,10 @@ void imprimir_lista_edificios_construidos(Edificacion *edificio, Mapa *mapa){
     cout << "\t╠──────────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────────╣" << endl;
 }
 
-void imprimir_materiales_jugador(Nodo_lista<Material>*& primero, int cantidad_en_lista){
+void imprimir_materiales_jugador(Nodo_lista<Material> *&primero, int cantidad_en_lista)
+{
 
-    Nodo_lista<Material>* auxiliar = primero;
+    Nodo_lista<Material> *auxiliar = primero;
 
     encabezado_materiale_jugador();
 
@@ -286,11 +289,78 @@ void imprimir_materiales_jugador(Nodo_lista<Material>*& primero, int cantidad_en
         imprimir_lista_materiales_jugador(auxiliar->devolver_dato());
         auxiliar = auxiliar->direccion_siguiente();
     }
-    
 }
 
+void encabezado_edificios_jugador_secundario()
+{
+    
+    cout << TXT_BOLD;
+    cout << "\t\t╔═══════════════════════╦══════╦═════════╦═════════════════════╗" << endl;
+    cout << "\t\t║ Edificios construidos ║ Fila ║ Columna ║ Necesita reparacion ║" << endl;
+    cout << "\t\t╠═══════════════════════╬══════╬═════════╬═════════════════════╣" << endl;
+    cout << END_COLOR;
+}
 
-void encabezado_materiale_jugador(){
+void imprimir_edificios_jugador(Lista_edificios<Edificacion> *edificios_jugador)
+{
+
+    encabezado_edificios_jugador_secundario();
+
+    string necesita_reparacion = EMOJI_MAL, nombre_edificio;
+    int cantidad_en_lista = edificios_jugador->devolver_cantidad_en_Lista_edificios();
+    Nodo_edificios<Edificacion> *primer_nodo_edificios = edificios_jugador->retornar_primero();
+    Edificacion* edificio;
+
+    for (int i = 0; i < cantidad_en_lista; i++)
+    {
+        edificio = primer_nodo_edificios->devolver_dato();
+        nombre_edificio = edificio->devolver_nombre_edificio();
+        if (nombre_edificio == EDIFICIO_FABRICA || nombre_edificio == EDIFICIO_MINA)
+        {
+            if (edificio->devolver_necesita_reparacion())
+                necesita_reparacion = EMOJI_HECHO;
+        }
+        cout << "\t\t║" << setfill(' ') << setw(16) << nombre_edificio << "( " << edificio->devolver_emoji() << " )" << setfill(' ') << setw(4);
+        cout << "│" << setfill(' ') << setw(4) << edificio->devolver_fila() << setfill(' ') << setw(5);
+        cout << "│" << setfill(' ') << setw(5) << edificio->devolver_columna() << setfill(' ') << setw(7);
+        cout << "│" << setfill(' ') << setw(12) << necesita_reparacion << setfill(' ') << setw(13) << "║" << endl;
+        cout << "\t\t╠───────────────────────┼──────┼─────────┼─────────────────────╣" << endl;
+
+        primer_nodo_edificios = primer_nodo_edificios->direccion_siguiente();
+    }
+
+}
+
+void encabezado_edificios_jugador()
+{
+    cout << TXT_BOLD;
+    cout << "\t\t\t╔══════════════════════╦═════════════╗" << endl;
+    cout << "\t\t\t║        Edificio      ║  Cantidad   ║" << endl;
+    cout << "\t\t\t╠══════════════════════╬═════════════╣" << endl;
+    cout << END_COLOR;
+}
+
+void imprimir_cantidad_edificios_jugador(Lista_primitiva<string> *nombre_edificios, Lista_primitiva<int> *cantidad_por_edificio)
+{
+    string nombre_de_edificio;
+    int cantidad = 0;
+
+    encabezado_edificios_jugador();
+
+    for (int i = 0; i < 7; i++)
+    {
+        nombre_de_edificio = nombre_edificios->devolver_elemento_en_posicion(i + 1);
+        cantidad = cantidad_por_edificio->devolver_elemento_en_posicion(i + 1);
+        cout << "\t\t\t║" << setfill(' ') << setw(16) << nombre_de_edificio << "( "
+             << "EJ"
+             << " )" << setfill(' ') << setw(3);
+        cout << "║" << setfill(' ') << setw(7) << cantidad << setfill(' ') << setw(9) << "║";
+        cout << "\n\t\t\t╠──────────────────────┼─────────────╣" << endl;
+    }
+}
+
+void encabezado_materiale_jugador()
+{
     system("clear");
 
     cout << TXT_BOLD;
@@ -302,14 +372,16 @@ void encabezado_materiale_jugador(){
     cout << END_COLOR;
 }
 
-void imprimir_lista_materiales_jugador(Material* material) {
+void imprimir_lista_materiales_jugador(Material *material)
+{
 
-    cout << "\t║" << setfill(' ') << setw(16) << material->devolver_nombre() << "( " <<  material->devolver_emoji()  << " )" << setfill(' ') << setw(3);
+    cout << "\t║" << setfill(' ') << setw(16) << material->devolver_nombre() << "( " << material->devolver_emoji() << " )" << setfill(' ') << setw(3);
     cout << "║" << setfill(' ') << setw(7) << material->devolver_cantidad() << setfill(' ') << setw(9) << "║";
     cout << "\n\t╠──────────────────────┼─────────────╣" << endl;
 }
 
-void imprimir_mensaje_ingrese_jugador() {
+void imprimir_mensaje_ingrese_jugador()
+{
     system("clear");
     cout << "Por favor ingrese el numero de jugador que desee ser [1 o 2]: ";
 }
@@ -324,11 +396,13 @@ void imprimir_mensaje_ingrese_columna_jugador()
     cout << "Por favor ingrese la columna con la que desee empezar: ";
 }
 
-void imprimir_edificio(Edificacion *edificacion, Jugador* jugador, int fila, int columna, int cantidad_construidos)
+void imprimir_edificio(Edificacion *edificacion, Jugador *jugador, int fila, int columna, int cantidad_construidos)
 {
     string necesita_reparacion = EMOJI_MAL;
-    if (edificacion->devolver_duenio() == jugador->devolver_numero()){
-        if ((edificacion->devolver_nombre_edificio() == EDIFICIO_FABRICA) || (edificacion->devolver_nombre_edificio() == EDIFICIO_MINA)){
+    if (edificacion->devolver_duenio() == jugador->devolver_numero())
+    {
+        if ((edificacion->devolver_nombre_edificio() == EDIFICIO_FABRICA) || (edificacion->devolver_nombre_edificio() == EDIFICIO_MINA))
+        {
             if (edificacion->devolver_necesita_reparacion())
                 necesita_reparacion = EMOJI_HECHO;
         }
@@ -341,30 +415,35 @@ void imprimir_edificio(Edificacion *edificacion, Jugador* jugador, int fila, int
     }
 }
 
-void imprimir_mensaje_no_energia_sufuciente(int energia){
+void imprimir_mensaje_no_energia_sufuciente(int energia)
+{
     system("clear");
     imprimir_mensaje_error();
     cout << "\tNo cuentas con la energia necesaria: " << energia << endl;
     imprimir_mensaje_esperar(2);
 }
 
-void imprimir_mensaje_posicion_no_permitida(){
+void imprimir_mensaje_posicion_no_permitida()
+{
     imprimir_mensaje_error();
     cout << "No es posible ir a la posicion ingresada" << endl;
     imprimir_mensaje_esperar(2);
 }
 
-void imprimir_mensaje_finalizacion_turno_automatico(Jugador* &jugador) {
+void imprimir_mensaje_finalizacion_turno_automatico(Jugador *&jugador)
+{
     system("clear");
     cout << "\t El jugador " << jugador->devolver_numero() << " se a quedado con energia " << jugador->devolver_energia() << " se finalizara la partida automaticamente" << endl;
     sleep(2);
 }
 
-void imprimir_mensaje_casillero_ocupado() {
+void imprimir_mensaje_casillero_ocupado()
+{
     cout << "La posicion elegida se encuentra ocupada" << endl;
 }
 
-void imprimir_tienda_bombas(){
+void imprimir_tienda_bombas()
+{
     system("clear");
 
     cout << TXT_BOLD;
@@ -373,19 +452,22 @@ void imprimir_tienda_bombas(){
     cout << "\t╠═══════════════════════╦═════════╣" << endl;
     cout << END_COLOR;
     cout << "\t║          " << EMOJI_BOMBA << "           ║ " << COSTO_POR_BOMBA << " c/u ║" << endl;
-    cout << "\t╚═══════════════════════╩═════════╝" << endl << endl;
+    cout << "\t╚═══════════════════════╩═════════╝" << endl
+         << endl;
 
-        cout << "\t Ingrese la cantidad de bombas que desee comprar: " ;
+    cout << "\t Ingrese la cantidad de bombas que desee comprar: ";
 }
 
-void imprimir_mensaje_sin_andycoins_suficientes(int costo) {
+void imprimir_mensaje_sin_andycoins_suficientes(int costo)
+{
     system("clear");
     imprimir_mensaje_error();
     cout << "\tNo cuenta con los suficientes " << ANDYCOINS << " = " << costo << " " << EMOJI_ANDYCOINS << " para realizar la compra" << endl;
     imprimir_mensaje_esperar(2);
 }
 
-void imprimir_mensaje_bombas_compradas(Lista<Material>* &inventario, int cantidad) {
+void imprimir_mensaje_bombas_compradas(Lista<Material> *&inventario, int cantidad)
+{
     system("clear");
     cout << "\tComprando bombas ... " << EMOJI_BOMBA << EMOJI_COMPRANDO << endl;
 
@@ -403,7 +485,8 @@ void imprimir_mensaje_bombas_compradas(Lista<Material>* &inventario, int cantida
     imprimir_mensaje_esperar(3);
 }
 
-void encabezado_objetivos_secuncarios() {
+void encabezado_objetivos_secuncarios()
+{
     system("clear");
     cout << TXT_BOLD;
     cout << "\t╔════════════════════╦═══════════════════════════════════════════════════════════════╦══════════════════════════╦════════════╗" << endl;
@@ -412,7 +495,8 @@ void encabezado_objetivos_secuncarios() {
     cout << END_COLOR;
 }
 
-void imprimir_mensaje_recolectando_recursos_producidos() {
+void imprimir_mensaje_recolectando_recursos_producidos()
+{
     system("clear");
     cout << "\tRecolectando recursos producidos... " << EMOJI_BUSQUEDA << endl;
 
@@ -420,9 +504,9 @@ void imprimir_mensaje_recolectando_recursos_producidos() {
     system("clear");
 
     cout << TXT_BOLD;
-    cout << "\t»Se han recolectado los recursos producidos con exito" << EMOJI_HECHO <<endl;
+    cout << "\t»Se han recolectado los recursos producidos con exito" << EMOJI_HECHO << endl;
     cout << END_COLOR;
-    
+
     sleep(2);
     system("clear");
 }

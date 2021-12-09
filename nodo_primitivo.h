@@ -18,7 +18,7 @@ class Nodo_primitivo{
          * Pre: -.
          * Post: Me va a cambiar el contenido del nodo.
          */
-        void cambiar_dato(T* contenido);
+        void cambiar_dato(T contenido);
         
         /*
          * Pre: -.
@@ -59,8 +59,9 @@ Nodo_primitivo<T>::Nodo_primitivo(T contenido){
 }
 
 template<typename T>
-void Nodo_primitivo<T>::cambiar_dato(T* cotenido){
-    this->contenido = contenido;
+void Nodo_primitivo<T>::cambiar_dato(T elemento){
+    this->contenido = elemento;
+
 }
 
 template<typename T>
