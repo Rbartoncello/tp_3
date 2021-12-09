@@ -71,6 +71,8 @@ void Camino::eliminar_jugador() {
 void Camino::mover_jugador(Jugador* jugador) {
     if (esta_ocupado() && material != nullptr){
         jugador->aumentar_material(material);
+        if ( material->devolver_nombre() == ANDYCOINS )
+            jugador->sumar_a_objetivo(material->devolver_cantidad(),COMPRAR_ANDYPOLIS);
         delete material;
         material = nullptr;
     }

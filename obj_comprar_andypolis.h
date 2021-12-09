@@ -8,7 +8,6 @@ class Comprar_andypolis : public Objetivos
 {
 
 private:
-    string nombre;
     int andycoins_recolectados;
     string descripcion_objetivo;
 
@@ -25,6 +24,10 @@ public:
     //Pre:
     //Post:Muestra por pantalla la descripcion
     void mostrar_descripcion();
+
+    //Pre:
+    //Post: Me devuelve el porcentaje de completado.
+    double devolver_porcentaje_completado();
 
     //Pre:
     //Post:valida si el objetivo se ha realizado.

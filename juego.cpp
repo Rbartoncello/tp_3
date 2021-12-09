@@ -291,6 +291,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             break;
         case FINALIZAR_TURNO:
             acumular_recursos();
+            jugador_actual->sumar_a_objetivo(jugador_actual->devolver_energia(), CANSADO);
             jugador_actual->sumar_energia(ENERGIA_NUEVO_TURNO);
             jugador_actual = devolver_jugador_turno();
             this->restablecer_fue_atacado();
@@ -299,7 +300,6 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             }
             break;
     }
-
 }
 
 void Juego::mostrar_inventario(Jugador* jugador_turno) {

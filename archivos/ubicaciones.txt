@@ -1,4 +1,6 @@
 madera (8, 10)
+piedra (1, 2)
+piedra (2, 3)
 andycoins (8, 9)
 metal (9, 4)
 madera (8, 4)

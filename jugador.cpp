@@ -29,16 +29,15 @@ void Jugador::crear_lista(Lista_primitiva<string>* &objetivos){
     //objetivos->agregar(ENERGETICO);
     //objetivos->agregar(LETRADO);
     //objetivos->agregar(MINERO);
-    //objetivos->agregar(CANSADO);
-    //objetivos->agregar(ARMADO);
-    //objetivos->agregar(EXTREMISTA);    
-    
+    objetivos->agregar(CANSADO);
+    objetivos->agregar(ARMADO);
+    objetivos->agregar(EXTREMISTA);    
 }
 
 void Jugador::generar_objetivos_secundarios(){
     Lista_primitiva<string>* objetivos = new Lista_primitiva<string>();
     string nombre_objetivo;
-    int posicion = 0, hasta = 3;
+    int posicion = 0, hasta = 6;
 
     crear_lista(objetivos);
 
@@ -85,6 +84,12 @@ void Jugador::agregar_objetivo(string nombre_objetivo){
        objetivo = new Bombardero();
     else if (nombre_objetivo == EDAD_PIEDRA)
        objetivo = new Edad_piedra(inventario);
+    else if (nombre_objetivo == ARMADO)
+        objetivo = new Armado(inventario);
+    else if (nombre_objetivo == CANSADO)
+        objetivo = new Cansado(energia);
+    else if (nombre_objetivo == EXTREMISTA)
+        objetivo = new Extremista;
     
     objetivos_secundarios->agregar_elemento(objetivo,1);
 }
@@ -145,6 +150,9 @@ void Jugador::recoger_recurso(){
 
             posicion = inventario->obtener_posicion(aux->devolver_dato()->devolver_nombre());
             inventario->obtener_direccion_nodo(posicion)->devolver_dato()->aumentar_cantidad(cantidad_material);
+
+            if (aux->devolver_dato()->devolver_nombre() == ANDYCOINS)
+                sumar_a_objetivo(cantidad_material,COMPRAR_ANDYPOLIS);
 
             aux->devolver_dato()->modificar_cantidad(0);
             aux = aux->direccion_siguiente();
@@ -275,8 +283,7 @@ bool Jugador::validar_objetivos(){
 int Jugador::contar_objetivos_completados(int contador){
 
     int objetivos_realizados = 0;
-    Nodo_lista<Objetivos>* objetivo_verificacion;
-    objetivo_verificacion = objetivos_secundarios->obtener_direccion_nodo(contador);
+    Nodo_lista<Objetivos>* objetivo_verificacion = objetivos_secundarios->obtener_direccion_nodo(contador);
 
     if (objetivo_verificacion->devolver_dato()->devolver_estado_objetivo())
         objetivos_realizados++;
@@ -284,7 +291,7 @@ int Jugador::contar_objetivos_completados(int contador){
     if (contador < 2)
         objetivos_realizados = objetivos_realizados + contar_objetivos_completados(contador+1);
 
-    return 0;
+    return objetivos_realizados;
 }
 
 void Jugador::acumular_recursos(string material, int cantidad){
