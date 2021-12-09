@@ -32,6 +32,8 @@ private:
 
     void restar_materiales(string nombre_nuevo_edificio,Jugador* jugador);
 
+    bool validacion_final();
+
 public:
     Constructora(Diccionario<Edificacion>* dict_edifcios, Mapa* mapa);
 

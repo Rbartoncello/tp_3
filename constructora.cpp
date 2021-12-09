@@ -41,7 +41,7 @@ void Constructora::construir_edificio(Jugador* jugador)
 void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio, Jugador* jugador){
 
     bool coordenadas_validas = false, materiales_validos = false, cantidad_construida = false;
-    bool ocupado = true;
+    bool ocupado = true, opcion_elegida = false;
 
     cantidad_construida = validar_maximo_edificio(nombre_nuevo_edifcio, jugador); //FUNCIONA, falta que los edificios sepan de quien son para validar cuantos hay de un juegador en particualar
 
@@ -61,15 +61,22 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio, Jugador
         }
     }
 
-    if (!ocupado){
-        mapa->agregar_edificacion(nombre_nuevo_edifcio,fila_nueva,columna_nueva,jugador->devolver_numero(),jugador->devolver_mis_edificios());
-        this->restar_materiales(nombre_nuevo_edifcio,jugador);
-        jugador->restar_energia(15);
-        cout << "\n EL EDIFICIO SE HA CONSTRUIDO\n" << endl;
+
+
+    if (!ocupado) {
+        opcion_elegida = validacion_final();
+        if (opcion_elegida) {
+            mapa->agregar_edificacion(nombre_nuevo_edifcio, fila_nueva, columna_nueva, jugador->devolver_numero(),
+                                      jugador->devolver_mis_edificios());
+            this->restar_materiales(nombre_nuevo_edifcio, jugador);
+            jugador->restar_energia(15);
+            cout << "\n EL EDIFICIO SE HA CONSTRUIDO\n" << endl;
+        }
     }
-    else if (materiales_validos){
+    else{
         cout << "\nAcaso has perdido la cabeza?, aqui ya hay un edificio: ";
     }
+
 }
 
 bool Constructora::validar_maximo_edificio(string nombre_nuevo_edificio, Jugador* jugador){
@@ -139,6 +146,21 @@ bool Constructora::ingreso_de_coordenadas()
     } while (!coord_ok && !salida_sin_coordenadas);
 
     return (coord_ok);
+}
+
+bool Constructora::validacion_final() {
+    bool continuar = false;
+    string opcion_elegida = " ";
+
+    cout << "Todo esta listo para empezar la construccion, ¿Quieres continuar? [s/n]"<< endl;
+    cin.ignore();
+    do{
+        cin >> opcion_elegida;
+    }while(opcion_elegida != "s" && opcion_elegida != "n");
+    if(opcion_elegida == "s"){
+        continuar = true;
+    }
+    return continuar;
 }
 
 bool Constructora::validar_coords(int coord1, int coord2) {
