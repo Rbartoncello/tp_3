@@ -36,7 +36,7 @@ class Archivo {
 
         //Pre:
         //Post:
-        int leer_archivos_edificios(Diccionario<Edificacion>*&diccionario);
+        int leer_archivos_edificios(Diccionario<Edificacion>*&diccionario,Mapa* mapa);
 
         //Pre:
         //Post:

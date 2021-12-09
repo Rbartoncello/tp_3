@@ -13,7 +13,7 @@
 Archivo::Archivo(){
 }
 
-int Archivo::leer_archivos_edificios(Diccionario<Edificacion>* &diccionario){
+int Archivo::leer_archivos_edificios(Diccionario<Edificacion>* &diccionario, Mapa* mapa){
     int ejecucion = 1;
 
     ifstream archivo(PATH_EDIFICIO);
@@ -38,7 +38,7 @@ int Archivo::leer_archivos_edificios(Diccionario<Edificacion>* &diccionario){
             archivo >> madera;
             archivo >> metal;
             archivo >> max_cant_permitidos;
-            edificio = buscar_edificacion(nombre,  stoi(piedra), stoi(madera), stoi(metal), stoi(max_cant_permitidos));
+            edificio = mapa->crear_edificio(nombre,  stoi(piedra), stoi(madera), stoi(metal), stoi(max_cant_permitidos));
             diccionario->insertar(nombre,edificio);
         }
         archivo.close();
