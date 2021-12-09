@@ -1,4 +1,5 @@
 #include "constructora.h"
+#include "emojis.h"
 
 Constructora::Constructora(Diccionario<Edificacion>* dict_edifcios, Mapa *mapa) {
     this->dict_edificios = dict_edifcios;
@@ -12,28 +13,35 @@ void Constructora::construir_edificio(Jugador* jugador)
     string nombre_nuevo_edifcio;
     bool entrada_valida = false;
 
-    do
-    {
-        cout << "Ingrese el nombre del nuevo edificio: ";
-        cin >> nombre_nuevo_edifcio;
-        entrada_valida = dict_edificios->existe(nombre_nuevo_edifcio);
+    cout<<jugador->devolver_energia()<<endl;
 
-        if (!entrada_valida && (nombre_nuevo_edifcio!="1"))
-            mostrar_aviso();
+    if(jugador->devolver_energia()>=15){
+        do
+        {
+            cout << "Ingrese el nombre del nuevo edificio: ";
+            getline(cin,nombre_nuevo_edifcio);
+            entrada_valida = dict_edificios->existe(nombre_nuevo_edifcio);
 
-    } while (!entrada_valida && nombre_nuevo_edifcio != "1");
+            if (!entrada_valida && (nombre_nuevo_edifcio!="1"))
+                mostrar_aviso();
 
-    if(entrada_valida)
-        avanzar_con_construccion(nombre_nuevo_edifcio, jugador);
+        } while (!entrada_valida && nombre_nuevo_edifcio != "1");
+
+        if(entrada_valida)
+            avanzar_con_construccion(nombre_nuevo_edifcio, jugador);
+        else{
+            cout << "\n Oh, no construyes nada?, bueno, vuelve pronto la constructora de Andypolis necesita trabajar\n" << endl;
+        }
+    }
     else{
-        cout << "\n Oh, no construyes nada?, bueno, vuelve pronto la constructora de Andypolis necesita trabajar\n" << endl;
+        cout << "No tienes energía suficiente para realizar esta acción, tienes: " << jugador->devolver_energia() << EMOJI_PLANTA_ENERGIA << endl;
     }
 }
 
 void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio, Jugador* jugador){
 
     bool coordenadas_validas = false, materiales_validos = false, cantidad_construida = false;
-    bool ocupado = false;
+    bool ocupado = true;
 
     cantidad_construida = validar_maximo_edificio(nombre_nuevo_edifcio, jugador); //FUNCIONA, falta que los edificios sepan de quien son para validar cuantos hay de un juegador en particualar
 
@@ -42,16 +50,21 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edifcio, Jugador
     else{
         cout << "\nOh, lamento traer malas noticias pero ya has alcanzo el maximo de construidos para este edificio: ";
     }
-    if(materiales_validos)
-        coordenadas_validas = this->ingreso_de_coordenadas();
-
-    if(coordenadas_validas){
-        ocupado = mapa->hay_edificio(fila_nueva,columna_nueva);
+    if(materiales_validos) {
+        while (ocupado) {
+            coordenadas_validas = this->ingreso_de_coordenadas();
+            if (coordenadas_validas) {
+                ocupado = mapa->hay_edificio(fila_nueva, columna_nueva);
+            } else {
+                cout << "Ahí ya hay un edificio colocado, ingresa unas coordenadas válidas";
+            }
+        }
     }
 
     if (!ocupado){
-        //mapa->construir_edifcio(fila_nueva,columna_nueva,nombre_nuevo_edifcio);
+        mapa->agregar_edificacion(nombre_nuevo_edifcio,fila_nueva,columna_nueva,jugador->devolver_numero(),jugador->devolver_mis_edificios());
         this->restar_materiales(nombre_nuevo_edifcio,jugador);
+        jugador->restar_energia(15);
         cout << "\n EL EDIFICIO SE HA CONSTRUIDO\n" << endl;
     }
     else if (materiales_validos){
