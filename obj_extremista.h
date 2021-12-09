@@ -1,27 +1,23 @@
-#ifndef ARMADO_H
-#define ARMADO_H
+#ifndef EXTREMISTA_H
+#define EXTREMISTA_H
 #include "objetivos.h"
-#include "lista.h"
 
-class Armado : public Objetivos{
+class Extremista : public Objetivos{
     private:
-        string nombre;
-        Lista<Material>* inventario_jugador;
-
+        int bombas_compradas;
     public:
 
         //Pre:
-        //Post: inicializa su nombre y coloca la cantidad de andycoins en cero
-        Armado(Lista<Material>*& inventario_jugador);
+        //Post: inicializa su nombre y coloca la cantidad de bombas_compradas en cero
+        Extremista();
 
         //Pre:
         //Post:Agrega datos al conteo para alcanzar el objetivo
-        void agregar_datos(int cantidad);
+        void agregar_datos(int sumar_bomba_usada);
 
         //Pre:
         //Post:Muestra por pantalla la descripcion
         void mostrar_descripcion();
-
 
         //Pre:
         //Post:valida si el objetivo se ha realizado.
@@ -31,8 +27,8 @@ class Armado : public Objetivos{
         //Post: Me devuelve el porcentaje de completado.
         double devolver_porcentaje_completado();
 
-        virtual ~Armado();
+
+        virtual ~Extremista();
 };
 
-
-#endif 
+#endif

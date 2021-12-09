@@ -356,8 +356,12 @@ void imprimir_mensaje_posicion_no_permitida(){
 
 void imprimir_mensaje_finalizacion_turno_automatico(Jugador* &jugador) {
     system("clear");
-    cout << "\t El jugador " << jugador->devolver_numero() << " se a quedado con energia " << jugador->devolver_energia() << " se finalizara la partida automaticamente" << endl;
-    sleep(2);
+    cout << TXT_BOLD;
+    cout << "\t╔══════════════════════════════════════════════════════════════════════════════════╗" << endl;
+    cout << "\t║ El jugador " << jugador->devolver_numero() << " se a quedado con energia " << jugador->devolver_energia() << " se finalizara la partida automaticamente ║" << endl;
+    cout << "\t╚══════════════════════════════════════════════════════════════════════════════════╝" << endl;
+    cout << END_COLOR;
+    sleep(3);
 }
 
 void imprimir_mensaje_casillero_ocupado() {

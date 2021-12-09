@@ -5,7 +5,6 @@
 
 class Armado : public Objetivos{
     private:
-        string nombre;
         Lista<Material>* inventario_jugador;
 
     public:

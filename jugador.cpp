@@ -27,16 +27,16 @@ void Jugador::crear_lista(Lista_primitiva<string>* &objetivos){
     //objetivos->agregar(ENERGETICO);
     //objetivos->agregar(LETRADO);
     //objetivos->agregar(MINERO);
-    //objetivos->agregar(CANSADO);
+    objetivos->agregar(CANSADO);
     objetivos->agregar(ARMADO);
-    //objetivos->agregar(EXTREMISTA);    
+    objetivos->agregar(EXTREMISTA);    
     
 }
 
 void Jugador::generar_objetivos_secundarios(){
     Lista_primitiva<string>* objetivos = new Lista_primitiva<string>();
     string nombre_objetivo;
-    int posicion = 0, hasta = 4;
+    int posicion = 0, hasta = 6;
 
     crear_lista(objetivos);
 
@@ -85,6 +85,11 @@ void Jugador::agregar_objetivo(string nombre_objetivo){
         objetivo = new Edad_piedra(inventario);
     else if (nombre_objetivo == ARMADO)
         objetivo = new Armado(inventario);
+    else if (nombre_objetivo == CANSADO)
+        objetivo = new Cansado(energia);
+    else if (nombre_objetivo == EXTREMISTA)
+        objetivo = new Extremista;
+
     
     objetivos_secundarios->agregar_elemento(objetivo,1);
 }
@@ -258,7 +263,7 @@ void Jugador::sumar_a_objetivo(int cantidad, string nombre_objetivo){
     string nombre_objetivo_auxiliar;
     bool encontrado = true;
 
-    while (encontrado && contador<3)
+    while (encontrado && contador< 3)
     {
         objetivo = objetivos_secundarios->obtener_direccion_nodo(contador);
         nombre_objetivo_auxiliar = objetivo->devolver_dato()->devolver_tipo_objetivo();

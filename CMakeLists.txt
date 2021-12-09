@@ -38,9 +38,9 @@ add_executable(tp_3 constantes.h main.cpp
         metal.cpp metal.h
         bomba.cpp bomba.h
         andycoins.cpp andycoins.h
-        bombardero.cpp bombardero.h
+        obj_bombardero.cpp obj_bombardero.h
         comprar_andypolis.cpp comprar_andypolis.h
-        edad_piedra.cpp edad_piedra.h
+        obj_edad_piedra.cpp obj_edad_piedra.h
         gotoxy.h
         mas_alto_que_las_nubes.cpp mas_alto_que_las_nubes.h
         mina_oro.cpp mina_oro.h
@@ -51,5 +51,7 @@ add_executable(tp_3 constantes.h main.cpp
         nodo_lista.h
         Vertice.cpp Vertice.h
         Floyd.cpp Floyd.h
-        Camino_minimo.cpp Camino_minimo.h constructora.cpp constructora.h
-        armado.cpp armado.h)
+        Camino_minimo.cpp Camino_minimo.h
+        constructora.cpp constructora.h
+        obj_armado.cpp obj_armado.h
+        obj_cansado.cpp obj_cansado.h)

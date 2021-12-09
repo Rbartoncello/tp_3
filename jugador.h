@@ -6,9 +6,11 @@
 #include "constantes.h"
 #include "lista_primitiva.h"
 #include "comprar_andypolis.h"
-#include "bombardero.h"
-#include "edad_piedra.h"
-#include "armado.h"
+#include "obj_armado.h"
+#include "obj_bombardero.h"
+#include "obj_cansado.h"
+#include "obj_edad_piedra.h"
+#include "obj_extremista.h"
 //#include "mas_alto_que_las_nubes.h"
 
 class Jugador {
