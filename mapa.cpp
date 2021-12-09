@@ -362,41 +362,6 @@ void Mapa::mostrar_edificios_construidos2(Jugador *jugador_actual)
     delete cantidad_por_edificio;
 }
 
-void Mapa::mostrar_edificios_construidos(Jugador *jugador_actual)
-{
-    system("clear");
-
-    cout << TXT_BOLD;
-    cout << "\t\t╔═══════════════════════╦══════╦═════════╦══════════════════════╦═════════════════════╗" << endl;
-    cout << "\t\t║ Edificios construidos ║ Fila ║ Columna ║ Cantidad construidos ║ Necesita reparacion ║" << endl;
-    cout << "\t\t╠═══════════════════════╬══════╬═════════╬══════════════════════╬═════════════════════╣" << endl;
-    cout << END_COLOR;
-
-    bool hay_edificios = false;
-
-    for (int i = 0; i < this->cantidad_filas; i++)
-    {
-        for (int j = 0; j < this->cantidad_columnas; j++)
-        {
-            if ((this->casilleros[i][j]->devolver_tipo_terreno() == TERRENO) && (this->casilleros[i][j]->esta_ocupado()))
-            {
-                hay_edificios = true;
-
-                this->casilleros[i][j]->mostrar_casillero(jugador_actual, this->devolver_cantidad_edificio(this->casilleros[i][j]->devolver_nombre_edificio(), jugador_actual));
-                if ((i == this->cantidad_filas - 1) && (j == this->cantidad_columnas - 1))
-                    cout << "\t\t╚═══════════════════════╩══════╩═════════╩══════════════════════╩═════════════════════╝" << endl;
-            }
-        }
-    }
-
-    if (!hay_edificios)
-    {
-        cout << TXT_BOLD;
-        cout << "\t\t║ " << TXT_RED_196 << setfill(' ') << setw(49) << "NO HAY NINGUN EDIFICIO CONSTRUIDO" << setfill(' ') << setw(16) << END_COLOR << " ║" << endl;
-        cout << "\t\t╚═══════════════════════════════════════════════════════════════╝" << endl;
-    }
-}
-
 void Mapa::borrar_edificio(int fila, int columna)
 {
     casilleros[fila][columna]->eliminar_edificio();

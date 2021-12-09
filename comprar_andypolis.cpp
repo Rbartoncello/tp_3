@@ -4,7 +4,6 @@
 
 Comprar_andypolis::Comprar_andypolis(int andycoins_iniciales) : Objetivos(COMPRAR_ANDYPOLIS) {
     nombre = COMPRAR_ANDYPOLIS;
-    andycoins_recolectados = 0;
     descripcion_objetivo = "Debes haber juntado " + to_string(OBJETIVO_COMPRAR_ANDYCOINS) + " andycoins a lo largo de la partida";
     andycoins_recolectados = andycoins_iniciales;
 }

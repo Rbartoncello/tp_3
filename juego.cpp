@@ -174,12 +174,10 @@ void Juego::posicionar_jugador_mapa(Jugador *&jugador){
 }
 
 void Juego::partida_empezada(){
+    int primer_jugador = numero_aleatorio(JUGADOR_1,JUGADOR_2), opcion_elegida;
+
     jugador_1->generar_objetivos_secundarios();
     jugador_2->generar_objetivos_secundarios();
-
-    imprimir_mensaje_enter_continuar();
-
-    int primer_jugador = numero_aleatorio(JUGADOR_1,JUGADOR_2), opcion_elegida;
     agregar_energia_comienza_partida();
 
     if(primer_jugador == 1)

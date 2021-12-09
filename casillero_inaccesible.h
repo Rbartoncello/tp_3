@@ -66,12 +66,6 @@ class Casillero_inaccesible : public Casillero {
         */
         void agregar_material(Material* nombre_material){};
 
-        /*
-         * Pre: -
-         * Post: Muestra graficamente el casillero por pantalla
-        */
-        void mostrar_casillero(Jugador* jugador, int cantidad_construidos);
-
         virtual void agregar_jugador(Jugador* jugador) = 0;
 
         void modificar_ocupado(bool estado);

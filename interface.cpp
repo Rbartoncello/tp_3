@@ -95,6 +95,8 @@ void imprimir_menu_juego(Mapa *mapa, Jugador *jugador_actual)
          << gotoxy.pos(8, 65) << "║ " << EMOJI_CUATRO << " ║" << END_COLOR << TXT_BOLD << " Atacar un edificio por coordenada " << EMOJI_BOMBA << TXT_LIGHT_AQUA_43 << "  ║" << endl
          << gotoxy.pos(9, 65) << "╠────╬───────────────────────────────────────╣" << endl
          << gotoxy.pos(10, 65) << "║ " << EMOJI_CINCO << " ║" << END_COLOR << TXT_BOLD << " Reparar un edificio por coordenada " << EMOJI_EDIFICIO_CONSTRUCION << TXT_LIGHT_AQUA_43 << "  ║" << endl
+       
+       
          << gotoxy.pos(11, 65) << "╠────╬───────────────────────────────────────╣" << endl
          << gotoxy.pos(12, 65) << "║ " << EMOJI_SEIS << " ║" << END_COLOR << TXT_BOLD << " Comprar Bomba " << EMOJI_BOMBA << TXT_LIGHT_AQUA_43 << "                      ║" << endl
          << gotoxy.pos(13, 65) << "╠────╬───────────────────────────────────────╣" << endl
@@ -309,7 +311,7 @@ void imprimir_edificios_jugador(Lista_edificios<Edificacion> *edificios_jugador)
     string necesita_reparacion = EMOJI_MAL, nombre_edificio;
     int cantidad_en_lista = edificios_jugador->devolver_cantidad_en_Lista_edificios();
     Nodo_edificios<Edificacion> *primer_nodo_edificios = edificios_jugador->retornar_primero();
-    Edificacion* edificio;
+    Edificacion* edificio;    
 
     for (int i = 0; i < cantidad_en_lista; i++)
     {
@@ -328,6 +330,13 @@ void imprimir_edificios_jugador(Lista_edificios<Edificacion> *edificios_jugador)
 
         primer_nodo_edificios = primer_nodo_edificios->direccion_siguiente();
     }
+
+    if (cantidad_en_lista < 1)
+    {
+        cout << TXT_BOLD;
+        cout << "\t\t║ " << TXT_RED_196 << setfill(' ') << setw(49) << "NO HAY NINGUN EDIFICIO CONSTRUIDO" << setfill(' ') << setw(16) << END_COLOR << " ║" << endl;
+        cout << "\t\t╚═══════════════════════════════════════════════════════════════╝" << endl;
+    }    
 
 }
 
@@ -394,25 +403,6 @@ void imprimir_mensaje_ingrese_fila_jugador()
 void imprimir_mensaje_ingrese_columna_jugador()
 {
     cout << "Por favor ingrese la columna con la que desee empezar: ";
-}
-
-void imprimir_edificio(Edificacion *edificacion, Jugador *jugador, int fila, int columna, int cantidad_construidos)
-{
-    string necesita_reparacion = EMOJI_MAL;
-    if (edificacion->devolver_duenio() == jugador->devolver_numero())
-    {
-        if ((edificacion->devolver_nombre_edificio() == EDIFICIO_FABRICA) || (edificacion->devolver_nombre_edificio() == EDIFICIO_MINA))
-        {
-            if (edificacion->devolver_necesita_reparacion())
-                necesita_reparacion = EMOJI_HECHO;
-        }
-        cout << "\t\t║" << setfill(' ') << setw(16) << edificacion->devolver_nombre_edificio() << "( " << edificacion->devolver_emoji() << " )" << setfill(' ') << setw(4);
-        cout << "│" << setfill(' ') << setw(4) << fila << setfill(' ') << setw(5);
-        cout << "│" << setfill(' ') << setw(5) << columna << setfill(' ') << setw(7);
-        cout << "│" << setfill(' ') << setw(11) << cantidad_construidos << setfill(' ') << setw(14);
-        cout << "│" << setfill(' ') << setw(12) << necesita_reparacion << setfill(' ') << setw(13) << "║" << endl;
-        cout << "\t\t╠───────────────────────┼──────┼─────────┼──────────────────────┼─────────────────────╣" << endl;
-    }
 }
 
 void imprimir_mensaje_no_energia_sufuciente(int energia)

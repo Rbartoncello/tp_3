@@ -179,12 +179,6 @@ void imprimir_mensaje_ingrese_columna_jugador();
 
 /*
  * Pre: -
- * Post: Me muestra por pantalla los edificios contruidos del jugador actual.
- */
-void imprimir_edificio(Edificacion* edificio, Jugador* jugador, int fila, int columna, int cantidad_construidos);
-
-/*
- * Pre: -
  * Post: Me muestra por pantalla un cuadro del jugador actual.
  */
 void imprimir_cuadro_jugador(Jugador* &jugador_actual);

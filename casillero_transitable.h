@@ -72,12 +72,6 @@ class Casillero_transitable : public Casillero{
         */
         virtual void agregar_edificio(Edificacion* edificio){};
 
-        /*
-         * Pre: -
-         * Post: Muestra graficamente el casillero por pantalla
-        */
-        void mostrar_casillero(Jugador* jugador, int cantidad_construidos);
-
         virtual void agregar_jugador(Jugador* jugador) = 0;
 
         virtual void eliminar_jugador() = 0;
