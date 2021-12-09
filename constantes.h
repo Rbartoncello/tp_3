@@ -132,6 +132,7 @@ const int ENERGIA_COMIENZO_PARTIDA = 50;
 const int ENERGIA_NUEVO_TURNO = 20;
 const int ENERGIA_REPARAR = 25;
 const int ENERGIA_ATACAR = 30;
+const int ENERGIA_CONSTRUIR = 15;
 
 const int POSICION_NO_ENCONTRADA = -1;
 const string NOMBRE_NO_ENCONTRADO = "";

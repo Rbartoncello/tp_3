@@ -214,11 +214,56 @@ void imprimir_mensaje_ingresar_edificio()
     cout << "\tIngrese el nombre del edificio que desee modificar: ";
 }
 
+void imprimir_mensaje_construir_edificio()
+{
+    system("clear");
+    cout << "\tIngrese el nombre del edificio que desee construir: ";
+}
+
+void imprimir_mensaje_max_edificios_alcansado() 
+{
+    system("clear");
+    cout << "\nOh, lamento traer malas noticias pero ya has alcanzo el maximo de construidos para este edificio: ";
+}
+
 void imprimir_mensaje_error_ingresar_edificio()
 {
     system("clear");
     imprimir_mensaje_error();
     cout << "\tEl nombre de edificio ingresado " << TXT_BOLD << TXT_UNDERLINE << "no" << END_COLOR << " exite, por favor ingrese un nombre de edificio que exista: ";
+}
+
+string chequear_status(int cant_material_inventario, int cant_material_necesario){
+    string status = EMOJI_MAL;
+
+    if (cant_material_inventario >= cant_material_necesario)
+        status = EMOJI_HECHO;
+
+    return status;
+}
+
+void imprimir_materiales_necesarios(int piedra_inventario, int madera_inventario,  int metal_inventario,  int piedra_edificio,  int madera_edificio, int metal_edificio){
+    
+    cout << TXT_BOLD;
+    cout << "\t╔═════════╦═══════════════════════╦══════════════════════════╦════════╗" << endl;
+    cout << "\t║/////////║ Materiales necesarios ║ Materiales en inventario ║ Estado ║" << endl;
+    cout << "\t╠═════════╬═══════════════════════╬══════════════════════════╬════════╣" << endl;
+    cout << END_COLOR;
+
+    
+    string status = chequear_status(piedra_inventario, piedra_edificio);
+    cout << "\t║ " << PIEDRA << "  │" << setfill(' ') << setw(12) << piedra_edificio << setfill(' ') << setw(14) << "│" << setfill(' ') << setw(14) << piedra_inventario << setfill(' ') << setw(18) << "│   " << status << "   ║" << endl;
+    cout << "\t╠─────────┼───────────────────────┼──────────────────────────┼────────╣" << endl;
+    
+    status = chequear_status(madera_inventario, madera_edificio);
+    cout << "\t║ " << MADERA << "  │" << setfill(' ') << setw(12) << madera_edificio << setfill(' ') << setw(14) << "│" << setfill(' ') << setw(14) << madera_inventario << setfill(' ') << setw(18) << "│   " << status << "   ║" << endl;
+    cout << "\t╠─────────┼───────────────────────┼──────────────────────────┼────────╣" << endl;
+    
+    status = chequear_status(metal_inventario, metal_edificio);
+    cout << "\t║  " << METAL << "  │" << setfill(' ') << setw(12) << metal_edificio << setfill(' ') << setw(14) << "│" << setfill(' ') << setw(14) << metal_inventario << setfill(' ') << setw(18) << "│   " << status << "   ║" << endl;
+    cout << "\t╚═════════╩═══════════════════════╩══════════════════════════╩════════╝" << endl;
+
+    imprimir_mensaje_esperar(4);
 }
 
 void imprimir_mensaje_receta_edificio(string edificio, string material, int cantidad)

@@ -2,4 +2,4 @@ madera 1000 1000
 piedra 49999 49999
 metal 1000 1000
 andycoins 1000 1000
-bombas 9 9
+bombas 9 9@agus

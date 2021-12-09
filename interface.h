@@ -107,6 +107,26 @@ void imprimir_mensaje_ingresar_edificio();
 
 /*
  * Pre: -
+ * Post: Imprime por pantalla que ingrese un edificio.
+ */
+void imprimir_mensaje_construir_edificio();
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla que que llego al maximo de un edificio.
+ */
+void imprimir_mensaje_max_edificios_alcansado();
+
+void imprimir_materiales_necesarios(int cantidad_piedra, int cantidad_madera,  int cantidad_metal,  int piedra_necesaria,  int madera_necesaria, int metal_necesario);
+
+/*
+ * PRE: -
+ * POST: Devolvera un string, que representa un emoji, dependiendo si la cant_material_inventario es suficiente para cant_material_necesario.
+*/
+string chequear_status(int cant_material_inventario, int cant_material_necesario);
+
+/*
+ * Pre: -
  * Post: Imprime por pantalla que hubo un error y que vuelva a ingresar un edificio.
  */
 void imprimir_mensaje_error_ingresar_edificio();
