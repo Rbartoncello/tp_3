@@ -128,12 +128,6 @@ class Casillero{
         */
         virtual void agregar_edificio(Edificacion* edificio){};
 
-        /*
-         * Pre: -
-         * Post: Metodo virtual vacio para las clases hijas
-        */
-        virtual void mostrar_casillero(Jugador* jugador, int cantidad_construidos) = 0;
-
         string devolver_posicion();
 
         virtual int devolver_costo() = 0;

@@ -174,10 +174,10 @@ void Juego::posicionar_jugador_mapa(Jugador *&jugador){
 }
 
 void Juego::partida_empezada(){
+    int primer_jugador = numero_aleatorio(JUGADOR_1,JUGADOR_2), opcion_elegida;
+
     jugador_1->generar_objetivos_secundarios();
     jugador_2->generar_objetivos_secundarios();
-
-    int primer_jugador = numero_aleatorio(JUGADOR_1,JUGADOR_2), opcion_elegida;
     agregar_energia_comienza_partida();
 
     if(primer_jugador == 1)
@@ -254,7 +254,8 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             constructora->construir_edificio(jugador_actual);
             break;
         case LISTAR_MIS_EDIFICIOS_CONSTRUIDOS:
-            this->mapa->mostrar_edificios_construidos(jugador_actual);
+            //this->mapa->mostrar_edificios_construidos(jugador_actual);
+            mapa->mostrar_edificios_construidos2(jugador_actual);
             imprimir_mensaje_enter_continuar();
             break;
         case DEMOLER_EDIFICIO_COORDENADA:

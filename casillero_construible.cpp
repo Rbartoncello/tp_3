@@ -17,6 +17,5 @@ bool Casillero_construible::esta_ocupado(){
 void Casillero_construible::modificar_ocupado(bool estado) {
     this->ocupado = estado;
 }
-void Casillero_construible::mostrar_casillero(Jugador *jugador, int cantidad_construidos) {}
 
 Casillero_construible::~Casillero_construible(){}

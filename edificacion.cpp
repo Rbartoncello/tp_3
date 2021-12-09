@@ -1,6 +1,6 @@
 #include "edificacion.h"
 
-Edificacion::Edificacion(string tipoEdificacion, string emoji) {
+Edificacion::Edificacion(string tipoEdificacion, string emoji){
     this->nombre = tipoEdificacion;
     this->emoji = emoji;
     this->fue_atacado = false;
@@ -34,8 +34,18 @@ string Edificacion::devolver_direccion(){
     return this->direccion;
 }
 
-void Edificacion::agregar_direccion(int fila, int columna){
-    direccion = to_string(fila) + to_string(columna);
+void Edificacion::agregar_direccion(int fila_edificio, int columna_edificio){
+    direccion = to_string(fila_edificio) + to_string(columna_edificio);
+    fila = fila_edificio;
+    columna = columna_edificio;
+}
+
+int Edificacion::devolver_fila(){
+    return fila;
+}
+
+int Edificacion::devolver_columna(){
+    return columna;
 }
 
 Edificacion::~Edificacion(){}

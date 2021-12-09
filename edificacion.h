@@ -17,6 +17,7 @@ private:
     int maxima_cantidad_permitidos;
     bool fue_atacado;
     string direccion;
+    int fila, columna;
 
 protected:
     bool reparable;
@@ -41,6 +42,10 @@ public:
     string devolver_emoji();
 
     string devolver_direccion();
+
+    int devolver_fila();
+
+    int devolver_columna();
 
     void agregar_direccion(int fila, int columna);
 
