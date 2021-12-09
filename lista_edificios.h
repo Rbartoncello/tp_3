@@ -281,7 +281,6 @@ bool Lista_edificios<T>::eliminar_por_direccion(int fila, int columna){
     }
 
     return bandera;
-
 }
 
 

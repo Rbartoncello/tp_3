@@ -253,21 +253,17 @@ char Mapa::devolver_tipo_terreno(int fila, int columna){
 
 void Mapa::agregar_edificacion(string nombre, int fila, int columna, int duenio, Lista_edificios<Edificacion> *&edificios_jugador)
 {
-    if (validar_tipo_construible(fila, columna))
-    {
+    Edificacion *edificio = crear_edificio(nombre, 0, 0, 0, 0);
 
-        Edificacion *edificio = crear_edificio(nombre, 0, 0, 0, 0);
-
-        edificio->modificar_duenio(duenio);
-        edificio->agregar_direccion(fila, columna);
-        casilleros[fila][columna]->agregar_edificio(edificio);
-        edificios_jugador->agregar_elemento(edificio, 1);
-    }
+    edificio->modificar_duenio(duenio);
+    edificio->agregar_direccion(fila, columna);
+    casilleros[fila][columna]->agregar_edificio(edificio);
+    edificios_jugador->agregar_elemento(edificio, 1);
 }
 
 Edificacion *Mapa::crear_edificio(string nombre, int piedra, int madera, int metal, int max_cant_permitidos)
 {
-    Edificacion *edificio;
+    Edificacion *edificio = nullptr;
 
     if (nombre == EDIFICIO_ASERRADERO)
         edificio = new Aserradero(piedra, madera, metal, max_cant_permitidos);
