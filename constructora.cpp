@@ -19,7 +19,7 @@ void Constructora::construir_edificio(Jugador* jugador)
         do
         {
             cout << "Ingrese el nombre del nuevo edificio: ";
-            cin >> nombre_nuevo_edifcio;
+            getline(cin,nombre_nuevo_edifcio);
             entrada_valida = dict_edificios->existe(nombre_nuevo_edifcio);
 
             if (!entrada_valida && (nombre_nuevo_edifcio!="1"))
