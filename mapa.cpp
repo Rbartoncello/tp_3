@@ -371,3 +371,61 @@ bool Mapa::hay_edicicio(int fila, int columna)
 {
     return (devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO && devolver_casillero(fila, columna)->esta_ocupado());
 }
+
+
+//FUNCIONA BIEN???
+
+void Mapa::generar_lluvia_materiales()
+{
+
+    string material;
+
+    srand((unsigned int)time(NULL));
+
+    int numero_aleatorio_piedra = 1 + rand() % (2);
+    int numero_aleatorio_madera = rand() % (2);
+    int numero_aleatorio_metales = 2 + rand() % (5 - 2);
+
+    agregar_material(numero_aleatorio_piedra, PIEDRA);
+    agregar_material(numero_aleatorio_madera, MADERA);
+    agregar_material(numero_aleatorio_metales, METAL);
+
+    cout << "\n Parece que la lluvia no ha llegado a todos los lugares, son tiempos dificiles" << endl;
+}
+
+void Mapa::agregar_material(int cantidad, string material)
+{
+
+    for (int i = 0; i < cantidad; i++)
+    {
+        agregar_a_coordenada(cantidad, material);
+    }
+}
+
+void Mapa::agregar_a_coordenada(int cantidad, string material)
+{
+
+    int fila, columna, cantidad_intentos = 0, cantidad_exitoso = 0;
+    bool terreno_transitable_valido = false;
+    char terreno;
+
+    srand((unsigned int)time(NULL));
+
+    while (!terreno_transitable_valido && cantidad_intentos != cantidad)
+    {
+        fila = rand() % (cantidad_filas);
+        columna = rand() % (cantidad_columnas);
+        terreno = devolver_tipo_terreno(fila, columna);
+        if (terreno == TERRENO || terreno == BETUN || terreno == MUELLE)
+        {
+            terreno_transitable_valido = !this->casilleros[fila][columna]->esta_ocupado();
+            cantidad_intentos++;
+        }
+        if (terreno_transitable_valido)
+        {
+            this->agregar_material(material, fila, columna);
+            cantidad_exitoso++;
+            cout << "Ha llovido en la coordenada: fila:" + to_string(fila + 1) + " columna" + to_string(columna + 1) << endl;
+        }
+    }
+}
