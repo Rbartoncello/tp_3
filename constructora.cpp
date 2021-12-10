@@ -57,7 +57,27 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edificio, Jugado
     }
 }
 
-void Constructora::demoler_edificio(string nombre_edificio, Jugador* jugador){
+void Constructora::demoler_edificio(Jugador* jugador){
+
+    string nombre_edificio;
+
+    if(jugador->devolver_energia() >= ENERGIA_DEMOLER){
+        imprimir_mensaje_construir_edificio();
+        cin.ignore();
+        getline(cin, nombre_edificio);
+        while ( !dict_edificios->existe(nombre_edificio)){
+            imprimir_mensaje_error_ingresar_edificio();
+            getline(cin, nombre_edificio);
+        }
+        if(dict_edificios->existe(nombre_edificio))
+            avanzar_con_demolicion(nombre_edificio, jugador);
+        else
+            cout << "\n Oh, no construyes nada?, bueno, vuelve pronto la constructora de Andypolis necesita trabajar\n" << endl;
+    } else
+        imprimir_mensaje_no_energia_sufuciente(ENERGIA_CONSTRUIR);
+}
+
+void Constructora::avanzar_con_demolicion(string nombre_nuevo_edificio, Jugador *jugador) {
 
 }
 

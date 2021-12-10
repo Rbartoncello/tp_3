@@ -262,6 +262,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             imprimir_mensaje_enter_continuar();
             break;
         case DEMOLER_EDIFICIO_COORDENADA:
+            constructora->demoler_edificio(jugador_actual);
             break;
         case ATARCAR_EDIFICIO_COORDENADA:
             this->atacar_edificio();
@@ -508,7 +509,7 @@ bool Juego::validar_reparar_edificio(int fila, int columna){
     int metal_necesario  = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_metal()/4;
 
     if( mapa->hay_edicicio(fila, columna) ){
-        if(!(mapa->devolver_casillero(fila, columna)->devolver_duenio() == jugador_actual->devolver_numero())){
+        if(mapa->devolver_casillero(fila, columna)->devolver_duenio() != jugador_actual->devolver_numero()){
             cout << "No se puede reparar un edificio que no te pertenece" << endl;
         } else {
             if(!mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_reparable()){
