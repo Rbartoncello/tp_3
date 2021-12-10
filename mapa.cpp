@@ -369,5 +369,6 @@ void Mapa::borrar_edificio(int fila, int columna)
 
 bool Mapa::hay_edicicio(int fila, int columna)
 {
-    return (devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO && devolver_casillero(fila, columna)->esta_ocupado());
+    return (devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO && devolver_casillero(fila, columna)->devolver_edificacion() !=
+                                                                                             nullptr);
 }

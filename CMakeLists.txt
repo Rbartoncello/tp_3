@@ -54,6 +54,7 @@ add_executable(tp_3 constantes.h main.cpp
         obj_bombardero.cpp obj_bombardero.cpp
         obj_cansado.h obj_cansado.cpp
         obj_comprar_andypolis.cpp obj_comprar_andypolis.h
+        obj_constructor.cpp obj_constructor.h
         obj_edad_piedra.cpp obj_edad_piedra.h
         obj_extremista.cpp obj_extremista.h
         )

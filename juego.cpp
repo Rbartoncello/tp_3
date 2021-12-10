@@ -550,15 +550,11 @@ bool Juego::validar_reparar_edificio(int fila, int columna){
 }
 
 void Juego::acumular_recursos(){
-    for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
-        for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
-            if (mapa->hay_edicicio(i , j)){
-                if(mapa->devolver_casillero(i, j)->devolver_duenio() == jugador_actual->devolver_numero()){
-                    if( mapa->devolver_casillero(i, j)->devolver_edificacion()->brinda_material() ){
-                        jugador_actual->acumular_recursos( mapa->devolver_casillero(i, j)->devolver_edificacion()->devolver_material_producido(),  mapa->devolver_casillero(i, j)->devolver_edificacion()->devolver_cantidad_material_brinda());
-                    }
-                }
-            }
+    Edificacion* edificio;
+    for (int i = 0; i < jugador_actual->devolver_mis_edificios()->devolver_cantidad_en_Lista_edificios(); i++){
+        edificio = jugador_actual->devolver_mis_edificios()->obtener_direccion_nodo(i)->devolver_dato();
+        if( edificio->brinda_material() ){
+            jugador_actual->acumular_recursos( edificio->devolver_material_producido(),  edificio->devolver_cantidad_material_brinda());
         }
     }
 }
@@ -566,7 +562,7 @@ void Juego::acumular_recursos(){
 void Juego::restablecer_fue_atacado() {
     for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
         for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
-            if ( ( mapa->devolver_casillero(i,j)->devolver_tipo_terreno() == TERRENO ) && ( mapa->devolver_casillero(i,j)->esta_ocupado() ) ){
+            if ( ( mapa->hay_edicicio(i, j) ) ){
                 mapa->devolver_casillero(i,j)->devolver_edificacion()->fue_atacado_false();
             }
         }

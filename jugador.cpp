@@ -29,6 +29,7 @@ void Jugador::crear_lista(Lista_primitiva<string>* &objetivos){
     //objetivos->agregar(ENERGETICO);
     //objetivos->agregar(LETRADO);
     //objetivos->agregar(MINERO);
+    objetivos->agregar(CONSTRUCTOR);
     objetivos->agregar(CANSADO);
     objetivos->agregar(ARMADO);
     objetivos->agregar(EXTREMISTA);    
@@ -37,9 +38,8 @@ void Jugador::crear_lista(Lista_primitiva<string>* &objetivos){
 void Jugador::generar_objetivos_secundarios(){
     Lista_primitiva<string>* objetivos = new Lista_primitiva<string>();
     string nombre_objetivo;
-    int posicion = 0, hasta = 6;
-
     crear_lista(objetivos);
+    int posicion = 0, hasta = objetivos->devolver_cantidad_en_Lista_primitiva();
 
     for (int i = 0; i < 3; i++)
     {
@@ -79,17 +79,19 @@ void Jugador::agregar_objetivo(string nombre_objetivo){
     Objetivos* objetivo;
 
     if (nombre_objetivo == COMPRAR_ANDYPOLIS)
-       objetivo = new Comprar_andypolis(inventario->devolver_material(ANDYCOINS));
+        objetivo = new Comprar_andypolis(inventario->devolver_material(ANDYCOINS));
     else if (nombre_objetivo == BOMBARDERO)
-       objetivo = new Bombardero();
+        objetivo = new Bombardero();
     else if (nombre_objetivo == EDAD_PIEDRA)
-       objetivo = new Edad_piedra(inventario);
+        objetivo = new Edad_piedra(inventario);
     else if (nombre_objetivo == ARMADO)
         objetivo = new Armado(inventario);
     else if (nombre_objetivo == CANSADO)
         objetivo = new Cansado(energia);
     else if (nombre_objetivo == EXTREMISTA)
         objetivo = new Extremista;
+    else if (nombre_objetivo == CONSTRUCTOR)
+        objetivo = new Constructor(edificios_jugador);
     
     objetivos_secundarios->agregar_elemento(objetivo,1);
 }
