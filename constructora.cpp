@@ -55,9 +55,9 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edificio, Jugado
             cout << "\n EL EDIFICIO SE HA CONSTRUIDO\n" << endl;
         }
     }
-    //else{
-        //cout << "\nAcaso has perdido la cabeza?, aqui ya hay un edificio: ";
-    //}
+}
+
+void Constructora::demoler_edificio(string nombre_edificio, Jugador* jugador){
 
 }
 

@@ -24,6 +24,8 @@ private:
 
     void mostrar_materiales_faltantes(string nombre_nuevo_edificio, Jugador* &jugador);
 
+    void demoler_edificio(string nombre_edificio, Jugador* jugador);
+
     bool ingreso_de_coordenadas();
 
     bool validar_coords(int coord1, int coord2);
