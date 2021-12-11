@@ -262,7 +262,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion){
             imprimir_mensaje_enter_continuar();
             break;
         case DEMOLER_EDIFICIO_COORDENADA:
-            constructora->demoler_edificio(jugador_actual);
+            //constructora->demoler_edificio(jugador_actual);
             break;
         case ATARCAR_EDIFICIO_COORDENADA:
             this->atacar_edificio();
@@ -459,39 +459,25 @@ void Juego::reparar_edificio(){
 }
 
 void Juego::atacar_edificio(){
-    if( ( jugador_actual->devolver_energia() < ENERGIA_ATACAR ) || ( jugador_actual->devolver_inventario()->devolver_material(BOMBA) < 1 ) ){
-        imprimir_mensaje_no_energia_sufuciente(ENERGIA_ATACAR);
-        cout << "No posee una bomba o la cantidad de energia necesaria para realizar esta accion!" << endl;
-    } else {
+    if( validar_bombas_energia()){
         int fila = this->pedir_fila();
         int columna = this->pedir_columna();
 
-        if( mapa->hay_edicicio(fila, columna) ){
-            if(mapa->devolver_casillero(fila, columna)->devolver_duenio() == jugador_actual->devolver_numero()){
-                cout << "No se puede atacar un edificio propio " << endl;
-            } else {
-                if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_reparable()){
-                    if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_fue_atacado()){
-                        cout << "Este edificio ya fue atacado en este turno!!!" << endl;
-                    }else{
-                        if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_necesita_reparacion()){
-                            mapa->borrar_edificio(fila,columna);
-                        } else {
-                            mapa->devolver_casillero(fila,columna)->devolver_edificacion()->atacar();
-                            mapa->devolver_casillero(fila,columna)->devolver_edificacion()->fue_atacado_true();
-                        }
-                        jugador_actual->restar_material(1,BOMBA);
-                        jugador_actual->restar_energia(ENERGIA_ATACAR);
-                        jugador_actual->sumar_a_objetivo(1,BOMBARDERO);
-                    }
-                } else {
+        if( validar_atacar_edificio(fila,columna)){
+            if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_fue_atacado()){
+                cout << "Este edificio ya fue atacado en este turno!!!" << endl;
+            }else{
+                if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_necesita_reparacion()){
                     mapa->borrar_edificio(fila,columna);
-                    jugador_actual->restar_material(1,BOMBA);
-                    jugador_actual->restar_energia(ENERGIA_ATACAR);
-                    jugador_actual->sumar_a_objetivo(1,BOMBARDERO);
+                } else {
+                    mapa->devolver_casillero(fila,columna)->devolver_edificacion()->atacar();
+                    mapa->devolver_casillero(fila,columna)->devolver_edificacion()->fue_atacado_true();
                 }
-
+                restar_atacar();
             }
+        } else {
+            mapa->borrar_edificio(fila,columna);
+            restar_atacar();
         }
     }
 }
@@ -548,4 +534,37 @@ void Juego::restablecer_fue_atacado() {
             }
         }
     }
+}
+
+void Juego::restar_atacar(){
+    jugador_actual->restar_material(1,BOMBA);
+    jugador_actual->restar_energia(ENERGIA_ATACAR);
+    jugador_actual->sumar_a_objetivo(1,BOMBARDERO);
+}
+
+bool Juego::validar_atacar_edificio(int fila, int columna){
+    bool se_puede;
+    if( mapa->hay_edicicio(fila, columna) ){
+        if(mapa->devolver_casillero(fila, columna)->devolver_duenio() == jugador_actual->devolver_numero()){
+            cout << "No se puede atacar un edificio propio " << endl;
+        } else {
+            se_puede = mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_reparable();
+        }
+    }
+    return se_puede;
+}
+
+bool Juego::validar_bombas_energia(){
+    bool se_puede= false;
+    if( jugador_actual->devolver_energia() < ENERGIA_ATACAR ){
+        imprimir_mensaje_no_energia_sufuciente(ENERGIA_ATACAR);
+        cout << "No posee la energia suficiente para realizar un ataque."<< endl ;
+    }else{
+        if ( jugador_actual->devolver_inventario()->devolver_material(BOMBA) < 1 ){
+            cout << "Debe tener por lo menos una bomba para atacar un edificio" << endl ;
+        }else{
+            se_puede = true;
+        }
+    }
+    return se_puede;
 }

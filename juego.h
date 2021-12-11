@@ -259,6 +259,12 @@ class Juego{
          */
         void restablecer_fue_atacado();
 
+        void restar_atacar();
+
+        bool validar_atacar_edificio(int fila, int columna);
+
+        bool validar_bombas_energia();
+
 
 };
 
