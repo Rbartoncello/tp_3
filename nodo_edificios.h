@@ -39,7 +39,10 @@ class Nodo_edificios{
          * Post: Devuelve el nombre del nodo.
          */
         string obtener_nombre();
-
+        /*
+        * PRE:
+        * POST:
+        */
         string obtener_direccion();
 
         /*

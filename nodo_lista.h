@@ -51,7 +51,10 @@ class Nodo_lista{
          * Post: Le asigna como siguiente el nodo recibido.
          */
         void cambiar_siguiente(Nodo_lista<T>* nuevo_siguiente);
-
+        /*
+        * PRE:
+        * POST:
+        */
         int obtener_cantidad();
 
         /*

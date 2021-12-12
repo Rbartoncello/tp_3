@@ -75,14 +75,20 @@ class Terreno : public Casillero_construible{
          * POST: Devuelve el nombre del edificio
          */
         string devolver_nombre_edificio();
-
-
-
+        /*
+        * PRE:
+        * POST:
+        */
         int devolver_duenio();
-
+        /*
+        * PRE:
+        * POST:
+        */
         Edificacion* devolver_edificacion();
-
-
+        /*
+        * PRE:
+        * POST:
+        */
         virtual void eliminar_edificio();
 
         /*

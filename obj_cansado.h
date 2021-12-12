@@ -26,7 +26,10 @@ class Cansado : public Objetivos{
         //Pre:
         //Post: Me devuelve el porcentaje de completado.
         double devolver_porcentaje_completado();
-
+        /*
+        * PRE:
+        * POST:
+        */
         virtual ~Cansado();
 };
 
