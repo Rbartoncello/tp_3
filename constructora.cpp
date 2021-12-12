@@ -42,9 +42,6 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edificio, Jugado
             }
         }
     }
-
-
-
     if (!ocupado) {
         opcion_elegida = validacion_final();
         if (opcion_elegida) {
@@ -58,17 +55,22 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edificio, Jugado
 
 void Constructora::demoler_edificio(Jugador* jugador){
     bool ocupado;
+    bool coords_validas = false;
     if(jugador->devolver_energia() >= ENERGIA_DEMOLER){
-        this->ingreso_de_coordenadas();
-        if(mapa->devolver_casillero(fila_nueva,columna_nueva)->devolver_duenio() == jugador->devolver_numero()) {
+        coords_validas = this->ingreso_de_coordenadas();
+        if(coords_validas) {
             ocupado = mapa->hay_edicicio(fila_nueva, columna_nueva);
             if (ocupado) {
-                cout << "hay edificio" << endl;
-                this->avanzar_con_demolicion(jugador);
+                if (mapa->devolver_casillero(fila_nueva, columna_nueva)->devolver_duenio() ==
+                    jugador->devolver_numero()) {
+                    cout << "hay edificio" << endl;
+                    this->avanzar_con_demolicion(jugador);
+                } else {
+                    cout << "Ejem... ese edificio no es tuyo..." << endl;
+                }
+            } else {
+                cout << "Aquí no hay un edificio" << endl;
             }
-        }
-        else{
-            cout<< "Ejem... ese edificio no es tuyo..."<<endl;
         }
     }
     else
@@ -89,6 +91,7 @@ void Constructora::avanzar_con_demolicion(Jugador *jugador) {
     if(opcion_elegida == "s"){
         jugador->devolver_mis_edificios()->eliminar_por_direccion(fila_nueva,columna_nueva);
         mapa->devolver_casillero(fila_nueva,columna_nueva)->eliminar_edificio();
+        jugador->restar_energia(ENERGIA_DEMOLER);
     }
 
 }
@@ -128,7 +131,7 @@ bool Constructora::ingreso_de_coordenadas()
         cout << "Ingrese la coordenada fila: ";
         cin >> fila_nueva;
 
-        if(fila_nueva == -2){
+        if(fila_nueva == -1){
             salida_sin_coordenadas =  true;
             cout << "\nFinalizando Construccion" << endl;
         }
