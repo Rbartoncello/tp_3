@@ -72,10 +72,10 @@ void Constructora::demoler_edificio(Jugador* jugador){
 
 void Constructora::avanzar_con_demolicion(Jugador *jugador) {
     string opcion_elegida;
-    int piedra_necesaria = dict_edificios->buscar(nombre_nuevo_edificio)->devolver_receta()->devoler_piedra();
-    int madera_necesaria = dict_edificios->buscar(nombre_nuevo_edificio)->devolver_receta()->devoler_madera();
-    int metal_necesario  = dict_edificios->buscar(nombre_nuevo_edificio)->devolver_receta()->devoler_metal();
-    cout << "Se te reembolsaran" <<piedra_necesaria/2 <<","<< madera_necesaria/2<<" y "<< metal_necesario/2 << ", ¿Quieres continuar? [s/n]"<< endl;
+   // int piedra_necesaria = dict_edificios->buscar(nombre_nuevo_edificio)->devolver_receta()->devoler_piedra();
+    //int madera_necesaria = dict_edificios->buscar(nombre_nuevo_edificio)->devolver_receta()->devoler_madera();
+    //int metal_necesario  = dict_edificios->buscar(nombre_nuevo_edificio)->devolver_receta()->devoler_metal();
+    //cout << "Se te reembolsaran" <<piedra_necesaria/2 <<","<< madera_necesaria/2<<" y "<< metal_necesario/2 << ", ¿Quieres continuar? [s/n]"<< endl;
     cin.ignore();
     do{
         cin >> opcion_elegida;
