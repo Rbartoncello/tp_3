@@ -10,23 +10,23 @@
 #include "constructora.h"
 
 class Juego{
-    private:
-        Mapa* mapa;
-        Grafo* grafo;
-        Archivo* lector_archivos;
-        Diccionario<Edificacion>* diccionario;
-        Jugador* jugador_1;
-        Jugador* jugador_2;
-        Jugador* jugador_actual;
-        Constructora* constructora;
-        bool toca_lluvia;
-    public:
-        /*
-         * Constructor sin parametros:
-         * Pre: -.
-         * Post: Me va a crear el Juego vacio
-         */
-    Juego();
+     private:
+          Mapa* mapa;
+          Grafo* grafo;
+          Archivo* lector_archivos;
+          Diccionario<Edificacion>* diccionario;
+          Jugador* jugador_1;
+          Jugador* jugador_2;
+          Jugador* jugador_actual;
+          Constructora* constructora;
+          bool toca_lluvia;
+     public:
+          /*
+          * Constructor sin parametros:
+          * Pre: -.
+          * Post: Me va a crear el Juego vacio
+          */
+     Juego();
 
     /*
          * Destructor:

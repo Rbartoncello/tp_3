@@ -16,38 +16,27 @@ class Mapa{
 
     public:
         /*
-         * Constructor sin parametros:
+         * Constructor sin parámetros:
          * Pre: -.
          * Post: Me va a crear el objeto Mapa con cantidad_filas = 0, cantidad_columnas = 0 y casilleros = nullptr.
          */
         Mapa();
 
         /*
-         * Constructor:
-         * Pre: -.
-         * Post: Me va a crear el objeto Mapa.
-         */
-        Mapa(int filas, int columnas);
-
-        /*
-         * Pre: la fila y la columna tiene que estar dentro de los parametro del mapa.
-         * Post: Me devolvera el casillero.
+         * Pre: la fila y la columna tiene que estar dentro de los parámetros del mapa.
+         * Post: Me devolverá el casillero.
          */
         Casillero* devolver_casillero(int fila, int columna);
 
-                /*
+        /*
          * Pre: 
          * Post: devuelve el puntero casillero
          */
         Casillero*** devolver_puntero_casillero();
 
-        void construir_edifcio(Jugador* jugador);
-
-        int cantidad_edificio_construido(string nombre);
-
         /*
-         * Pre: la fila y la columna tiene que estar dentro de los parametro del mapa.
-         * Post: Me devolvera TRUE si el casillero esta ocupado FALSE en caso contrario.
+         * Pre: la fila y la columna tiene que estar dentro de los parámetros del mapa.
+         * Post: Me devolverá TRUE si el casillero está ocupado FALSE en caso contrario.
          */
         bool casillero_ocupado(int fila, int columna);
 
@@ -59,15 +48,27 @@ class Mapa{
         ~Mapa();
 
         /*
-         * Pre: recibe un nombre.
+         * Pre: recibe un nombre que existe.
          * Post: devuelve la cantidad de ese nombre en el mapa.
         */
         int devolver_cantidad_edificio(string nombre_edificio_nuevo, Jugador* jugador);
 
+        /*
+         * Pre: recibe un nombre que existe.
+         * Post: devuelve la cantidad de ese nombre en el mapa.
+         */
         int devolver_cantidad_edificio(string nombre_edificio_nuevo);
 
+        /*
+         * Pre:
+         * Post:
+         */
         void crear_lista_auxiliar_edificios(Lista_primitiva<int>* &cantidad_por_edificio);
 
+        /*
+         * Pre:
+         * Post:
+         */
         void crear_lista(Lista_primitiva<string>* &objetivos);
 
         /*
@@ -83,19 +84,39 @@ class Mapa{
         void mostrar();
 
         /*
-         * Pre: nombre de material,fila y columna en indice de la matriz
-         * Post: Agrega al casillero marcado el material pasado por parametro
+         * Pre: nombre de material, fila y columna en índice de la matriz
+         * Post: Agrega al casillero marcado el material pasado por parámetro
          */
         void agregar_material(string nombre, int fila, int columna);
 
+        /*
+         * Pre: -
+         * Post: Agrega al casillero marcado el jugador pasado por parámetro
+         */
         void agregar_jugador(Jugador* jugador);
 
+        /*
+         * Pre: -
+         * Post: Mueve al jugador a una nueva posición (fila, columna) al jugador pasado por parámetro
+         */
         void mover_jugador(Jugador* jugador, int fila , int columna);
 
-        char devolver_tipo_terreno(int coord1, int columna);
+        /*
+         * Pre: -
+         * Post: Mueve el tipo de terreno que se encuentra en la posición (fila, columna)
+         */
+        char devolver_tipo_terreno(int fila, int columna);
 
+        /*
+         * Pre: -
+         * Post: Agrega un edificio en (fila, columna) y en la lista de edificios
+         */
         void agregar_edificacion(string nombre, int fila, int columna, int duenio, Lista_edificios<Edificacion> *&edificios_jugador);
 
+        /*
+         * Pre: El nombre tiene que ser un edificio que exista
+         * Post: Me creará un objeto Edifcacion de pediendo del nombre que le paso por parámetro
+         */
         Edificacion* crear_edificio(string nombre, int piedra, int madera, int metal, int max_cant_permitidos);
 
         /*
@@ -116,15 +137,29 @@ class Mapa{
         */
         void imprimir_resumen_casillero(int fila, int columna);
 
+        /*
+         * Pre:
+         * Post: Me muestra todo los edificios de del jugador
+        */
         void mostrar_edificios_construidos2(Jugador* jugador_actual);
 
+        /*
+         * Pre: La fila y columna tiene que estar dentro del los parámetros del mapa
+         * Post: Me devolverá TRUE si en la posición (fila, columna) hay un edificio y FALSE en caso contrario
+        */
         bool hay_edificio(int fila, int columna);
 
         /*
-      * Pre: -
-      * Post: valida que una coordenada es de tipo construible
-      */
+         * Pre: -
+         * Post: válida que una coordenada es de tipo construible
+         */
         bool validar_tipo_construible(int fila, int columna);
+
+        /*
+         * Pre: -
+         * Post: válida que una coordenada es de tipo transitable
+         */
+        bool validar_tipo_transitable(int fila, int columna);
         
         /*
          * Pre: el casillero tiene un edificio
@@ -133,77 +168,51 @@ class Mapa{
         void borrar_edificio(int fila, int columna);
 
         /*
-         * Pre: Fila y columna dentro de los parametros del mapa
-         * Post: Me devuelve TRUE si en esa posicion exite un edificio
-         */
-        bool hay_edicicio(int fila, int columna);
-
-        /*
          * Pre: -
-         * Post: Guarda materiales en casilleros transitables de manera aleatoria (con las probabilidades dadas por consigna)
+         * Post: Guarda los materiales en casilleros transitables de manera aleatoria (con las probabilidades dadas por consigna)
         */
         void lluvia_recursos();
-
-        /*
-         * Pre: -
-         * Post: Me devuelve TRUE si hay como minimo un edificio construido y FALSE en caso contrario.
-        */
-        bool hay_algun_edificio_construido();
 
     private:
         /*
          * Pre: El archivo tiene que estar abierto y de formato correcto.
-         * Post: Me va agregar los datos de encuentra en el archivo en un determinado objeto dependiendo lo que lea del archivo.
+         * Post: Me va a agregar los datos se encuentra en el archivo en un determinado objeto dependiendo lo que lea del archivo.
          */
         void agregar_casillero(ifstream &archivo);
 
         /*
          * Pre: -
-         * Post: Me crea una matriz del tipo casillero de forma dinamica.
+         * Post: Me crea una matriz del tipo casillero de forma dinámica.
          */
         void crear_matriz_casilleros();
 
-
         /*
-         * Pre: -
-         * Post: valida que una coordenada es de tipo transitable
-         */
-        bool validar_tipo_transitable(int fila, int columna);
-
-        /*
-         * Pre: El nombre tiene que ser de un material exitente
-         * Post: Me devolver el material buscado.
+         * Pre: El nombre tiene que ser de un material existente
+         * Post: Me devuelve el material buscado.
          */
         Material* buscar_material(string nombre);
 
-        //Pre:
-        //Post:Agrega lo lloviddo a la coordenada correspondiente
-        void agregar_a_coordenada(int cantidad, string material);
-
-        void agregar_material(int cantidad, string material);
-
         /*
-         * Pre: Recibe 2 numeros
-         * Post: Devuelve un numero aleatorio entre esos 2 numeros
+         * Pre: Recibe 2 números
+         * Post: Devuelve un numero aleatorio entre esos 2 números
         */
         int numero_aleatorio(int desde, int hasta);
         
         /*
          * Pre: Recibe coordenadas dentro del dominio de la matriz
-         * Post: Devuelve true si el casillero es transitable y esta vacio, false de lo contrario
+         * Post: Devuelve true si el casillero es transitable y está vacío, false de lo contrario
         */
         bool se_puede_generar_material(int fila, int columna);
 
         /*
-         * Pre: Recibe un nombre de material y dos numeros minimo y maximo
+         * Pre: Recibe un nombre de material y dos números mínimo y maximo
          * Post: Crea una cantidad n ( siendo min < n <max ) de ese material y los agrega al mapa
         */
         void agregar_materiales(string material, int minimo, int maximo);
 
-
         /*
          * Pre: -
-         * Post: Me devuleve TRUE si el si por lo menos hay como minimo 7 casilleros transitables no ocupados.
+         * Post: Me devuelve TRUE si el si por lo menos hay como mínimo 7 casilleros transitables no ocupados.
          */
         bool hay_lugar_minimo_material();
 

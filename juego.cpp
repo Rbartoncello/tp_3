@@ -435,7 +435,7 @@ void Juego::cargar_grafo()
     for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
         for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
             Casillero* casillero = mapa->devolver_casillero(i, j);
-            if ( ! mapa->hay_edicicio(i,j) ){
+            if ( ! mapa->hay_edificio(i,j) ){
                 if ( ( i != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) )
                     this->grafo->agregarVertice(casillero->devolver_posicion());
             }
@@ -555,13 +555,13 @@ void Juego::atacar_edificio(){
                 cout << "Este edificio ya fue atacado en este turno!!!" << endl;
             }else{
                 if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_necesita_reparacion()){
-                        devolver_jugador_turno()->borrar_edificio(fila, columna);
+                        devolver_jugador_turno()->devolver_mis_edificios()->eliminar_por_direccion(fila, columna);
                         mapa->borrar_edificio(fila,columna);
                 } else {
                     mapa->devolver_casillero(fila,columna)->devolver_edificacion()->atacar();
                     mapa->devolver_casillero(fila,columna)->devolver_edificacion()->fue_atacado_true();
                     if (mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_nombre_edificio() != EDIFICIO_MINA && mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_nombre_edificio() != EDIFICIO_FABRICA){
-                        devolver_jugador_turno()->borrar_edificio(fila, columna);
+                        devolver_jugador_turno()->devolver_mis_edificios()->eliminar_por_direccion(fila, columna);
                         mapa->borrar_edificio(fila,columna);
                     }
                     restar_atacar();
@@ -584,7 +584,7 @@ bool Juego::validar_reparar_edificio(int fila, int columna)
     int madera_necesaria = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_madera()/4;
     int metal_necesario  = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_metal()/4;
 
-    if( mapa->hay_edicicio(fila, columna) ){
+    if( mapa->hay_edificio(fila, columna) ){
         if(mapa->devolver_casillero(fila, columna)->devolver_duenio() != jugador_actual->devolver_numero()){
             cout << "No se puede reparar un edificio que no te pertenece" << endl;
         }
@@ -626,7 +626,7 @@ void Juego::acumular_recursos(){
 void Juego::restablecer_fue_atacado() {
     for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
         for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
-            if ( ( mapa->hay_edicicio(i, j) ) ){
+            if ( ( mapa->hay_edificio(i, j) ) ){
                 mapa->devolver_casillero(i,j)->devolver_edificacion()->fue_atacado_false();
             }
         }
@@ -641,7 +641,7 @@ void Juego::restar_atacar(){
 
 bool Juego::validar_atacar_edificio(int fila, int columna){
     bool se_puede = false;
-    if( mapa->hay_edicicio(fila, columna) ){
+    if( mapa->hay_edificio(fila, columna) ){
         if(mapa->devolver_casillero(fila, columna)->devolver_duenio() == jugador_actual->devolver_numero())
             cout << "No se puede atacar un edificio propio " << endl;
         else

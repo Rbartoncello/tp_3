@@ -200,7 +200,7 @@ Material *Mapa::buscar_material(string nombre)
         material = new Madera(LLUVIA_GENERA_MADERA);
     else if (nombre == METAL)
         material = new Metal(LLUVIA_GENERA_METAL);
-    else if (nombre == ANDYCOINS)
+    else
         material = new Andycoins(LLUVIA_GENERA_ANDYCOINS);
 
     return material;
@@ -229,22 +229,6 @@ bool Mapa::casillero_ocupado(int fila, int columna)
     return casilleros[fila][columna]->esta_ocupado();
 }
 
-int Mapa::cantidad_edificio_construido(string nombre)
-{
-    int cantidad = 0;
-    for (int i = 0; i < this->cantidad_filas; i++)
-    {
-        for (int j = 0; j < this->cantidad_columnas; j++)
-        {
-            if (this->casilleros[i][j]->devolver_tipo_terreno() == TERRENO && this->casilleros[i][j]->esta_ocupado() && this->casilleros[i][j]->devolver_nombre_edificio() == nombre)
-            {
-                cantidad++;
-            }
-        }
-    }
-    return cantidad;
-}
-
 bool Mapa::validar_tipo_construible(int fila, int columna)
 {
     return ((devolver_tipo_terreno(fila, columna) == TERRENO));
@@ -252,12 +236,7 @@ bool Mapa::validar_tipo_construible(int fila, int columna)
 
 bool Mapa::validar_tipo_transitable(int fila, int columna)
 {
-    return ((devolver_tipo_terreno(fila, columna) == CAMINO));
-}
-
-bool Mapa::hay_edificio(int fila, int columna)
-{
-    return (devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO && devolver_casillero(fila, columna)->esta_ocupado());
+    return ( ( casilleros[fila][columna]->devolver_tipo_terreno() != LAGO ) && ( casilleros[fila][columna]->devolver_tipo_terreno() != TERRENO ) );
 }
 
 char Mapa::devolver_tipo_terreno(int fila, int columna)
@@ -295,10 +274,6 @@ Edificacion *Mapa::crear_edificio(string nombre, int piedra, int madera, int met
         edificio = new Planta(piedra, madera, metal, max_cant_permitidos);
 
     return edificio;
-}
-
-void Mapa::construir_edifcio(Jugador *jugador)
-{
 }
 
 int Mapa::devolver_cantidad_columnas()
@@ -368,14 +343,13 @@ void Mapa::borrar_edificio(int fila, int columna)
     casilleros[fila][columna]->eliminar_edificio();
 }
 
-bool Mapa::hay_edicicio(int fila, int columna)
+bool Mapa::hay_edificio(int fila, int columna)
 {
     return (devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO && devolver_casillero(fila, columna)->devolver_edificacion() != nullptr);
 }
 
 
 int Mapa::numero_aleatorio(int desde, int hasta){
-    //srand((unsigned int)time(NULL));
     int numero = ( desde + rand() % hasta );
     
     while (numero > hasta)
@@ -387,7 +361,7 @@ bool Mapa::se_puede_generar_material(int fila, int columna){
     return ( !( casillero_ocupado(fila, columna) ) && ( this->casilleros[fila][columna]->devolver_tipo_terreno() != LAGO) && ( this->casilleros[fila][columna]->devolver_tipo_terreno() != TERRENO ) );
 }
 
-void Mapa::agregar_materiales(std::string material, int minimo, int maximo){
+void Mapa::agregar_materiales(string material, int minimo, int maximo){
     int maximos_materiales = numero_aleatorio(minimo, maximo);
 
     for (int i = 0; i < maximos_materiales; i++){
@@ -450,24 +424,5 @@ void Mapa::lluvia_recursos(){
 
 Casillero*** Mapa::devolver_puntero_casillero(){
     return casilleros;
-}
-
-bool Mapa::hay_algun_edificio_construido(){
-    bool hay_edificio = false;
-    int i = 0;
-
-    while ( ( i < this->devolver_cantidad_filas() ) && !(hay_edificio) ){
-        int j = 0;
-        while( ( j < this->devolver_cantidad_filas() ) && !(hay_edificio) ){
-            if( this->devolver_casillero(i,j)->esta_ocupado() )
-                hay_edificio = true;
-            else{
-                j++;
-            }
-        }
-        i++;
-    }
-
-    return hay_edificio;
 }
 
