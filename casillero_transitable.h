@@ -32,8 +32,15 @@ class Casillero_transitable : public Casillero{
          * Post: De devuleve TRUE si esta ocupado y FALSE en caso contrario.
          */
         bool esta_ocupado();
-
+            /*
+        * PRE:
+        * POST:
+        */
         void modificar_ocupado(bool estado);
+            /*
+        * PRE:
+        * POST:
+        */
         virtual int devolver_costo() = 0;
 
         /*

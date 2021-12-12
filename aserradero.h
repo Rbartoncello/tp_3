@@ -65,8 +65,15 @@ class Aserradero : public Edificacion{
          */
         bool devolver_necesita_reparacion();
 
-        void atacar(); 
-
+            /*
+        * PRE:
+        * POST:
+        */
+        void atacar();
+            /*
+        * PRE:
+        * POST:
+        */
         void reparar();
         /*
          * Pre: -

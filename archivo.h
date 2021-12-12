@@ -19,7 +19,10 @@ class Archivo {
         //Pre:
         //Post:
         int leer_archivos_materiales(Jugador* &jugador_1, Jugador* &jugador_2);
-
+        /*
+         * PRE:
+         * POST:
+         */
         Material* generar_material(string nombre,int cantidad);
 
         //Pre:

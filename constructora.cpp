@@ -61,8 +61,7 @@ void Constructora::demoler_edificio(Jugador* jugador){
         if(coords_validas) {
             ocupado = mapa->hay_edicicio(fila_nueva, columna_nueva);
             if (ocupado) {
-                if (mapa->devolver_casillero(fila_nueva, columna_nueva)->devolver_duenio() ==
-                    jugador->devolver_numero()) {
+                if (mapa->devolver_casillero(fila_nueva, columna_nueva)->devolver_duenio() == jugador->devolver_numero()) {
                     cout << "hay edificio" << endl;
                     this->avanzar_con_demolicion(jugador);
                 } else {

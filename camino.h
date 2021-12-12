@@ -74,11 +74,20 @@ class Camino : public Casillero_transitable{
          * Post: Imprime un resumen escrito del casillero
          */
         void imprimir_resumen();
-
+            /*
+        * PRE:
+        * POST:
+        */
         void agregar_jugador(Jugador* jugador);
-
+            /*
+        * PRE:
+        * POST:
+        */
         void eliminar_jugador();
-
+            /*
+        * PRE:
+        * POST:
+        */
         void mover_jugador(Jugador* jugador);
 };
 
