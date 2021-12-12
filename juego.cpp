@@ -231,8 +231,7 @@ int Juego::mostrar_opciones(){
         {
             imprimir_mensaje_finalizacion_turno_automatico(jugador_actual);
             opcion_elegida = FINALIZAR_TURNO;
-        }
-        else
+        } else
         {
             imprimir_menu_juego(mapa, jugador_actual);
 

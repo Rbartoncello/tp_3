@@ -1,12 +1,6 @@
 #include "archivo.h"
 #include "obelisco.h"
-#include "mina.h"
-#include "escuela.h"
-#include "planta.h"
 #include "constantes.h"
-#include "fabrica.h"
-#include "aserradero.h"
-#include "mina_oro.h"
 #include "andycoins.h"
 #include "bomba.h"
 
@@ -96,7 +90,7 @@ Material *Archivo::generar_material(string nombre, int cantidad)
         material = new Metal(cantidad);
     else if (nombre == ANDYCOINS)
         material = new Andycoins(cantidad);
-    else if (nombre == BOMBA)
+    else
         material = new Bomba(cantidad);
 
     return material;
