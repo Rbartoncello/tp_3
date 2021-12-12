@@ -95,8 +95,7 @@ void imprimir_menu_juego(Mapa *mapa, Jugador *jugador_actual)
          << gotoxy.pos(8, 65) << "║ " << EMOJI_CUATRO << " ║" << END_COLOR << TXT_BOLD << " Atacar un edificio por coordenada " << EMOJI_BOMBA << TXT_LIGHT_AQUA_43 << "  ║" << endl
          << gotoxy.pos(9, 65) << "╠────╬───────────────────────────────────────╣" << endl
          << gotoxy.pos(10, 65) << "║ " << EMOJI_CINCO << " ║" << END_COLOR << TXT_BOLD << " Reparar un edificio por coordenada " << EMOJI_EDIFICIO_CONSTRUCION << TXT_LIGHT_AQUA_43 << "  ║" << endl
-       
-       
+
          << gotoxy.pos(11, 65) << "╠────╬───────────────────────────────────────╣" << endl
          << gotoxy.pos(12, 65) << "║ " << EMOJI_SEIS << " ║" << END_COLOR << TXT_BOLD << " Comprar Bomba " << EMOJI_BOMBA << TXT_LIGHT_AQUA_43 << "                      ║" << endl
          << gotoxy.pos(13, 65) << "╠────╬───────────────────────────────────────╣" << endl
@@ -295,11 +294,11 @@ void imprimir_materiales_jugador(Nodo_lista<Material> *&primero, int cantidad_en
 
 void encabezado_edificios_jugador_secundario()
 {
-    
+    Gotoxy gotoxy;
     cout << TXT_BOLD;
-    cout << "\t\t╔═══════════════════════╦══════╦═════════╦═════════════════════╗" << endl;
-    cout << "\t\t║ Edificios construidos ║ Fila ║ Columna ║ Necesita reparacion ║" << endl;
-    cout << "\t\t╠═══════════════════════╬══════╬═════════╬═════════════════════╣" << endl;
+    cout << gotoxy.pos(8, 42) << "\t\t╔═══════════════════════╦══════╦═════════╦═════════════════════╗"
+         << gotoxy.pos(9, 42) << "\t\t║ Edificios construidos ║ Fila ║ Columna ║ Necesita reparacion ║"
+         << gotoxy.pos(10, 42) << "\t\t╠═══════════════════════╬══════╬═════════╬═════════════════════╣";
     cout << END_COLOR;
 }
 
@@ -307,11 +306,13 @@ void imprimir_edificios_jugador(Lista_edificios<Edificacion> *edificios_jugador)
 {
 
     encabezado_edificios_jugador_secundario();
+    Gotoxy gotoxy;
 
     string necesita_reparacion = EMOJI_MAL, nombre_edificio;
     int cantidad_en_lista = edificios_jugador->devolver_cantidad_en_Lista_edificios();
     Nodo_edificios<Edificacion> *primer_nodo_edificios = edificios_jugador->retornar_primero();
-    Edificacion* edificio;    
+    Edificacion *edificio;
+    int contador = 10, contador_auxiliar = 0;
 
     for (int i = 0; i < cantidad_en_lista; i++)
     {
@@ -322,11 +323,15 @@ void imprimir_edificios_jugador(Lista_edificios<Edificacion> *edificios_jugador)
             if (edificio->devolver_necesita_reparacion())
                 necesita_reparacion = EMOJI_HECHO;
         }
-        cout << "\t\t║" << setfill(' ') << setw(16) << nombre_edificio << "( " << edificio->devolver_emoji() << " )" << setfill(' ') << setw(4);
-        cout << "│" << setfill(' ') << setw(4) << edificio->devolver_fila() << setfill(' ') << setw(5);
-        cout << "│" << setfill(' ') << setw(5) << edificio->devolver_columna() << setfill(' ') << setw(7);
-        cout << "│" << setfill(' ') << setw(12) << necesita_reparacion << setfill(' ') << setw(13) << "║" << endl;
-        cout << "\t\t╠───────────────────────┼──────┼─────────┼─────────────────────╣" << endl;
+        contador++;
+        contador_auxiliar = contador + 1;
+        cout << gotoxy.pos(contador, 42) << "\t\t║" << setfill(' ') << setw(16) << nombre_edificio << "( " << edificio->devolver_emoji() << " )" << setfill(' ') << setw(4)
+             << "│" << setfill(' ') << setw(4) << edificio->devolver_fila() << setfill(' ') << setw(5)
+             << "│" << setfill(' ') << setw(5) << edificio->devolver_columna() << setfill(' ') << setw(7)
+             << "│" << setfill(' ') << setw(12) << necesita_reparacion << setfill(' ') << setw(13) << "║" << endl
+             << gotoxy.pos(contador_auxiliar, 42) << "\t\t╠───────────────────────┼──────┼─────────┼─────────────────────╣" << endl;
+
+        contador++;
 
         primer_nodo_edificios = primer_nodo_edificios->direccion_siguiente();
     }
@@ -336,23 +341,24 @@ void imprimir_edificios_jugador(Lista_edificios<Edificacion> *edificios_jugador)
         cout << TXT_BOLD;
         cout << "\t\t║ " << TXT_RED_196 << setfill(' ') << setw(49) << "NO HAY NINGUN EDIFICIO CONSTRUIDO" << setfill(' ') << setw(16) << END_COLOR << " ║" << endl;
         cout << "\t\t╚═══════════════════════════════════════════════════════════════╝" << endl;
-    }    
-
+    }
 }
 
 void encabezado_edificios_jugador()
 {
+    Gotoxy gotoxy;
     cout << TXT_BOLD;
-    cout << "\t\t\t╔══════════════════════╦═════════════╗" << endl;
-    cout << "\t\t\t║        Edificio      ║  Cantidad   ║" << endl;
-    cout << "\t\t\t╠══════════════════════╬═════════════╣" << endl;
+    cout << gotoxy.pos(8, 11) << "\t╔══════════════════════╦═════════════╗"
+         << gotoxy.pos(9, 11) << "\t║        Edificio      ║  Cantidad   ║"
+         << gotoxy.pos(10, 11) << "\t╠══════════════════════╬═════════════╣";
     cout << END_COLOR;
 }
 
 void imprimir_cantidad_edificios_jugador(Lista_primitiva<string> *nombre_edificios, Lista_primitiva<int> *cantidad_por_edificio)
 {
     string nombre_de_edificio;
-    int cantidad = 0;
+    int cantidad = 0, contador = 10, contador_auxiliar = 0;
+    Gotoxy gotoxy;
 
     encabezado_edificios_jugador();
 
@@ -360,11 +366,12 @@ void imprimir_cantidad_edificios_jugador(Lista_primitiva<string> *nombre_edifici
     {
         nombre_de_edificio = nombre_edificios->devolver_elemento_en_posicion(i + 1);
         cantidad = cantidad_por_edificio->devolver_elemento_en_posicion(i + 1);
-        cout << "\t\t\t║" << setfill(' ') << setw(16) << nombre_de_edificio << "( "
-             << "EJ"
-             << " )" << setfill(' ') << setw(3);
-        cout << "║" << setfill(' ') << setw(7) << cantidad << setfill(' ') << setw(9) << "║";
-        cout << "\n\t\t\t╠──────────────────────┼─────────────╣" << endl;
+        contador++;
+        contador_auxiliar = contador + 1;
+        cout << gotoxy.pos(contador, 11) << "\t║" << setfill(' ') << setw(16) << nombre_de_edificio << "( " << "EJ" << " )" << setfill(' ') << setw(3)
+             << "║" << setfill(' ') << setw(7) << cantidad << setfill(' ') << setw(9) << "║" << endl
+             << gotoxy.pos(contador_auxiliar, 11) << "\t╠──────────────────────┼─────────────╣" << endl;
+        contador++;
     }
 }
 
