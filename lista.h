@@ -52,7 +52,10 @@ class Lista{
          * Post: Me devuelve la posicion en la que se encuentra el nombre que recibe o -1 si no lo encuentra.
          */
         int obtener_posicion(string nombre);
-
+        /*
+        * PRE:
+        * POST:
+        */
         int devolver_material(string material);
 
         /*

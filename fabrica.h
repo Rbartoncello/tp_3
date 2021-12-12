@@ -57,9 +57,15 @@ class Fabrica : public Edificacion{
          * Post: Me devuelve el piedra.
          */
         Receta* devolver_receta();
-
-        void atacar(); 
-
+        /*
+        * PRE:
+        * POST:
+        */
+        void atacar();
+        /*
+        * PRE:
+        * POST:
+        */
         void reparar();
 
         /*

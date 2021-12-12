@@ -5,80 +5,79 @@
 #include "nodo_primitivo.h"
 
 template <typename T>
-class Lista_primitiva
-{
-private:
-    int cantidad_en_Lista_primitiva;
-    Nodo_primitivo<T> *primero;
-    Nodo_primitivo<T> *ultimo;
+class Lista_primitiva{
+    private:
+        int cantidad_en_Lista_primitiva;
+        Nodo_primitivo<T> *primero;
+        Nodo_primitivo<T> *ultimo;
 
-public:
-    /*
-         * Constructor:
-         * Pre: -.
-         * Post: Me va a crear el objeto Lista_primitiva.
-         */
-    Lista_primitiva();
+    public:
+        /*
+             * Constructor:
+             * Pre: -.
+             * Post: Me va a crear el objeto Lista_primitiva.
+             */
+        Lista_primitiva();
 
-    /*
-         * Pre: posicion >= cantidad Lista_primitiva.
-         * Post: Me agrega un nuevo elemento a la Lista_primitiva en la posicion ingresada.
-         */
-    void agregar_elemento(T elemento, int posicion);
+        /*
+             * Pre: posicion >= cantidad Lista_primitiva.
+             * Post: Me agrega un nuevo elemento a la Lista_primitiva en la posicion ingresada.
+             */
+        void agregar_elemento(T elemento, int posicion);
 
-    /*
-         * Pre: -.
-         * Post: Me agrega un nuevo elemento a la Lista_primitiva.
-         */
-    void agregar(T nuevo_elemento);
+        /*
+             * Pre: -.
+             * Post: Me agrega un nuevo elemento a la Lista_primitiva.
+             */
+        void agregar(T nuevo_elemento);
 
-    /*
-         * Pre: -.
-         * Post: Me devuelve el primer elemento de la Lista_primitiva.
-         */
-    Nodo_primitivo<T> *&retornar_primero();
+        /*
+             * Pre: -.
+             * Post: Me devuelve el primer elemento de la Lista_primitiva.
+             */
+        Nodo_primitivo<T> *&retornar_primero();
 
-    /*
-         * Pre: -.
-         * Post: Me devuelve la cantidad de elementos de la Lista_primitiva.
-         */
-    int devolver_cantidad_en_Lista_primitiva();
+        /*
+             * Pre: -.
+             * Post: Me devuelve la cantidad de elementos de la Lista_primitiva.
+             */
+        int devolver_cantidad_en_Lista_primitiva();
 
-    /*
-         * Pre: -.
-         * Post: Me devuelve la posicion en la que se encuentra el nombre que recibe o -1 si no lo encuentra.
-         */
-    int obtener_posicion(T nombre);
+        /*
+             * Pre: -.
+             * Post: Me devuelve la posicion en la que se encuentra el nombre que recibe o -1 si no lo encuentra.
+             */
+        int obtener_posicion(T nombre);
 
-    /*
-         * Pre: la posicion del elemento a eliminar
-         * Post: elimina el elemento de la Lista_primitivas
-         */
-    void remover_elemento(int posicion);
+        /*
+             * Pre: la posicion del elemento a eliminar
+             * Post: elimina el elemento de la Lista_primitivas
+             */
+        void remover_elemento(int posicion);
 
-    /*
-         * Pre: la posicion del elemento a eliminar
-         * Post: elimina el elemento de la Lista_primitivas
-         */
-    T devolver_elemento_en_posicion(int posicion);
+        /*
+             * Pre: la posicion del elemento a eliminar
+             * Post: elimina el elemento de la Lista_primitivas
+             */
+        T devolver_elemento_en_posicion(int posicion);
 
-    /*
-         * Destructor:
-         * Pre: -.
-         * Post: Me va a destruir el objeto Lista_primitiva.
-         */
-    ~Lista_primitiva();
+        /*
+             * Destructor:
+             * Pre: -.
+             * Post: Me va a destruir el objeto Lista_primitiva.
+             */
+        ~Lista_primitiva();
 
-    void cambiar_dato(T dato, int posicion);
+        void cambiar_dato(T dato, int posicion);
 
-    int obtener_posicion_con_nombre(string nombre_buscado);
+        int obtener_posicion_con_nombre(string nombre_buscado);
 
-private:
-    /*
-         * Pre: posicion >= cantidad Lista_primitiva.
-         * Post: Me devuelve la direccion del nodo de esa posicion.
-         */
-    Nodo_primitivo<T> *obtener_direccion_nodo(int posicion);
+    private:
+        /*
+             * Pre: posicion >= cantidad Lista_primitiva.
+             * Post: Me devuelve la direccion del nodo de esa posicion.
+             */
+        Nodo_primitivo<T> *obtener_direccion_nodo(int posicion);
 };
 
 template <typename T>

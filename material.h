@@ -78,7 +78,10 @@ class Material{
          * Post: Reduce la cantidad del material
         */
         void reducir_cantidad(int cantidad);
-
+        /*
+        * PRE:
+        * POST:
+        */
         virtual ~Material() = 0;
 };
 

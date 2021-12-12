@@ -43,10 +43,16 @@ class Lista_edificios{
          * Post: Me devuelve la cantidad de elementos de la Lista_edificios.
          */
         int devolver_cantidad_en_Lista_edificios();
-
+        /*
+        * PRE:
+        * POST:
+        */
         bool eliminar_por_direccion(int fila, int columna);
 
-
+        /*
+        * PRE:
+        * POST:
+        */
         int obtener_cantidad(int posicion);
 
         /*

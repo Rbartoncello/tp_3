@@ -52,7 +52,10 @@ public:
 
     //post: selecciona el algortimo de Floyd para calcular el camino mínimo
     void usar_floyd();
-
+    /*
+    * PRE:
+    * POST:
+    */
     int devolver_costo(string origen, string destino);
 
     ~Grafo();

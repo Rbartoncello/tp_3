@@ -21,7 +21,10 @@ class Madera : public Material{
          * Post: Me va a crear el objeto Madera con nombre = MADERA, emoji = EMOJI_MADERA Y cantidad = cantidad.
          */
         Madera(int cantidad);
-
+        /*
+        * PRE:
+        * POST:
+        */
         virtual ~Madera();
 };
 
