@@ -120,7 +120,7 @@ void Lista_edificios<T>::remover_elemento(int posicion){
     
     Nodo_edificios<T> *posicion_siguiente_nodo;
 
-    if (posicion == 1)
+    if (posicion == 0)
     {
         posicion_siguiente_nodo = primero->direccion_siguiente();
         delete primero;
@@ -132,7 +132,7 @@ void Lista_edificios<T>::remover_elemento(int posicion){
         Nodo_edificios<T> *posicion_nodo_a_eliminar;
         nodo_anterior_a_posicion = obtener_direccion_nodo(posicion-1);
         posicion_nodo_a_eliminar = nodo_anterior_a_posicion->direccion_siguiente();
-        posicion_siguiente_nodo = obtener_direccion_nodo(posicion-1)->direccion_siguiente();
+        posicion_siguiente_nodo = obtener_direccion_nodo(posicion)->direccion_siguiente();
         delete posicion_nodo_a_eliminar;
         nodo_anterior_a_posicion->cambiar_siguiente(posicion_siguiente_nodo);
     }
@@ -176,11 +176,11 @@ int Lista_edificios<T>::devolver_cantidad_en_Lista_edificios(){
 template<typename T>
 int Lista_edificios<T>::obtener_posicion(string nombre) {
     bool elemento_encontrado = false;
-    int i = 0;
+    int i = 1;
     Nodo_edificios<T>* auxiliar = primero;
 
-    while(!elemento_encontrado && i < cantidad_en_Lista_edificios){
-        if(auxiliar->devolver_dato()->devolver_nombre() == nombre){
+    while(!elemento_encontrado && i!= cantidad_en_Lista_edificios){
+        if(auxiliar->devolver_dato()->devolver_nombre_edificio() == nombre){
             elemento_encontrado = true;
         }
         i++;
@@ -188,7 +188,7 @@ int Lista_edificios<T>::obtener_posicion(string nombre) {
     }
 
     if(!elemento_encontrado)
-        return -1;
+        return ERROR;
     
     return i - 1;
 }
@@ -270,15 +270,19 @@ bool Lista_edificios<T>::eliminar_por_direccion(int fila, int columna){
     string direccion_buscada = to_string(fila) + to_string(columna);
     Nodo_edificios<T>* auxiliar = primero;
     bool bandera = false;
+    int posicion = 0;
     
     for (int i = 0; i < cantidad_en_Lista_edificios; ++i) {
         cout << auxiliar->obtener_direccion() << endl;
         if(auxiliar->obtener_direccion() == direccion_buscada){
             auxiliar->anular_dato();
             bandera = true;
+            posicion = i;
         }
         auxiliar = auxiliar->direccion_siguiente();
     }
+
+    remover_elemento(posicion);
 
     return bandera;
 }

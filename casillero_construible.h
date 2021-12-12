@@ -49,6 +49,8 @@ class Casillero_construible : public Casillero{
 
         virtual ~Casillero_construible() = 0; 
 
+        Material* devolver_material();
+
         /*
          * Pre: -
          * Post: Metodo virtual vacio para los hijos

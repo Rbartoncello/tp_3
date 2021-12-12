@@ -42,6 +42,8 @@ class Archivo {
         //Post:
         //  void leerArchivoMapa(string nombre);
 
+        void escribir_archivos(Jugador *&jugador_1, Jugador *&jugador_2, Mapa* mapa);
+
         ~Archivo() ;
 
     private:
@@ -51,6 +53,8 @@ class Archivo {
         void validarArchivo();
 
         int leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa, Jugador* &jugador);
+
+        void escribir_archivo_ubicaciones(Mapa* mapa,Jugador *jugador_1, Jugador *jugador_2);
 
         void agregar_edificio(ifstream &documento,string nombre_edificio,Mapa* &mapa, Diccionario<Edificacion>*&diccionario, int duenio,Lista_edificios<Edificacion>*& edificios_jugador);
 
@@ -63,6 +67,12 @@ class Archivo {
         int arreglarCoordenadaX(string coordX);
 
         int arreglarCoordenadaY(string coordY);
+
+        void escribir_archivo_materiales(Jugador *&jugador_1, Jugador *&jugador_2);
+
+        void guardar_edificios_jugador(Lista_edificios<Edificacion>* edificio_jugador, fstream &documento);
+
+        void guardar_materiales_en_mapa(Mapa *mapa, fstream &documento);
 
         Edificacion* buscar_edificacion(string nombre, int piedra, int madera, int metal, int max_cant_permitidos);
 

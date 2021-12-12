@@ -12,30 +12,31 @@ Jugador::Jugador(int numero, string emoji){
     objetivos_secundarios = new Lista<Objetivos>();
     edificios_jugador = new Lista_edificios<Edificacion>();
     energia_acumulada = 0;
-    //objetivo_primario = new Mas_alto_que_las_nubes();
 }
 
 Jugador::~Jugador(){
-    delete this->inventario;
-    delete this->recursos_acumulados;
-    delete this->objetivos_secundarios;
-    delete this->edificios_jugador;
+    delete inventario;
+    delete recursos_acumulados;
+    delete objetivos_secundarios;
+    delete edificios_jugador;
+    delete objetivo_principal;
 }
 
 void Jugador::crear_lista(Lista_primitiva<string>* &objetivos){
     objetivos->agregar(COMPRAR_ANDYPOLIS);
     objetivos->agregar(EDAD_PIEDRA);
     objetivos->agregar(BOMBARDERO);
-    //objetivos->agregar(ENERGETICO);
-    //objetivos->agregar(LETRADO);
-    //objetivos->agregar(MINERO);
+    objetivos->agregar(ENERGETICO);
+    objetivos->agregar(LETRADO);
+    objetivos->agregar(MINERO);
     objetivos->agregar(CONSTRUCTOR);
     objetivos->agregar(CANSADO);
     objetivos->agregar(ARMADO);
     objetivos->agregar(EXTREMISTA);    
 }
 
-void Jugador::generar_objetivos_secundarios(){
+void Jugador::generar_objetivos(int cantidad_escuelas){
+    objetivo_principal = new Obelisco_obj(edificios_jugador);
     Lista_primitiva<string>* objetivos = new Lista_primitiva<string>();
     string nombre_objetivo;
     crear_lista(objetivos);
@@ -45,7 +46,7 @@ void Jugador::generar_objetivos_secundarios(){
     {
         posicion = numero_aleatorio(1,hasta);
         nombre_objetivo = objetivos->devolver_elemento_en_posicion(posicion);
-        agregar_objetivo(nombre_objetivo);
+        agregar_objetivo(nombre_objetivo, cantidad_escuelas);
         objetivos->remover_elemento(posicion);
         hasta--;
     }    
@@ -74,7 +75,7 @@ Material* Jugador::generar_material(string nombre){
     return material;
 }
 
-void Jugador::agregar_objetivo(string nombre_objetivo){
+void Jugador::agregar_objetivo(string nombre_objetivo, int cantidad_escuelas){
 
     Objetivos* objetivo;
 
@@ -90,6 +91,12 @@ void Jugador::agregar_objetivo(string nombre_objetivo){
         objetivo = new Cansado(energia);
     else if (nombre_objetivo == EXTREMISTA)
         objetivo = new Extremista;
+     else if (nombre_objetivo == LETRADO)
+        objetivo = new Letrado(edificios_jugador,cantidad_escuelas);
+     else if (nombre_objetivo == MINERO)
+        objetivo = new Minero(edificios_jugador);
+     else if (nombre_objetivo == ENERGETICO)
+        objetivo = new Energetico(&energia);
     else if (nombre_objetivo == CONSTRUCTOR)
         objetivo = new Constructor(edificios_jugador);
     
@@ -279,13 +286,20 @@ void Jugador::sumar_a_objetivo(int cantidad, string nombre_objetivo){
 }
 
 bool Jugador::validar_objetivos(){
-    return(contar_objetivos_completados(0) == OBJETIVOS_SECUNDARIOS_CUMPLIDOS);
+    objetivo_principal->verificar_estado_objetivo();
+
+    if (!objetivo_principal->devolver_estado_objetivo())
+
+        return(contar_objetivos_completados(0) == OBJETIVOS_SECUNDARIOS_CUMPLIDOS);
+
+    return true;
 }
 
 int Jugador::contar_objetivos_completados(int contador){
 
     int objetivos_realizados = 0;
     Nodo_lista<Objetivos>* objetivo_verificacion = objetivos_secundarios->obtener_direccion_nodo(contador);
+    objetivo_verificacion->devolver_dato()->verificar_estado_objetivo();
 
     if (objetivo_verificacion->devolver_dato()->devolver_estado_objetivo())
         objetivos_realizados++;
@@ -326,7 +340,7 @@ void Jugador::borrar_edificio(int fila, int columna){
 
     while (!esta && i < edificios_jugador->devolver_cantidad_en_Lista_edificios()){
         if (edificios_jugador->obtener_direccion_nodo(i)->devolver_dato()->devolver_fila() == fila && edificios_jugador->obtener_direccion_nodo(i)->devolver_dato()->devolver_columna() == columna){
-            edificios_jugador->remover_elemento(i+1);
+            edificios_jugador->remover_elemento(i);
             esta = true;
         }
         else

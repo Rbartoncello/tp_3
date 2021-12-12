@@ -402,6 +402,9 @@ void Mapa::agregar_material(int cantidad, string material)
     }
 }
 
+Casillero*** Mapa::devolver_puntero_casillero(){
+    return casilleros;
+}
 void Mapa::agregar_a_coordenada(int cantidad, string material)
 {
 

@@ -19,13 +19,16 @@ const string PATH_UBICACIONES = "archivos/ubicaciones.txt";
 const string PATH_MAPA = "archivos/mapa.txt";
 const string PATH_MATERIALES = "archivos/materiales.txt";
 
-const int OBJETIVOS_SECUNDARIOS_CUMPLIDOS = 3;
+const int OBJETIVO_PRIMARIO = 1;
+const int OBJETIVOS_SECUNDARIOS_CUMPLIDOS = 1;
 const int OBJETIVO_COMPRAR_ANDYCOINS = 100000;
 const int OBJETIVO_EDAD_PIEDRA = 50000;
 const int OBJETIVO_BOMBARDERO = 5;
 const int OBJETIVO_CANSADO = 0;
 const int OBJETIVO_ARMADO = 10;
 const int OBJETIVO_EXTREMISTA = 500;
+const int OBJETIVO_MINERO = 1;
+const int OBJETIVO_ENERGETICO = 100;
 
 const string MAS_ALTO_NUBES = "Mas alta que las nubes";
 const string COMPRAR_ANDYPOLIS = "Comprar Andypolis";

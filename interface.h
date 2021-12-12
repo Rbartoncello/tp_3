@@ -257,5 +257,11 @@ void encabezado_objetivos_secuncarios();
  */
 void imprimir_mensaje_recolectando_recursos_producidos();
 
+/*
+ * Pre: -
+ * Post: MUestra un mensaje por pantalla de fin del juego
+ */
+void imprimir_juego_ganado(int ganador);
+
 
 #endif

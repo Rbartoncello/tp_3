@@ -57,4 +57,8 @@ add_executable(tp_3 constantes.h main.cpp
         obj_constructor.cpp obj_constructor.h
         obj_edad_piedra.cpp obj_edad_piedra.h
         obj_extremista.cpp obj_extremista.h
+        obj_letrado.h obj_letrado.cpp
+        obj_obelisco.cpp obj_obelisco.h
+        obj_minero.cpp obj_minero.h
+        obj_energetico.cpp obj_energetico.h
         )
