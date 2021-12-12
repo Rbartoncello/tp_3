@@ -160,7 +160,8 @@ void Juego::modificar_edificio(Diccionario<Edificacion> *&diccionario)
 void Juego::comenzar_partida()
 {
     ingresar_primer_jugador();
-
+    this->mapa->lluvia_recursos();
+    this->toca_lluvia = false;
     partida_empezada();
 }
 
@@ -216,6 +217,7 @@ int Juego::validar_ganador(int opcion_elegida){
         {
             opcion_elegida = GUARDA_SALIR;
             imprimir_juego_ganado(jugador_actual->devolver_numero());
+            jugador_actual->mostrar_objetivos();
             imprimir_mensaje_enter_continuar();
         }
 
@@ -365,8 +367,9 @@ void Juego::procesar_opcion_partida_empezada(int opcion)
         jugador_actual->sumar_energia(ENERGIA_NUEVO_TURNO);
         jugador_actual = devolver_jugador_turno();
         this->restablecer_fue_atacado();
+        this->lluvia();
         if (jugador_actual->devolver_energia() <= 0)
-        {
+        {   
             jugador_actual = devolver_jugador_turno();
         }
         break;
@@ -659,4 +662,13 @@ bool Juego::validar_bombas_energia(){
             se_puede = true;
     }
     return se_puede;
+}
+
+void Juego::lluvia(){
+    if (toca_lluvia){
+        mapa->lluvia_recursos();
+        toca_lluvia =false;
+    }else{
+        toca_lluvia = true;
+    }
 }

@@ -5,6 +5,7 @@
 #include "andycoins.h"
 #include "constantes.h"
 #include "jugador.h"
+#include "emojis.h"
 
 using namespace std;
 class Mapa{
@@ -137,9 +138,17 @@ class Mapa{
          */
         bool hay_edicicio(int fila, int columna);
 
-        //PRE:
-        //POST:Utiliza el metodo srand para generar caida de elemntos aleatorios en el mapa
-        void generar_lluvia_materiales();
+        /*
+         * Pre: -
+         * Post: Guarda materiales en casilleros transitables de manera aleatoria (con las probabilidades dadas por consigna)
+        */
+        void lluvia_recursos();
+
+        /*
+         * Pre: -
+         * Post: Me devuelve TRUE si hay como minimo un edificio construido y FALSE en caso contrario.
+        */
+        bool hay_algun_edificio_construido();
 
     private:
         /*
@@ -172,6 +181,32 @@ class Mapa{
         void agregar_a_coordenada(int cantidad, string material);
 
         void agregar_material(int cantidad, string material);
+
+        /*
+         * Pre: Recibe 2 numeros
+         * Post: Devuelve un numero aleatorio entre esos 2 numeros
+        */
+        int numero_aleatorio(int desde, int hasta);
+        
+        /*
+         * Pre: Recibe coordenadas dentro del dominio de la matriz
+         * Post: Devuelve true si el casillero es transitable y esta vacio, false de lo contrario
+        */
+        bool se_puede_generar_material(int fila, int columna);
+
+        /*
+         * Pre: Recibe un nombre de material y dos numeros minimo y maximo
+         * Post: Crea una cantidad n ( siendo min < n <max ) de ese material y los agrega al mapa
+        */
+        void agregar_materiales(string material, int minimo, int maximo);
+
+
+        /*
+         * Pre: -
+         * Post: Me devuleve TRUE si el si por lo menos hay como minimo 7 casilleros transitables no ocupados.
+         */
+        bool hay_lugar_minimo_material();
+
 };
 
 #endif //MAPA_H
