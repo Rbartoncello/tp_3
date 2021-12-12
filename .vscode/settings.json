@@ -4,6 +4,7 @@
         "iosfwd": "cpp",
         "new": "cpp",
         "ostream": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "algorithm": "cpp"
     }
 }

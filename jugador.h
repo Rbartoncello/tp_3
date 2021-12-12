@@ -12,9 +12,12 @@
 #include "obj_constructor.h"
 #include "obj_edad_piedra.h"
 #include "obj_extremista.h"
-//#include "mas_alto_que_las_nubes.h"
 #include "lista_edificios.h"
 #include "edificacion.h"
+#include "obj_minero.h"
+#include "obj_energetico.h"
+#include "obj_letrado.h"
+#include "obj_obelisco.h"
 
 class Jugador {
      private:
@@ -26,6 +29,7 @@ class Jugador {
           Lista<Objetivos> *objetivos_secundarios;
           Lista_edificios<Edificacion>* edificios_jugador;
           int energia_acumulada;
+          Objetivos* objetivo_principal;
 
      public:
           /*
@@ -187,13 +191,19 @@ class Jugador {
            * Pre: 
            * Post:termina con 3 objetivos en la lista objetivos secundarios
            */
-          void generar_objetivos_secundarios();
+          void generar_objetivos(int cantidad_escuelas);
 
           /*
            * Pre: 
            * Post: Me ira acumulando los recursos de los edificios que encuentre en el mapa.
            */
           void acumular_recursos(string material, int cantidad);
+
+          /*
+           * Pre: 
+           * Post: Me ira acumulando los recursos de los edificios que encuentre en el mapa.
+           */
+          void borrar_edificio(int fila, int columna);
      private:
 
           /*
@@ -206,7 +216,7 @@ class Jugador {
            * Pre: Necesita el nombre del objetivo a crear
            * Post: Agrega a la lista de objetivos secundarios un nuevo objetivo
            */
-          void agregar_objetivo(string nombre_objetivo);
+          void agregar_objetivo(string nombre_objetivo, int cantidad_escuelas);
 
 
           /*
@@ -244,6 +254,7 @@ class Jugador {
            * Post: Me sumara el cantidad de energia_acumulada.
            */
           void sumar_energia_acumulada(int cantidad);
+          
 };
 
 #endif //JUGADOR_H

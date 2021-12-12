@@ -18,4 +18,6 @@ void Casillero_construible::modificar_ocupado(bool estado) {
     this->ocupado = estado;
 }
 
+Material* Casillero_construible::devolver_material(){return NULL;}
+
 Casillero_construible::~Casillero_construible(){}

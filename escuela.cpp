@@ -4,6 +4,7 @@
 
 Escuela::Escuela() : Edificacion (EDIFICIO_ESCUELA, EMOJI_ESCUELA){
     this->produce_material = true;
+    this->necesita_reparacion = false;
     this->cantidad_material_brinda = BRINDA_ESCUELA;
     this->material_producido = ANDYCOINS;
     this->reparable = false;

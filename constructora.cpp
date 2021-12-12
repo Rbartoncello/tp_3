@@ -52,7 +52,7 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edificio, Jugado
             mapa->agregar_edificacion(nombre_nuevo_edificio, fila_nueva, columna_nueva, jugador->devolver_numero(),jugador->devolver_mis_edificios());
             this->restar_materiales(nombre_nuevo_edificio, jugador);
             jugador->restar_energia(15);
-            cout << "\n EL EDIFICIO SE HA CONSTRUIDO\n" << endl;
+            imprimir_procesamiento_accion(CONSTRUYENDO_MSJ, nombre_nuevo_edificio);
         }
     }
 }

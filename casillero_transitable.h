@@ -60,6 +60,8 @@ class Casillero_transitable : public Casillero{
 
         virtual void eliminar_edificio(){};
 
+        virtual Material* devolver_material() = 0;
+
         /*
          * Pre: -
          * Post: Metodo virtual vacio para la clase casillero_transitable

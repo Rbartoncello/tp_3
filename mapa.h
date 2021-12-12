@@ -35,6 +35,12 @@ class Mapa{
          */
         Casillero* devolver_casillero(int fila, int columna);
 
+                /*
+         * Pre: 
+         * Post: devuelve el puntero casillero
+         */
+        Casillero*** devolver_puntero_casillero();
+
         void construir_edifcio(Jugador* jugador);
 
         int cantidad_edificio_construido(string nombre);

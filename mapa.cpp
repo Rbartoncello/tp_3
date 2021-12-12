@@ -1,5 +1,6 @@
 #include <iostream>
-#include <iomanip>
+#include <cstdlib>
+#include <unistd.h>
 #include "mapa.h"
 #include "constantes.h"
 #include "camino.h"
@@ -369,13 +370,12 @@ void Mapa::borrar_edificio(int fila, int columna)
 
 bool Mapa::hay_edicicio(int fila, int columna)
 {
-    return (devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO && devolver_casillero(fila, columna)->devolver_edificacion() !=
-                                                                                             nullptr);
+    return (devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO && devolver_casillero(fila, columna)->devolver_edificacion() != nullptr);
 }
 
 
 int Mapa::numero_aleatorio(int desde, int hasta){
-    srand (( unsigned)time(NULL));
+    //srand((unsigned int)time(NULL));
     int numero = ( desde + rand() % hasta );
     
     while (numero > hasta)
@@ -384,7 +384,7 @@ int Mapa::numero_aleatorio(int desde, int hasta){
 }
 
 bool Mapa::se_puede_generar_material(int fila, int columna){
-    return ( !( casillero_ocupado(fila, columna) ) && ( this->casilleros[fila][columna]->devolver_tipo_terreno() == CAMINO) );
+    return ( !( casillero_ocupado(fila, columna) ) && ( this->casilleros[fila][columna]->devolver_tipo_terreno() != LAGO) && ( this->casilleros[fila][columna]->devolver_tipo_terreno() != TERRENO ) );
 }
 
 void Mapa::agregar_materiales(std::string material, int minimo, int maximo){
@@ -392,10 +392,12 @@ void Mapa::agregar_materiales(std::string material, int minimo, int maximo){
 
     for (int i = 0; i < maximos_materiales; i++){
         int fila_aleatoria = numero_aleatorio(0 , this->cantidad_filas);
+        usleep(1000);
         int columna_aleatoria = numero_aleatorio(0 , this->cantidad_columnas);
 
         while ( !( se_puede_generar_material(fila_aleatoria, columna_aleatoria) ) ){
             fila_aleatoria = numero_aleatorio(0 , this->cantidad_filas);
+            sleep(1);
             columna_aleatoria = numero_aleatorio(0 , this->cantidad_columnas);
         }
         this->agregar_material(material, fila_aleatoria, columna_aleatoria);
@@ -411,7 +413,7 @@ bool Mapa::hay_lugar_minimo_material(){
         while( ( j < this->devolver_cantidad_columnas() ) && !(hay_lugar) ){
             if(se_puede_generar_material(i, j))
                 sumatoria_lugares++;
-            if (sumatoria_lugares == 7)
+            if (sumatoria_lugares == 10)
                 hay_lugar = true;
             else
                 j++;
@@ -431,10 +433,10 @@ void Mapa::lluvia_recursos(){
         cout << "\tLluvia de recursos ... " << EMOJI_LLUVIA << " " << EMOJI_LLUVIA_CON_TRUENOS << " " << EMOJI_LLUVIA << endl;
         cout << "\t[Por favor espere]" << endl;
 
-        agregar_materiales(PIEDRA, MIN_GENERAR_PIEDRA, MAX_GENERAR_PIEDRA);
-        agregar_materiales(MADERA, MIN_GENERAR_MADERA, MAX_GENERAR_MADERA);
-        agregar_materiales(METAL, MIN_GENERAR_METAL, MAX_GENERAR_METAL);
-        agregar_materiales(ANDYCOINS, MIN_GENERAR_ANDYCOINS, MAX_GENERAR_ANDYCOINS);
+        agregar_materiales(PIEDRA, MIN_GENERAR_PIEDRA, MAX_GENERAR_PIEDRA+1);
+        agregar_materiales(MADERA, MIN_GENERAR_MADERA, MAX_GENERAR_MADERA+1);
+        agregar_materiales(METAL, MIN_GENERAR_METAL, MAX_GENERAR_METAL+1);
+        agregar_materiales(ANDYCOINS, MIN_GENERAR_ANDYCOINS, MAX_GENERAR_ANDYCOINS+1);
 
         system("clear");
         cout << TXT_BOLD;
@@ -444,6 +446,17 @@ void Mapa::lluvia_recursos(){
         cout << "No es posible agregar materiales en el mapa ya que no hay más lugar" << endl;
     }
     system("clear");
+}
+
+Casillero*** Mapa::devolver_puntero_casillero(){
+    return casilleros;
+}
+void Mapa::agregar_a_coordenada(int cantidad, string material)
+{
+
+    /* int fila, columna, cantidad_intentos = 0, cantidad_exitoso = 0;
+    bool terreno_transitable_valido = false;
+    char terreno; */
 }
 
 bool Mapa::hay_algun_edificio_construido(){
@@ -464,3 +477,4 @@ bool Mapa::hay_algun_edificio_construido(){
 
     return hay_edificio;
 }
+

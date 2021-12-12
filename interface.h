@@ -73,7 +73,7 @@ void imprimir_edificios_jugador(Lista_edificios<Edificacion>* edificios_jugador)
  * Pre: -
  * Post: Me imprimira por pantalla la action_realizada.
  */
-void imprimir_procesamiento_accion(string action_realizada, string nombre_edificio, string emoji_edificio);
+void imprimir_procesamiento_accion(string action_realizada, string nombre_edificio);
 
 /*
  * Pre: -
@@ -256,6 +256,12 @@ void encabezado_objetivos_secuncarios();
  * Post: Me muestra por pantalla el mensaje que se recolecto recurso con exito.
  */
 void imprimir_mensaje_recolectando_recursos_producidos();
+
+/*
+ * Pre: -
+ * Post: MUestra un mensaje por pantalla de fin del juego
+ */
+void imprimir_juego_ganado(int ganador);
 
 
 #endif

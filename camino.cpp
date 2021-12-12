@@ -43,10 +43,6 @@ void Camino::agregar_material(Material* material) {
     modificar_ocupado(true);
 }
 
-Material* Camino::devolver_material() {
-    return this->material;
-}
-
 void Camino::imprimir_resumen(){
     if(this->esta_ocupado()){
         cout << "\tSoy un casillero transitable y no me encuentro vacío" << endl;
@@ -79,4 +75,8 @@ void Camino::mover_jugador(Jugador* jugador) {
     
     modificar_jugador(jugador);
     modificar_ocupado(true);
+}
+
+Material* Camino::devolver_material(){
+    return material;
 }
