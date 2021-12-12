@@ -1,26 +1,16 @@
-11 11
-L L L L L L L L L L L 
-L L M M M M M M M M M 
-L L M C C C C C C C C 
-L L M C T T T T C T T 
-L L M C T B B T C T B 
-L L M C T B B T C T B 
-M M M C T T B T C T B 
-C C C C C T T T C T T 
-T T T T C C C C C C C 
-T B B T C T T T T T T 
-T B B T C T T T T T T 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+15 15
+B B C C B B L L C T T C C B B
+B T T T C C C L C C T C T T B
+B C C C T C T L L C T C T C B
+C T T C T B B L C C B T T T C
+T C C B B B M M M C B B B B C
+T T C T C T B L L T C C C C T
+T T L C C L B L B B M C C L C
+C L L L M L L T L L M M L L L
+L C C C M B L L B B C C L C T
+C T B C C T B L B T C T T C T
+C T B C C B B M M C B B B B T
+C T B B T C C L C C T C B C T
+B C C B T C L L C T T T T C B
+B C C B T T T L L T B B T C B
+B C C T T C C L C T C C C C B
