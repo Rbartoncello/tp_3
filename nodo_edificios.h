@@ -95,7 +95,7 @@ T*& Nodo_edificios<T>::devolver_dato(){
 
 template<typename T>
 string Nodo_edificios<T>::obtener_nombre() {
-    return contenido -> devolver_nombre();
+    return contenido -> devolver_nombre_edificio();
 }
 
 template<typename T>

@@ -4,6 +4,7 @@
 
 Aserradero::Aserradero() : Edificacion (EDIFICIO_ASERRADERO, EMOJI_ASERRADERO){
     this->produce_material = true;
+    this->necesita_reparacion = false;
     this->cantidad_material_brinda = BRINDA_ASERRADERO;
     this->material_producido = MADERA;
     this->reparable = false;

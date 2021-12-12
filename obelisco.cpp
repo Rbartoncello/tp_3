@@ -4,6 +4,7 @@
 
 Obelisco::Obelisco() : Edificacion (EDIFICIO_OBELISCO, EMOJI_OBELISCO){
     this->produce_material = false;
+    this->necesita_reparacion = false;
     this->cantidad_material_brinda = 0;
     this->material_producido = "niguno";
     this->reparable = false;

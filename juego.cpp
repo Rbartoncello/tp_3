@@ -252,6 +252,8 @@ void Juego::partida_empezada()
     agregar_energia_comienza_partida();
 
     jugador_inicial();
+    cargar_grafo();
+    cargar_costos();
 
     while (opcion_elegida != GUARDA_SALIR)
     {
@@ -383,6 +385,7 @@ void Juego::moverse_coordenada()
     int columna = pedir_columna();
 
     cargar_grafo();
+    grafo->usar_floyd();
 
     int fila_actual = jugador_actual->devolver_fila();
     int columna_actual = jugador_actual->devolver_columna();
@@ -427,22 +430,15 @@ void Juego::cargar_grafo()
 {
     Jugador *jugador_sig = devolver_jugador_turno();
 
-    for (int i = 0; i < mapa->devolver_cantidad_filas(); i++)
-    {
-        for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++)
-        {
-            Casillero *casillero = mapa->devolver_casillero(i, j);
-            if (!(casillero->devolver_tipo_terreno() == TERRENO) || (!(casillero->esta_ocupado())))
-            {
-                if ((i != jugador_sig->devolver_fila()) || (j != jugador_sig->devolver_columna()))
-                {
+    for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
+        for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
+            Casillero* casillero = mapa->devolver_casillero(i, j);
+            if ( ! mapa->hay_edicicio(i,j) ){
+                if ( ( i != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) )
                     this->grafo->agregarVertice(casillero->devolver_posicion());
-                }
             }
         }
     }
-    cargar_costos();
-    grafo->usar_floyd();
 }
 
 void Juego::cargar_costos()
@@ -469,67 +465,31 @@ void Juego::modificar_costo_casillero(Casillero *&casillero)
     }
 }
 
-void Juego::cargar_costos_filas()
-{
-    Jugador *jugador_sig = devolver_jugador_turno();
-
-    for (int i = 0; i < mapa->devolver_cantidad_filas(); i++)
-    {
-        for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++)
-        {
-            if (j < mapa->devolver_cantidad_columnas() - 1)
-            {
-                Casillero *casillero_1 = mapa->devolver_casillero(i, j);
-                Casillero *casillero_2 = mapa->devolver_casillero(i, j + 1);
+void Juego::cargar_costos_filas(){
+    for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
+        for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
+            if (j < mapa->devolver_cantidad_columnas() - 1){
+                Casillero* casillero_1 = mapa->devolver_casillero(i, j);
+                Casillero* casillero_2 = mapa->devolver_casillero(i, j+1);
                 modificar_costo_casillero(casillero_1);
                 modificar_costo_casillero(casillero_2);
-                if (!(casillero_1->devolver_tipo_terreno() == TERRENO) || (!(casillero_1->esta_ocupado())))
-                {
-                    if ((i != jugador_sig->devolver_fila()) || (j != jugador_sig->devolver_columna()))
-                    {
-                        if (!(casillero_2->devolver_tipo_terreno() == TERRENO) || (!(casillero_2->esta_ocupado())))
-                        {
-                            if ((i != jugador_sig->devolver_fila()) || (j + 1 != jugador_sig->devolver_columna()))
-                            {
-                                this->grafo->agregar_camino(casillero_1->devolver_posicion(), casillero_2->devolver_posicion(), casillero_2->devolver_costo());
-                                this->grafo->agregar_camino(casillero_2->devolver_posicion(), casillero_1->devolver_posicion(), casillero_1->devolver_costo());
-                            }
-                        }
-                    }
-                }
+                this->grafo->agregar_camino(casillero_1->devolver_posicion(), casillero_2->devolver_posicion(), casillero_2->devolver_costo());
+                this->grafo->agregar_camino(casillero_2->devolver_posicion(), casillero_1->devolver_posicion(), casillero_1->devolver_costo());
             }
         }
     }
 }
 
-void Juego::cargar_costos_columnas()
-{
-    Jugador *jugador_sig = devolver_jugador_turno();
-
-    for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++)
-    {
-        for (int i = 0; i < mapa->devolver_cantidad_filas(); i++)
-        {
-            if (i < mapa->devolver_cantidad_filas() - 1)
-            {
-                Casillero *casillero_1 = mapa->devolver_casillero(i, j);
-                Casillero *casillero_2 = mapa->devolver_casillero(i + 1, j);
+void Juego::cargar_costos_columnas(){
+    for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
+        for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
+            if (i < mapa->devolver_cantidad_filas() - 1){
+                Casillero* casillero_1 = mapa->devolver_casillero(i, j);
+                Casillero* casillero_2 = mapa->devolver_casillero(i+1, j);
                 modificar_costo_casillero(casillero_1);
                 modificar_costo_casillero(casillero_2);
-                if (!(casillero_1->devolver_tipo_terreno() == TERRENO) || (!(casillero_1->esta_ocupado())))
-                {
-                    if ((i != jugador_sig->devolver_fila()) || (j != jugador_sig->devolver_columna()))
-                    {
-                        if (!(casillero_2->devolver_tipo_terreno() == TERRENO) || (!(casillero_2->esta_ocupado())))
-                        {
-                            if ((i + 1 != jugador_sig->devolver_fila()) || (j != jugador_sig->devolver_columna()))
-                            {
-                                this->grafo->agregar_camino(casillero_1->devolver_posicion(), casillero_2->devolver_posicion(), casillero_2->devolver_costo());
-                                this->grafo->agregar_camino(casillero_2->devolver_posicion(), casillero_1->devolver_posicion(), casillero_1->devolver_costo());
-                            }
-                        }
-                    }
-                }
+                this->grafo->agregar_camino(casillero_1->devolver_posicion(), casillero_2->devolver_posicion(), casillero_2->devolver_costo());
+                this->grafo->agregar_camino(casillero_2->devolver_posicion(), casillero_1->devolver_posicion(), casillero_1->devolver_costo());
             }
         }
     }
@@ -583,54 +543,26 @@ void Juego::reparar_edificio()
     }
 }
 
-void Juego::atacar_edificio()
-{
-    if ((jugador_actual->devolver_energia() < ENERGIA_ATACAR) || (jugador_actual->devolver_inventario()->devolver_material(BOMBA) < 1))
-    {
-        imprimir_mensaje_no_energia_sufuciente(ENERGIA_ATACAR);
-        cout << "No posee una bomba o la cantidad de energia necesaria para realizar esta accion!" << endl;
-    }
-    else
-    {
+void Juego::atacar_edificio(){
+    if( validar_bombas_energia()){
         int fila = this->pedir_fila();
         int columna = this->pedir_columna();
 
-        if (mapa->hay_edicicio(fila, columna))
-        {
-            if (mapa->devolver_casillero(fila, columna)->devolver_duenio() == jugador_actual->devolver_numero())
-            {
-                cout << "No se puede atacar un edificio propio " << endl;
-            }
-            else
-            {
-                if (mapa->devolver_casillero(fila, columna)->devolver_edificacion()->devolver_reparable())
-                {
-                    if (mapa->devolver_casillero(fila, columna)->devolver_edificacion()->devolver_fue_atacado())
-                    {
-                        cout << "Este edificio ya fue atacado en este turno!!!" << endl;
+        if( validar_atacar_edificio(fila,columna)){
+            if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_fue_atacado()){
+                cout << "Este edificio ya fue atacado en este turno!!!" << endl;
+            }else{
+                if(mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_necesita_reparacion()){
+                        devolver_jugador_turno()->borrar_edificio(fila, columna);
+                        mapa->borrar_edificio(fila,columna);
+                } else {
+                    mapa->devolver_casillero(fila,columna)->devolver_edificacion()->atacar();
+                    mapa->devolver_casillero(fila,columna)->devolver_edificacion()->fue_atacado_true();
+                    if (mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_nombre_edificio() != EDIFICIO_MINA && mapa->devolver_casillero(fila,columna)->devolver_edificacion()->devolver_nombre_edificio() != EDIFICIO_FABRICA){
+                        devolver_jugador_turno()->borrar_edificio(fila, columna);
+                        mapa->borrar_edificio(fila,columna);
                     }
-                    else
-                    {
-                        if (mapa->devolver_casillero(fila, columna)->devolver_edificacion()->devolver_necesita_reparacion())
-                        {
-                            mapa->borrar_edificio(fila, columna);
-                        }
-                        else
-                        {
-                            mapa->devolver_casillero(fila, columna)->devolver_edificacion()->atacar();
-                            mapa->devolver_casillero(fila, columna)->devolver_edificacion()->fue_atacado_true();
-                        }
-                        jugador_actual->restar_material(1, BOMBA);
-                        jugador_actual->restar_energia(ENERGIA_ATACAR);
-                        jugador_actual->sumar_a_objetivo(1, BOMBARDERO);
-                    }
-                }
-                else
-                {
-                    mapa->borrar_edificio(fila, columna);
-                    jugador_actual->restar_material(1, BOMBA);
-                    jugador_actual->restar_energia(ENERGIA_ATACAR);
-                    jugador_actual->sumar_a_objetivo(1, BOMBARDERO);
+                    restar_atacar();
                 }
             }
         }
@@ -646,14 +578,12 @@ bool Juego::validar_reparar_edificio(int fila, int columna)
     int cantidad_piedra = jugador_actual->devolver_inventario()->devolver_material(PIEDRA);
     int cantidad_madera = jugador_actual->devolver_inventario()->devolver_material(MADERA);
     int cantidad_metal = jugador_actual->devolver_inventario()->devolver_material(METAL);
-    int piedra_necesaria = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_piedra() / 4;
-    int madera_necesaria = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_madera() / 4;
-    int metal_necesario = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_metal() / 4;
+    int piedra_necesaria = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_piedra()/4;
+    int madera_necesaria = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_madera()/4;
+    int metal_necesario  = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_metal()/4;
 
-    if (mapa->hay_edicicio(fila, columna))
-    {
-        if (!(mapa->devolver_casillero(fila, columna)->devolver_duenio() == jugador_actual->devolver_numero()))
-        {
+    if( mapa->hay_edicicio(fila, columna) ){
+        if(mapa->devolver_casillero(fila, columna)->devolver_duenio() != jugador_actual->devolver_numero()){
             cout << "No se puede reparar un edificio que no te pertenece" << endl;
         }
         else
@@ -674,10 +604,6 @@ bool Juego::validar_reparar_edificio(int fila, int columna)
                     {
                         se_puede = true;
                     }
-                    else
-                    {
-                        cout << "No posees los materiales suficientes par reparar este edificio" << endl;
-                    }
                 }
             }
         }
@@ -685,36 +611,52 @@ bool Juego::validar_reparar_edificio(int fila, int columna)
     return se_puede;
 }
 
-void Juego::acumular_recursos()
-{
-    for (int i = 0; i < mapa->devolver_cantidad_filas(); i++)
-    {
-        for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++)
-        {
-            if (mapa->hay_edicicio(i, j))
-            {
-                if (mapa->devolver_casillero(i, j)->devolver_duenio() == jugador_actual->devolver_numero())
-                {
-                    if (mapa->devolver_casillero(i, j)->devolver_edificacion()->brinda_material())
-                    {
-                        jugador_actual->acumular_recursos(mapa->devolver_casillero(i, j)->devolver_edificacion()->devolver_material_producido(), mapa->devolver_casillero(i, j)->devolver_edificacion()->devolver_cantidad_material_brinda());
-                    }
-                }
+void Juego::acumular_recursos(){
+    Edificacion* edificio;
+    for (int i = 0; i < jugador_actual->devolver_mis_edificios()->devolver_cantidad_en_Lista_edificios(); i++){
+        edificio = jugador_actual->devolver_mis_edificios()->obtener_direccion_nodo(i)->devolver_dato();
+        if( edificio->brinda_material() ){
+            jugador_actual->acumular_recursos( edificio->devolver_material_producido(),  edificio->devolver_cantidad_material_brinda());
+        }
+    }
+}
+
+void Juego::restablecer_fue_atacado() {
+    for (int i = 0; i < mapa->devolver_cantidad_filas(); i++){
+        for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++){
+            if ( ( mapa->hay_edicicio(i, j) ) ){
+                mapa->devolver_casillero(i,j)->devolver_edificacion()->fue_atacado_false();
             }
         }
     }
 }
 
-void Juego::restablecer_fue_atacado()
-{
-    for (int i = 0; i < mapa->devolver_cantidad_filas(); i++)
-    {
-        for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++)
-        {
-            if ((mapa->devolver_casillero(i, j)->devolver_tipo_terreno() == TERRENO) && (mapa->devolver_casillero(i, j)->esta_ocupado()))
-            {
-                mapa->devolver_casillero(i, j)->devolver_edificacion()->fue_atacado_false();
-            }
-        }
+void Juego::restar_atacar(){
+    jugador_actual->restar_material(1,BOMBA);
+    jugador_actual->restar_energia(ENERGIA_ATACAR);
+    jugador_actual->sumar_a_objetivo(1,BOMBARDERO);
+}
+
+bool Juego::validar_atacar_edificio(int fila, int columna){
+    bool se_puede = false;
+    if( mapa->hay_edicicio(fila, columna) ){
+        if(mapa->devolver_casillero(fila, columna)->devolver_duenio() == jugador_actual->devolver_numero())
+            cout << "No se puede atacar un edificio propio " << endl;
+        else
+            se_puede = true;
     }
+    return se_puede;
+}
+
+bool Juego::validar_bombas_energia(){
+    bool se_puede= false;
+    if( jugador_actual->devolver_energia() < ENERGIA_ATACAR )
+        imprimir_mensaje_no_energia_sufuciente(ENERGIA_ATACAR);
+    else {
+        if ( jugador_actual->devolver_inventario()->devolver_material(BOMBA) < 1 )
+            cout << "Debe tener por lo menos una bomba para atacar un edificio" << endl;
+        else
+            se_puede = true;
+    }
+    return se_puede;
 }

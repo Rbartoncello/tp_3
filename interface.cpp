@@ -154,16 +154,15 @@ void imprimir_mensaje_esperar(int tiempo)
     system("clear");
 }
 
-void imprimir_procesamiento_accion(string action_realizada, string nombre_edificio, string emoji_edificio)
+void imprimir_procesamiento_accion(string action_realizada, string nombre_edificio)
 {
     system("clear");
-    cout << "\t" << action_realizada << " " << nombre_edificio << "( " << emoji_edificio << " ) ... " << EMOJI_EDIFICIO_CONSTRUCION << "  " << EMOJI_PARED << "  " << EMOJI_MARTILLO << endl;
+    cout << "\t" << action_realizada << " " << nombre_edificio << "... " << EMOJI_EDIFICIO_CONSTRUCION << "  " << EMOJI_PARED << "  " << EMOJI_MARTILLO << endl;
 
     sleep(2);
     system("clear");
     cout << TXT_BOLD;
-    cout << "\tSe ha realizado la accion con exito " << EMOJI_HECHO << endl
-         << endl;
+    cout << "\tSe ha realizado la accion con exito " << EMOJI_HECHO << endl << endl;
     cout << END_COLOR;
 
     sleep(2);
@@ -213,11 +212,56 @@ void imprimir_mensaje_ingresar_edificio()
     cout << "\tIngrese el nombre del edificio que desee modificar: ";
 }
 
+void imprimir_mensaje_construir_edificio()
+{
+    system("clear");
+    cout << "\tIngrese el nombre del edificio que desee construir: ";
+}
+
+void imprimir_mensaje_max_edificios_alcansado() 
+{
+    system("clear");
+    cout << "\nOh, lamento traer malas noticias pero ya has alcanzo el maximo de construidos para este edificio: ";
+}
+
 void imprimir_mensaje_error_ingresar_edificio()
 {
     system("clear");
     imprimir_mensaje_error();
     cout << "\tEl nombre de edificio ingresado " << TXT_BOLD << TXT_UNDERLINE << "no" << END_COLOR << " exite, por favor ingrese un nombre de edificio que exista: ";
+}
+
+string chequear_status(int cant_material_inventario, int cant_material_necesario){
+    string status = EMOJI_MAL;
+
+    if (cant_material_inventario >= cant_material_necesario)
+        status = EMOJI_HECHO;
+
+    return status;
+}
+
+void imprimir_materiales_necesarios(int piedra_inventario, int madera_inventario,  int metal_inventario,  int piedra_edificio,  int madera_edificio, int metal_edificio){
+    
+    cout << TXT_BOLD;
+    cout << "\t╔═════════╦═══════════════════════╦══════════════════════════╦════════╗" << endl;
+    cout << "\t║/////////║ Materiales necesarios ║ Materiales en inventario ║ Estado ║" << endl;
+    cout << "\t╠═════════╬═══════════════════════╬══════════════════════════╬════════╣" << endl;
+    cout << END_COLOR;
+
+    
+    string status = chequear_status(piedra_inventario, piedra_edificio);
+    cout << "\t║ " << PIEDRA << "  │" << setfill(' ') << setw(12) << piedra_edificio << setfill(' ') << setw(14) << "│" << setfill(' ') << setw(14) << piedra_inventario << setfill(' ') << setw(18) << "│   " << status << "   ║" << endl;
+    cout << "\t╠─────────┼───────────────────────┼──────────────────────────┼────────╣" << endl;
+    
+    status = chequear_status(madera_inventario, madera_edificio);
+    cout << "\t║ " << MADERA << "  │" << setfill(' ') << setw(12) << madera_edificio << setfill(' ') << setw(14) << "│" << setfill(' ') << setw(14) << madera_inventario << setfill(' ') << setw(18) << "│   " << status << "   ║" << endl;
+    cout << "\t╠─────────┼───────────────────────┼──────────────────────────┼────────╣" << endl;
+    
+    status = chequear_status(metal_inventario, metal_edificio);
+    cout << "\t║  " << METAL << "  │" << setfill(' ') << setw(12) << metal_edificio << setfill(' ') << setw(14) << "│" << setfill(' ') << setw(14) << metal_inventario << setfill(' ') << setw(18) << "│   " << status << "   ║" << endl;
+    cout << "\t╚═════════╩═══════════════════════╩══════════════════════════╩════════╝" << endl;
+
+    imprimir_mensaje_esperar(4);
 }
 
 void imprimir_mensaje_receta_edificio(string edificio, string material, int cantidad)
@@ -228,8 +272,7 @@ void imprimir_mensaje_receta_edificio(string edificio, string material, int cant
 
 void imprimir_mensaje_afirmativo_negativo()
 {
-    cout << endl
-         << "\t ";
+    cout << endl << "\t ";
     cout << TXT_BOLD << TXT_GREEN_118 << AFIRMATIVO << ") SI " << END_COLOR << endl;
     cout << "\t ";
     cout << TXT_BOLD << TXT_LIGHT_RED_9 << NEGATIVO << ") NO " << END_COLOR << endl;
@@ -362,7 +405,7 @@ void imprimir_cantidad_edificios_jugador(Lista_primitiva<string> *nombre_edifici
 
     encabezado_edificios_jugador();
 
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i < nombre_edificios->devolver_cantidad_en_Lista_primitiva(); i++)
     {
         nombre_de_edificio = nombre_edificios->devolver_elemento_en_posicion(i + 1);
         cantidad = cantidad_por_edificio->devolver_elemento_en_posicion(i + 1);

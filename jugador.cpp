@@ -29,6 +29,7 @@ void Jugador::crear_lista(Lista_primitiva<string>* &objetivos){
     objetivos->agregar(ENERGETICO);
     objetivos->agregar(LETRADO);
     objetivos->agregar(MINERO);
+    objetivos->agregar(CONSTRUCTOR);
     objetivos->agregar(CANSADO);
     objetivos->agregar(ARMADO);
     objetivos->agregar(EXTREMISTA);    
@@ -38,9 +39,8 @@ void Jugador::generar_objetivos(int cantidad_escuelas){
     objetivo_principal = new Obelisco_obj(edificios_jugador);
     Lista_primitiva<string>* objetivos = new Lista_primitiva<string>();
     string nombre_objetivo;
-    int posicion = 0, hasta = 9;
-
     crear_lista(objetivos);
+    int posicion = 0, hasta = objetivos->devolver_cantidad_en_Lista_primitiva();
 
     for (int i = 0; i < 3; i++)
     {
@@ -80,11 +80,11 @@ void Jugador::agregar_objetivo(string nombre_objetivo, int cantidad_escuelas){
     Objetivos* objetivo;
 
     if (nombre_objetivo == COMPRAR_ANDYPOLIS)
-       objetivo = new Comprar_andypolis(inventario->devolver_material(ANDYCOINS));
+        objetivo = new Comprar_andypolis(inventario->devolver_material(ANDYCOINS));
     else if (nombre_objetivo == BOMBARDERO)
-       objetivo = new Bombardero();
+        objetivo = new Bombardero();
     else if (nombre_objetivo == EDAD_PIEDRA)
-       objetivo = new Edad_piedra(inventario);
+        objetivo = new Edad_piedra(inventario);
     else if (nombre_objetivo == ARMADO)
         objetivo = new Armado(inventario);
     else if (nombre_objetivo == CANSADO)
@@ -97,6 +97,8 @@ void Jugador::agregar_objetivo(string nombre_objetivo, int cantidad_escuelas){
         objetivo = new Minero(edificios_jugador);
      else if (nombre_objetivo == ENERGETICO)
         objetivo = new Energetico(&energia);
+    else if (nombre_objetivo == CONSTRUCTOR)
+        objetivo = new Constructor(edificios_jugador);
     
     objetivos_secundarios->agregar_elemento(objetivo,1);
 }
@@ -330,4 +332,19 @@ void Jugador::sumar_energia_acumulada(int cantidad){
 
 Lista_edificios<Edificacion>*& Jugador::devolver_mis_edificios(){
     return edificios_jugador;
+}
+
+void Jugador::borrar_edificio(int fila, int columna){
+    int i = 0;
+    bool esta = false;
+
+    while (!esta && i < edificios_jugador->devolver_cantidad_en_Lista_edificios()){
+        if (edificios_jugador->obtener_direccion_nodo(i)->devolver_dato()->devolver_fila() == fila && edificios_jugador->obtener_direccion_nodo(i)->devolver_dato()->devolver_columna() == columna){
+            edificios_jugador->remover_elemento(i);
+            esta = true;
+        }
+        else
+            i++;        
+    }
+    
 }

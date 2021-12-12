@@ -137,6 +137,10 @@ class Mapa{
          */
         bool hay_edicicio(int fila, int columna);
 
+        //PRE:
+        //POST:Utiliza el metodo srand para generar caida de elemntos aleatorios en el mapa
+        void generar_lluvia_materiales();
+
     private:
         /*
          * Pre: El archivo tiene que estar abierto y de formato correcto.
@@ -162,6 +166,12 @@ class Mapa{
          * Post: Me devolver el material buscado.
          */
         Material* buscar_material(string nombre);
+
+        //Pre:
+        //Post:Agrega lo lloviddo a la coordenada correspondiente
+        void agregar_a_coordenada(int cantidad, string material);
+
+        void agregar_material(int cantidad, string material);
 };
 
 #endif //MAPA_H

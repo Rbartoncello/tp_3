@@ -79,6 +79,9 @@ const char LAGO = 'L';
 const char MUELLE = 'M';
 const char TERRENO = 'T';
 
+const string CONSTRUYENDO_MSJ = "Construyendo";
+const string DEMOLIENDO_MSJ = "Demoliendo";
+
 const string PIEDRA = "piedra";
 const string MADERA = "madera";
 const string METAL = "metal";
@@ -135,6 +138,8 @@ const int ENERGIA_COMIENZO_PARTIDA = 50;
 const int ENERGIA_NUEVO_TURNO = 20;
 const int ENERGIA_REPARAR = 25;
 const int ENERGIA_ATACAR = 30;
+const int ENERGIA_CONSTRUIR = 15;
+const int ENERGIA_DEMOLER = 15;
 
 const int POSICION_NO_ENCONTRADA = -1;
 const string NOMBRE_NO_ENCONTRADO = "";

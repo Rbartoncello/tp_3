@@ -9,6 +9,7 @@
 #include "obj_armado.h"
 #include "obj_bombardero.h"
 #include "obj_cansado.h"
+#include "obj_constructor.h"
 #include "obj_edad_piedra.h"
 #include "obj_extremista.h"
 #include "lista_edificios.h"
@@ -198,6 +199,11 @@ class Jugador {
            */
           void acumular_recursos(string material, int cantidad);
 
+          /*
+           * Pre: 
+           * Post: Me ira acumulando los recursos de los edificios que encuentre en el mapa.
+           */
+          void borrar_edificio(int fila, int columna);
      private:
 
           /*

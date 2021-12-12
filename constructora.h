@@ -22,7 +22,11 @@ private:
 
     bool validar_materiales(string nombre_nuevo_edificio, Jugador* &jugador);
 
-    void mostrar_materiales_faltantes(int cantidad_piedra, int cantidad_madera, int cantidad_metal, int piedra_necesaria, int madera_necesaria, int metal_necesario);
+    void mostrar_materiales_faltantes(string nombre_nuevo_edificio, Jugador* &jugador);
+
+    void demoler_edificio(Jugador* jugador);
+
+    void avanzar_con_demolicion(string nombre_nuevo_edifcio, Jugador* jugador);
 
     bool ingreso_de_coordenadas();
 

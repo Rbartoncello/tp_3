@@ -4,6 +4,7 @@
 
 Mina_oro::Mina_oro() : Edificacion (EDIFICIO_MINA_ORO, EMOJI_MINA_ORO){
     this->produce_material = true;
+    this->necesita_reparacion = false;
     this->cantidad_material_brinda = BRINDA_MINA_ORO;
     this->material_producido = ANDYCOINS;
     this->reparable = false;

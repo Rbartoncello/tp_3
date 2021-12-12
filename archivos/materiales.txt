@@ -1,5 +1,5 @@
 madera 1000 1000
-piedra 49999 49999
+piedra 49999 50199
 metal 1000 1000
 andycoins 1000 800
-bombas 9 11
+bombas 6 8

@@ -257,7 +257,14 @@ private:
          * Pre: -
          * Post: restablece todos los atributos fue_atacado a false de los edificios
          */
-    void restablecer_fue_atacado();
+     void restablecer_fue_atacado();
+
+     void restar_atacar();
+
+     bool validar_atacar_edificio(int fila, int columna);
+
+     bool validar_bombas_energia();
+
 
     /*
          * Pre: -
