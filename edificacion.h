@@ -26,13 +26,19 @@ public:
     //PRE:necesita el nombre del Edificacion
     //POST: guarda el nombre del edficio en nombre
     Edificacion (string tipoEdificacion, string emoji);
-
+        /*
+    * PRE:
+    * POST:
+    */
     void modificar_duenio(int duenio);
 
     //PRE:
     //POST: devuelve el nombre del edifico
     string devolver_nombre_edificio();
-
+        /*
+    * PRE:
+    * POST:
+    */
     int devolver_duenio();
 
     /*
@@ -40,41 +46,75 @@ public:
     * Post: Me devuelve el emoji.
     */
     string devolver_emoji();
-
+    /*
+    * PRE:
+    * POST:
+    */
     string devolver_direccion();
-
+    /*
+    * PRE:
+    * POST:
+    */
     int devolver_fila();
-
+    /*
+    * PRE:
+    * POST:
+    */
     int devolver_columna();
-
+    /*
+    * PRE:
+    * POST:
+    */
     void agregar_direccion(int fila, int columna);
-
     /*
     * Pre: -
     * Post: Me devuelve si el edificio es reparable.
     */
     bool devolver_reparable();
-
     /*
      * Pre: -
      * Post: Me devuelve TRUE si la Fabrica necesita reparacion o FALSE en caso contrario.
      */
     virtual bool devolver_necesita_reparacion() = 0;
-
+    /*
+    * PRE:
+    * POST:
+    */
     virtual void reparar() = 0;
-
-    virtual void atacar() = 0;    
-
+    /*
+    * PRE:
+    * POST:
+    */
+    virtual void atacar() = 0;
+    /*
+    * PRE:
+    * POST:
+    */
     virtual int devolver_maxima_cantidad_permitidos() = 0;
-
+    /*
+    * PRE:
+    * POST:
+    */
     virtual Receta* devolver_receta() = 0;
-
+    /*
+    * PRE:
+    * POST:
+    */
     virtual bool brinda_material() = 0;
-
+    /*
+    * PRE:
+    * POST:
+    */
     bool devolver_fue_atacado();
-
+    /*
+    * PRE:
+    * POST:
+    */
     void fue_atacado_true();
-
+    /*
+    * PRE:
+    * POST:
+    */
     void fue_atacado_false();
 
     //PRE:
@@ -88,9 +128,11 @@ public:
     //PRE:
     //POST:Va a decir el tipo de Edificacion que tiene.
     virtual void hablar_sobre_mi() = 0;
-
+    /*
+    * PRE:
+    * POST:
+    */
     virtual ~Edificacion() = 0;
-
     /*
      * Pre: -
      * Post: Imprime un resumen escrito del edificio.

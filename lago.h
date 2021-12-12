@@ -10,26 +10,60 @@ class Lago : public Casillero_inaccesible {
     private:
         int costo;
     public:
+            /*
+        * PRE:
+        * POST:
+        */
         Lago();
-
+        /*
+        * PRE:
+        * POST:
+        */
         Lago(char tipo_terreno, int pos_x, int pos_y);
-
+        /*
+        * PRE:
+        * POST:
+        */
         void modificar_costo(int costo);
-
+        /*
+        * PRE:
+        * POST:
+        */
         int devolver_costo();
-
+        /*
+        * PRE:
+        * POST:
+        */
         Edificacion* devolver_edificacion(){return nullptr;};
-
+        /*
+        * PRE:
+        * POST:
+        */
         virtual void eliminar_edificio(){};
-
+        /*
+        * PRE:
+        * POST:
+        */
         ~Lago();
-
+        /*
+        * PRE:
+        * POST:
+        */
         void mostrar();
-
+        /*
+        * PRE:
+        * POST:
+        */
         void agregar_jugador(Jugador* jugador);
-
+        /*
+        * PRE:
+        * POST:
+        */
         void eliminar_jugador();
-
+        /*
+        * PRE:
+        * POST:
+        */
         void mover_jugador(Jugador* jugador);
 };
 

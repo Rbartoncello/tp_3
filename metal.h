@@ -19,7 +19,10 @@ class Metal : public Material{
          * Post: Me va a crear el objeto Metal con nombre = METAL, emoji = EMOJI_METAL Y cantidad = cantidad.
          */
         Metal(int cantidad);
-
+        /*
+        * PRE:
+        * POST:
+        */
         virtual ~Metal();
 };
 

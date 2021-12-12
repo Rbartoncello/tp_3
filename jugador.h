@@ -86,9 +86,15 @@ class Jugador {
            * Post: Agrega a la lista de inventario un nuevo material
            */
           void agregar_inventario(Material *elemento);
-
+            /*
+        * PRE:
+        * POST:
+        */
           Material* generar_material(string nombre);
-
+            /*
+        * PRE:
+        * POST:
+        */
           Lista_edificios<Edificacion>*& devolver_mis_edificios();
 
           /*
