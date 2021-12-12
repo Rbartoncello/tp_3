@@ -132,7 +132,7 @@ void Lista_edificios<T>::remover_elemento(int posicion){
         Nodo_edificios<T> *posicion_nodo_a_eliminar;
         nodo_anterior_a_posicion = obtener_direccion_nodo(posicion-1);
         posicion_nodo_a_eliminar = nodo_anterior_a_posicion->direccion_siguiente();
-        posicion_siguiente_nodo = posicion_nodo_a_eliminar->direccion_siguiente();
+        posicion_siguiente_nodo = obtener_direccion_nodo(posicion-1)->direccion_siguiente();
         delete posicion_nodo_a_eliminar;
         nodo_anterior_a_posicion->cambiar_siguiente(posicion_siguiente_nodo);
     }

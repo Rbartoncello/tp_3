@@ -273,8 +273,7 @@ void imprimir_mensaje_receta_edificio(string edificio, string material, int cant
 
 void imprimir_mensaje_afirmativo_negativo()
 {
-    cout << endl
-         << "\t ";
+    cout << endl << "\t ";
     cout << TXT_BOLD << TXT_GREEN_118 << AFIRMATIVO << ") SI " << END_COLOR << endl;
     cout << "\t ";
     cout << TXT_BOLD << TXT_LIGHT_RED_9 << NEGATIVO << ") NO " << END_COLOR << endl;
@@ -339,11 +338,11 @@ void imprimir_materiales_jugador(Nodo_lista<Material> *&primero, int cantidad_en
 
 void encabezado_edificios_jugador_secundario()
 {
-    
+    Gotoxy gotoxy;
     cout << TXT_BOLD;
-    cout << "\t\t╔═══════════════════════╦══════╦═════════╦═════════════════════╗" << endl;
-    cout << "\t\t║ Edificios construidos ║ Fila ║ Columna ║ Necesita reparacion ║" << endl;
-    cout << "\t\t╠═══════════════════════╬══════╬═════════╬═════════════════════╣" << endl;
+    cout << gotoxy.pos(1, 17) << "╔═══════════════════════╦══════╦═════════╦═════════════════════╗" << endl;
+    cout << gotoxy.pos(2, 17) << "║ Edificios construidos ║ Fila ║ Columna ║ Necesita reparacion ║" << endl;
+    cout << gotoxy.pos(3, 17) << "╠═══════════════════════╬══════╬═════════╬═════════════════════╣" << endl;
     cout << END_COLOR;
 }
 
@@ -370,7 +369,10 @@ void imprimir_edificios_jugador(Lista_edificios<Edificacion> *edificios_jugador)
         cout << "│" << setfill(' ') << setw(4) << edificio->devolver_fila() << setfill(' ') << setw(5);
         cout << "│" << setfill(' ') << setw(5) << edificio->devolver_columna() << setfill(' ') << setw(7);
         cout << "│" << setfill(' ') << setw(12) << necesita_reparacion << setfill(' ') << setw(13) << "║" << endl;
-        cout << "\t\t╠───────────────────────┼──────┼─────────┼─────────────────────╣" << endl;
+        if (  i < cantidad_en_lista - 1 )
+            cout << "\t\t╠───────────────────────┼──────┼─────────┼─────────────────────╣" << endl;
+        else
+            cout << "\t\t╚═══════════════════════╩══════╩═════════╩═════════════════════╝" << endl;
 
         primer_nodo_edificios = primer_nodo_edificios->direccion_siguiente();
     }
@@ -385,11 +387,12 @@ void imprimir_edificios_jugador(Lista_edificios<Edificacion> *edificios_jugador)
 }
 
 void encabezado_edificios_jugador()
-{
+{   
+    Gotoxy gotoxy;
     cout << TXT_BOLD;
-    cout << "\t\t\t╔══════════════════════╦═════════════╗" << endl;
-    cout << "\t\t\t║        Edificio      ║  Cantidad   ║" << endl;
-    cout << "\t\t\t╠══════════════════════╬═════════════╣" << endl;
+    cout << gotoxy.pos(1, 82) << "╔══════════════════════╦═════════════╗" << endl;
+    cout << gotoxy.pos(2, 82) << "║        Edificio      ║  Cantidad   ║" << endl;
+    cout << gotoxy.pos(3, 82) << "╠══════════════════════╬═════════════╣" << endl;
     cout << END_COLOR;
 }
 
@@ -398,17 +401,18 @@ void imprimir_cantidad_edificios_jugador(Lista_primitiva<string> *nombre_edifici
     string nombre_de_edificio;
     int cantidad = 0;
 
+    Gotoxy gotoxy;
     encabezado_edificios_jugador();
 
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i < nombre_edificios->devolver_cantidad_en_Lista_primitiva(); i++)
     {
         nombre_de_edificio = nombre_edificios->devolver_elemento_en_posicion(i + 1);
         cantidad = cantidad_por_edificio->devolver_elemento_en_posicion(i + 1);
-        cout << "\t\t\t║" << setfill(' ') << setw(16) << nombre_de_edificio << "( "
-             << "EJ"
-             << " )" << setfill(' ') << setw(3);
-        cout << "║" << setfill(' ') << setw(7) << cantidad << setfill(' ') << setw(9) << "║";
-        cout << "\n\t\t\t╠──────────────────────┼─────────────╣" << endl;
+        cout << gotoxy.pos(i*2 + 4, 82) << "║" << setfill(' ') << setw(19) << nombre_de_edificio << setfill(' ') << setw(6)  << "│" << setfill(' ') << setw(7) << cantidad << setfill(' ') << setw(9) << "║" << endl;
+        if( i < nombre_edificios->devolver_cantidad_en_Lista_primitiva() - 1)
+            cout << gotoxy.pos(i*2 + 5, 82) << "╠──────────────────────┼─────────────╣" << endl;
+        else 
+            cout << gotoxy.pos(i*2 + 5, 82) << "╚══════════════════════╩═════════════╝" << endl;
     }
 }
 

@@ -2,6 +2,7 @@
 #include "emojis.h"
 Planta::Planta() : Edificacion (EDIFICIO_PLANTA_ELECTRICA, EMOJI_PLANTA_ENERGIA){
     this->produce_material = true;
+    this->necesita_reparacion = false;
     this->cantidad_material_brinda = BRINDA_PLANTA_ELECTRICA;
     this->material_producido = ENERGIA;
     this->reparable = false;

@@ -194,6 +194,12 @@ class Jugador {
            * Post: Me ira acumulando los recursos de los edificios que encuentre en el mapa.
            */
           void acumular_recursos(string material, int cantidad);
+
+          /*
+           * Pre: 
+           * Post: Me ira acumulando los recursos de los edificios que encuentre en el mapa.
+           */
+          void borrar_edificio(int fila, int columna);
      private:
 
           /*

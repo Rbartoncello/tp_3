@@ -319,3 +319,18 @@ void Jugador::sumar_energia_acumulada(int cantidad){
 Lista_edificios<Edificacion>*& Jugador::devolver_mis_edificios(){
     return edificios_jugador;
 }
+
+void Jugador::borrar_edificio(int fila, int columna){
+    int i = 0;
+    bool esta = false;
+
+    while (!esta && i < edificios_jugador->devolver_cantidad_en_Lista_edificios()){
+        if (edificios_jugador->obtener_direccion_nodo(i)->devolver_dato()->devolver_fila() == fila && edificios_jugador->obtener_direccion_nodo(i)->devolver_dato()->devolver_columna() == columna){
+            edificios_jugador->remover_elemento(i+1);
+            esta = true;
+        }
+        else
+            i++;        
+    }
+    
+}
