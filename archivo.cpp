@@ -328,7 +328,7 @@ void Archivo::guardar_materiales_en_mapa(Mapa *mapa, fstream &documento)
             if (casillero[i][j]->esta_ocupado())
             {
                 if (casillero[i][j]->devolver_tipo_terreno() == CAMINO)
-                    documento << casillero[i][j]->devolver_material()->devolver_nombre()<< " " << casillero[i][j]->devolver_material()->devolver_cantidad() << endl;
+                    documento << casillero[i][j]->devolver_material()->devolver_nombre()<< " (" << i << ", " << j << ")" << endl;
             }
         }
     }

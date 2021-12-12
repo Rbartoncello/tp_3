@@ -368,7 +368,9 @@ void imprimir_cantidad_edificios_jugador(Lista_primitiva<string> *nombre_edifici
         cantidad = cantidad_por_edificio->devolver_elemento_en_posicion(i + 1);
         contador++;
         contador_auxiliar = contador + 1;
-        cout << gotoxy.pos(contador, 11) << "\t║" << setfill(' ') << setw(16) << nombre_de_edificio << "( " << "EJ" << " )" << setfill(' ') << setw(3)
+        cout << gotoxy.pos(contador, 11) << "\t║" << setfill(' ') << setw(16) << nombre_de_edificio << "( "
+             << "EJ"
+             << " )" << setfill(' ') << setw(3)
              << "║" << setfill(' ') << setw(7) << cantidad << setfill(' ') << setw(9) << "║" << endl
              << gotoxy.pos(contador_auxiliar, 11) << "\t╠──────────────────────┼─────────────╣" << endl;
         contador++;
@@ -510,4 +512,26 @@ void imprimir_mensaje_recolectando_recursos_producidos()
 
     sleep(2);
     system("clear");
+}
+
+void imprimir_juego_ganado(int ganador)
+{
+
+    system("clear");
+    Gotoxy gotoxy;
+
+    cout << gotoxy.pos(15, 35) << "\t\t EL JUGADOR " << ganador << " HA GANADO EL JUEGO" << endl;
+
+    cout << TXT_BOLD << TXT_DARK_YELLOW_3;
+    cout <<  "\
+\t\t     ___      .__   __.  _______  ____    ____ .______     ______    __       __       _______    \n\
+\t\t    /   \\     |  \\ |  | |       \\ \\   \\  /   / |   _  \\   /  __  \\  |  |     |  |     /       | _    \n\
+\t\t   /  ^  \\    |   \\|  | |  .--.  | \\   \\/   /  |  |_)  | |  |  |  | |  |     |  |    |   (----`(_)      \n\
+\t\t  /  /_\\  \\   |  . `  | |  |  |  |  \\_    _/   |   ___/  |  |  |  | |  |     |  |     \\   \\            \n\
+\t\t /  _____  \\  |  |\\   | |  '--'  |    |  |     |  |      |  `--'  | |  `----.|  | .----)   |    _         \n\
+\t\t/__/     \\__\\ |__| \\__| |_______/     |__|     |__|       \\______/  |_______||__| |_______/    (_)      \n\
+                                                                                                              \n"
+         << endl;
+
+    cout << END_COLOR;
 }

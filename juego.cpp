@@ -215,7 +215,7 @@ int Juego::validar_ganador(int opcion_elegida){
     if (opcion_elegida != GUARDA_SALIR  && jugador_actual->validar_objetivos())
         {
             opcion_elegida = GUARDA_SALIR;
-            cout << "\n EL JUGADOR " << jugador_actual->devolver_numero() << " HA GANADO EL JUEGO" << endl;
+            imprimir_juego_ganado(jugador_actual->devolver_numero());
             imprimir_mensaje_enter_continuar();
         }
 
