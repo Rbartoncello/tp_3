@@ -19,6 +19,7 @@ class Juego{
         Jugador* jugador_2;
         Jugador* jugador_actual;
         Constructora* constructora;
+        bool toca_lluvia;
     public:
         /*
          * Constructor sin parametros:
@@ -264,6 +265,8 @@ class Juego{
         bool validar_atacar_edificio(int fila, int columna);
 
         bool validar_bombas_energia();
+
+        void lluvia();
 
 
 };
