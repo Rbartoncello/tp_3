@@ -101,15 +101,25 @@ class Casillero{
          * Post: Metodo virtual vacio para la clase casillero_construible
         */
         virtual string devolver_nombre_edificio() = 0;
-
-
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual int devolver_duenio() = 0;
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual Edificacion* devolver_edificacion(){return nullptr;};
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual Material* devolver_material() = 0;
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual void eliminar_edificio(){};
 
         /*
@@ -129,21 +139,45 @@ class Casillero{
          * Post: Metodo virtual vacio para la clase casillero_construible
         */
         virtual void agregar_edificio(Edificacion* edificio){};
-
+            /*
+        * PRE:
+        * POST:
+        */
         string devolver_posicion();
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual int devolver_costo() = 0;
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual void agregar_jugador(Jugador* jugador) = 0;
-
+            /*
+        * PRE:
+        * POST:
+        */
         void modificar_jugador(Jugador* jugador);
-
+            /*
+        * PRE:
+        * POST:
+        */
         Jugador* devolver_jugador();
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual void eliminar_jugador() = 0;
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual void mover_jugador(Jugador* jugador) = 0;
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual void modificar_costo(int costo) = 0;
 };
 

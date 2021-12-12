@@ -38,7 +38,10 @@ class Casillero_inaccesible : public Casillero {
          * Post: Me muestra por pantalla.
          */
         virtual void mostrar() = 0;
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual int devolver_costo() = 0;
 
         /*
@@ -46,36 +49,60 @@ class Casillero_inaccesible : public Casillero {
          * Post: Metodo vacio para la clase casillero_construible
         */
         string devolver_nombre_edificio(){return "l";};
-
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual int devolver_duenio(){return 0;};
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual Edificacion* devolver_edificacion(){return nullptr;};
-        
+            /*
+        * PRE:
+        * POST:
+        */
         virtual void eliminar_edificio(){};
-
         /*
          * Pre: -
          * Post: Imprime un resumen escrito del casillero
         */
         void imprimir_resumen();
-
         /*
          * Pre: -
          * Post: Metodo virtual vacio para la clase casillero_transitable
         */
         void agregar_material(Material* nombre_material){};
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual void agregar_jugador(Jugador* jugador) = 0;
-
+            /*
+        * PRE:
+        * POST:
+        */
         void modificar_ocupado(bool estado);
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual void eliminar_jugador() = 0;
-
+            /*
+        * PRE:
+        * POST:
+        */
         Material* devolver_material();
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual void mover_jugador(Jugador* jugador) = 0;
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual void modificar_costo(int costo) = 0;
 };
 

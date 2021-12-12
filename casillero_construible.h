@@ -32,13 +32,25 @@ class Casillero_construible : public Casillero{
          * Post: De devuleve TRUE si esta ocupado y FALSE en caso contrario.
          */
         bool esta_ocupado();
-
+            /*
+        * PRE:
+        * POST:
+        */
         void modificar_ocupado(bool estado);
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual int devolver_duenio() = 0;
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual Edificacion* devolver_edificacion(){return nullptr;};
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual void eliminar_edificio(){};
 
         /*
@@ -46,9 +58,15 @@ class Casillero_construible : public Casillero{
          * Post: Me muestra por pantalla.
          */
         virtual void mostrar() = 0;
-
-        virtual ~Casillero_construible() = 0; 
-
+            /*
+        * PRE:
+        * POST:
+        */
+        virtual ~Casillero_construible() = 0;
+            /*
+        * PRE:
+        * POST:
+        */
         Material* devolver_material();
 
         /*
@@ -74,15 +92,26 @@ class Casillero_construible : public Casillero{
          * Post: Metodo virtual vacio para la clase casillero_construible
         */
         virtual void agregar_edificio(Edificacion* edificio){};
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual int devolver_costo() = 0;
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual void agregar_jugador(Jugador* jugador) = 0;
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual void eliminar_jugador() = 0;
-
+            /*
+        * PRE:
+        * POST:
+        */
         virtual void mover_jugador(Jugador* jugador) = 0;
-
         /*
          * PRE: -
          * POST: Me modifica el costo
