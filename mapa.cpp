@@ -451,13 +451,6 @@ void Mapa::lluvia_recursos(){
 Casillero*** Mapa::devolver_puntero_casillero(){
     return casilleros;
 }
-void Mapa::agregar_a_coordenada(int cantidad, string material)
-{
-
-    /* int fila, columna, cantidad_intentos = 0, cantidad_exitoso = 0;
-    bool terreno_transitable_valido = false;
-    char terreno; */
-}
 
 bool Mapa::hay_algun_edificio_construido(){
     bool hay_edificio = false;

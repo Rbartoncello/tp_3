@@ -1,4 +1,4 @@
-bombas 6 8
+bombas 5 6
 andycoins 1000 1050
 metal 1000 1100
 piedra 49999 50299

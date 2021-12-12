@@ -13,3 +13,5 @@ cmake-build-debug
 .idea
 CMakeLists.txt
 prueba
+archivos/materiales.txt
+archivos/ubicaciones.txt
