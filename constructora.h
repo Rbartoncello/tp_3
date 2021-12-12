@@ -4,6 +4,7 @@
 #include "diccionario.h"
 #include "mapa.h"
 #include "constantes.h"
+#include "juego.h"
 
 class Constructora
 {
@@ -24,9 +25,7 @@ private:
 
     void mostrar_materiales_faltantes(string nombre_nuevo_edificio, Jugador* &jugador);
 
-    void demoler_edificio(Jugador* jugador);
-
-    void avanzar_con_demolicion(string nombre_nuevo_edifcio, Jugador* jugador);
+    void avanzar_con_demolicion(Jugador* jugador);
 
     bool ingreso_de_coordenadas();
 
@@ -40,6 +39,8 @@ private:
 
 public:
     Constructora(Diccionario<Edificacion>* dict_edifcios, Mapa* mapa);
+
+    void demoler_edificio(Jugador* jugador);
 
     void construir_edificio(Jugador* jugador);
 

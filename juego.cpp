@@ -331,6 +331,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion)
         imprimir_mensaje_enter_continuar();
         break;
     case DEMOLER_EDIFICIO_COORDENADA:
+        constructora->demoler_edificio(jugador_actual);
         break;
     case ATARCAR_EDIFICIO_COORDENADA:
         this->atacar_edificio();

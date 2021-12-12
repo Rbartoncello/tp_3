@@ -58,26 +58,31 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edificio, Jugado
 }
 
 void Constructora::demoler_edificio(Jugador* jugador){
-
-    string nombre_edificio;
-
+    bool ocupado;
     if(jugador->devolver_energia() >= ENERGIA_DEMOLER){
-        imprimir_mensaje_construir_edificio();
-        cin.ignore();
-        getline(cin, nombre_edificio);
-        while ( !dict_edificios->existe(nombre_edificio)){
-            imprimir_mensaje_error_ingresar_edificio();
-            getline(cin, nombre_edificio);
+        this->ingreso_de_coordenadas();
+        ocupado = mapa->hay_edicicio(fila_nueva, columna_nueva);
+        if(ocupado){
+            this->avanzar_con_demolicion(jugador);
         }
-        if(dict_edificios->existe(nombre_edificio))
-            avanzar_con_demolicion(nombre_edificio, jugador);
-        else
-            cout << "\n Oh, no construyes nada?, bueno, vuelve pronto la constructora de Andypolis necesita trabajar\n" << endl;
-    } else
-        imprimir_mensaje_no_energia_sufuciente(ENERGIA_CONSTRUIR);
+    }
+    else
+        imprimir_mensaje_no_energia_sufuciente(ENERGIA_DEMOLER);
 }
 
-void Constructora::avanzar_con_demolicion(string nombre_nuevo_edificio, Jugador *jugador) {
+void Constructora::avanzar_con_demolicion(Jugador *jugador) {
+    string opcion_elegida;
+    int piedra_necesaria = dict_edificios->buscar(nombre_nuevo_edificio)->devolver_receta()->devoler_piedra();
+    int madera_necesaria = dict_edificios->buscar(nombre_nuevo_edificio)->devolver_receta()->devoler_madera();
+    int metal_necesario  = dict_edificios->buscar(nombre_nuevo_edificio)->devolver_receta()->devoler_metal();
+    cout << "Se te reembolsaran" <<piedra_necesaria/2 <<","<< madera_necesaria/2<<" y "<< metal_necesario/2 << ", ¿Quieres continuar? [s/n]"<< endl;
+    cin.ignore();
+    do{
+        cin >> opcion_elegida;
+    }while(opcion_elegida != "s" && opcion_elegida != "n");
+    if(opcion_elegida == "s"){
+        cout<<"esto funciona ANASHEEEEE"<< endl;
+    }
 
 }
 
