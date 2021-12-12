@@ -155,16 +155,15 @@ void imprimir_mensaje_esperar(int tiempo)
     system("clear");
 }
 
-void imprimir_procesamiento_accion(string action_realizada, string nombre_edificio, string emoji_edificio)
+void imprimir_procesamiento_accion(string action_realizada, string nombre_edificio)
 {
     system("clear");
-    cout << "\t" << action_realizada << " " << nombre_edificio << "( " << emoji_edificio << " ) ... " << EMOJI_EDIFICIO_CONSTRUCION << "  " << EMOJI_PARED << "  " << EMOJI_MARTILLO << endl;
+    cout << "\t" << action_realizada << " " << nombre_edificio << "... " << EMOJI_EDIFICIO_CONSTRUCION << "  " << EMOJI_PARED << "  " << EMOJI_MARTILLO << endl;
 
     sleep(2);
     system("clear");
     cout << TXT_BOLD;
-    cout << "\tSe ha realizado la accion con exito " << EMOJI_HECHO << endl
-         << endl;
+    cout << "\tSe ha realizado la accion con exito " << EMOJI_HECHO << endl << endl;
     cout << END_COLOR;
 
     sleep(2);

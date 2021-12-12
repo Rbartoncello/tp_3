@@ -76,6 +76,9 @@ const char LAGO = 'L';
 const char MUELLE = 'M';
 const char TERRENO = 'T';
 
+const string CONSTRUYENDO = "Construyendo";
+const string DEMOLIENDO= "Demoliendo";
+
 const string PIEDRA = "piedra";
 const string MADERA = "madera";
 const string METAL = "metal";

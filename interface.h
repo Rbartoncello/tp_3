@@ -73,7 +73,7 @@ void imprimir_edificios_jugador(Lista_edificios<Edificacion>* edificios_jugador)
  * Pre: -
  * Post: Me imprimira por pantalla la action_realizada.
  */
-void imprimir_procesamiento_accion(string action_realizada, string nombre_edificio, string emoji_edificio);
+void imprimir_procesamiento_accion(string action_realizada, string nombre_edificio);
 
 /*
  * Pre: -
