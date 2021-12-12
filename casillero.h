@@ -108,6 +108,8 @@ class Casillero{
 
         virtual Edificacion* devolver_edificacion(){return nullptr;};
 
+        virtual Material* devolver_material() = 0;
+
         virtual void eliminar_edificio(){};
 
         /*

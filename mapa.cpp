@@ -371,3 +371,7 @@ bool Mapa::hay_edicicio(int fila, int columna)
 {
     return (devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO && devolver_casillero(fila, columna)->esta_ocupado());
 }
+
+Casillero*** Mapa::devolver_puntero_casillero(){
+    return casilleros;
+}

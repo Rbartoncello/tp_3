@@ -264,7 +264,8 @@ void Juego::partida_empezada()
         
     };
 
-    this->diccionario->guardar_pre_orden();
+    diccionario->guardar_pre_orden();
+    lector_archivos->escribir_archivos(jugador_1,jugador_2,mapa);
     imprimir_mensaje_guardado();
 }
 
