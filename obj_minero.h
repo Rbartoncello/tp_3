@@ -20,7 +20,7 @@ public:
 
     //Pre:
     //Post:Agrega datos al conteo para alcanzar el objetivo
-    void agregar_datos(int sumar_andycoins);
+    void agregar_datos(int cantidad);
 
     //Pre:
     //Post:Muestra por pantalla la descripcion
