@@ -1,11 +1,6 @@
 #include <iostream>
-#include <fstream>
 #include "diccionario.h"
-#include "emojis.h"
-#include "constantes.h"
-#include "edificio.h"
 #include "juego.h"
-#include "archivo.h"
 #include <time.h>
 
 int main() {

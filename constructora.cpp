@@ -60,10 +60,15 @@ void Constructora::demoler_edificio(Jugador* jugador){
     bool ocupado;
     if(jugador->devolver_energia() >= ENERGIA_DEMOLER){
         this->ingreso_de_coordenadas();
-        ocupado = mapa->hay_edicicio(fila_nueva, columna_nueva);
-        if(ocupado){
-            cout<<"hay edificio"<<endl;
-            this->avanzar_con_demolicion(jugador);
+        if(mapa->devolver_casillero(fila_nueva,columna_nueva)->devolver_duenio() == jugador->devolver_numero()) {
+            ocupado = mapa->hay_edicicio(fila_nueva, columna_nueva);
+            if (ocupado) {
+                cout << "hay edificio" << endl;
+                this->avanzar_con_demolicion(jugador);
+            }
+        }
+        else{
+            cout<< "Ejem... ese edificio no es tuyo..."<<endl;
         }
     }
     else

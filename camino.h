@@ -23,7 +23,7 @@ class Camino : public Casillero_transitable{
 
         Edificacion* devolver_edificacion(){return nullptr;};
 
-        virtual void eliminar_edificio(){};
+        void eliminar_edificio(){};
 
         /*
          * 

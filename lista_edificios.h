@@ -55,8 +55,6 @@ class Lista_edificios{
          */
         int obtener_posicion(string nombre);
 
-        int devolver_material(string material);
-
                 /*
          * Pre: -.
          * Post: Devuelve el nodo siguiente.
@@ -192,29 +190,6 @@ int Lista_edificios<T>::obtener_posicion(string nombre) {
     
     return i - 1;
 }
-
-template<typename T>
-int Lista_edificios<T>::devolver_material(string material){
-    for (int i = 0; i < cantidad_en_Lista_edificios; ++i) {
-        if(this->obtener_nombre(i+1) == material)
-        {
-            return this->obtener_direccion_nodo(i)->obtener_cantidad();
-        }
-    }
-    return ERROR;
-}
-
-template<typename T>
-T* Lista_edificios<T>::devolver_objeto_material(string material){
-    for (int i = 0; i < cantidad_en_Lista_edificios; ++i) {
-        if(this->obtener_nombre(i+1) == material)
-        {
-            return this->obtener_direccion_nodo(i)->devolver_dato();
-        }
-    }
-    return NULL;
-}
-
 template<typename T>
 int Lista_edificios<T>::obtener_cantidad(int posicion) {
     int i = 0;

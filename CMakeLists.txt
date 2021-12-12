@@ -37,7 +37,6 @@ add_executable(tp_3 constantes.h main.cpp
         bomba.cpp bomba.h
         andycoins.cpp andycoins.h
         gotoxy.h
-        mas_alto_que_las_nubes.cpp mas_alto_que_las_nubes.h
         mina_oro.cpp mina_oro.h
         objetivos.cpp objetivos.h
         lista.h
