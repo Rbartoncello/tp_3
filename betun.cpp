@@ -38,8 +38,8 @@ void Betun::mostrar(){
         cout << devolver_jugador()->devolver_emoji() << END_COLOR;
 }
 
-void Betun::agregar_material(Material* material) {
-    this->material = material;
+void Betun::agregar_material(Material* material_nuevo) {
+    this->material = material_nuevo;
     modificar_ocupado(true);
 }
 

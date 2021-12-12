@@ -4,11 +4,9 @@ set(CMAKE_CXX_STANDARD 14)
 set(GCC_ENABLE_WARNINGS "-O1 -Wall -Werror -Wconversions")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${GCC_ENABLE_WARNINGS}")
 add_executable(tp_3 constantes.h main.cpp
-        edificios.cpp edificios.h
         materiales.cpp materiales.h
         mapa.cpp mapa.h
         material.cpp material.h
-        edificio.cpp edificio.h
         juego.cpp juego.h
         jugador.cpp jugador.h
         casillero.cpp casillero.h
@@ -21,7 +19,7 @@ add_executable(tp_3 constantes.h main.cpp
         betun.cpp betun.h
         muelle.cpp muelle.h
         interface.cpp interface.h
-        diccionario.cpp diccionario.h
+        diccionario.h
         receta.cpp receta.h
         edificacion.cpp edificacion.h
         escuela.h escuela.cpp

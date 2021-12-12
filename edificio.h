@@ -51,7 +51,7 @@ public:
      */
     int devolver_maxima_cantidad_permitidos();
 
-        bool brinda_material();
+    bool brinda_material();
 
 };
 

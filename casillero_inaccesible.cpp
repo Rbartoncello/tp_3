@@ -25,4 +25,4 @@ void Casillero_inaccesible::modificar_ocupado(bool estado) {
     this->ocupado = estado;
 }
 
-Material* Casillero_inaccesible::devolver_material(){return NULL;}
+Material* Casillero_inaccesible::devolver_material(){return nullptr;}

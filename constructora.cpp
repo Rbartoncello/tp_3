@@ -1,5 +1,4 @@
 #include "constructora.h"
-#include "emojis.h"
 
 Constructora::Constructora(Diccionario<Edificacion>* dict_edifcios, Mapa *mapa) {
     this->dict_edificios = dict_edifcios;
@@ -63,6 +62,7 @@ void Constructora::demoler_edificio(Jugador* jugador){
         this->ingreso_de_coordenadas();
         ocupado = mapa->hay_edicicio(fila_nueva, columna_nueva);
         if(ocupado){
+            cout<<"hay edificio"<<endl;
             this->avanzar_con_demolicion(jugador);
         }
     }
@@ -72,16 +72,18 @@ void Constructora::demoler_edificio(Jugador* jugador){
 
 void Constructora::avanzar_con_demolicion(Jugador *jugador) {
     string opcion_elegida;
-   // int piedra_necesaria = dict_edificios->buscar(nombre_nuevo_edificio)->devolver_receta()->devoler_piedra();
-    //int madera_necesaria = dict_edificios->buscar(nombre_nuevo_edificio)->devolver_receta()->devoler_madera();
-    //int metal_necesario  = dict_edificios->buscar(nombre_nuevo_edificio)->devolver_receta()->devoler_metal();
-    //cout << "Se te reembolsaran" <<piedra_necesaria/2 <<","<< madera_necesaria/2<<" y "<< metal_necesario/2 << ", ¿Quieres continuar? [s/n]"<< endl;
+    string nombre_edificio = mapa->devolver_casillero(fila_nueva,columna_nueva)->devolver_nombre_edificio();
+    int piedra_necesaria = dict_edificios->buscar(nombre_edificio)->devolver_receta()->devoler_piedra();
+    int madera_necesaria = dict_edificios->buscar(nombre_edificio)->devolver_receta()->devoler_madera();
+    int metal_necesario  = dict_edificios->buscar(nombre_edificio)->devolver_receta()->devoler_metal();
+    cout << "Se te reembolsaran " <<piedra_necesaria/2 <<" de piedra, "<< madera_necesaria/2<<" de madera y "<< metal_necesario/2 << " de metal, ¿Quieres continuar? [s/n]"<< endl;
     cin.ignore();
     do{
         cin >> opcion_elegida;
     }while(opcion_elegida != "s" && opcion_elegida != "n");
     if(opcion_elegida == "s"){
-        cout<<"esto funciona ANASHEEEEE"<< endl;
+        jugador->devolver_mis_edificios()->eliminar_por_direccion(fila_nueva,columna_nueva);
+        mapa->devolver_casillero(fila_nueva,columna_nueva)->eliminar_edificio();
     }
 
 }
@@ -110,10 +112,6 @@ bool Constructora::validar_materiales(string nombre_nuevo_edificio, Jugador* &ju
         imprimir_materiales_necesarios(cantidad_piedra, cantidad_madera, cantidad_metal, piedra_necesaria, madera_necesaria, metal_necesario);
     
     return inventario_suficiente;
-}
-
-void Constructora::mostrar_aviso(){
-    cout << "\n EL edificio que intenta crear no existe, para salir presione 1" << endl;
 }
 
 bool Constructora::ingreso_de_coordenadas()

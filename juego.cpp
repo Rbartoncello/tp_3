@@ -1,7 +1,5 @@
 #include <iostream>
-#include <unistd.h>
 #include "juego.h"
-#include "interface.h"
 
 Juego::Juego()
 {

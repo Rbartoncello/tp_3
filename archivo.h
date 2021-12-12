@@ -16,10 +16,6 @@ class Archivo {
         //Post: crea la Lista.
         Archivo();
 
-        //Pre:-
-        //Post:devuelve el estado del la variable existeciaArchivo, tiene almacenada si el archivo se leyo correctamente.
-        bool getArchivoValido();
-
         //Pre:
         //Post:
         int leer_archivos_materiales(Jugador* &jugador_1, Jugador* &jugador_2);
@@ -31,26 +27,17 @@ class Archivo {
         int leer_archivo_ubicaciones(Mapa* &mapa, Diccionario<Edificacion>* &diccionario, Jugador* &jugador_1, Jugador* &jugador_2);
 
         //Pre:
-        //Post:retorna el nombre del archivo.
-        string devolverNombre();
-
-        //Pre:
         //Post:
         int leer_archivos_edificios(Diccionario<Edificacion>*&diccionario,Mapa* mapa);
 
         //Pre:
         //Post:
         //  void leerArchivoMapa(string nombre);
-
         void escribir_archivos(Jugador *&jugador_1, Jugador *&jugador_2, Mapa* mapa);
 
         ~Archivo() ;
 
     private:
-
-        //Pre:Debe recibir el nombre del Archivo.
-        //Post:valida si existe el Archivo.
-        void validarArchivo();
 
         int leer_ubicaciones_materiales(ifstream &documento,Mapa* &mapa, Jugador* &jugador);
 
@@ -73,10 +60,6 @@ class Archivo {
         void guardar_edificios_jugador(Lista_edificios<Edificacion>* edificio_jugador, fstream &documento);
 
         void guardar_materiales_en_mapa(Mapa *mapa, fstream &documento);
-
-        Edificacion* buscar_edificacion(string nombre, int piedra, int madera, int metal, int max_cant_permitidos);
-
-        Material* buscar_material(string nombre);
 };
 
 #endif //ARCHIVO_H

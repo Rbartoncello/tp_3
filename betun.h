@@ -60,7 +60,7 @@ class Betun : public Casillero_transitable{
          * Pre: -
          * Post: Me va a agregar el material al casillero
         */
-        void agregar_material(Material* material);
+        void agregar_material(Material* material_nuevo);
 
         /*
          * Pre: -

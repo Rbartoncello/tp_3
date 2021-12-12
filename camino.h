@@ -14,7 +14,6 @@ class Camino : public Casillero_transitable{
          * Post: Me va a crear el objeto Camino.
          */
         Camino();
-
         /*
          * Constructor:
          * Pre: -.
