@@ -114,7 +114,7 @@ class Casillero{
         
         /*
          * PRE:
-         * POST: Devuelve en forma de string la posicion del casillero
+         * POST: Devuelve en forma de string la posición del casillero
          */
         string devolver_posicion();
         
@@ -138,7 +138,7 @@ class Casillero{
         
         /*
          * PRE:
-         * POST: Me devolvera el jugador que se encuntra en ese casillero
+         * POST: Me devolverá el jugador que se encuentra en ese casillero
          */
         Jugador* devolver_jugador();
         

@@ -38,10 +38,11 @@ class Casillero_inaccesible : public Casillero {
          * Post: Me muestra por pantalla.
          */
         virtual void mostrar() = 0;
-            /*
-        * PRE:
-        * POST:
-        */
+        
+        /*
+         * Pre: -
+         * Post: Método virtual vació para la clase Lago
+         */
         virtual int devolver_costo() = 0;
 
         /*
@@ -49,60 +50,71 @@ class Casillero_inaccesible : public Casillero {
          * Post: Metodo vacio para la clase casillero_construible
         */
         string devolver_nombre_edificio(){return "l";};
-            /*
-        * PRE:
-        * POST:
-        */
+        
+        /*
+         * Pre: -
+         * Post: Método virtual vació para la clase Lago
+         */
         virtual int devolver_duenio(){return 0;};
-            /*
-        * PRE:
-        * POST:
-        */
+        
+        /*
+         * Pre: -
+         * Post: Método virtual vació para la clase Lago
+         */
         virtual Edificacion* devolver_edificacion(){return nullptr;};
-            /*
-        * PRE:
-        * POST:
-        */
+        
+        /*
+         * Pre: -
+         * Post: Método virtual vació para la clase Lago
+         */
         virtual void eliminar_edificio(){};
+        
         /*
          * Pre: -
          * Post: Imprime un resumen escrito del casillero
         */
         void imprimir_resumen();
+        
         /*
          * Pre: -
          * Post: Metodo virtual vacio para la clase casillero_transitable
-        */
+         */
         void agregar_material(Material* nombre_material){};
-            /*
-        * PRE:
-        * POST:
-        */
+
+        /*
+         * Pre: -
+         * Post: Método virtual vació para la clase Lago
+         */
         virtual void agregar_jugador(Jugador* jugador) = 0;
-            /*
-        * PRE:
-        * POST:
+        
+        /*
+        * PRE: -
+        * POST: Me modificara ocupado
         */
         void modificar_ocupado(bool estado);
-            /*
-        * PRE:
-        * POST:
-        */
+        
+        /*
+         * Pre: -
+         * Post: Método virtual vació para la clase Lago
+         */
         virtual void eliminar_jugador() = 0;
-            /*
-        * PRE:
-        * POST:
-        */
+        
+        /*
+         * PRE: -
+         * POST: Devolvera el material que se encuentra en el casillero
+         */
         Material* devolver_material();
-            /*
-        * PRE:
-        * POST:
-        */
+        
+        /*
+         * Pre: -
+         * Post: Método virtual vació para la clase Lago
+         */
         virtual void mover_jugador(Jugador* jugador) = 0;
-            /*
-        * PRE:
-        * POST:
-        */
+        
+        /*
+         * Pre: -
+         * Post: Método virtual vació para la clase Lago
+         */
         virtual void modificar_costo(int costo) = 0;
 };
 
