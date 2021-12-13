@@ -180,7 +180,7 @@ int Lista_edificios<T>::devolver_cantidad_en_Lista_edificios(){
 template<typename T>
 int Lista_edificios<T>::obtener_posicion(string nombre) {
     bool elemento_encontrado = false;
-    int i = 1;
+    int i = 0;
     Nodo_edificios<T>* auxiliar = primero;
 
     while(!elemento_encontrado && i!= cantidad_en_Lista_edificios){

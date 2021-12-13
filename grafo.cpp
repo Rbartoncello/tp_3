@@ -7,9 +7,9 @@ Grafo::Grafo() {
     algoritmo_camino_minimo = nullptr;
 }
 
-void Grafo::agregar_vertice(string nuevoVertice) {
+void Grafo::agregar_vertice(string nuevo_vertice) {
     agrandar_matriz_adyacencia();
-    vertices -> agregar(nuevoVertice);
+    vertices -> agregar(nuevo_vertice);
 }
 
 void Grafo::agregar_camino(string origen, string destino, int peso) {

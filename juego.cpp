@@ -217,7 +217,6 @@ int Juego::validar_ganador(int opcion_elegida, bool* partida_ganada)
     {
         opcion_elegida = GUARDA_SALIR;
         imprimir_juego_ganado(jugador_actual->devolver_numero());
-        imprimir_mensaje_enter_continuar();
     }
 
     return opcion_elegida;
@@ -262,11 +261,10 @@ void Juego::partida_empezada()
     agregar_energia_comienza_partida();
 
     jugador_inicial();
-    cargar_grafo();
-    cargar_costos();
 
     while (opcion_elegida != GUARDA_SALIR)
     {
+
         opcion_elegida = validar_ganador(opcion_elegida,&partida_ganada);
 
         if (opcion_elegida != GUARDA_SALIR)
@@ -397,7 +395,6 @@ void Juego::moverse_coordenada()
     int columna = pedir_columna();
 
     cargar_grafo();
-    grafo->usar_floyd();
 
     int fila_actual = jugador_actual->devolver_fila();
     int columna_actual = jugador_actual->devolver_columna();
@@ -454,6 +451,8 @@ void Juego::cargar_grafo()
             }
         }
     }
+    cargar_costos();
+    grafo->usar_floyd();
 }
 
 void Juego::cargar_costos()
