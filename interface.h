@@ -123,7 +123,17 @@ void imprimir_mensaje_construir_edificio();
  */
 void imprimir_mensaje_max_edificios_alcansado();
 
+/*
+ * Pre: -
+ * Post: Imprime por pantalla que los materiales necesarios para construir
+ */
 void imprimir_materiales_necesarios(int cantidad_piedra, int cantidad_madera,  int cantidad_metal,  int piedra_necesaria,  int madera_necesaria, int metal_necesario);
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla que los materiales necesarios para construir
+ */
+void imprimir_materiales_gastados_construir(Receta* receta);
 
 /*
  * PRE: -

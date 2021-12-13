@@ -276,6 +276,22 @@ void imprimir_materiales_necesarios(int piedra_inventario, int madera_inventario
     imprimir_mensaje_esperar(4);
 }
 
+void imprimir_materiales_gastados_construir(Receta* receta) 
+{   
+    system("clear");
+    cout << "\tTodo esta listo para empezar la construccion, usted va a gastar: " << endl;
+    cout << TXT_BOLD;
+    cout << "\t╔══════════╦════╗" << endl;
+    cout << "\t║ " << setfill(' ') << setw(5) << receta->devoler_piedra() << setfill(' ') << setw(8) << " │ " << EMOJI_PIEDRA << " ║" << endl;
+    cout << "\t╠──────────┼────╣" << endl;
+    cout << "\t║ " << setfill(' ') << setw(5) << receta->devoler_madera() << setfill(' ') << setw(8) << " │ " << EMOJI_MADERA << " ║" << endl;
+    cout << "\t╠──────────┼────╣" << endl;
+    cout << "\t║ " << setfill(' ') << setw(5) << receta->devoler_metal() << setfill(' ') << setw(8) << " │ " << EMOJI_METAL << " ║" << endl;
+    cout << "\t╚══════════╩════╝" << endl;
+    cout << END_COLOR;
+    cout << "\t¿Quieres continuar? [s/n]"<< endl;
+}
+
 void imprimir_mensaje_receta_edificio(string edificio, string material, int cantidad)
 {
     system("clear");
