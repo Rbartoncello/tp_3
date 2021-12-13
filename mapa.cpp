@@ -8,7 +8,7 @@
 #include "lago.h"
 #include "muelle.h"
 #include "terreno.h"
- #include "interface.h"
+#include "interface.h"
 
 Mapa::Mapa()
 {
@@ -247,12 +247,12 @@ int Mapa::cantidad_edificio_construido(string nombre)
 
 bool Mapa::validar_tipo_construible(int fila, int columna)
 {
-    return ( casilleros[fila][columna]->devolver_tipo_terreno() == TERRENO ) ;
+    return (casilleros[fila][columna]->devolver_tipo_terreno() == TERRENO);
 }
 
 bool Mapa::validar_tipo_transitable(int fila, int columna)
 {
-    return ( ( casilleros[fila][columna]->devolver_tipo_terreno() != LAGO ) && ( casilleros[fila][columna]->devolver_tipo_terreno() != TERRENO ) );
+    return ((casilleros[fila][columna]->devolver_tipo_terreno() != LAGO) && (casilleros[fila][columna]->devolver_tipo_terreno() != TERRENO));
 }
 
 bool Mapa::hay_edificio(int fila, int columna)
@@ -355,11 +355,14 @@ void Mapa::mostrar_edificios_construidos(Jugador *jugador_actual)
         primero = primero->direccion_siguiente();
     }
 
-    contador = imprimir_cantidad_edificios_jugador(nombre_edificios,cantidad_por_edificio);
-
-    imprimir_edificios_jugador(jugador_actual->devolver_mis_edificios());
-
-    imprimir_mensaje_enter_continuar2(contador);
+    if (cantidad_en_lista < 1)
+        sin_edificios_en_lista();
+    else
+    {
+        contador = imprimir_cantidad_edificios_jugador(nombre_edificios, cantidad_por_edificio);
+        imprimir_edificios_jugador(jugador_actual->devolver_mis_edificios());
+        imprimir_mensaje_enter_continuar2(contador);
+    }
 
     delete nombre_edificios;
     delete cantidad_por_edificio;
@@ -375,51 +378,57 @@ bool Mapa::hay_edicicio(int fila, int columna)
     return (devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO && devolver_casillero(fila, columna)->devolver_edificacion() != nullptr);
 }
 
-
-int Mapa::numero_aleatorio(int desde, int hasta){
+int Mapa::numero_aleatorio(int desde, int hasta)
+{
     //srand((unsigned int)time(NULL));
-    int numero = ( desde + rand() % hasta );
-    
+    int numero = (desde + rand() % hasta);
+
     while (numero > hasta)
-        numero = ( desde + rand() % hasta );
+        numero = (desde + rand() % hasta);
     return numero;
 }
 
-bool Mapa::se_puede_generar_material(int fila, int columna){
-    return ( !( casillero_ocupado(fila, columna) ) && ( this->casilleros[fila][columna]->devolver_tipo_terreno() != LAGO) && ( this->casilleros[fila][columna]->devolver_tipo_terreno() != TERRENO ) );
+bool Mapa::se_puede_generar_material(int fila, int columna)
+{
+    return (!(casillero_ocupado(fila, columna)) && (this->casilleros[fila][columna]->devolver_tipo_terreno() != LAGO) && (this->casilleros[fila][columna]->devolver_tipo_terreno() != TERRENO));
 }
 
-void Mapa::agregar_materiales(std::string material, int minimo, int maximo){
+void Mapa::agregar_materiales(std::string material, int minimo, int maximo)
+{
     int maximos_materiales = numero_aleatorio(minimo, maximo);
 
-    for (int i = 0; i < maximos_materiales; i++){
-        int fila_aleatoria = numero_aleatorio(0 , this->cantidad_filas);
+    for (int i = 0; i < maximos_materiales; i++)
+    {
+        int fila_aleatoria = numero_aleatorio(0, this->cantidad_filas);
         usleep(1000);
-        int columna_aleatoria = numero_aleatorio(0 , this->cantidad_columnas);
+        int columna_aleatoria = numero_aleatorio(0, this->cantidad_columnas);
 
-        while ( !( se_puede_generar_material(fila_aleatoria, columna_aleatoria) ) ){
-            fila_aleatoria = numero_aleatorio(0 , this->cantidad_filas);
+        while (!(se_puede_generar_material(fila_aleatoria, columna_aleatoria)))
+        {
+            fila_aleatoria = numero_aleatorio(0, this->cantidad_filas);
             sleep(1);
-            columna_aleatoria = numero_aleatorio(0 , this->cantidad_columnas);
+            columna_aleatoria = numero_aleatorio(0, this->cantidad_columnas);
         }
         this->agregar_material(material, fila_aleatoria, columna_aleatoria);
     }
 }
-bool Mapa::hay_lugar_minimo_material(){
+bool Mapa::hay_lugar_minimo_material()
+{
     bool hay_lugar = false;
     int sumatoria_lugares = 0;
     int i = 0;
     int j = 0;
 
-    while( ( i < this->devolver_cantidad_filas() ) && !(hay_lugar) ){
-        while( ( j < this->devolver_cantidad_columnas() ) && !(hay_lugar) ){
-            if(se_puede_generar_material(i, j))
+    while ((i < this->devolver_cantidad_filas()) && !(hay_lugar))
+    {
+        while ((j < this->devolver_cantidad_columnas()) && !(hay_lugar))
+        {
+            if (se_puede_generar_material(i, j))
                 sumatoria_lugares++;
             if (sumatoria_lugares == 10)
                 hay_lugar = true;
             else
                 j++;
-            
         }
         j = 0;
         i++;
@@ -428,42 +437,52 @@ bool Mapa::hay_lugar_minimo_material(){
     return hay_lugar;
 }
 
-void Mapa::lluvia_recursos(){
+void Mapa::lluvia_recursos()
+{
     system("clear");
-    if (hay_lugar_minimo_material()){
-        
+    if (hay_lugar_minimo_material())
+    {
+
         cout << "\tLluvia de recursos ... " << EMOJI_LLUVIA << " " << EMOJI_LLUVIA_CON_TRUENOS << " " << EMOJI_LLUVIA << endl;
         cout << "\t[Por favor espere]" << endl;
 
-        agregar_materiales(PIEDRA, MIN_GENERAR_PIEDRA, MAX_GENERAR_PIEDRA+1);
-        agregar_materiales(MADERA, MIN_GENERAR_MADERA, MAX_GENERAR_MADERA+1);
-        agregar_materiales(METAL, MIN_GENERAR_METAL, MAX_GENERAR_METAL+1);
-        agregar_materiales(ANDYCOINS, MIN_GENERAR_ANDYCOINS, MAX_GENERAR_ANDYCOINS+1);
+        agregar_materiales(PIEDRA, MIN_GENERAR_PIEDRA, MAX_GENERAR_PIEDRA + 1);
+        agregar_materiales(MADERA, MIN_GENERAR_MADERA, MAX_GENERAR_MADERA + 1);
+        agregar_materiales(METAL, MIN_GENERAR_METAL, MAX_GENERAR_METAL + 1);
+        agregar_materiales(ANDYCOINS, MIN_GENERAR_ANDYCOINS, MAX_GENERAR_ANDYCOINS + 1);
 
         system("clear");
         cout << TXT_BOLD;
-        cout << "\tSe ha agregado recursos al mapa con exito " << EMOJI_HECHO << endl << endl;
+        cout << "\tSe ha agregado recursos al mapa con exito " << EMOJI_HECHO << endl
+             << endl;
         cout << END_COLOR;
-    } else {
+    }
+    else
+    {
         cout << "No es posible agregar materiales en el mapa ya que no hay más lugar" << endl;
     }
     system("clear");
 }
 
-Casillero*** Mapa::devolver_puntero_casillero(){
+Casillero ***Mapa::devolver_puntero_casillero()
+{
     return casilleros;
 }
 
-bool Mapa::hay_algun_edificio_construido(){
+bool Mapa::hay_algun_edificio_construido()
+{
     bool hay_edificio = false;
     int i = 0;
 
-    while ( ( i < this->devolver_cantidad_filas() ) && !(hay_edificio) ){
+    while ((i < this->devolver_cantidad_filas()) && !(hay_edificio))
+    {
         int j = 0;
-        while( ( j < this->devolver_cantidad_filas() ) && !(hay_edificio) ){
-            if( this->devolver_casillero(i,j)->esta_ocupado() )
+        while ((j < this->devolver_cantidad_filas()) && !(hay_edificio))
+        {
+            if (this->devolver_casillero(i, j)->esta_ocupado())
                 hay_edificio = true;
-            else{
+            else
+            {
                 j++;
             }
         }
@@ -472,4 +491,3 @@ bool Mapa::hay_algun_edificio_construido(){
 
     return hay_edificio;
 }
-
