@@ -9,14 +9,14 @@ class Casillero_inaccesible : public Casillero {
         /*
          * Constructor:
          * Pre: -.
-         * Post: Me va a crear el objeto Casillero.
+         * Post: Me va a crear el objeto Casillero_inaccesible.
          */
         Casillero_inaccesible(char tipo_terreno, int pos_x, int pos_y);
         
         /*
          * Constructor sin parametros:
          * Pre: -.
-         * Post: Me va a crear el objeto Casillero con tipo_terreno = ' ',  pos_x = 0, pos_y = 0 y this->ocupado = false.
+         * Post: Me va a crear el objeto Casillero_inaccesible con tipo_terreno = ' ',  pos_x = 0, pos_y = 0 y this->ocupado = false.
          */
         Casillero_inaccesible();
 
@@ -53,21 +53,21 @@ class Casillero_inaccesible : public Casillero {
         
         /*
          * Pre: -
-         * Post: Método virtual vació para la clase Lago
+         * Post: Devolvera 0
          */
-        virtual int devolver_duenio(){return 0;};
+        int devolver_duenio(){return 0;};
         
         /*
          * Pre: -
-         * Post: Método virtual vació para la clase Lago
+         * Post: Retornara nullptr
          */
-        virtual Edificacion* devolver_edificacion(){return nullptr;};
+        Edificacion* devolver_edificacion(){return nullptr;};
         
         /*
          * Pre: -
-         * Post: Método virtual vació para la clase Lago
+         * Post: -
          */
-        virtual void eliminar_edificio(){};
+        void eliminar_edificio(){};
         
         /*
          * Pre: -
@@ -77,7 +77,7 @@ class Casillero_inaccesible : public Casillero {
         
         /*
          * Pre: -
-         * Post: Metodo virtual vacio para la clase casillero_transitable
+         * Post: -
          */
         void agregar_material(Material* nombre_material){};
 
