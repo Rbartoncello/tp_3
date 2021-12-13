@@ -33,13 +33,12 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edificio, Jugado
     if( !validar_maximo_edificio(nombre_nuevo_edificio, jugador) )
         imprimir_mensaje_max_edificios_alcansado(); 
     else if( validar_materiales(nombre_nuevo_edificio,jugador)) {
-        while (ocupado) {
-            coordenadas_validas = this->ingreso_de_coordenadas();
-            if (coordenadas_validas) {
-                ocupado = mapa->hay_edificio(fila_nueva, columna_nueva);
-            } else {
-                cout << "Ahí ya hay un edificio colocado, ingresa unas coordenadas válidas";
-            }
+        coordenadas_validas = this->ingreso_de_coordenadas();
+        if (coordenadas_validas) {
+            ocupado = mapa->hay_edificio(fila_nueva, columna_nueva);
+        }
+        if(ocupado){
+        cout << "Ahí ya hay un edificio colocado, ingresa unas coordenadas válidas";
         }
     }
     if (!ocupado) {
@@ -47,7 +46,7 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edificio, Jugado
         if (opcion_elegida) {
             mapa->agregar_edificacion(nombre_nuevo_edificio, fila_nueva, columna_nueva, jugador->devolver_numero(),jugador->devolver_mis_edificios());
             this->restar_materiales(nombre_nuevo_edificio, jugador);
-            jugador->restar_energia(15);
+            jugador->restar_energia(ENERGIA_CONSTRUIR);
             imprimir_procesamiento_accion(CONSTRUYENDO_MSJ, nombre_nuevo_edificio);
         }
     }
