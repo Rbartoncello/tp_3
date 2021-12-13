@@ -217,7 +217,6 @@ int Juego::validar_ganador(int opcion_elegida, bool* partida_ganada)
     {
         opcion_elegida = GUARDA_SALIR;
         imprimir_juego_ganado(jugador_actual->devolver_numero());
-        jugador_actual->mostrar_objetivos();
         imprimir_mensaje_enter_continuar();
     }
 

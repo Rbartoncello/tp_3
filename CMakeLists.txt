@@ -40,12 +40,12 @@ add_executable(tp_3 constantes.h main.cpp
         mina_oro.cpp mina_oro.h
         objetivos.cpp objetivos.h
         lista.h
-        Grafo.cpp Grafo.h
+        grafo.cpp grafo.h
         nodo.h
         nodo_lista.h
-        Vertice.cpp Vertice.h
-        Floyd.cpp Floyd.h
-        Camino_minimo.cpp Camino_minimo.h
+        vertice.cpp vertice.h
+        floyd.cpp floyd.h
+        camino_minimo.cpp camino_minimo.h
         constructora.cpp constructora.h
         obj_armado.cpp obj_armado.h
         obj_bombardero.cpp obj_bombardero.cpp
