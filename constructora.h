@@ -26,43 +26,43 @@ class Constructora{
 
         /*
          * PRE: Se necesita un nombre valido y un jugador
-         * POST:
+         * POST: Devuelve TRUE si el jugador tiene los materiales necesarios para el edificio
          */
         bool validar_materiales(string nombre_nuevo_edificio, Jugador* &jugador);
 
         /*
-         * PRE:
-         * POST:
+         * PRE: Requiere un jugador actual
+         * POST: termina la demolicion del edificio
          */
         void avanzar_con_demolicion(Jugador* jugador);
 
         /*
-         * PRE:
-         * POST:
+         * PRE: -
+         * POST: Devuelve TRUE si se elegió una coordenada diferente a -1 o si las coordenadas son validas
          */
         bool ingreso_de_coordenadas();
 
         /*
-         * PRE:
-         * POST:
+         * PRE: requiere dos ints como coordenadas 1 y 2
+         * POST: devuelve TRUE si las coordenadas estan dentro de la matriz
          */
         bool validar_coords(int coord1, int coord2);
 
         /*
-         * PRE:
-         * POST:
+         * PRE: recibe un bool aviso
+         * POST: -
          */
         void mostrar_aviso_terreno(bool aviso);
 
         /*
-         * PRE:
-         * POST:
+         * PRE: Se necesita un nombre valido y un jugador
+         * POST: resta los materiales que se usaron en la construccion del inventario del jugador
          */
         void restar_materiales(string nombre_nuevo_edificio,Jugador* jugador);
 
         /*
-         * PRE:
-         * POST:
+         * PRE: -
+         * POST: Hace la ultima confirmación (devuelve TRUE si se puso "s")
          */
         bool validacion_final();
 
@@ -73,13 +73,13 @@ class Constructora{
         */
         Constructora(Diccionario<Edificacion>* dict_edifcios, Mapa* mapa);
             /*
-        * PRE:
-        * POST:
+        * PRE:  Necesita el jugador actual
+        * POST: Empieza la demolicion del edificio
         */
         void demoler_edificio(Jugador* jugador);
             /*
-        * PRE:
-        * POST:
+        * PRE:  Necesita el jugador actual
+        * POST: Empieza la construccion del edificio
         */
         void construir_edificio(Jugador* jugador);
 
