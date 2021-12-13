@@ -258,21 +258,26 @@ class Juego{
          void restablecer_fue_atacado();
         /*
         * PRE:
-        * POST:
+        * POST: resta la energia y recursos del jugador usados al atacar y avanza el objetivo de bombardero
         */
          void restar_atacar();
         /*
-        * PRE:
-        * POST:
+        * PRE: son coordenadas existentes de la matriz
+        * POST: valida si es posible atacar una posicion
         */
          bool validar_atacar_edificio(int fila, int columna);
         /*
         * PRE:
-        * POST:
+        * POST: devuelve true si el jugador actual tiene los recursos y energia suficientes para atacar
         */
          bool validar_bombas_energia();
 
-            void lluvia();
+
+         /*
+             * Pre: -
+             * Post: llueven materiales
+             */
+         void lluvia();
 
 
         /*
