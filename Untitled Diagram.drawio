@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-12-13T02:15:35.410Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36" etag="RFsUCvwnHTPOBe0FNckQ" version="15.7.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-12-13T02:16:01.530Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36" etag="mMgg3sCnJXeFD2a24f59" version="15.7.0" type="github">
   <diagram name="Page-1" id="c4acf3e9-155e-7222-9cf6-157b1a14988f">
-    <mxGraphModel dx="2650" dy="3730" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="2846" dy="3819" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -873,7 +873,7 @@
         <mxCell id="jmU9bc1wFDLhGZCsAq8T-56" value="+Piedra();&#xa;+Piedra(cantidad:int);&#xa;#~PIedra()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="jmU9bc1wFDLhGZCsAq8T-54">
           <mxGeometry y="34" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="ODo8pK-Aoi52Qeh6yiJD-6" value="" style="endArrow=none;html=1;rounded=0;entryX=0.992;entryY=0.352;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="mdNmDBwhIQSw67K94APl-7">
+        <mxCell id="ODo8pK-Aoi52Qeh6yiJD-6" value="" style="endArrow=none;html=1;rounded=0;entryX=1.004;entryY=0.269;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="mdNmDBwhIQSw67K94APl-7">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="615" y="-2660" as="sourcePoint" />
             <mxPoint x="665" y="-2710" as="targetPoint" />
