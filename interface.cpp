@@ -162,7 +162,8 @@ void imprimir_procesamiento_accion(string action_realizada, string nombre_edific
     sleep(2);
     system("clear");
     cout << TXT_BOLD;
-    cout << "\tSe ha realizado la accion con exito " << EMOJI_HECHO << endl << endl;
+    cout << "\tSe ha realizado la accion con exito " << EMOJI_HECHO << endl
+         << endl;
     cout << END_COLOR;
 
     sleep(2);
@@ -206,17 +207,15 @@ void imprimir_mensaje_enter_continuar()
     system("clear");
 }
 
-
 void imprimir_mensaje_enter_continuar2(int contador)
-{   
+{
     Gotoxy gotozu;
     cout << endl
-         << gotozu.pos(contador,11) << "\t\tPresione [ENTER] para continuar" << endl;
+         << gotozu.pos(contador, 11) << "\t\tPresione [ENTER] para continuar" << endl;
     cin.ignore();
     cin.get();
     system("clear");
 }
-
 
 void imprimir_mensaje_ingresar_edificio()
 {
@@ -230,35 +229,34 @@ void imprimir_mensaje_construir_edificio()
     cout << "\tIngrese el nombre del edificio que desee construir: ";
 }
 
-void imprimir_mensaje_max_edificios_alcansado() 
+void imprimir_mensaje_max_edificios_alcansado()
 {
     system("clear");
     cout << "\nOh, lamento traer malas noticias pero ya has alcanzo el maximo de construidos para este edificio: ";
 }
 
-void imprimir_mensaje_edificio_no_duenio() 
+void imprimir_mensaje_edificio_no_duenio()
 {
     imprimir_mensaje_error();
     cout << "Ejem... ese edificio no es tuyo..." << endl;
     imprimir_mensaje_esperar(2);
 }
 
-void imprimir_mensaje_no_hay_edificio() 
+void imprimir_mensaje_no_hay_edificio()
 {
     imprimir_mensaje_error();
     cout << "Aquí no hay un edificio" << endl;
     imprimir_mensaje_esperar(2);
 }
 
-void imprimir_mensaje_reembolso(int piedra, int madera, int metal) 
+void imprimir_mensaje_reembolso(int piedra, int madera, int metal)
 {
     system("clear");
     cout << "Se te reembolsaran: " << endl;
-    cout << "\tPiedra = " << piedra/2 << endl;
-    cout << "\tMadera = " << madera/2 << endl;
-    cout << "\tMetal = " << metal/2 << endl; 
-    cout << "¿Quieres continuar? [s/n]"<< endl;
-    
+    cout << "\tPiedra = " << piedra / 2 << endl;
+    cout << "\tMadera = " << madera / 2 << endl;
+    cout << "\tMetal = " << metal / 2 << endl;
+    cout << "¿Quieres continuar? [s/n]" << endl;
 }
 
 void imprimir_mensaje_error_ingresar_edificio()
@@ -268,7 +266,8 @@ void imprimir_mensaje_error_ingresar_edificio()
     cout << "\tEl nombre de edificio ingresado " << TXT_BOLD << TXT_UNDERLINE << "no" << END_COLOR << " exite, por favor ingrese un nombre de edificio que exista: ";
 }
 
-string chequear_status(int cant_material_inventario, int cant_material_necesario){
+string chequear_status(int cant_material_inventario, int cant_material_necesario)
+{
     string status = EMOJI_MAL;
 
     if (cant_material_inventario >= cant_material_necesario)
@@ -277,23 +276,23 @@ string chequear_status(int cant_material_inventario, int cant_material_necesario
     return status;
 }
 
-void imprimir_materiales_necesarios(int piedra_inventario, int madera_inventario,  int metal_inventario,  int piedra_edificio,  int madera_edificio, int metal_edificio){
-    
+void imprimir_materiales_necesarios(int piedra_inventario, int madera_inventario, int metal_inventario, int piedra_edificio, int madera_edificio, int metal_edificio)
+{
+
     cout << TXT_BOLD;
     cout << "\t╔═════════╦═══════════════════════╦══════════════════════════╦════════╗" << endl;
     cout << "\t║/////////║ Materiales necesarios ║ Materiales en inventario ║ Estado ║" << endl;
     cout << "\t╠═════════╬═══════════════════════╬══════════════════════════╬════════╣" << endl;
     cout << END_COLOR;
 
-    
     string status = chequear_status(piedra_inventario, piedra_edificio);
     cout << "\t║ " << PIEDRA << "  │" << setfill(' ') << setw(12) << piedra_edificio << setfill(' ') << setw(14) << "│" << setfill(' ') << setw(14) << piedra_inventario << setfill(' ') << setw(18) << "│   " << status << "   ║" << endl;
     cout << "\t╠─────────┼───────────────────────┼──────────────────────────┼────────╣" << endl;
-    
+
     status = chequear_status(madera_inventario, madera_edificio);
     cout << "\t║ " << MADERA << "  │" << setfill(' ') << setw(12) << madera_edificio << setfill(' ') << setw(14) << "│" << setfill(' ') << setw(14) << madera_inventario << setfill(' ') << setw(18) << "│   " << status << "   ║" << endl;
     cout << "\t╠─────────┼───────────────────────┼──────────────────────────┼────────╣" << endl;
-    
+
     status = chequear_status(metal_inventario, metal_edificio);
     cout << "\t║  " << METAL << "  │" << setfill(' ') << setw(12) << metal_edificio << setfill(' ') << setw(14) << "│" << setfill(' ') << setw(14) << metal_inventario << setfill(' ') << setw(18) << "│   " << status << "   ║" << endl;
     cout << "\t╚═════════╩═══════════════════════╩══════════════════════════╩════════╝" << endl;
@@ -301,8 +300,8 @@ void imprimir_materiales_necesarios(int piedra_inventario, int madera_inventario
     imprimir_mensaje_esperar(4);
 }
 
-void imprimir_materiales_gastados_construir(Receta* receta) 
-{   
+void imprimir_materiales_gastados_construir(Receta *receta)
+{
     system("clear");
     cout << "\tTodo esta listo para empezar la construccion, usted va a gastar: " << endl;
     cout << TXT_BOLD;
@@ -314,7 +313,7 @@ void imprimir_materiales_gastados_construir(Receta* receta)
     cout << "\t║ " << setfill(' ') << setw(5) << receta->devoler_metal() << setfill(' ') << setw(8) << " │ " << EMOJI_METAL << " ║" << endl;
     cout << "\t╚══════════╩════╝" << endl;
     cout << END_COLOR;
-    cout << "\t¿Quieres continuar? [s/n]"<< endl;
+    cout << "\t¿Quieres continuar? [s/n]" << endl;
 }
 
 void imprimir_mensaje_receta_edificio(string edificio, string material, int cantidad)
@@ -325,7 +324,8 @@ void imprimir_mensaje_receta_edificio(string edificio, string material, int cant
 
 void imprimir_mensaje_afirmativo_negativo()
 {
-    cout << endl << "\t ";
+    cout << endl
+         << "\t ";
     cout << TXT_BOLD << TXT_GREEN_118 << AFIRMATIVO << ") SI " << END_COLOR << endl;
     cout << "\t ";
     cout << TXT_BOLD << TXT_LIGHT_RED_9 << NEGATIVO << ") NO " << END_COLOR << endl;
@@ -398,6 +398,25 @@ void encabezado_edificios_jugador_secundario()
     cout << END_COLOR;
 }
 
+void sin_edificios_en_lista()
+{
+    Gotoxy gotoxy;
+    int contador = 10;
+
+    cout << TXT_BOLD;
+    cout << gotoxy.pos(8, 22) << "\t╔═══════════════════════╦══════╦═════════╦═════════════════════╗"
+         << gotoxy.pos(9, 22) << "\t║ Edificios construidos ║ Fila ║ Columna ║ Necesita reparacion ║"
+         << gotoxy.pos(10, 22) << "\t╠═══════════════════════╬══════╬═════════╬═════════════════════╣";
+    cout << END_COLOR;
+
+    contador++;
+    cout << TXT_BOLD;
+    cout << gotoxy.pos(contador, 22) << "\t║ " << TXT_RED_196 << setfill(' ') << setw(49) << "NO HAY NINGUN EDIFICIO CONSTRUIDO" << setfill(' ') << setw(16) << END_COLOR << "║" << endl;
+    contador++;
+    cout << gotoxy.pos(contador, 22) << "\t╚══════════════════════════════════════════════════════════════╝" << endl;
+    imprimir_mensaje_enter_continuar2(contador+1);
+}
+
 void imprimir_edificios_jugador(Lista_edificios<Edificacion> *edificios_jugador)
 {
 
@@ -431,15 +450,7 @@ void imprimir_edificios_jugador(Lista_edificios<Edificacion> *edificios_jugador)
 
         primer_nodo_edificios = primer_nodo_edificios->direccion_siguiente();
     }
-
-    if (cantidad_en_lista < 1)
-    {
-        cout << TXT_BOLD;
-        cout << "\t\t║ " << TXT_RED_196 << setfill(' ') << setw(49) << "NO HAY NINGUN EDIFICIO CONSTRUIDO" << setfill(' ') << setw(16) << END_COLOR << " ║" << endl;
-    }
-
-    cout << gotoxy.pos(contador, 42) <<  "\t\t╚══════════════════════════════════════════════════════════════╝" << endl;
-
+    cout << gotoxy.pos(contador, 42) << "\t\t╚══════════════════════════════════════════════════════════════╝" << endl;
 }
 
 void encabezado_edificios_jugador()
@@ -474,9 +485,9 @@ int imprimir_cantidad_edificios_jugador(Lista_primitiva<string> *nombre_edificio
         contador++;
     }
 
-    cout << gotoxy.pos(contador, 11) <<  "\t╚════════════════════════════════════╝" << endl;
+    cout << gotoxy.pos(contador, 11) << "\t╚════════════════════════════════════╝" << endl;
     contador++;
-    
+
     return contador;
 }
 
@@ -626,6 +637,7 @@ void imprimir_juego_ganado(int ganador)
     
 
     cout << TXT_BOLD << TXT_DARK_YELLOW_3;
+<<<<<<< HEAD
     cout << gotoxy.pos(15, 35) <<  "\
   _______      ___      .___  ___.  _______ \n\
  /  _____|    /   \\     |   \\/   | |   ____|\n\
@@ -633,6 +645,16 @@ void imprimir_juego_ganado(int ganador)
 |  | |_ |   /  /_\\  \\   |  |\\/|  | |   __|  \n\
 |  |__| |  /  _____  \\  |  |  |  | |  |____ \n\
  \\______| /__/     \\__\\ |__|  |__| |_______|\n"
+=======
+    cout << "\
+\t\t     ___      .__   __.  _______  ____    ____ .______     ______    __       __       _______    \n\
+\t\t    /   \\     |  \\ |  | |       \\ \\   \\  /   / |   _  \\   /  __  \\  |  |     |  |     /       | _    \n\
+\t\t   /  ^  \\    |   \\|  | |  .--.  | \\   \\/   /  |  |_)  | |  |  |  | |  |     |  |    |   (----`(_)      \n\
+\t\t  /  /_\\  \\   |  . `  | |  |  |  |  \\_    _/   |   ___/  |  |  |  | |  |     |  |     \\   \\            \n\
+\t\t /  _____  \\  |  |\\   | |  '--'  |    |  |     |  |      |  `--'  | |  `----.|  | .----)   |    _         \n\
+\t\t/__/     \\__\\ |__| \\__| |_______/     |__|     |__|       \\______/  |_______||__| |_______/    (_)      \n\
+                                                                                                              \n"
+>>>>>>> 8409b5498ca04e7a36dba674432d1a6c8b756451
          << endl;
     cout << gotoxy.pos(15, 50) <<  "\
   ______   ____    ____  _______ .______      \n\

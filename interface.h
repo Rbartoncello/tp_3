@@ -65,6 +65,12 @@ int imprimir_cantidad_edificios_jugador(Lista_primitiva<string> *nombre_edificio
 
 /*
  * Pre: -
+ * Post: imprime que no hay edificios en lista
+ */
+void sin_edificios_en_lista();
+
+/*
+ * Pre: -
  * Post: Imprime por pantalla los edificios del jugador, uno a uno.
  */
 void imprimir_edificios_jugador(Lista_edificios<Edificacion>* edificios_jugador);
