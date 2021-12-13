@@ -46,20 +46,20 @@ class Lago : public Casillero_inaccesible {
         void mostrar();
 
         /*
-        * PRE:
+        * PRE: -
         * POST: Me agregará el jugador al casillero Lago
         */
         void agregar_jugador(Jugador* jugador);
-
+        
         /*
-        * PRE:
+        * PRE: -
         * POST: Me eliminará el jugador del casillero Lago
         */
         void eliminar_jugador();
         
         /*
-        * PRE:
-        * POST: Me moverá el jugador del casillero Lago
+        * PRE: -
+        * POST: Me moverá el jugador al casillero Lago
         */
         void mover_jugador(Jugador* jugador);
 };

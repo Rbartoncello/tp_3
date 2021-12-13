@@ -1,6 +1,5 @@
 #include <iostream>
 #include "terreno.h"
-#include "interface.h"
 
 using namespace std;
 

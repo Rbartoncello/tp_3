@@ -65,7 +65,7 @@ class Casillero_construible : public Casillero{
         /*
          * Destructor:
          * Pre: -.
-         * Post: Me va a detruirá el objeto Casillero_construible.
+         * Post: Me va a destruir el objeto Casillero_construible.
          */
         virtual ~Casillero_construible() = 0;
 

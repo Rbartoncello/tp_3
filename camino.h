@@ -21,10 +21,6 @@ class Camino : public Casillero_transitable{
          */
         Camino(char tipo_terreno, int pos_x, int pos_y);
 
-        Edificacion* devolver_edificacion(){return nullptr;};
-
-        void eliminar_edificio(){};
-
         /*
          * 
          * Pre:Recibe lo que va agregar
@@ -40,7 +36,7 @@ class Camino : public Casillero_transitable{
 
         /*
          * PRE: -
-         * POST: Me devuele el costo
+         * POST: Me devuelve el costo
          */
         int devolver_costo();
 
@@ -74,19 +70,22 @@ class Camino : public Casillero_transitable{
          * Post: Imprime un resumen escrito del casillero
          */
         void imprimir_resumen();
-            /*
-        * PRE:
-        * POST:
+        
+        /*
+        * PRE: -
+        * POST: Me agregará el jugador al casillero Camino
         */
         void agregar_jugador(Jugador* jugador);
-            /*
-        * PRE:
-        * POST:
+        
+        /*
+        * PRE: -
+        * POST: Me eliminará el jugador del casillero Camino
         */
         void eliminar_jugador();
-            /*
-        * PRE:
-        * POST:
+        
+        /*
+        * PRE: -
+        * POST: Me moverá el jugador al casillero Camino
         */
         void mover_jugador(Jugador* jugador);
 };

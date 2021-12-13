@@ -13,16 +13,6 @@ class Betun : public Casillero_transitable{
          * Post: Me va a crear el objeto Betun.
          */
         Betun();
-            /*
-        * PRE:
-        * POST:
-        */
-        Edificacion* devolver_edificacion(){return nullptr;};
-            /*
-        * PRE:
-        * POST:
-        */
-        void eliminar_edificio(){};
 
         /*
          * Constructor:
@@ -45,7 +35,7 @@ class Betun : public Casillero_transitable{
 
         /*
          * PRE: -
-         * POST: Me devuele el costo
+         * POST: Me devuelve el costo
          */
         int devolver_costo();
 
@@ -78,19 +68,22 @@ class Betun : public Casillero_transitable{
          * Post: Imprime un resumen escrito del casillero
         */
         void imprimir_resumen();
-            /*
-        * PRE:
-        * POST:
+        
+        /*
+        * PRE: -
+        * POST: Me agregará el jugador al casillero Betun
         */
         void agregar_jugador(Jugador* jugador);
-            /*
-        * PRE:
-        * POST:
+        
+        /*
+        * PRE: -
+        * POST: Me eliminará el jugador del casillero Betun
         */
         void eliminar_jugador();
-            /*
-        * PRE:
-        * POST:
+        
+        /*
+        * PRE: -
+        * POST: Me moverá el jugador al casillero Betun
         */
         void mover_jugador(Jugador* jugador);
 };

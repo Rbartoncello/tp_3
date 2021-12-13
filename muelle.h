@@ -26,16 +26,6 @@ class Muelle : public  Casillero_transitable{
          * Post:crea el material.
          */
         void modificar_terreno(string elemento,int accion);
-        /*
-        * PRE:
-        * POST:
-        */
-        Edificacion* devolver_edificacion(){return nullptr;};
-        /*
-        * PRE:
-        * POST:
-        */
-        void eliminar_edificio(){};
 
         /*
          * PRE: -
@@ -45,7 +35,7 @@ class Muelle : public  Casillero_transitable{
 
         /*
          * PRE: -
-         * POST: Me devuele el costo
+         * POST: Me devuelve el costo
          */
         int devolver_costo();
 
@@ -79,19 +69,22 @@ class Muelle : public  Casillero_transitable{
          * Post: Imprime un resumen escrito del casillero
          */
         void imprimir_resumen();
+        
         /*
-        * PRE:
-        * POST:
+        * PRE: -
+        * POST: Me agregará el jugador al casillero Muelle
         */
         void agregar_jugador(Jugador* jugador);
+        
         /*
-        * PRE:
-        * POST:
+        * PRE: -
+        * POST: Me eliminará el jugador del casillero Muelle
         */
         void eliminar_jugador();
+        
         /*
-        * PRE:
-        * POST:
+        * PRE: -
+        * POST: Me moverá el jugador al casillero Muelle
         */
         void mover_jugador(Jugador* jugador);
 };

@@ -9,14 +9,14 @@ class Casillero_transitable : public Casillero{
         /*
          * Constructor:
          * Pre: -.
-         * Post: Me va a crear el objeto Casillero.
+         * Post: Me va a crear el objeto Casillero_transitable.
          */
         Casillero_transitable(char tipo_terreno, int pos_x, int pos_y);
         
         /*
          * Constructor sin parametros:
          * Pre: -.
-         * Post: Me va a crear el objeto Casillero con tipo_terreno = ' ',  pos_x = 0, pos_y = 0 y this->ocupado = false.
+         * Post: Me va a crear el objeto Casillero_transitable con tipo_terreno = ' ',  pos_x = 0, pos_y = 0 y this->ocupado = false.
          */
         Casillero_transitable();
 
@@ -32,61 +32,91 @@ class Casillero_transitable : public Casillero{
          * Post: De devuleve TRUE si esta ocupado y FALSE en caso contrario.
          */
         bool esta_ocupado();
-            /*
-        * PRE:
-        * POST:
+        
+        /*
+        * PRE: -
+        * POST: Me modificara ocupado
         */
         void modificar_ocupado(bool estado);
-            /*
-        * PRE:
-        * POST:
-        */
+        
+        /*
+         * Pre: -
+         * Post: Método virtual vació para las clases hijas
+         */
         virtual int devolver_costo() = 0;
 
         /*
          * Pre: -
-         * Post: Me muestra por pantalla.
+         * Post: Método virtual vació para las clases hijas
          */
         virtual void mostrar() = 0;
 
         /*
          * Pre: -
-         * Post: Metodo vacio para la clase casillero_construible
+         * Post: Me retornara 0
         */
-        string devolver_nombre_edificio(){return "t";};
+        string devolver_nombre_edificio(){return "0";};
 
         /*
          * Pre: -
-         * Post: Imprime un resumen escrito del casillero
-        */
+         * Post: Método virtual vació para las clases hijas
+         */
         virtual void imprimir_resumen() = 0;
 
-        virtual int devolver_duenio(){{return 0;}};
+        /*
+         * Pre: -
+         * Post: Me retornara 0
+         */
+        int devolver_duenio(){{return 0;}};
 
-        virtual Edificacion* devolver_edificacion(){return nullptr;};
+        /*
+         * Pre: -
+         * Post: Me retornara nullptr
+         */
+        Edificacion* devolver_edificacion(){return nullptr;};
 
-        virtual void eliminar_edificio(){};
+        void eliminar_edificio(){};
 
+        /*
+         * Pre: -
+         * Post: Método virtual vació para las clases hijas
+         */
         virtual Material* devolver_material() = 0;
 
         /*
          * Pre: -
-         * Post: Metodo virtual vacio para la clase casillero_transitable
-        */
+         * Post: Método virtual vació para las clases hijas
+         */
         virtual void agregar_material(Material* nombre_material){};
 
         /*
          * Pre: -
          * Post: Metodo virtual vacio para la clase casillero_construible
         */
-        virtual void agregar_edificio(Edificacion* edificio){};
+        void agregar_edificio(Edificacion* edificio){};
 
+        /*
+         * Pre: -
+         * Post: Método virtual vació para las clases hijas
+         */
         virtual void agregar_jugador(Jugador* jugador) = 0;
 
+        /*
+         * Pre: -
+         * Post: Método virtual vació para las clases hijas
+         */
         virtual void eliminar_jugador() = 0;
 
+        /*
+         * Pre: -
+         * Post: Método virtual vació para las clases hijas
+         */
         virtual void mover_jugador(Jugador* jugador) = 0;
 
+        /*
+         * Pre: -
+         * Post: Método virtual vació para las clases hijas
+         */
         virtual void modificar_costo(int costo) = 0;
 };
 

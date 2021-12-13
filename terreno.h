@@ -35,7 +35,7 @@ class Terreno : public Casillero_construible{
         Terreno(char tipo_terreno, int pos_x, int pos_y);
 
         /*
-         * PRE:Recibe lo que va agregar
+         * PRE:Recibe lo que va a agregar
          * POST:verifica que es lo que se realizara en el terreno.
          */
         void modificar_terreno(string elemento, int accion);
@@ -60,7 +60,7 @@ class Terreno : public Casillero_construible{
 
         /*
          * PRE: -
-         * POST: Me devuele el costo
+         * POST: Me devuelve el costo
          */
         int devolver_costo();
 
@@ -75,32 +75,35 @@ class Terreno : public Casillero_construible{
          * POST: Devuelve el nombre del edificio
          */
         string devolver_nombre_edificio();
+
         /*
         * PRE:
-        * POST:
+        * POST: Devuelve el denio del edificio
         */
         int devolver_duenio();
+        
         /*
-        * PRE:
-        * POST:
-        */
+         * PRE: -
+         * POST: Me va devolver el edificio del casillero terreno
+         */
         Edificacion* devolver_edificacion();
+        
         /*
-        * PRE:
-        * POST:
-        */
-        virtual void eliminar_edificio();
+         * PRE: -
+         * POST: Me va a eliminar un edificio el casillero terreno
+         */
+        void eliminar_edificio();
 
         /*
          * PRE: -
-         * POST: Metodo virtual vacio para la clase casillero_construible
+         * POST: Me va a agregar un edificio el casillero terreno
          */
         void agregar_edificio(Edificacion* edificio);
 
         /*
          * Destructor:
          * PRE: -.
-         * POST: Me va a destrulle el objeto Terreno.
+         * POST: Me va a destruye el objeto Terreno.
          */
         virtual ~Terreno();
         
@@ -110,11 +113,24 @@ class Terreno : public Casillero_construible{
          */
         void imprimir_resumen();
 
+        /*
+        * PRE: -
+        * POST: Me agregará el jugador al casillero Terreno
+        */
         void agregar_jugador(Jugador* jugador);
-
+        
+        /*
+        * PRE: -
+        * POST: Me eliminará el jugador del casillero Terreno
+        */
         void eliminar_jugador();
-
+        
+        /*
+        * PRE: -
+        * POST: Me moverá el jugador al casillero Terreno
+        */
         void mover_jugador(Jugador* jugador);
+
 };
 
 
