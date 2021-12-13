@@ -1,8 +1,8 @@
-#ifndef GRAFOS_CAMINO_MINIMO_H
-#define GRAFOS_CAMINO_MINIMO_H
+#ifndef CAMINO_MINIMO_H
+#define CAMINO_MINIMO_H
 #include <string>
 #include "lista.h"
-#include "Vertice.h"
+#include "vertice.h"
 #include "mapa.h"
 #include "jugador.h"
 #include <iostream>
@@ -10,31 +10,36 @@
 const int INFINITO = 99999999;
 
 class Camino_minimo {
-    //Atributos
     protected:
         int ** matriz_adyacencia;
         Lista<Vertice> * vertices;
-        int cantidadVertices;
+        int cantidad_vertices;
 
-    //Métodos
-    public:
+    public: 
         /*
-        * PRE:
-        * POST:
-        */
+         * Constructor:
+         * Pre: -.
+         * Post: Me va a crear el objeto Camino_minimo
+         */
         Camino_minimo(Lista<Vertice> * vertices, int** matriz_adyacencia);
 
-        //post: muestra por pantalla el camino mínimo entre el origen y el destino, detallando su recorrido y peso
+        /*
+         * PRE:  - 
+         * POST: Método virtual de la clase hija Floyd
+         */
         virtual void camino_minimo(int origen, int destino, Mapa* &mapa, Jugador* &jugador) = 0;
-            /*
-        * PRE:
-        * POST:
-        */
+        
+        /*
+         * PRE:  - 
+         * POST: Método virtual de la clase hija Floyd
+         */
         virtual int devolver_costo(int origen, int destino) = 0;
-            /*
-        * PRE:
-        * POST:
-        */
+        
+        /*
+         * Destructor:
+         * Pre: -.
+         * Post: Me va a destruir el objeto Camino_minimo
+         */
         virtual ~Camino_minimo() = default;
 };
 

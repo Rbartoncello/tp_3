@@ -1,15 +1,15 @@
-#include "Floyd.h"
+#include "floyd.h"
 #include <unistd.h>
 
 int ** Floyd::crear_matriz_caminos(){
 
-    int ** caminos = new int*[cantidadVertices];
-    for(int i = 0; i < cantidadVertices; i++){
-        caminos[i] = new int[cantidadVertices];
+    int ** caminos = new int*[cantidad_vertices];
+    for(int i = 0; i < cantidad_vertices; i++){
+        caminos[i] = new int[cantidad_vertices];
     }
 
-    for(int i = 0; i < cantidadVertices; i++){
-        for(int j = 0; j < cantidadVertices; j++) {
+    for(int i = 0; i < cantidad_vertices; i++){
+        for(int j = 0; j < cantidad_vertices; j++) {
             caminos[i][j] = j;
         }
     }
@@ -19,13 +19,13 @@ int ** Floyd::crear_matriz_caminos(){
 
 int ** Floyd::crear_matriz_costos(int ** matriz_adyacencia){
 
-    int ** costos = new int*[cantidadVertices];
-    for(int i = 0; i < cantidadVertices; i++){
-        costos[i] = new int[cantidadVertices];
+    int ** costos = new int*[cantidad_vertices];
+    for(int i = 0; i < cantidad_vertices; i++){
+        costos[i] = new int[cantidad_vertices];
     }
 
-    for(int i = 0; i < cantidadVertices; i++){
-        for(int j = 0; j < cantidadVertices; j++){
+    for(int i = 0; i < cantidad_vertices; i++){
+        for(int j = 0; j < cantidad_vertices; j++){
             costos[i][j] = matriz_adyacencia[i][j];
         }
     }
@@ -34,15 +34,15 @@ int ** Floyd::crear_matriz_costos(int ** matriz_adyacencia){
 
 void Floyd::calcular_matrices() {
 
-    cantidadVertices = vertices -> devolver_cantidad_en_lista();
+    cantidad_vertices = vertices -> devolver_cantidad_en_lista();
     matriz_costos = crear_matriz_costos(matriz_adyacencia);
     matriz_caminos = crear_matriz_caminos();
 
-    for (int verticeIntermedio = 0; verticeIntermedio < cantidadVertices; verticeIntermedio++) {
+    for (int verticeIntermedio = 0; verticeIntermedio < cantidad_vertices; verticeIntermedio++) {
 
-        for (int origen = 0; origen < cantidadVertices; origen++){
+        for (int origen = 0; origen < cantidad_vertices; origen++){
 
-            for (int destino = 0; destino < cantidadVertices; destino++) {
+            for (int destino = 0; destino < cantidad_vertices; destino++) {
 
                 int costo = matriz_costos[origen][verticeIntermedio] + matriz_costos[verticeIntermedio][destino];
 
@@ -82,7 +82,7 @@ void Floyd::camino_minimo(int origen, int destino, Mapa* &mapa, Jugador* &jugado
 
 void Floyd::liberar_matrices() {
     if(matriz_costos != nullptr && matriz_caminos != nullptr){
-        for(int i = 0; i < cantidadVertices; i++){
+        for(int i = 0; i < cantidad_vertices; i++){
             delete[] matriz_costos[i];
             delete[] matriz_caminos[i];
         }

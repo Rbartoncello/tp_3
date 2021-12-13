@@ -77,27 +77,27 @@ public:
      */
     virtual bool devolver_necesita_reparacion() = 0;
     /*
-    * PRE: Metodo virtual de las clases hijas
+    * PRE: Método virtual de las clases hijas
     * POST:
     */
     virtual void reparar() = 0;
     /*
-    * PRE:  Metodo virtual de las clases hijas
+    * PRE:  Método virtual de las clases hijas
     * POST:
     */
     virtual void atacar() = 0;
     /*
-    * PRE:  Metodo virtual de las clases hijas
+    * PRE:  Método virtual de las clases hijas
     * POST:
     */
     virtual int devolver_maxima_cantidad_permitidos() = 0;
     /*
-    * PRE:  Metodo virtual de las clases hijas
+    * PRE:  Método virtual de las clases hijas
     * POST:
     */
     virtual Receta* devolver_receta() = 0;
     /*
-    * PRE:  Metodo virtual de las clases hijas
+    * PRE:  Método virtual de las clases hijas
     * POST:
     */
     virtual bool brinda_material() = 0;

@@ -2,8 +2,8 @@
 #define __GRAFO_H__
 #include <string>
 #include "lista.h"
-#include "Vertice.h"
-#include "Floyd.h"
+#include "vertice.h"
+#include "floyd.h"
 #include "mapa.h"
 #include "jugador.h"
 

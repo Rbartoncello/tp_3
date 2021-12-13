@@ -1,4 +1,4 @@
-#include "Vertice.h"
+#include "vertice.h"
 
 Vertice::Vertice(string nombre) {
     this -> nombre = nombre;
