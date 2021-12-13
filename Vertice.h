@@ -12,6 +12,10 @@ private:
 
 /*MÉTODOS*/
 public:
+        /*
+    * PRE:
+    * POST:
+    */
     Vertice(string nombre);
 
     //post: obtiene el nombre del vertice

@@ -30,7 +30,10 @@ public:
     //Post: Me devuelve el porcentaje de completado.
     double devolver_porcentaje_completado();
 
-
+    /*
+    * PRE:
+    * POST:
+    */
     virtual ~Bombardero();
 };
 
