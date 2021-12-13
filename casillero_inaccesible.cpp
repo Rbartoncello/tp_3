@@ -7,7 +7,7 @@ Casillero_inaccesible::Casillero_inaccesible(char tipo_terreno, int pos_x, int p
 }
 
 Casillero_inaccesible::Casillero_inaccesible(): Casillero(){
-
+    this->ocupado = false;
 }
 
 void Casillero_inaccesible::modificar_terreno(string elemento,int accion){}

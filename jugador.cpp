@@ -286,7 +286,8 @@ void Jugador::sumar_a_objetivo(int cantidad, string nombre_objetivo){
 }
 
 bool Jugador::validar_objetivos(){
-    objetivo_principal->verificar_estado_objetivo();
+    if (devolver_mis_edificios()->devolver_cantidad_en_Lista_edificios() > 0)
+        objetivo_principal->verificar_estado_objetivo();
 
     if (!objetivo_principal->devolver_estado_objetivo())
 

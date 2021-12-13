@@ -125,6 +125,12 @@ class Mapa{
       * Post: valida que una coordenada es de tipo construible
       */
         bool validar_tipo_construible(int fila, int columna);
+
+        /*
+         * Pre: -
+         * Post: valida que una coordenada es de tipo transitable
+         */
+        bool validar_tipo_transitable(int fila, int columna);
         
         /*
          * Pre: el casillero tiene un edificio
@@ -164,11 +170,7 @@ class Mapa{
         void crear_matriz_casilleros();
 
 
-        /*
-         * Pre: -
-         * Post: valida que una coordenada es de tipo transitable
-         */
-        bool validar_tipo_transitable(int fila, int columna);
+        
 
         /*
          * Pre: El nombre tiene que ser de un material exitente

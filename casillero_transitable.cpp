@@ -6,7 +6,9 @@ Casillero_transitable::Casillero_transitable(char tipo_terreno, int pos_x, int p
     this->ocupado = false;
 }
 
-Casillero_transitable::Casillero_transitable(): Casillero(){}
+Casillero_transitable::Casillero_transitable(): Casillero(){
+    this->ocupado = false;
+}
 
 bool Casillero_transitable::esta_ocupado(){
     return this->ocupado;

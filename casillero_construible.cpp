@@ -7,7 +7,7 @@ Casillero_construible::Casillero_construible(char tipo_terreno, int pos_x, int p
 }
 
 Casillero_construible::Casillero_construible(): Casillero(){
-
+    this->ocupado = false;
 }
 
 bool Casillero_construible::esta_ocupado(){

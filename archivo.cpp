@@ -316,10 +316,10 @@ void Archivo::guardar_materiales_en_mapa(Mapa *mapa, fstream &documento)
     {
         for (int j = 0; j < columnas; j++)
         {
-            if (casillero[i][j]->esta_ocupado() && casillero[i][j]->devolver_jugador() == nullptr )
+            if (casillero[i][j]->esta_ocupado() && mapa->validar_tipo_transitable(i,j) )
             {
-                if (casillero[i][j]->devolver_tipo_terreno() != LAGO && casillero[i][j]->devolver_tipo_terreno() != TERRENO)
-                    documento << casillero[i][j]->devolver_material()->devolver_nombre()<< " (" << i << ", " << j << ")" << endl;
+                if (casillero[i][j]->devolver_material() != nullptr)
+                    documento << casillero[i][j]->devolver_material()->devolver_nombre() << " (" << i << ", " << j << ")" << endl;
             }
         }
     }

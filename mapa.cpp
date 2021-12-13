@@ -247,12 +247,12 @@ int Mapa::cantidad_edificio_construido(string nombre)
 
 bool Mapa::validar_tipo_construible(int fila, int columna)
 {
-    return ((devolver_tipo_terreno(fila, columna) == TERRENO));
+    return ( casilleros[fila][columna]->devolver_tipo_terreno() == TERRENO ) ;
 }
 
 bool Mapa::validar_tipo_transitable(int fila, int columna)
 {
-    return ((devolver_tipo_terreno(fila, columna) == CAMINO));
+    return ( ( casilleros[fila][columna]->devolver_tipo_terreno() != LAGO ) && ( casilleros[fila][columna]->devolver_tipo_terreno() != TERRENO ) );
 }
 
 bool Mapa::hay_edificio(int fila, int columna)
