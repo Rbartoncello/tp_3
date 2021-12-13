@@ -61,7 +61,7 @@ void encabezado_edificios_jugador();
  * Pre: -
  * Post: Imprime por pantalla la cantidad por edificio del jugador
  */
-void imprimir_cantidad_edificios_jugador(Lista_primitiva<string> *nombre_edificios,Lista_primitiva<int> *cantidad_por_edificio);
+int imprimir_cantidad_edificios_jugador(Lista_primitiva<string> *nombre_edificios,Lista_primitiva<int> *cantidad_por_edificio);
 
 /*
  * Pre: -
@@ -98,6 +98,12 @@ void imprimir_mensaje_error_ingreso();
  * Post: Pausa la pantalla con un cin.
  */
 void imprimir_mensaje_enter_continuar();
+
+/*
+ * Pre: -
+ * Post: Pausa la pantalla con un cin.
+ */
+void imprimir_mensaje_enter_continuar2(int contador);
 
 /*
  * Pre: -

@@ -206,6 +206,18 @@ void imprimir_mensaje_enter_continuar()
     system("clear");
 }
 
+
+void imprimir_mensaje_enter_continuar2(int contador)
+{   
+    Gotoxy gotozu;
+    cout << endl
+         << gotozu.pos(contador,11) << "\t\tPresione [ENTER] para continuar" << endl;
+    cin.ignore();
+    cin.get();
+    system("clear");
+}
+
+
 void imprimir_mensaje_ingresar_edificio()
 {
     system("clear");
@@ -383,8 +395,10 @@ void imprimir_edificios_jugador(Lista_edificios<Edificacion> *edificios_jugador)
     {
         cout << TXT_BOLD;
         cout << "\t\t║ " << TXT_RED_196 << setfill(' ') << setw(49) << "NO HAY NINGUN EDIFICIO CONSTRUIDO" << setfill(' ') << setw(16) << END_COLOR << " ║" << endl;
-        cout << "\t\t╚═══════════════════════════════════════════════════════════════╝" << endl;
     }
+
+    cout << gotoxy.pos(contador, 42) <<  "\t\t╚══════════════════════════════════════════════════════════════╝" << endl;
+
 }
 
 void encabezado_edificios_jugador()
@@ -397,7 +411,7 @@ void encabezado_edificios_jugador()
     cout << END_COLOR;
 }
 
-void imprimir_cantidad_edificios_jugador(Lista_primitiva<string> *nombre_edificios, Lista_primitiva<int> *cantidad_por_edificio)
+int imprimir_cantidad_edificios_jugador(Lista_primitiva<string> *nombre_edificios, Lista_primitiva<int> *cantidad_por_edificio)
 {
     string nombre_de_edificio;
     int cantidad = 0, contador = 10, contador_auxiliar = 0;
@@ -411,13 +425,18 @@ void imprimir_cantidad_edificios_jugador(Lista_primitiva<string> *nombre_edifici
         cantidad = cantidad_por_edificio->devolver_elemento_en_posicion(i + 1);
         contador++;
         contador_auxiliar = contador + 1;
-        cout << gotoxy.pos(contador, 11) << "\t║" << setfill(' ') << setw(16) << nombre_de_edificio << "( "
-             << "EJ"
-             << " )" << setfill(' ') << setw(3)
+        cout << gotoxy.pos(contador, 11) << "\t║" << setfill(' ') << setw(16) << nombre_de_edificio << ""
+             << "      "
+             << setfill(' ') << setw(3)
              << "║" << setfill(' ') << setw(7) << cantidad << setfill(' ') << setw(9) << "║" << endl
              << gotoxy.pos(contador_auxiliar, 11) << "\t╠──────────────────────┼─────────────╣" << endl;
         contador++;
     }
+
+    cout << gotoxy.pos(contador, 11) <<  "\t╚════════════════════════════════════╝" << endl;
+    contador++;
+    
+    return contador;
 }
 
 void encabezado_materiale_jugador()

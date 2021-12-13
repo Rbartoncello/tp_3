@@ -116,7 +116,7 @@ class Mapa{
         */
         void imprimir_resumen_casillero(int fila, int columna);
 
-        void mostrar_edificios_construidos2(Jugador* jugador_actual);
+        void mostrar_edificios_construidos(Jugador* jugador_actual);
 
         bool hay_edificio(int fila, int columna);
 
