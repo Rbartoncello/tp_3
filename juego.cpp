@@ -324,9 +324,7 @@ void Juego::procesar_opcion_partida_empezada(int opcion)
         constructora->construir_edificio(jugador_actual);
         break;
     case LISTAR_MIS_EDIFICIOS_CONSTRUIDOS:
-        //this->mapa->mostrar_edificios_construidos(jugador_actual);
-        mapa->mostrar_edificios_construidos2(jugador_actual);
-        imprimir_mensaje_enter_continuar();
+        mapa->mostrar_edificios_construidos(jugador_actual);
         break;
     case DEMOLER_EDIFICIO_COORDENADA:
         constructora->demoler_edificio(jugador_actual);

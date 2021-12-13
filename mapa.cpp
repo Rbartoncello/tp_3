@@ -333,11 +333,11 @@ void Mapa::crear_lista_auxiliar_edificios(Lista_primitiva<int> *&cantidad_por_ed
         cantidad_por_edificio->agregar(0);
 }
 
-void Mapa::mostrar_edificios_construidos2(Jugador *jugador_actual)
+void Mapa::mostrar_edificios_construidos(Jugador *jugador_actual)
 {
     system("clear");
 
-    int cantidad, posicion_edificio_en_lista, cantidad_en_lista = jugador_actual->devolver_mis_edificios()->devolver_cantidad_en_Lista_edificios();
+    int cantidad, posicion_edificio_en_lista, cantidad_en_lista = jugador_actual->devolver_mis_edificios()->devolver_cantidad_en_Lista_edificios(), contador = 0;
     Nodo_edificios<Edificacion> *primero = jugador_actual->devolver_mis_edificios()->retornar_primero();
     Lista_primitiva<string> *nombre_edificios = new Lista_primitiva<string>();
     Lista_primitiva<int> *cantidad_por_edificio = new Lista_primitiva<int>();
@@ -355,9 +355,11 @@ void Mapa::mostrar_edificios_construidos2(Jugador *jugador_actual)
         primero = primero->direccion_siguiente();
     }
 
-    imprimir_cantidad_edificios_jugador(nombre_edificios,cantidad_por_edificio);
+    contador = imprimir_cantidad_edificios_jugador(nombre_edificios,cantidad_por_edificio);
 
     imprimir_edificios_jugador(jugador_actual->devolver_mis_edificios());
+
+    imprimir_mensaje_enter_continuar2(contador);
 
     delete nombre_edificios;
     delete cantidad_por_edificio;
