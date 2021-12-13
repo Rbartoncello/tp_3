@@ -61,13 +61,12 @@ void Constructora::demoler_edificio(Jugador* jugador){
             ocupado = mapa->hay_edicicio(fila_nueva, columna_nueva);
             if (ocupado) {
                 if (mapa->devolver_casillero(fila_nueva, columna_nueva)->devolver_duenio() == jugador->devolver_numero()) {
-                    cout << "hay edificio" << endl;
                     this->avanzar_con_demolicion(jugador);
                 } else {
-                    cout << "Ejem... ese edificio no es tuyo..." << endl;
+                    imprimir_mensaje_edificio_no_duenio();
                 }
             } else {
-                cout << "Aquí no hay un edificio" << endl;
+                imprimir_mensaje_no_hay_edificio();
             }
         }
     }
@@ -81,15 +80,18 @@ void Constructora::avanzar_con_demolicion(Jugador *jugador) {
     int piedra_necesaria = dict_edificios->buscar(nombre_edificio)->devolver_receta()->devoler_piedra();
     int madera_necesaria = dict_edificios->buscar(nombre_edificio)->devolver_receta()->devoler_madera();
     int metal_necesario  = dict_edificios->buscar(nombre_edificio)->devolver_receta()->devoler_metal();
-    cout << "Se te reembolsaran " <<piedra_necesaria/2 <<" de piedra, "<< madera_necesaria/2<<" de madera y "<< metal_necesario/2 << " de metal, ¿Quieres continuar? [s/n]"<< endl;
+    
+    imprimir_mensaje_reembolso(piedra_necesaria, madera_necesaria, metal_necesario);
     cin.ignore();
     do{
         cin >> opcion_elegida;
     }while(opcion_elegida != "s" && opcion_elegida != "n");
     if(opcion_elegida == "s"){
+        imprimir_procesamiento_accion(DEMOLIENDO_MSJ, mapa->devolver_casillero(fila_nueva,columna_nueva)->devolver_nombre_edificio());
         jugador->devolver_mis_edificios()->eliminar_por_direccion(fila_nueva,columna_nueva);
         mapa->devolver_casillero(fila_nueva,columna_nueva)->eliminar_edificio();
         jugador->restar_energia(ENERGIA_DEMOLER);
+        
     }
 
 }

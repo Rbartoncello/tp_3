@@ -125,6 +125,24 @@ void imprimir_mensaje_max_edificios_alcansado();
 
 /*
  * Pre: -
+ * Post: Imprime por pantalla que el edificio no es suyo.
+ */
+void imprimir_mensaje_edificio_no_duenio();
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla que no el edificio
+ */
+void imprimir_mensaje_no_hay_edificio();
+
+/*
+ * Pre: -
+ * Post: Imprime por pantalla que el rembolso de edificio
+ */
+void imprimir_mensaje_reembolso(int piedra, int madera, int metal);
+
+/*
+ * Pre: -
  * Post: Imprime por pantalla que los materiales necesarios para construir
  */
 void imprimir_materiales_necesarios(int cantidad_piedra, int cantidad_madera,  int cantidad_metal,  int piedra_necesaria,  int madera_necesaria, int metal_necesario);

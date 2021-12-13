@@ -236,6 +236,31 @@ void imprimir_mensaje_max_edificios_alcansado()
     cout << "\nOh, lamento traer malas noticias pero ya has alcanzo el maximo de construidos para este edificio: ";
 }
 
+void imprimir_mensaje_edificio_no_duenio() 
+{
+    imprimir_mensaje_error();
+    cout << "Ejem... ese edificio no es tuyo..." << endl;
+    imprimir_mensaje_esperar(2);
+}
+
+void imprimir_mensaje_no_hay_edificio() 
+{
+    imprimir_mensaje_error();
+    cout << "Aquí no hay un edificio" << endl;
+    imprimir_mensaje_esperar(2);
+}
+
+void imprimir_mensaje_reembolso(int piedra, int madera, int metal) 
+{
+    system("clear");
+    cout << "Se te reembolsaran: " << endl;
+    cout << "\tPiedra = " << piedra/2 << endl;
+    cout << "\tMadera = " << madera/2 << endl;
+    cout << "\tMetal = " << metal/2 << endl; 
+    cout << "¿Quieres continuar? [s/n]"<< endl;
+    
+}
+
 void imprimir_mensaje_error_ingresar_edificio()
 {
     system("clear");
