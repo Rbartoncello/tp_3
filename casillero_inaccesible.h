@@ -1,5 +1,5 @@
-#ifndef CASALLERO_INACCESIBLE_H
-#define CASALLERO_INACCESIBLE_H
+#ifndef CASILLERO_INACCESIBLE_H
+#define CASILLERO_INACCESIBLE_H
 #include "casillero.h"
 
 class Casillero_inaccesible : public Casillero {
@@ -14,7 +14,7 @@ class Casillero_inaccesible : public Casillero {
         Casillero_inaccesible(char tipo_terreno, int pos_x, int pos_y);
         
         /*
-         * Constructor sin parametros:
+         * Constructor sin parámetros:
          * Pre: -.
          * Post: Me va a crear el objeto Casillero_inaccesible con tipo_terreno = ' ',  pos_x = 0, pos_y = 0 y this->ocupado = false.
          */
@@ -23,13 +23,13 @@ class Casillero_inaccesible : public Casillero {
         /*
          * 
          * Pre:
-         * Post:Esta declarado al tenerlo el padre
+         * Post:Está declarado al tenerlo el padre
          */
         void modificar_terreno(string elemento,int accion);
 
         /*
          * Pre: -
-         * Post: De devuleve TRUE si esta ocupado y FALSE en caso contrario.
+         * Post: Se devuelve TRUE si está ocupado y FALSE en caso contrario.
          */
         bool esta_ocupado();
 
@@ -47,13 +47,13 @@ class Casillero_inaccesible : public Casillero {
 
         /*
          * Pre: -
-         * Post: Metodo vacio para la clase casillero_construible
+         * Post: Método vació para la clase casillero_construible
         */
         string devolver_nombre_edificio(){return "l";};
         
         /*
          * Pre: -
-         * Post: Devolvera 0
+         * Post: Devolverá 0
          */
         int devolver_duenio(){return 0;};
         
@@ -101,7 +101,7 @@ class Casillero_inaccesible : public Casillero {
         
         /*
          * PRE: -
-         * POST: Devolvera el material que se encuentra en el casillero
+         * POST: Devolverá el material que se encuentra en el casillero
          */
         Material* devolver_material();
         

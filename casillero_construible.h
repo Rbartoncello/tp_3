@@ -14,107 +14,118 @@ class Casillero_construible : public Casillero{
         Casillero_construible(char tipo_terreno, int pos_x, int pos_y);
         
         /*
-         * Constructor sin parametros:
+         * Constructor sin parámetros:
          * Pre: -.
          * Post: Me va a crear el objeto Casillero_construible con tipo_terreno = ' ',  pos_x = 0, pos_y = 0 y this->ocupado = false.
          */
         Casillero_construible();
 
         /*
-         * 
-         * Pre:Recibe lo que va agregar
-         * Post:Llama al hijo respectivo.
+         * Pre: -
+         * Post: Método virtual vació para la clase Terreno
          */
         virtual void modificar_terreno(string elemento,int accion) = 0;
 
         /*
          * Pre: -
-         * Post: De devuleve TRUE si esta ocupado y FALSE en caso contrario.
+         * Post: Devuelve TRUE si está ocupado y FALSE en caso contrario.
          */
         bool esta_ocupado();
-            /*
-        * PRE:
-        * POST:
+        
+        /*
+        * PRE: -
+        * POST: Me modificara ocupado
         */
         void modificar_ocupado(bool estado);
-            /*
-        * PRE:
-        * POST:
-        */
+        
+        /*
+         * Pre: -
+         * Post: Método virtual vació para la clase Terreno
+         */
         virtual int devolver_duenio() = 0;
-            /*
-        * PRE:
-        * POST:
-        */
+        
+        /*
+         * Pre: -
+         * Post: Método virtual vació para la clase Terreno
+         */
         virtual Edificacion* devolver_edificacion(){return nullptr;};
-            /*
-        * PRE:
-        * POST:
-        */
+        
+        /*
+         * Pre: -
+         * Post: Método virtual vació para la clase Terreno
+         */
         virtual void eliminar_edificio(){};
 
         /*
          * Pre: -
-         * Post: Me muestra por pantalla.
+         * Post: Método virtual vació para la clase Terreno
          */
         virtual void mostrar() = 0;
-            /*
-        * PRE:
-        * POST:
-        */
+        
+        /*
+         * Destructor:
+         * Pre: -.
+         * Post: Me va a detruirá el objeto Casillero_construible.
+         */
         virtual ~Casillero_construible() = 0;
-            /*
-        * PRE:
-        * POST:
-        */
+
+        /*
+         * PRE: -
+         * POST: Devolverá el material que se encuentra en el casillero
+         */
         Material* devolver_material();
 
         /*
          * Pre: -
-         * Post: Metodo virtual vacio para los hijos
-        */
+         * Post: Método virtual vació para la clase Terreno
+         */
         virtual string devolver_nombre_edificio(){return nullptr;};
 
         /*
          * Pre: -
-         * Post: Imprime un resumen escrito del casillero
-        */
+         * Post: Método virtual vació para la clase Terreno
+         */
         virtual void imprimir_resumen() = 0;
 
         /*
          * Pre: -
-         * Post: Metodo virtual vacio para la clase casillero_transitable
+         * Post: Método virtual vació para la clase casillero_transitable
         */
         void agregar_material(Material* nombre_material){};
 
         /*
          * Pre: -
-         * Post: Metodo virtual vacio para la clase casillero_construible
-        */
+         * Post: Método virtual vació para la clase Terreno
+         */
         virtual void agregar_edificio(Edificacion* edificio){};
-            /*
-        * PRE:
-        * POST:
-        */
-        virtual int devolver_costo() = 0;
-            /*
-        * PRE:
-        * POST:
-        */
-        virtual void agregar_jugador(Jugador* jugador) = 0;
-            /*
-        * PRE:
-        * POST:
-        */
-        virtual void eliminar_jugador() = 0;
-            /*
-        * PRE:
-        * POST:
-        */
-        virtual void mover_jugador(Jugador* jugador) = 0;
+        
         /*
-         * PRE: -
-         * POST: Me modifica el costo
+         * Pre: -
+         * Post: Método virtual vació para la clase Terreno
+         */
+        virtual int devolver_costo() = 0;
+
+        /*
+         * Pre: -
+         * Post: Método virtual vació para la clase Terreno
+         */
+        virtual void agregar_jugador(Jugador* jugador) = 0;
+
+        /*
+         * Pre: -
+         * Post: Método virtual vació para la clase Terreno
+         */
+        virtual void eliminar_jugador() = 0;
+
+        /*
+         * Pre: -
+         * Post: Método virtual vació para la clase Terreno
+         */
+        virtual void mover_jugador(Jugador* jugador) = 0;
+
+        /*
+         * Pre: -
+         * Post: Método virtual vació para la clase Terreno
          */
         virtual void modificar_costo(int costo) = 0;
 };
