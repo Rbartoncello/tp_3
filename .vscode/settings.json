@@ -5,6 +5,7 @@
         "new": "cpp",
         "ostream": "cpp",
         "iomanip": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "*.tcc": "cpp"
     }
 }

@@ -64,7 +64,7 @@ class Constructora{
          * PRE: -
          * POST: Hace la ultima confirmación (devuelve TRUE si se puso "s")
          */
-        bool validacion_final();
+        bool validacion_final(string nombre_nuevo_edificio);
 
     public:
         /*

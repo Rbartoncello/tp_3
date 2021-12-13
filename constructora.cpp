@@ -42,7 +42,7 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edificio, Jugado
         }
     }
     if (!ocupado) {
-        opcion_elegida = validacion_final();
+        opcion_elegida = validacion_final(nombre_nuevo_edificio);
         if (opcion_elegida) {
             mapa->agregar_edificacion(nombre_nuevo_edificio, fila_nueva, columna_nueva, jugador->devolver_numero(),jugador->devolver_mis_edificios());
             this->restar_materiales(nombre_nuevo_edificio, jugador);
@@ -149,11 +149,11 @@ bool Constructora::ingreso_de_coordenadas()
     return (coord_ok);
 }
 
-bool Constructora::validacion_final() {
+bool Constructora::validacion_final(string nombre_nuevo_edificio) {
     bool continuar = false;
     string opcion_elegida = " ";
 
-    cout << "Todo esta listo para empezar la construccion, ¿Quieres continuar? [s/n]"<< endl;
+    imprimir_materiales_gastados_construir(dict_edificios->buscar(nombre_nuevo_edificio)->devolver_receta());
     cin.ignore();
     do{
         cin >> opcion_elegida;
