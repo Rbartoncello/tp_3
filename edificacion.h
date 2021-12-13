@@ -27,8 +27,8 @@ public:
     //POST: guarda el nombre del edficio en nombre
     Edificacion (string tipoEdificacion, string emoji);
         /*
-    * PRE:
-    * POST:
+    * PRE: Necesita un int
+    * POST: Cambia el duenio (el atributo de edificacion)
     */
     void modificar_duenio(int duenio);
 
@@ -37,7 +37,7 @@ public:
     string devolver_nombre_edificio();
         /*
     * PRE:
-    * POST:
+    * POST: Devuelve el duenio
     */
     int devolver_duenio();
 
@@ -48,22 +48,22 @@ public:
     string devolver_emoji();
     /*
     * PRE:
-    * POST:
+    * POST: devuelve un string con la fila y columna: ->  "12" -> fila = 1 columna = 2
     */
     string devolver_direccion();
     /*
     * PRE:
-    * POST:
+    * POST: devuelve un int fila
     */
     int devolver_fila();
     /*
     * PRE:
-    * POST:
+    * POST: devuelve un int columna
     */
     int devolver_columna();
     /*
     * PRE:
-    * POST:
+    * POST: se cambia el atributo direccion del edificio
     */
     void agregar_direccion(int fila, int columna);
     /*
@@ -77,33 +77,33 @@ public:
      */
     virtual bool devolver_necesita_reparacion() = 0;
     /*
-    * PRE:
+    * PRE: Metodo virtual de las clases hijas
     * POST:
     */
     virtual void reparar() = 0;
     /*
-    * PRE:
+    * PRE:  Metodo virtual de las clases hijas
     * POST:
     */
     virtual void atacar() = 0;
     /*
-    * PRE:
+    * PRE:  Metodo virtual de las clases hijas
     * POST:
     */
     virtual int devolver_maxima_cantidad_permitidos() = 0;
     /*
-    * PRE:
+    * PRE:  Metodo virtual de las clases hijas
     * POST:
     */
     virtual Receta* devolver_receta() = 0;
     /*
-    * PRE:
+    * PRE:  Metodo virtual de las clases hijas
     * POST:
     */
     virtual bool brinda_material() = 0;
     /*
     * PRE:
-    * POST:
+    * POST: Devuelve si el edificio fue atacado o no (solo para los edificios de mas de uno de vida)
     */
     bool devolver_fue_atacado();
     /*
@@ -129,8 +129,8 @@ public:
     //POST:Va a decir el tipo de Edificacion que tiene.
     virtual void hablar_sobre_mi() = 0;
     /*
-    * PRE:
-    * POST:
+    * PRE: -
+    * POST: -
     */
     virtual ~Edificacion() = 0;
     /*
