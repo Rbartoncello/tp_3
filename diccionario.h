@@ -26,96 +26,96 @@ public:
 
 public:
     /*
-         * Constructor
-         * Pre: -.
-         * Post: Me va a crear el objeto Diccionario con rama = NULL
-         */
+     * Constructor
+     * Pre: -.
+     * Post: Me va a crear el objeto Diccionario con rama = NULL
+     */
     Diccionario();
 
     /*
-         * Pre: -.
-         * Post: Me va a insertar el edificio en el Diccionario
-         */
+     * Pre: -.
+     * Post: Me va a insertar el edificio en el Diccionario
+     */
     void insertar(string clave, T *elemento);
 
     /*
-         * Pre: edificio tiene que estar si o si dentro del diccionario.
-         * Post: Me va a la receta del edificio
-         */
+     * Pre: edificio tiene que estar si o si dentro del diccionario.
+     * Post: Me va a la receta del edificio
+     */
     T *buscar(string edificio);
 
     /*
-         * Pre: -
-         * Post: Me va a listar en en orden el diccionario
-         */
+     * Pre: -
+     * Post: Me va a listar en orden el diccionario
+     */
     void listar_en_orden(Mapa *&mapa);
 
     /*
-         * Pre: -
-         * Post: Me va a guardar en pre orden el diccionario
-         */
+     * Pre: -
+     * Post: Me va a guardar en pre orden el diccionario
+     */
     void guardar_pre_orden();
 
     /*
-         * Pre: -
-         * Post: Devuelve rama
-         */
+     * Pre: -
+     * Post: Devuelve rama
+     */
     Nodo<T> *devolver_rama();
 
     /*
-         * Pre: -
-         * Post: Devuelve TRUE si el edificio exite dentro del diccionario y FALSE en caso contrario
-         */
+     * Pre: -
+     * Post: Devuelve TRUE si el edificio existe dentro del diccionario y FALSE en caso contrario
+     */
     bool existe(string edificio);
 
     /*
-         * Pre: -
-         * Post: Me va a borrar todas ramas
-         */
+     * Pre: -
+     * Post: Me va a borrar todas ramas
+     */
     void borrar_todo();
 
     /*
-         * Destructor
-         * Pre: -.
-         * Post: Me va a destruir el objeto Diccionario
-         */
+     * Destructor
+     * Pre: -.
+     * Post: Me va a destruir el objeto Diccionario
+     */
     ~Diccionario();
 
 private:
     /*
-         * Pre: -.
-         * Post: Me va a insertar el edificio en el Diccionario
-         */
+     * Pre: -.
+     * Post: Me va a insertar el edificio en el Diccionario
+     */
     Nodo<T> *insertar(Nodo<T> *&nodo, string clave, T *elemento);
 
     /*
-         * Pre: -
-         * Post: Me va a listar en en orden el diccionario
-         */
+     * Pre: -
+     * Post: Me va a listar en orden el diccionario
+     */
     void listar_en_orden(Nodo<T> *&nodo, Mapa *&mapa);
 
     /*
-         * Pre: -
-         * Post: Me va a guardar en pre orden el diccionario
-         */
+     * Pre: -
+     * Post: Me va a guardar en pre orden el diccionario
+     */
     void guardar_pre_orden(Nodo<T> *&nodo, ofstream &archivo);
 
     /*
-         * Pre: edificio tiene que estar si o si dentro del diccionario.
-         * Post: Me va a la receta del edificio
-         */
+     * Pre: edificio tiene que estar si o si dentro del diccionario.
+     * Post: Me va a la receta del edificio
+     */
     Nodo<T> *buscar(Nodo<T> *&nodo, string edificio);
 
     /*
-         * Pre: -
-         * Post: Devuelve TRUE si el edificio exite dentro del diccionario y FALSE en caso contrario
-         */
+     * Pre: -
+     * Post: Devuelve TRUE si el edificio existe dentro del diccionario y FALSE en caso contrario
+     */
     bool existe(Nodo<T> *&nodo, string edificio);
 
     /*
-         * Pre: -
-         * Post: Me va a borrar rama por rama
-         */
+     * Pre: -
+     * Post: Me va a borrar rama por rama
+     */
     void borrar_todo(Nodo<T> *&nodo);
 };
 
@@ -155,7 +155,7 @@ Nodo<T> *Diccionario<T>::insertar(Nodo<T> *&nodo, string clave_nueva, T *element
 template <typename T>
 T *Diccionario<T>::buscar(string clave_buscada)
 {
-    return buscar(this->rama, clave_buscada)->devolver_contenido(); //debe devolver la direccion de memoria de edficicaciones en caso de la busqueda de receta
+    return buscar(this->rama, clave_buscada)->devolver_contenido();
 }
 
 template <typename T>
@@ -203,11 +203,7 @@ void Diccionario<T>::guardar_pre_orden(Nodo<T> *&nodo, ofstream &documento)
 
     if (nodo != NULL)
     {
-        documento << nodo->devolver_clave() << " "
-                  << nodo->devolver_contenido()->devolver_receta()->devoler_piedra() << " "
-                  << nodo->devolver_contenido()->devolver_receta()->devoler_madera() << " "
-                  << nodo->devolver_contenido()->devolver_receta()->devoler_metal() << " "
-                  << nodo->devolver_contenido()->devolver_maxima_cantidad_permitidos() << endl;
+        documento << nodo->devolver_clave() << " " << nodo->devolver_contenido()->devolver_receta()->devoler_piedra() << " " << nodo->devolver_contenido()->devolver_receta()->devoler_madera() << " " << nodo->devolver_contenido()->devolver_receta()->devoler_metal() << " " << nodo->devolver_contenido()->devolver_maxima_cantidad_permitidos() << endl;
         Nodo<T> *nodo_derecho = nodo->devolver_derecha();
         Nodo<T> *nodo_izquierda = nodo->devolver_izquierda();
         guardar_pre_orden(nodo_izquierda, documento);

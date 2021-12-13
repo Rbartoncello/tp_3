@@ -437,7 +437,7 @@ void Juego::cargar_grafo()
             Casillero* casillero = mapa->devolver_casillero(i, j);
             if ( ! mapa->hay_edicicio(i,j) ){
                 if ( ( i != jugador_sig->devolver_fila() ) || ( j != jugador_sig->devolver_columna() ) )
-                    this->grafo->agregarVertice(casillero->devolver_posicion());
+                    this->grafo->agregar_vertice(casillero->devolver_posicion());
             }
         }
     }

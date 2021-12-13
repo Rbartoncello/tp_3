@@ -87,7 +87,7 @@ class Nodo{
         void modificar_derecha(Nodo* derecha, Nodo* padre);
 
         /*
-         * Desstructor
+         * Destructor
          * Pre: -.
          * Post: Me va a destruir el objeto Nodo.
          */

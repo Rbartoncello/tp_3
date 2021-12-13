@@ -1,4 +1,4 @@
-#include "Grafo.h"
+#include "grafo.h"
 #include <iostream>
 
 Grafo::Grafo() {
@@ -7,7 +7,7 @@ Grafo::Grafo() {
     algoritmo_camino_minimo = nullptr;
 }
 
-void Grafo::agregarVertice(string nuevoVertice) {
+void Grafo::agregar_vertice(string nuevoVertice) {
     agrandar_matriz_adyacencia();
     vertices -> agregar(nuevoVertice);
 }

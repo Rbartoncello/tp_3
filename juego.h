@@ -5,7 +5,7 @@
 #include "archivo.h"
 #include "diccionario.h"
 #include "jugador.h"
-#include "Grafo.h"
+#include "grafo.h"
 #include "constructora.h"
 
 class Juego{
