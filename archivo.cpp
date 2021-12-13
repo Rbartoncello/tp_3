@@ -135,8 +135,8 @@ int Archivo::leer_ubicaciones_materiales(ifstream &documento, Mapa *&mapa, Jugad
             {
                 documento >> fila;
                 documento >> columna;
-                clean_fila = arreglarCoordenadaX(fila);
-                clean_columna = arreglarCoordenadaY(columna);
+                clean_fila = arreglar_coordenada_x(fila);
+                clean_columna = arreglar_coordenada_y(columna);
 
                 mapa->agregar_material(nombre_material, clean_fila, clean_columna);
             }
@@ -144,8 +144,8 @@ int Archivo::leer_ubicaciones_materiales(ifstream &documento, Mapa *&mapa, Jugad
             {
                 documento >> fila;
                 documento >> columna;
-                jugador->modificar_fila(arreglarCoordenadaX(fila));
-                jugador->modificar_columna(arreglarCoordenadaY(columna));
+                jugador->modificar_fila(arreglar_coordenada_x(fila));
+                jugador->modificar_columna(arreglar_coordenada_y(columna));
                 agregar_posicion_jugador(mapa, jugador);
                 leyendo_materiales = false;
             }
@@ -176,8 +176,8 @@ void Archivo::leer_edificios_jugador_1(ifstream &documento, Mapa *&mapa, Diccion
         {
             documento >> fila;
             documento >> columna;
-            jugador->modificar_fila(arreglarCoordenadaX(fila));
-            jugador->modificar_columna(arreglarCoordenadaY(columna));
+            jugador->modificar_fila(arreglar_coordenada_x(fila));
+            jugador->modificar_columna(arreglar_coordenada_y(columna));
             agregar_posicion_jugador(mapa, jugador);
             leyendo_edificios_P1 = false;
         }
@@ -214,13 +214,13 @@ void Archivo::agregar_edificio(ifstream &documento, string nombre_edificio, Mapa
 
     documento >> columna;
 
-    clean_fila = arreglarCoordenadaX(fila);
-    clean_columna = arreglarCoordenadaY(columna);
+    clean_fila = arreglar_coordenada_x(fila);
+    clean_columna = arreglar_coordenada_y(columna);
 
     mapa->agregar_edificacion(nombre_edificio, clean_fila, clean_columna, propietario, edificios_jugador);
 }
 
-int Archivo::arreglarCoordenadaX(string fila)
+int Archivo::arreglar_coordenada_x(string fila)
 {
     fila = fila.substr(1);
     fila.pop_back();
@@ -228,7 +228,7 @@ int Archivo::arreglarCoordenadaX(string fila)
     return (stoi(fila));
 }
 
-int Archivo::arreglarCoordenadaY(string columna)
+int Archivo::arreglar_coordenada_y(string columna)
 {
     columna.pop_back();
     return (stoi(columna));
