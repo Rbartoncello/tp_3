@@ -325,4 +325,14 @@ void Archivo::guardar_materiales_en_mapa(Mapa *mapa, fstream &documento)
     }
 }
 
+void Archivo::escribir_archivos(){
+
+    fstream documento(PATH_UBICACIONES, ios::out);
+
+    documento << "";
+
+    documento.close();
+
+}
+
 Archivo::~Archivo() {}

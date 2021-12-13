@@ -26,17 +26,20 @@ class Archivo {
         Material* generar_material(string nombre,int cantidad);
 
         //Pre:
-        //Post:
+        //Post:lee archivo ubicaciones
         int leer_archivo_ubicaciones(Mapa* &mapa, Diccionario<Edificacion>* &diccionario, Jugador* &jugador_1, Jugador* &jugador_2);
 
         //Pre:
-        //Post:
+        //Post:lee el archivo edificios
         int leer_archivos_edificios(Diccionario<Edificacion>*&diccionario,Mapa* mapa);
 
         //Pre:
-        //Post:
-        //  void leerArchivoMapa(string nombre);
+        //Post:escribe el archivo ubicaciones y materiales
         void escribir_archivos(Jugador *&jugador_1, Jugador *&jugador_2, Mapa* mapa);
+
+        //Pre:
+        //Post:escribe el archivo ubicaciones vacio
+        void escribir_archivos();
 
         ~Archivo() ;
 

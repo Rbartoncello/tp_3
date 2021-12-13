@@ -113,6 +113,12 @@ class Juego{
             */
         int pedir_fila();
 
+           /*
+             * Pre: -
+             * Post: crea los objetivos
+            */
+        void crear_todo_objetivos();
+
         /*
              * Pre: -
              * Post: Devuelve el entero ingresado por pantalla..
@@ -290,7 +296,7 @@ class Juego{
                * Pre:
                * Post:valida si hay ganador
                */
-        int validar_ganador(int opcion_elegida);
+        int validar_ganador(int opcion_elegida,bool* partida_ganada);
 
         /*
                * Pre:
