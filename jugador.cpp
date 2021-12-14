@@ -146,8 +146,27 @@ void Jugador::sumar_energia(int cantidad){
     this -> energia += cantidad;
 }
 
+bool Jugador::acumulados_vacio(){
+    bool lleno = true;
+    int contador = 0;
+
+    for (int i = 0; i < recursos_acumulados->devolver_cantidad_en_lista(); i++)
+    {
+        if (recursos_acumulados->obtener_direccion_nodo(i)->obtener_cantidad() == 0)
+            contador++;
+    }
+    if (energia_acumulada == 0)
+        contador++;
+
+    if (contador == 5)
+        lleno = false;
+
+    return lleno;
+}
+
 void Jugador::recoger_recurso(){
-    if (energia >= ENERGIA_RECOLECTAR_RECURSOS){
+    if (acumulados_vacio()){
+        if (energia >= ENERGIA_RECOLECTAR_RECURSOS){
         sumar_energia(energia_acumulada);
         vaciar_energia_acumulada();
         int cantidad_material = 0;
@@ -170,6 +189,7 @@ void Jugador::recoger_recurso(){
         restar_energia(ENERGIA_RECOLECTAR_RECURSOS);
     } else
         imprimir_mensaje_no_energia_sufuciente(ENERGIA_RECOLECTAR_RECURSOS);
+    }
 }
 
 Lista<Material>*& Jugador::devolver_inventario(){

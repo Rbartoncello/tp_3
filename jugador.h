@@ -260,6 +260,12 @@ class Jugador {
            * Post: Me sumara el cantidad de energia_acumulada.
            */
           void sumar_energia_acumulada(int cantidad);
+
+          /*
+           * Pre: -
+           * Post: Me devolvera TRUE si en recursos_acumulado esta vacio y FALSE en caso contrario .
+           */
+          bool acumulados_vacio();
           
 };
 
