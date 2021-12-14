@@ -108,12 +108,12 @@ public:
     bool devolver_fue_atacado();
     /*
     * PRE:
-    * POST:
+    * POST: vuelve true la variable fue_atacado
     */
     void fue_atacado_true();
     /*
     * PRE:
-    * POST:
+    * POST: vuelve false la variable fue_atacado
     */
     void fue_atacado_false();
 

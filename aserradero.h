@@ -67,12 +67,12 @@ class Aserradero : public Edificacion{
 
             /*
         * PRE:
-        * POST:
+        * POST: cambia necesita_reparacion a true
         */
         void atacar();
             /*
         * PRE:
-        * POST:
+        * POST: cambia necesita_reparacion a false
         */
         void reparar();
         /*

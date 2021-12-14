@@ -6,13 +6,15 @@ class Bomba : public Material{
 
     public:
             /*
+            constructor
         * PRE:
-        * POST:
+        * POST: Crea una bomba sin parametros
         */
         Bomba();
             /*
+            constructor
         * PRE:
-        * POST:
+        * POST: Crea un objeto bomba con una cantidad determinada
         */
         Bomba(int cantidad);
             /*

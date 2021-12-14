@@ -63,14 +63,14 @@ class Mina_oro : public Edificacion{
          * Post: Me devuelve TRUE si la mina necesita reparacion o FALSE en caso contrario.
          */
         bool devolver_necesita_reparacion();
-        /*
+            /*
         * PRE:
-        * POST:
+        * POST: cambia necesita_reparacion a true
         */
         void atacar();
-        /*
+            /*
         * PRE:
-        * POST:
+        * POST: cambia necesita_reparacion a false
         */
         void reparar();
 

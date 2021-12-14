@@ -68,6 +68,7 @@ class Constructora{
 
     public:
         /*
+        constructor
         * PRE:
         * POST:
         */

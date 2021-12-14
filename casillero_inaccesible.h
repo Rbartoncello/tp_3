@@ -76,8 +76,8 @@ class Casillero_inaccesible : public Casillero {
         void imprimir_resumen();
         
         /*
-         * Pre: -
-         * Post: -
+         * Pre: Recibe un objeto hijo de la clase Material (el casillero debe estar vacio)
+         * Post: Lo agrega al casillero en cuestion
          */
         void agregar_material(Material* nombre_material){};
 

@@ -75,6 +75,10 @@ class Casillero_transitable : public Casillero{
          */
         Edificacion* devolver_edificacion(){return nullptr;};
 
+        /*
+         * Pre: -
+         * Post: Borra el edificio que se encuentra en este casillero
+         */
         void eliminar_edificio(){};
 
         /*
