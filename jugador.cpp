@@ -144,6 +144,9 @@ void Jugador::restar_material(int cantidad, string material){
 
 void Jugador::sumar_energia(int cantidad){
     this -> energia += cantidad;
+    if (this->energia > ENERGIA_MAXIMA){
+        this->energia = ENERGIA_MAXIMA;
+    }
 }
 
 bool Jugador::acumulados_vacio(){
