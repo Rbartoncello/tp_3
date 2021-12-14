@@ -7,6 +7,18 @@ Grafo::Grafo() {
     algoritmo_camino_minimo = nullptr;
 }
 
+void Grafo::borrar_vertice() {
+    int total = vertices->devolver_cantidad_en_lista();
+
+    if (total > 0) {
+        liberar_matriz_adyacencia();
+        matriz_adyacencia = nullptr;
+    }
+    for (int i = 0; i < total; i++) {
+        vertices->remover_elemento(1);
+    }
+}
+
 void Grafo::agregar_vertice(string nuevo_vertice) {
     agrandar_matriz_adyacencia();
     vertices -> agregar(nuevo_vertice);

@@ -438,7 +438,7 @@ void Juego::sin_energia_desplazarse(int costo)
 void Juego::cargar_grafo()
 {
     Jugador *jugador_sig = devolver_jugador_turno();
-
+    grafo->borrar_vertice();
     for (int i = 0; i < mapa->devolver_cantidad_filas(); i++)
     {
         for (int j = 0; j < mapa->devolver_cantidad_columnas(); j++)
