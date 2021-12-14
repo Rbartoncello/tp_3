@@ -14,10 +14,10 @@ const string EDIFICIO_PLANTA_ELECTRICA = "planta electrica";
 const string PLANTA = "planta";
 const string ORO = "oro";
 
-const string PATH_EDIFICIO = "../archivos/edificios.txt";
-const string PATH_UBICACIONES = "../archivos/ubicaciones.txt";
-const string PATH_MAPA = "../archivos/mapa.txt";
-const string PATH_MATERIALES = "../archivos/materiales.txt";
+const string PATH_EDIFICIO = "archivos/edificios.txt";
+const string PATH_UBICACIONES = "archivos/ubicaciones.txt";
+const string PATH_MAPA = "archivos/mapa.txt";
+const string PATH_MATERIALES = "archivos/materiales.txt";
 
 const int OBJETIVO_PRIMARIO = 1;
 const int OBJETIVOS_SECUNDARIOS_CUMPLIDOS = 3;
@@ -140,6 +140,7 @@ const int ENERGIA_REPARAR = 25;
 const int ENERGIA_ATACAR = 30;
 const int ENERGIA_CONSTRUIR = 15;
 const int ENERGIA_DEMOLER = 15;
+const int ENERGIA_MAXIMA = 100;
 
 const int POSICION_NO_ENCONTRADA = -1;
 const string NOMBRE_NO_ENCONTRADO = "";

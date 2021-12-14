@@ -220,6 +220,7 @@ class Juego{
              * Post: Le preguntara a usuario que si decea moverse a otra coordenada
              */
         void sin_energia_desplazarse(int costo);
+        
 
         /*
              * Pre: -
