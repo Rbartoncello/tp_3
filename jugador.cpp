@@ -91,11 +91,11 @@ void Jugador::agregar_objetivo(string nombre_objetivo, int cantidad_escuelas){
         objetivo = new Cansado(energia);
     else if (nombre_objetivo == EXTREMISTA)
         objetivo = new Extremista;
-     else if (nombre_objetivo == LETRADO)
+    else if (nombre_objetivo == LETRADO)
         objetivo = new Letrado(edificios_jugador,cantidad_escuelas);
-     else if (nombre_objetivo == MINERO)
+    else if (nombre_objetivo == MINERO)
         objetivo = new Minero(edificios_jugador);
-     else if (nombre_objetivo == ENERGETICO)
+    else if (nombre_objetivo == ENERGETICO)
         objetivo = new Energetico(&energia);
     else if (nombre_objetivo == CONSTRUCTOR)
         objetivo = new Constructor(edificios_jugador);
@@ -170,29 +170,29 @@ bool Jugador::acumulados_vacio(){
 void Jugador::recoger_recurso(){
     if (acumulados_vacio()){
         if (energia >= ENERGIA_RECOLECTAR_RECURSOS){
-        sumar_energia(energia_acumulada);
-        vaciar_energia_acumulada();
-        int cantidad_material = 0;
-        int posicion;
-        Nodo_lista<Material>* aux = recursos_acumulados->retornar_primero();
+            sumar_energia(energia_acumulada);
+            vaciar_energia_acumulada();
+            int cantidad_material = 0;
+            int posicion;
+            Nodo_lista<Material>* aux = recursos_acumulados->retornar_primero();
 
-        for (int i = 0; i < recursos_acumulados->devolver_cantidad_en_lista(); i++){
-            cantidad_material = aux->devolver_dato()->devolver_cantidad();
+            for (int i = 0; i < recursos_acumulados->devolver_cantidad_en_lista(); i++){
+                cantidad_material = aux->devolver_dato()->devolver_cantidad();
 
-            posicion = inventario->obtener_posicion(aux->devolver_dato()->devolver_nombre());
-            inventario->obtener_direccion_nodo(posicion)->devolver_dato()->aumentar_cantidad(cantidad_material);
+                posicion = inventario->obtener_posicion(aux->devolver_dato()->devolver_nombre());
+                inventario->obtener_direccion_nodo(posicion)->devolver_dato()->aumentar_cantidad(cantidad_material);
 
-            if (aux->devolver_dato()->devolver_nombre() == ANDYCOINS)
-                sumar_a_objetivo(cantidad_material,COMPRAR_ANDYPOLIS);
+                if (aux->devolver_dato()->devolver_nombre() == ANDYCOINS)
+                    sumar_a_objetivo(cantidad_material,COMPRAR_ANDYPOLIS);
 
-            aux->devolver_dato()->modificar_cantidad(0);
-            aux = aux->direccion_siguiente();
-            }
-        imprimir_mensaje_recolectando_recursos_producidos();
-        restar_energia(ENERGIA_RECOLECTAR_RECURSOS);
-    } else
-        imprimir_mensaje_no_energia_sufuciente(ENERGIA_RECOLECTAR_RECURSOS);
-    }
+                aux->devolver_dato()->modificar_cantidad(0);
+                aux = aux->direccion_siguiente();
+                }
+            imprimir_mensaje_recolectando_recursos_producidos();
+            restar_energia(ENERGIA_RECOLECTAR_RECURSOS);
+        } else
+            imprimir_mensaje_no_energia_sufuciente(ENERGIA_RECOLECTAR_RECURSOS);
+        }
 }
 
 Lista<Material>*& Jugador::devolver_inventario(){

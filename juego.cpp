@@ -605,6 +605,7 @@ bool Juego::validar_reparar_edificio(int fila, int columna)
 {
     bool se_puede = false;
 
+
     string nombre_edificio = mapa->devolver_casillero(fila, columna)->devolver_edificacion()->devolver_nombre_edificio();
 
     int cantidad_piedra = jugador_actual->devolver_inventario()->devolver_material(PIEDRA);
