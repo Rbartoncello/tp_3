@@ -143,6 +143,8 @@ class Juego{
             */
         void mostrar_coordenada();
 
+        void fin_de_turno();
+
         /*
              * Pre: -
              * Post: Comienza la partida

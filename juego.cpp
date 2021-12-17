@@ -371,17 +371,21 @@ void Juego::procesar_opcion_partida_empezada(int opcion)
         moverse_coordenada();
         break;
     case FINALIZAR_TURNO:
-        acumular_recursos();
-        jugador_actual->sumar_a_objetivo(jugador_actual->devolver_energia(), CANSADO);
-        jugador_actual->sumar_energia(ENERGIA_NUEVO_TURNO);
-        jugador_actual = devolver_jugador_turno();
-        this->restablecer_fue_atacado();
-        this->lluvia();
-        if (jugador_actual->devolver_energia() <= 0)
-        {
-            jugador_actual = devolver_jugador_turno();
-        }
+        this->fin_de_turno();
         break;
+    }
+}
+
+void Juego::fin_de_turno(){
+    acumular_recursos();
+    jugador_actual->sumar_a_objetivo(jugador_actual->devolver_energia(), CANSADO);
+    jugador_actual->sumar_energia(ENERGIA_NUEVO_TURNO);
+    jugador_actual = devolver_jugador_turno();
+    this->restablecer_fue_atacado();
+    this->lluvia();
+    if (jugador_actual->devolver_energia() <= 0)
+    {
+        jugador_actual = devolver_jugador_turno();
     }
 }
 
@@ -629,6 +633,7 @@ void Juego::atacar_edificio()
 bool Juego::validar_reparar_edificio(int fila, int columna)
 {
     bool se_puede = false;
+
 
     string nombre_edificio = mapa->devolver_casillero(fila, columna)->devolver_edificacion()->devolver_nombre_edificio();
 
