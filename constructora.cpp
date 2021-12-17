@@ -38,7 +38,9 @@ void Constructora::avanzar_con_construccion(string nombre_nuevo_edificio, Jugado
             ocupado = mapa->hay_edificio(fila_nueva, columna_nueva);
         }
         if(ocupado){
-        cout << "Ahí ya hay un edificio colocado, ingresa unas coordenadas válidas";
+            system("clear");
+            cout << "Ahí ya hay un edificio colocado, ingresa unas coordenadas válidas";
+            imprimir_mensaje_esperar(2);
         }
     }
     if (!ocupado) {
@@ -88,6 +90,7 @@ void Constructora::avanzar_con_demolicion(Jugador *jugador) {
     }while(opcion_elegida != "s" && opcion_elegida != "n");
     if(opcion_elegida == "s"){
         imprimir_procesamiento_accion(DEMOLIENDO_MSJ, mapa->devolver_casillero(fila_nueva,columna_nueva)->devolver_nombre_edificio());
+        sumar_materiales(mapa->devolver_casillero(fila_nueva,columna_nueva)->devolver_nombre_edificio(), jugador);
         jugador->devolver_mis_edificios()->eliminar_por_direccion(fila_nueva,columna_nueva);
         mapa->devolver_casillero(fila_nueva,columna_nueva)->eliminar_edificio();
         jugador->restar_energia(ENERGIA_DEMOLER);
@@ -186,8 +189,16 @@ void Constructora::restar_materiales(string nombre_nuevo_edificio, Jugador *juga
     Edificacion* edificio = dict_edificios->buscar(nombre_nuevo_edificio);
 
     jugador->restar_material(edificio->devolver_receta()->devoler_piedra(), PIEDRA);
-    jugador->restar_material(edificio->devolver_receta()->devoler_piedra(), MADERA);
-    jugador->restar_material(edificio->devolver_receta()->devoler_piedra(), METAL);
+    jugador->restar_material(edificio->devolver_receta()->devoler_madera(), MADERA);
+    jugador->restar_material(edificio->devolver_receta()->devoler_metal(), METAL);
+}
+
+void Constructora::sumar_materiales(string nombre_nuevo_edificio, Jugador *jugador){
+    Edificacion* edificio = dict_edificios->buscar(nombre_nuevo_edificio);
+
+    jugador->sumar_material(edificio->devolver_receta()->devoler_piedra()/2, PIEDRA);
+    jugador->sumar_material(edificio->devolver_receta()->devoler_madera()/2, MADERA);
+    jugador->sumar_material(edificio->devolver_receta()->devoler_metal()/2, METAL);
 }
 
 void Constructora::mostrar_aviso_terreno(bool aviso) {

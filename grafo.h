@@ -91,8 +91,6 @@ public:
      * Post: Me va a eliminar el objeto Grafo
      */
     ~Grafo();
-
-    void borrar_vertice();
 };
 
 

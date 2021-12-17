@@ -6,8 +6,9 @@
 #include "mapa.h"
 #include "jugador.h"
 #include <iostream>
+#include "constantes.h"
 
-const int INFINITO = 99999999;
+
 
 class Camino_minimo {
     protected:

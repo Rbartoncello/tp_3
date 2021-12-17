@@ -4,6 +4,8 @@
 
 using namespace std;
 
+const int INFINITO = 99999999;
+
 const string EDIFICIO_MINA = "mina";
 const string EDIFICIO_MINA_ORO = "mina oro";
 const string EDIFICIO_ASERRADERO = "aserradero";

@@ -142,6 +142,11 @@ void Jugador::restar_material(int cantidad, string material){
     inventario->obtener_direccion_nodo(posicion)->devolver_dato()->reducir_cantidad(cantidad);
 }
 
+void Jugador::sumar_material(int cantidad, string material){
+    int posicion = inventario->obtener_posicion(material);
+    inventario->obtener_direccion_nodo(posicion)->devolver_dato()->aumentar_cantidad(cantidad);
+}
+
 void Jugador::sumar_energia(int cantidad){
     this -> energia += cantidad;
     if (this->energia > ENERGIA_MAXIMA){

@@ -61,6 +61,12 @@ class Constructora{
         void restar_materiales(string nombre_nuevo_edificio,Jugador* jugador);
 
         /*
+         * PRE: Se necesita un nombre valido y un jugador
+         * POST: Suma los materiales que se usaron en la construccion del inventario del jugador
+         */
+        void sumar_materiales(string nombre_nuevo_edificio,Jugador* jugador);
+
+        /*
          * PRE: -
          * POST: Hace la ultima confirmación (devuelve TRUE si se puso "s")
          */

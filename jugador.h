@@ -104,6 +104,12 @@ class Jugador {
           void restar_material(int cantidad, string material);
 
           /*
+           * Pre: cantidad tiene que ser mayor a 0
+           * Post: Me sumara el cantidad del material del inventario.
+           */
+          void sumar_material(int cantidad, string material);
+
+          /*
            * Pre: Recibe un nombre de un material que exita.
            * Post: Ingresa el objeto en un vector dinámico.
            */
