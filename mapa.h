@@ -118,8 +118,6 @@ class Mapa{
 
         void mostrar_edificios_construidos(Jugador* jugador_actual);
 
-        bool hay_edificio(int fila, int columna);
-
         /*
       * Pre: -
       * Post: valida que una coordenada es de tipo construible
@@ -142,7 +140,7 @@ class Mapa{
          * Pre: Fila y columna dentro de los parametros del mapa
          * Post: Me devuelve TRUE si en esa posicion exite un edificio
          */
-        bool hay_edicicio(int fila, int columna);
+        bool hay_edificio(int fila, int columna);
 
         /*
          * Pre: -

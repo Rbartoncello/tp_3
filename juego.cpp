@@ -644,7 +644,7 @@ bool Juego::validar_reparar_edificio(int fila, int columna)
     int madera_necesaria = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_madera() / 4;
     int metal_necesario = diccionario->buscar(nombre_edificio)->devolver_receta()->devoler_metal() / 4;
 
-    if (mapa->hay_edicicio(fila, columna))
+    if (mapa->hay_edificio(fila, columna))
     {
         if (mapa->devolver_casillero(fila, columna)->devolver_duenio() != jugador_actual->devolver_numero())
         {

@@ -67,7 +67,7 @@ int Mapa::devolver_cantidad_edificio(string nombre_edificio_nuevo, Jugador *juga
     {
         for (int j = 0; j < this->cantidad_columnas; j++)
         {
-            if ( ( hay_edicicio(i,j) ) && ( this->casilleros[i][j]->devolver_nombre_edificio() == nombre_edificio_nuevo ) )
+            if ( ( hay_edificio(i,j) ) && ( this->casilleros[i][j]->devolver_nombre_edificio() == nombre_edificio_nuevo ) )
             {
                 if (jugador->devolver_numero() == this->devolver_casillero(i, j)->devolver_duenio())
                 {
@@ -255,11 +255,6 @@ bool Mapa::validar_tipo_transitable(int fila, int columna)
     return ((casilleros[fila][columna]->devolver_tipo_terreno() != LAGO) && (casilleros[fila][columna]->devolver_tipo_terreno() != TERRENO));
 }
 
-bool Mapa::hay_edificio(int fila, int columna)
-{
-    return (devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO && devolver_casillero(fila, columna)->esta_ocupado());
-}
-
 char Mapa::devolver_tipo_terreno(int fila, int columna)
 {
     return casilleros[fila][columna]->devolver_tipo_terreno();
@@ -373,7 +368,7 @@ void Mapa::borrar_edificio(int fila, int columna)
     casilleros[fila][columna]->eliminar_edificio();
 }
 
-bool Mapa::hay_edicicio(int fila, int columna)
+bool Mapa::hay_edificio(int fila, int columna)
 {
     return (devolver_casillero(fila, columna)->devolver_tipo_terreno() == TERRENO && devolver_casillero(fila, columna)->devolver_edificacion() != nullptr);
 }

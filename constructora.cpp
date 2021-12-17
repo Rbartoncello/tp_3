@@ -60,7 +60,7 @@ void Constructora::demoler_edificio(Jugador* jugador){
     if(jugador->devolver_energia() >= ENERGIA_DEMOLER){
         coords_validas = this->ingreso_de_coordenadas();
         if(coords_validas) {
-            ocupado = mapa->hay_edicicio(fila_nueva, columna_nueva);
+            ocupado = mapa->hay_edificio(fila_nueva, columna_nueva);
             if (ocupado) {
                 if (mapa->devolver_casillero(fila_nueva, columna_nueva)->devolver_duenio() == jugador->devolver_numero()) {
                     this->avanzar_con_demolicion(jugador);
